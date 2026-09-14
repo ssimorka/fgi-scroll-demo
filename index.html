@@ -668,12 +668,18 @@
 
     // Soft 3D beads (Geneticus feel): sphere sprites pre-rendered at a few blur
     // levels, drawn solid and overlapping into a tube; back strand out of focus.
-    const sprites = [0, 2, 5, 10].map(blur => {
+    const sprites = [1.5, 3, 6, 12].map(blur => {
       const c = document.createElement('canvas'); c.width = c.height = 160; const g = c.getContext('2d');
-      const grd = g.createRadialGradient(62, 56, 6, 80, 80, 66);
-      grd.addColorStop(0, 'rgba(232,250,255,1)'); grd.addColorStop(0.35, 'rgba(158,222,238,0.98)');
-      grd.addColorStop(0.75, 'rgba(78,168,194,0.95)'); grd.addColorStop(1, 'rgba(40,120,160,0)');
-      g.filter = blur ? `blur(${blur}px)` : 'none'; g.fillStyle = grd; g.beginPath(); g.arc(80, 80, 66, 0, Math.PI * 2); g.fill();
+      g.filter = `blur(${blur}px)`;
+      // frosted pale-blue sphere, key light upper-left, soft edge that melts into neighbours
+      const body = g.createRadialGradient(56, 50, 4, 80, 80, 64);
+      body.addColorStop(0, 'rgba(244,252,255,0.95)'); body.addColorStop(0.3, 'rgba(205,236,246,0.9)');
+      body.addColorStop(0.7, 'rgba(150,210,230,0.8)'); body.addColorStop(0.92, 'rgba(110,185,212,0.45)'); body.addColorStop(1, 'rgba(100,180,210,0)');
+      g.fillStyle = body; g.beginPath(); g.arc(80, 80, 64, 0, Math.PI * 2); g.fill();
+      // gentle shade on the far side of the light
+      const shade = g.createRadialGradient(104, 104, 10, 80, 80, 64);
+      shade.addColorStop(0, 'rgba(20,80,120,0.28)'); shade.addColorStop(0.6, 'rgba(20,80,120,0.08)'); shade.addColorStop(1, 'rgba(20,80,120,0)');
+      g.globalCompositeOperation = 'source-atop'; g.fillStyle = shade; g.beginPath(); g.arc(80, 80, 64, 0, Math.PI * 2); g.fill();
       return c;
     });
 
@@ -685,22 +691,22 @@
       // like the reference: fewer, larger, unevenly sized beads, wide amplitude.
       const P = [
         [W * 0.42, H * 1.25],
-        [W * (0.66 + 0.03 * Math.sin(t * 0.21)), H * (0.72 + 0.05 * Math.cos(t * 0.17))],
-        [W * (0.94 + 0.03 * Math.cos(t * 0.19)), H * (0.9 + 0.05 * Math.sin(t * 0.23))],
+        [W * (0.66 + 0.03 * Math.sin(t * 0.09)), H * (0.72 + 0.05 * Math.cos(t * 0.07))],
+        [W * (0.94 + 0.03 * Math.cos(t * 0.08)), H * (0.9 + 0.05 * Math.sin(t * 0.1))],
         [W * 1.18, H * -0.05],
       ];
       const bez = (u) => { const m = 1 - u; return [
         m*m*m*P[0][0] + 3*m*m*u*P[1][0] + 3*m*u*u*P[2][0] + u*u*u*P[3][0],
         m*m*m*P[0][1] + 3*m*m*u*P[1][1] + 3*m*u*u*P[2][1] + u*u*u*P[3][1] ]; };
-      const steps = 74, amp0 = Math.min(W, H) * 0.34, phase = t * 0.22, rBase = Math.min(W, H) * 0.052;
+      const steps = 74, amp0 = Math.min(W, H) * 0.34, phase = t * 0.08, rBase = Math.min(W, H) * 0.052;
       ctx.globalCompositeOperation = 'source-over';
       const beads = [], rungs = [];
       for (let i = 0; i <= steps; i++) {
         const u = (i + (hash(i) - 0.5) * 0.5) / steps;               // uneven spacing along the strand
         const [cx, cy] = bez(u), [px, py] = bez(Math.min(1, u + 0.005));
         const tl = Math.hypot(px - cx, py - cy) || 1, nx = -(py - cy) / tl, ny = (px - cx) / tl;
-        const amp = amp0 * (0.85 + 0.2 * Math.sin(u * 2.6 + t * 0.2));
-        const th = u * Math.PI * 2.6 + 0.3 * Math.sin(u * 1.9 + t * 0.18) + phase; // ~1.3 turns across the card
+        const amp = amp0 * (0.85 + 0.2 * Math.sin(u * 2.6 + t * 0.08));
+        const th = u * Math.PI * 2.6 + 0.3 * Math.sin(u * 1.9 + t * 0.07) + phase; // ~1.3 turns across the card
         for (const side of [1, -1]) {
           const sn = Math.sin(th) * side, depth = (Math.cos(th) * side + 1) / 2;
           const k = i * 2 + (side > 0 ? 0 : 1);
@@ -720,7 +726,7 @@
       for (const bd of beads) {
         const focus = 1 - Math.abs(bd.depth - 0.62) / 0.62;              // 1 = sharp
         const sp = sprites[focus > 0.8 ? 0 : focus > 0.55 ? 1 : focus > 0.3 ? 2 : 3];
-        ctx.globalAlpha = 0.4 + bd.depth * 0.6;
+        ctx.globalAlpha = 0.35 + bd.depth * 0.5;
         ctx.drawImage(sp, bd.x - bd.r * 1.2, bd.y - bd.r * 1.2, bd.r * 2.4, bd.r * 2.4);
       }
       ctx.globalAlpha = 1;
