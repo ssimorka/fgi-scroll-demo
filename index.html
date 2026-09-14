@@ -718,11 +718,10 @@
         ctx.strokeStyle = `rgba(158,222,238,${0.08 + 0.2 * rg.d})`; ctx.lineWidth = rBase * 0.35; ctx.lineCap = 'round';
         ctx.beginPath(); ctx.moveTo(rg.x1, rg.y1); ctx.lineTo(rg.x2, rg.y2); ctx.stroke();
       }
-      // depth of field: mid-depth is in focus; both the far strand and the nearest
-      // beads go soft, the way a shallow lens renders the reference
+      // depth of field: the nearer a bead, the sharper; the far strand goes soft
       beads.sort((a, b) => a.depth - b.depth);
       for (const bd of beads) {
-        const focus = 1 - Math.abs(bd.depth - 0.62) / 0.62;              // 1 = sharp
+        const focus = bd.depth;                                          // 1 = nearest = sharp
         const sp = sprites[focus > 0.8 ? 0 : focus > 0.55 ? 1 : focus > 0.3 ? 2 : 3];
         ctx.globalAlpha = 0.35 + bd.depth * 0.5;
         ctx.drawImage(sp, bd.x - bd.r * 1.2, bd.y - bd.r * 1.2, bd.r * 2.4, bd.r * 2.4);
