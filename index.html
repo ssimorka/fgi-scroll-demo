@@ -185,7 +185,7 @@
   /* Stacked panels share one language: 24px page gutter, 16px radius, solid
      ground, 48px inside. The Approach panel recedes as one rounded rectangle. */
   .approach{min-height:calc(100svh - 88px);display:flex;flex-direction:column;padding:24px} /* same height as the hero (card + facts) */
-  .approach-panel{
+  .approach-panel,.founders-panel{
     flex:1 1 0;min-height:0;display:flex;flex-direction:column;gap:24px;padding:48px;border-radius:var(--radius);
     background:var(--bg-secondary);
     filter:drop-shadow(0 4px 2px rgba(32,32,32,.1)) drop-shadow(0 4px 2px rgba(32,32,32,.05)); /* Drop Shadow/300 */
@@ -195,14 +195,14 @@
   .panel-img img{width:100%;height:100%;object-fit:cover;--flip:1;--zoom:1.12;--px:0px;--py:0px;
     transform:scale(calc(var(--flip) * var(--zoom)),var(--zoom)) translate(var(--px),var(--py))} /* zoom = headroom for parallax */
   .approach .panel-img img{--flip:-1;object-position:60% 50%}
-  .approach-card{
+  .approach-card,.founders-card{
     position:absolute;left:48px;bottom:48px;width:560px;
     display:flex;flex-direction:column;gap:24px;padding:32px;
     background:rgba(255,255,255,.8);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
     border:1px solid var(--border-default);border-radius:var(--radius);
     box-shadow:0 1px 4px rgba(32,32,32,.1),0 1px 4px rgba(32,32,32,.05);
   }
-  .approach-card .t-body{color:var(--text-secondary)}
+  .approach-card .t-body,.founders-card .t-body{color:var(--text-secondary)}
   .card-actions{padding-top:16px;display:flex}
 
   /* ============ MISSION (node 6078:291) ============ */
@@ -252,24 +252,10 @@
   .dots button[aria-current="true"]{background:var(--text-default)}
 
   /* ============ FOUNDERS (node 6079:297) ============ */
-  .founders{padding:24px}
-  .founders-panel{
-    max-height:calc(100svh - 48px); /* panel always fits the viewport */
-    display:flex;flex-direction:column;gap:clamp(24px,5svh,56px);padding:clamp(40px,6svh,64px) 48px;border-radius:var(--radius);
-    background:var(--grad-dark-depth);color:var(--text-on-dark);
-    filter:drop-shadow(0 4px 2px rgba(32,32,32,.1)) drop-shadow(0 4px 2px rgba(32,32,32,.05)); /* Drop Shadow/300 */
-  }
-  .founders-row{display:flex;align-items:flex-end;justify-content:space-between;gap:64px}
-  .founders-row .statement{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:24px}
-  .founders-row .statement .t-page{max-width:22ch}
-  .founders-row .aside{flex:0 0 clamp(360px,30vw,480px);display:flex;flex-direction:column;gap:8px}
-  .founders-row .aside .t-body{color:var(--text-on-dark-2)}
-  .portraits{display:flex;gap:24px}
-  .portraits{min-height:0}
-  .portrait{flex:1 1 0;min-width:0;aspect-ratio:5/4;max-height:clamp(180px,calc(100svh - 500px),320px);border-radius:8px;overflow:hidden;background:rgba(255,255,255,.06);position:relative}
-  .portrait img{width:100%;height:100%;object-fit:cover}
-  .portrait.pending{display:grid;place-items:center;border:1px dashed var(--border-on-dark)}
-  .portrait.pending span{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-on-dark-2);opacity:.7}
+  /* Same composition as Approach (solid panel, full photo, frosted card), card on the right */
+  .founders{min-height:calc(100svh - 88px);display:flex;flex-direction:column;padding:24px}
+  .founders .panel-img img{--zoom:1.25;--px:-110px;object-position:50% 11.5%} /* Mike sits left, clear of the card; hair at the top edge */
+  .founders-card{left:auto;right:48px}
 
   /* ============ RESEARCH & NEWS (replaces Bento + FAQ; tile styles reused from FGI/Bento Tile) ============ */
   .news{padding:96px var(--pad-x);display:flex;flex-direction:column;gap:48px}
@@ -325,16 +311,14 @@
     .fact .t-small-strong{font-size:15px}
     .approach,.founders{padding:12px}
     .approach{min-height:0;display:block}
-    .approach-panel,.panel{flex:0 0 auto;display:block}
+    .approach-panel,.founders-panel,.panel{flex:0 0 auto;display:block}
     .news{padding:64px var(--pad-x)}
     .approach-panel{padding:20px;gap:16px}
     .panel-img{flex:0 0 auto;height:min(60vw,480px)}
     .approach-card{position:static;width:auto;margin:-40px 16px 0;background:rgba(255,255,255,.92);padding:24px}
-    .founders-panel{padding:40px 20px;gap:32px}
-    .founders-row{flex-direction:column;align-items:stretch;gap:24px}
-    .founders-row .aside{flex:0 0 auto}
-    .portraits{flex-direction:column}
-    .portrait{flex:0 0 auto;width:100%;aspect-ratio:4/3}
+    .founders{min-height:0;display:block}
+    .founders-panel{padding:20px;gap:16px}
+    .founders-card{position:static;width:auto;margin:-40px 16px 0;background:rgba(255,255,255,.92);padding:24px}
     .mission{padding:12px}
     .mission-card{height:auto;padding:40px 24px 56px;gap:40px}
     .mission-cols{flex-direction:column;gap:32px;padding-top:32px}
@@ -370,9 +354,7 @@
     .facts{flex-direction:row;gap:24px;padding:24px 32px}
     .mission-cols{flex-direction:row;gap:48px}
     .news-grid{flex-direction:row}
-    .approach-card{width:min(560px,80%)}
-    .portraits{flex-direction:row}
-    .portrait{flex:1 1 0;width:auto;aspect-ratio:5/4}
+    .approach-card,.founders-card{width:min(560px,80%)}
     .footer-content{flex-direction:row;gap:48px}
     .brand{flex-direction:column;align-items:flex-start}
     .link-cols{flex-wrap:nowrap}
@@ -528,20 +510,14 @@
   <!-- ============ FOUNDERS ============ -->
   <section class="founders" id="founders">
     <div class="founders-panel">
-      <div class="founders-row">
-        <div class="statement">
-          <p class="eyebrow on-dark">Founders</p>
+      <div class="panel">
+        <div class="panel-img"><img data-parallax-img="28" src="assets/founders-photo.jpg" alt="Founders or laboratory photography, final asset pending"></div>
+        <div class="founders-card" data-parallax="90">
+          <p class="eyebrow">Founders</p>
           <h2 class="t-page">Founded by leaders in genomic and maternal-fetal medicine.</h2>
-        </div>
-        <div class="aside">
           <p class="t-body">Three physician-scientists from Harvard, Columbia, and the Broad Institute.</p>
-          <div class="card-actions"><a class="btn btn-neutral" href="#founders">Meet the founders <img src="assets/arrow-right.svg" alt="" style="filter:brightness(0) saturate(100%) invert(22%) sepia(14%) saturate(1200%) hue-rotate(184deg)"></a></div>
+          <div class="card-actions"><a class="btn btn-brand" href="#founders">Meet the founders <img src="assets/arrow-right-light.svg" alt=""></a></div>
         </div>
-      </div>
-      <div class="portraits">
-        <div class="portrait"><img src="assets/founders-photo.jpg" alt="Founder portrait, final asset pending" style="object-position:50% 12%"></div>
-        <div class="portrait pending"><span>Portrait pending</span></div>
-        <div class="portrait pending"><span>Portrait pending</span></div>
       </div>
     </div>
   </section>
