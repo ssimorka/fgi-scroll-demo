@@ -644,9 +644,9 @@
       while (y < H + 40) {
         const segs = [];
         let x = -rnd(0, 120);
-        while (x < W + 120) { const w = rnd(8, 70); segs.push({ x, w, a: rnd(0.2, 1) }); x += w + rnd(14, 90); }
+        while (x < W + 120) { const w = rnd(8, 70); segs.push({ x, w, a: rnd(0.2, 1) }); x += w + rnd(28, 110); }
         lanes.push({ y, h: rnd(3, 6), speed: rnd(6, 28), segs, hue: Math.random() < 0.7 ? '78,168,194' : '184,229,237' });
-        y += rnd(14, 44) * (2.0 - 1.3 * (y / H)); // sparse at the top, tighter lower down
+        y += 34 + rnd(0, 40) * (1.8 - 1.2 * (y / H)); // >= band + halo apart: no overlaps; sparser at the top
       }
     };
 
@@ -658,7 +658,7 @@
           if (sg.x > W + 120) { sg.x = -rnd(20, 140); sg.w = rnd(8, 70); sg.a = rnd(0.2, 1); }
           // soft capsule with a wide halo, like a lit band on a gel
           ctx.fillStyle = `rgba(${l.hue},${0.08 * sg.a})`;
-          ctx.beginPath(); ctx.roundRect(sg.x - 6, l.y - l.h * 2, sg.w + 12, l.h * 5, l.h * 2.5); ctx.fill();
+          ctx.beginPath(); ctx.roundRect(sg.x - 5, l.y - l.h * 1.5, sg.w + 10, l.h * 4, l.h * 2); ctx.fill();
           ctx.fillStyle = `rgba(${l.hue},${0.38 * sg.a})`;
           ctx.beginPath(); ctx.roundRect(sg.x, l.y, sg.w, l.h, l.h / 2); ctx.fill();
         }
