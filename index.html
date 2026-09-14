@@ -184,14 +184,14 @@
   /* ============ FGI'S APPROACH (node 6305:8644) ============ */
   /* Stacked panels share one language: 24px page gutter, 16px radius, solid
      ground, 48px inside. The Approach panel recedes as one rounded rectangle. */
-  .approach{padding:24px}
+  .approach{min-height:calc(100svh - 88px);display:flex;flex-direction:column;padding:24px} /* same height as the hero (card + facts) */
   .approach-panel{
-    display:flex;flex-direction:column;gap:24px;padding:48px;border-radius:var(--radius);
+    flex:1 1 0;min-height:0;display:flex;flex-direction:column;gap:24px;padding:48px;border-radius:var(--radius);
     background:var(--bg-secondary);
     filter:drop-shadow(0 4px 2px rgba(32,32,32,.1)) drop-shadow(0 4px 2px rgba(32,32,32,.05)); /* Drop Shadow/300 */
   }
-  .panel{position:relative}
-  .panel-img{height:clamp(420px,calc(100svh - 170px),600px);border-radius:var(--radius);overflow:hidden;background:#ebebeb} /* 600 in the file; shrinks so the pinned Approach panel fits short viewports */
+  .panel{position:relative;flex:1 1 0;display:flex;flex-direction:column;min-height:0}
+  .panel-img{flex:1 1 0;min-height:0;border-radius:var(--radius);overflow:hidden;background:#ebebeb} /* fills the panel; the panel itself is sized to the viewport */
   .panel-img img{width:100%;height:100%;object-fit:cover;--flip:1;--zoom:1.12;--px:0px;--py:0px;
     transform:scale(calc(var(--flip) * var(--zoom)),var(--zoom)) translate(var(--px),var(--py))} /* zoom = headroom for parallax */
   .approach .panel-img img{--flip:-1;object-position:60% 50%}
@@ -324,9 +324,11 @@
     .fact .t-heading{font-size:36px}
     .fact .t-small-strong{font-size:15px}
     .approach,.founders{padding:12px}
+    .approach{min-height:0;display:block}
+    .approach-panel,.panel{flex:0 0 auto;display:block}
     .news{padding:64px var(--pad-x)}
     .approach-panel{padding:20px;gap:16px}
-    .panel-img{height:min(60vw,480px)}
+    .panel-img{flex:0 0 auto;height:min(60vw,480px)}
     .approach-card{position:static;width:auto;margin:-40px 16px 0;background:rgba(255,255,255,.92);padding:24px}
     .founders-panel{padding:40px 20px;gap:32px}
     .founders-row{flex-direction:column;align-items:stretch;gap:24px}
