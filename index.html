@@ -179,6 +179,7 @@
   .fact{flex:1 1 0;min-width:0;padding:4px 24px;border-left:2px solid var(--pink-800);display:flex;flex-direction:column;gap:8px}
   .fact .t-heading{color:var(--text-neutral);font-size:clamp(40px,4.5svh,56px);font-weight:700;letter-spacing:-.02em} /* Title Page scale */
   .fact .t-small-strong{color:var(--text-neutral-2);font-size:18px;font-weight:400}
+  .facts.will-count .fact{opacity:0;transform:translateY(12px)} /* fade-in start state; GSAP animates from here */
 
   /* ============ FGI'S APPROACH (node 6305:8644) ============ */
   /* Stacked panels share one language: 24px page gutter, 16px radius, solid
@@ -421,8 +422,8 @@
         </div>
       </div>
       <div class="facts">
-        <div class="fact"><div class="t-heading">22,995</div><div class="t-small-strong">Genes screened per test</div></div>
-        <div class="fact"><div class="t-heading">8 years</div><div class="t-small-strong">of R&amp;D and validation</div></div>
+        <div class="fact"><div class="t-heading" data-count="22995">22,995</div><div class="t-small-strong">Genes screened per test</div></div>
+        <div class="fact"><div class="t-heading" data-count="8" data-suffix=" years">8 years</div><div class="t-small-strong">of R&amp;D and validation</div></div>
         <div class="fact"><div class="t-heading">Zero</div><div class="t-small-strong">Procedure risk to the fetus</div></div>
       </div>
     </section>
@@ -636,6 +637,28 @@
       lenis.scrollTo(target, { duration: 1.2 });
     });
   });
+
+  /* ---------- 1b. Fact tiles: fade in and count up when they come into view ---------- */
+  const factsEl = document.querySelector('.facts');
+  if (factsEl && !reduceMotion) {
+    factsEl.classList.add('will-count');
+    const fmt = (v) => Math.round(v).toLocaleString('en-US');
+    const run = () => {
+      const facts = factsEl.querySelectorAll('.fact');
+      gsap.to(facts, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', stagger: 0.15, clearProps: 'transform' });
+      facts.forEach((f, i) => {
+        const v = f.querySelector('[data-count]');
+        if (!v) return; // "Zero" just fades in
+        const target = parseFloat(v.dataset.count), suffix = v.dataset.suffix || '';
+        const o = { n: 0 };
+        gsap.to(o, { n: target, duration: 1.6, delay: 0.15 * i, ease: 'power2.out', onUpdate: () => { v.textContent = fmt(o.n) + suffix; } });
+      });
+    };
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some(e => e.isIntersecting && e.intersectionRatio >= 0.5)) { run(); io.disconnect(); }
+    }, { threshold: [0.5] });
+    io.observe(factsEl);
+  }
 
   /* ---------- 2. Panel stacking: Hero -> Approach -> Mission ---------- */
   // Each .stack-panel pins (sticky) while the next .stack-over section slides
