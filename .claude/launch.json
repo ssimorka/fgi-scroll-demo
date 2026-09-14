@@ -1,1 +1,1 @@
-{"version":"0.0.1","configurations":[{"name":"fgi-demo","runtimeExecutable":"python","runtimeArgs":["-m","http.server","8765"],"port":8765}]}
+{"version":"0.0.1","configurations":[{"name":"fgi-demo","runtimeExecutable":"python","runtimeArgs":["-m","http.server","8765","--directory","C:/Users/simor/FGI"],"port":8765}]}

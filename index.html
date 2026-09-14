@@ -78,6 +78,7 @@
   .t-small-strong{font-size:14px;line-height:1.4;font-weight:600}
   .eyebrow{font-size:14px;line-height:1.4;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text-brand-secondary)}
   .eyebrow.on-dark{color:var(--text-on-dark-2)}
+  .eyebrow .num{opacity:.6;margin-right:12px} /* section numeral: the page's narrative spine */
 
   /* ---- buttons ---- */
   .btn{display:inline-flex;align-items:center;gap:8px;padding:16px 32px;border-radius:9999px;border:1px solid transparent;font-size:18px;line-height:1;white-space:nowrap;transition:filter .2s}
@@ -129,7 +130,7 @@
   .stack-over{margin-top:-100vh}
   .hero-wrap{z-index:1}
   .approach-wrap{z-index:2}
-  .mission-wrap{z-index:3}
+  .tech-wrap{z-index:3}
 
   .hero{
     display:flex;flex-direction:column;gap:24px;padding:24px 48px;
@@ -234,39 +235,17 @@
   }
   .founders-card .t-body{color:var(--text-on-dark-2)}
 
-  /* ============ BENTO (node 6362:9218) ============ */
-  .bento{padding:96px var(--pad-x)}
-  .bento-grid{display:flex;flex-direction:column;gap:24px}
-  .bento-row{display:flex;gap:24px;align-items:stretch}
+  /* ============ RESEARCH & NEWS (replaces Bento + FAQ; tile styles reused from FGI/Bento Tile) ============ */
+  .news{padding:96px var(--pad-x);display:flex;flex-direction:column;gap:48px}
+  .news-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px}
+  .news-grid{display:flex;gap:24px;align-items:stretch}
   .tile{display:flex;flex-direction:column;gap:24px;padding:40px;border-radius:var(--radius)}
   .tile-head{display:flex;gap:8px;align-items:flex-start}
   .tile-content{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:12px}
   .tile-light{background:rgba(248,250,252,.7);box-shadow:var(--shadow-400);color:var(--text-default)}
-  .tile-light .t-body{color:var(--text-secondary)}
-  .tile-dark{background:var(--grad-dark-depth);color:var(--text-on-dark);gap:8px;filter:drop-shadow(0 16px 16px rgba(32,32,32,.1)) drop-shadow(0 4px 2px rgba(32,32,32,.05))}
-  .tile-brand{background:var(--grad-tile-brand);color:var(--text-on-dark);gap:8px;filter:drop-shadow(0 16px 16px rgba(32,32,32,.1)) drop-shadow(0 4px 2px rgba(32,32,32,.05))}
-  .tile-dark .t-body,.tile-brand .t-body{color:var(--text-on-dark-2)}
-  .tile-media{flex:1 1 0;min-height:1px;border-radius:8px;background:var(--bg-brand-hover);opacity:.45}
-  .tile-nifs{flex:1 1 0;height:396px}
-  .tile-how{flex:1 1 0}
-  .tile-technology{flex:0 0 380px}
-  .tile-research{flex:1 1 0}
-  .tile-partners{height:264px}
-
-  /* ============ FAQ (node 6370:9625) ============ */
-  .faq{padding:48px var(--pad-x);display:flex;flex-direction:column;gap:32px}
-  .faq::before{content:'';position:absolute;top:0;bottom:0;left:50%;width:100vw;transform:translateX(-50%);background:var(--bg-secondary);z-index:-1} /* full-bleed ground */
-  .faq-cols{display:flex;gap:24px}
-  .faq-col{flex:1 1 0;min-width:0;display:flex;flex-direction:column}
-  .faq-item{border-bottom:1px solid var(--border-default);padding:24px 0}
-  .faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;text-align:left}
-  .faq-q .t-subheading{flex:1 1 0;min-width:0}
-  .faq-icon{width:44px;height:44px;flex:0 0 44px;display:grid;place-items:center}
-  .faq-icon img{width:20px;height:20px;transition:transform .25s}
-  .faq-item[open] .faq-icon img{transform:rotate(45deg)}
-  .faq-a{padding:12px 60px 0 0;color:var(--text-secondary)}
-  details summary{list-style:none}
-  details summary::-webkit-details-marker{display:none}
+  .news-item{flex:1 1 0;min-width:0;min-height:264px;transition:transform .25s}
+  .news-item:hover{transform:translateY(-2px)}
+  .news-item .t-heading{color:var(--text-default);letter-spacing:-.01em}
 
   /* ============ FOOTER (node 6260:7642) ============ */
   .footer{padding:48px var(--pad-x) 32px;display:flex;flex-direction:column;gap:32px;color:var(--text-neutral)}
@@ -299,7 +278,7 @@
     .navbar .logo{width:134px;height:40px}
     .nav-list{display:none}
     .facts{flex-direction:column;gap:16px;padding:20px}
-    .approach,.founders,.bento{padding:64px var(--pad-x)}
+    .approach,.founders,.news{padding:64px var(--pad-x)}
     .panel{padding-bottom:0}
     .panel-img{height:min(60vw,480px)}
     .approach-card,.founders-card{position:static;width:auto;margin:-40px 16px 0;background:rgba(255,255,255,.92)}
@@ -322,12 +301,11 @@
     .card-num{font-size:56px}
     .card-media{order:2;aspect-ratio:16/10;flex:0 0 auto}
     .dots{display:flex}
-    .bento-row{flex-direction:column}
+    .news{gap:24px}
+    .news-head{flex-direction:column;align-items:flex-start}
+    .news-grid{flex-direction:column}
     .tile{padding:28px}
-    .tile-nifs,.tile-partners{height:auto;min-height:260px}
-    .tile-technology{flex:1 1 auto}
-    .faq{padding:48px var(--pad-x)}
-    .faq-cols{flex-direction:column;gap:0}
+    .news-item{flex:0 0 auto;min-height:0}
     .footer-content{flex-direction:column;gap:32px}
     .brand{flex-direction:row;justify-content:space-between;align-items:center}
     .link-cols{flex-wrap:wrap;gap:24px}
@@ -340,12 +318,9 @@
     .nav-list{display:flex;gap:4px}
     .nav-list a{font-size:16px}
     .facts{flex-direction:row;gap:24px;padding:24px 32px}
-    .tiles{grid-template-columns:repeat(3,1fr)}
     .mission-cols{flex-direction:row;gap:48px}
-    .bento-row{flex-direction:row}
-    .tile-technology{flex:0 0 40%}
+    .news-grid{flex-direction:row}
     .approach-card,.founders-card{width:min(560px,80%)}
-    .faq-cols{flex-direction:row;gap:24px}
     .footer-content{flex-direction:row;gap:48px}
     .brand{flex-direction:column;align-items:flex-start}
     .link-cols{flex-wrap:nowrap}
@@ -366,8 +341,8 @@
           <a class="logo" href="#hero" aria-label="First Genomic Insights"><img src="assets/fgi-logo-light.svg" alt=""></a>
           <ul class="nav-list">
             <li><a href="#tech">Technology</a></li>
-            <li><a href="#bento">Research</a></li>
-            <li><a href="#bento">Partners</a></li>
+            <li><a href="#news">Research</a></li>
+            <li><a href="#news">Partners</a></li>
             <li><a href="#founders">Company</a></li>
           </ul>
           <a class="btn btn-neutral btn-sm" href="#footer">Contact Us</a>
@@ -395,7 +370,7 @@
     <div class="panel">
       <div class="panel-img"><img data-parallax-img="-28" src="assets/approach-lab.jpg" alt="Founders or laboratory photography, final asset pending"></div>
       <div class="approach-card" data-parallax="90">
-        <p class="eyebrow">FGI's Approach</p>
+        <p class="eyebrow"><span class="num">01</span>FGI's Approach</p>
         <h2 class="t-page">Every prenatal test today is a trade-off</h2>
         <p class="t-body">Non-invasive testing misses most clinically relevant conditions. Invasive testing catches them, but carries real risk.</p>
         <div class="card-actions"><a class="btn btn-brand" href="#tech">See the Technology <img src="assets/arrow-right-light.svg" alt=""></a></div>
@@ -404,34 +379,14 @@
   </section>
   </div>
 
-  <!-- ============ MISSION ============ -->
-  <div class="mission-wrap stack-over" data-slide="0.65">
-  <section class="mission" id="mission">
-    <div class="mission-card">
-      <div class="mission-statement">
-        <p class="eyebrow on-dark">Our Mission</p>
-        <h2 class="t-page">We're building the infrastructure for a new standard of prenatal care, scientifically rigorous, responsibly deployed.</h2>
-      </div>
-      <div class="mission-cols">
-        <div class="mission-col">
-          <p class="eyebrow on-dark">Where FGI is today</p>
-          <p class="t-subheading">Validating NIFS through prospective studies, ahead of a planned launch.</p>
-        </div>
-        <div class="mission-col">
-          <p class="eyebrow on-dark">What FGI is building toward</p>
-          <p class="t-subheading">Population-scale screening that replaces NIPT as the standard of care.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  </div>
 
-  <!-- ============ TECHNOLOGY SCROLL SEQUENCE ============ -->
+  <!-- ============ 02 TECHNOLOGY SCROLL SEQUENCE (slides over Approach at 1:1) ============ -->
+  <div class="tech-wrap stack-over">
   <section class="tech" id="tech">
     <div class="tech-pin">
       <div class="tech-head">
         <div class="section-heading">
-          <p class="eyebrow">NIFS</p>
+          <p class="eyebrow"><span class="num">02</span>NIFS</p>
           <h2 class="t-page">How a sample becomes a result.</h2>
         </div>
         <div class="controls">
@@ -477,6 +432,29 @@
       <div class="dots" id="dots" aria-hidden="true"></div>
     </div>
   </section>
+  </div>
+
+  <!-- ============ 03 MISSION ============ -->
+  <div class="mission-wrap">
+  <section class="mission" id="mission">
+    <div class="mission-card">
+      <div class="mission-statement">
+        <p class="eyebrow on-dark"><span class="num">03</span>Our Mission</p>
+        <h2 class="t-page">We're building the infrastructure for a new standard of prenatal care, scientifically rigorous, responsibly deployed.</h2>
+      </div>
+      <div class="mission-cols">
+        <div class="mission-col">
+          <p class="eyebrow on-dark">Where FGI is today</p>
+          <p class="t-subheading">Validating NIFS through prospective studies, ahead of a planned launch.</p>
+        </div>
+        <div class="mission-col">
+          <p class="eyebrow on-dark">What FGI is building toward</p>
+          <p class="t-subheading">Population-scale screening that replaces NIPT as the standard of care.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  </div>
 
   <!-- ============ FOUNDERS ============ -->
   <section class="founders" id="founders">
@@ -491,80 +469,46 @@
     </div>
   </section>
 
-  <!-- ============ BENTO ============ -->
-  <section class="bento" id="bento">
-    <div class="bento-grid">
-      <div class="bento-row">
-        <a class="tile tile-dark tile-nifs" href="#tech">
-          <div class="tile-head">
-            <div class="tile-content">
-              <p class="eyebrow on-dark">Platform</p>
-              <h3 class="t-page">Non-Invasive Fetal Sequencing</h3>
-              <p class="t-body">The platform FGI has developed, and the laboratory partnerships being established to deliver it internationally.</p>
-            </div>
-            <span class="icon-btn on-dark"><img src="assets/arrow-20-light.svg" alt=""></span>
-          </div>
-          <div class="tile-media" aria-hidden="true"></div>
-        </a>
-        <a class="tile tile-light tile-how" href="#tech">
-          <div class="tile-head">
-            <div class="tile-content">
-              <h3 class="t-page">How NIFS works</h3>
-              <p class="t-body">The workflow end to end, from blood draw through sequencing to interpreted variation.</p>
-            </div>
-            <span class="icon-btn"><img src="assets/arrow-20-dark.svg" alt=""></span>
-          </div>
-        </a>
+  <!-- ============ RESEARCH & NEWS (replaces Bento + FAQ) ============ -->
+  <section class="news" id="news">
+    <div class="news-head">
+      <div class="section-heading">
+        <p class="eyebrow">Research &amp; News</p>
+        <h2 class="t-page">The work behind the platform.</h2>
       </div>
-      <div class="bento-row">
-        <a class="tile tile-light tile-technology" href="#tech">
-          <div class="tile-head">
-            <div class="tile-content">
-              <h3 class="t-page">Technology</h3>
-              <p class="t-body">The sequencing technology and data science the platform is built on.</p>
-            </div>
-            <span class="icon-btn"><img src="assets/arrow-20-dark.svg" alt=""></span>
-          </div>
-        </a>
-        <a class="tile tile-light tile-research" href="#bento">
-          <div class="tile-head">
-            <div class="tile-content">
-              <h3 class="t-page">Research and publications</h3>
-              <p class="t-body">Peer-reviewed work behind the platform, beginning with the NEJM paper.</p>
-            </div>
-            <span class="icon-btn"><img src="assets/arrow-20-dark.svg" alt=""></span>
-          </div>
-        </a>
-      </div>
-      <a class="tile tile-brand tile-partners" href="#footer">
+      <a class="btn btn-neutral btn-sm" href="#news">Explore more research <img src="assets/arrow-right.svg" alt="" style="filter:brightness(0) saturate(100%) invert(22%) sepia(14%) saturate(1200%) hue-rotate(184deg)"></a>
+    </div>
+    <div class="news-grid">
+      <a class="tile tile-light news-item" href="#news">
         <div class="tile-head">
           <div class="tile-content">
-            <p class="eyebrow on-dark">Eyebrow</p>
-            <h3 class="t-page">Partners and laboratories</h3>
-            <p class="t-body">FGI is establishing partnerships with commercial laboratories to expand delivery of NIFS.</p>
+            <p class="eyebrow">Publication &middot; NEJM</p>
+            <h3 class="t-heading">Peer-reviewed work behind the platform, beginning with the NEJM paper.</h3>
           </div>
-          <span class="icon-btn on-dark"><img src="assets/arrow-20-light.svg" alt=""></span>
+          <span class="icon-btn"><img src="assets/arrow-20-dark.svg" alt=""></span>
+        </div>
+      </a>
+      <a class="tile tile-light news-item" href="#mission">
+        <div class="tile-head">
+          <div class="tile-content">
+            <p class="eyebrow">Clinical &middot; Validation</p>
+            <h3 class="t-heading">Validating NIFS through prospective studies, ahead of a planned launch.</h3>
+          </div>
+          <span class="icon-btn"><img src="assets/arrow-20-dark.svg" alt=""></span>
+        </div>
+      </a>
+      <a class="tile tile-light news-item" href="#footer">
+        <div class="tile-head">
+          <div class="tile-content">
+            <p class="eyebrow">Partners &middot; Laboratories</p>
+            <h3 class="t-heading">Establishing partnerships with commercial laboratories to expand delivery of NIFS.</h3>
+          </div>
+          <span class="icon-btn"><img src="assets/arrow-20-dark.svg" alt=""></span>
         </div>
       </a>
     </div>
   </section>
 
-  <!-- ============ FAQ ============ -->
-  <section class="faq" id="faq">
-    <p class="eyebrow">Frequently Asked Questions</p>
-    <div class="faq-cols">
-      <div class="faq-col">
-        <details class="faq-item"><summary class="faq-q"><span class="t-subheading">A question a provider or investor would actually ask.</span><span class="faq-icon"><img src="assets/icon-plus.svg" alt=""></span></summary><p class="faq-a t-body">Answer copy pending.</p></details>
-        <details class="faq-item"><summary class="faq-q"><span class="t-subheading">A question a provider or investor would actually ask.</span><span class="faq-icon"><img src="assets/icon-plus.svg" alt=""></span></summary><p class="faq-a t-body">Answer copy pending.</p></details>
-        <details class="faq-item"><summary class="faq-q"><span class="t-subheading">A question a provider or investor would actually ask.</span><span class="faq-icon"><img src="assets/icon-plus.svg" alt=""></span></summary><p class="faq-a t-body">Answer copy pending.</p></details>
-      </div>
-      <div class="faq-col">
-        <details class="faq-item"><summary class="faq-q"><span class="t-subheading">A question a provider or investor would actually ask.</span><span class="faq-icon"><img src="assets/icon-plus.svg" alt=""></span></summary><p class="faq-a t-body">Answer copy pending.</p></details>
-        <details class="faq-item"><summary class="faq-q"><span class="t-subheading">A question a provider or investor would actually ask.</span><span class="faq-icon"><img src="assets/icon-plus.svg" alt=""></span></summary><p class="faq-a t-body">Answer copy pending.</p></details>
-        <details class="faq-item"><summary class="faq-q"><span class="t-subheading">A question a provider or investor would actually ask.</span><span class="faq-icon"><img src="assets/icon-plus.svg" alt=""></span></summary><p class="faq-a t-body">Answer copy pending.</p></details>
-      </div>
-    </div>
-  </section>
 
   <!-- ============ FOOTER ============ -->
   <footer class="footer" id="footer">
@@ -574,8 +518,8 @@
         <a class="li" href="https://www.linkedin.com/company/first-genomic-insights-inc/posts/?feedView=all" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="assets/linkedin.svg" alt=""></a>
       </div>
       <div class="link-cols">
-        <div class="link-col"><h4>PLATFORM</h4><div class="rule"></div><a href="#tech">Technology Overview</a><a href="#tech">How NIFS Works</a><a href="#bento">Clinical Applications</a><a href="#bento">Research &amp; Publications</a></div>
-        <div class="link-col"><h4>FOR YOU</h4><div class="rule"></div><a href="#bento">Clinical &amp; Lab Partners</a><a href="#footer">Investors</a><a href="#bento">Researchers</a><a href="#footer">Careers</a></div>
+        <div class="link-col"><h4>PLATFORM</h4><div class="rule"></div><a href="#tech">Technology Overview</a><a href="#tech">How NIFS Works</a><a href="#news">Clinical Applications</a><a href="#news">Research &amp; Publications</a></div>
+        <div class="link-col"><h4>FOR YOU</h4><div class="rule"></div><a href="#news">Clinical &amp; Lab Partners</a><a href="#footer">Investors</a><a href="#news">Researchers</a><a href="#footer">Careers</a></div>
         <div class="link-col"><h4>COMPANY</h4><div class="rule"></div><a href="#mission">Our Story</a><a href="#founders">Leadership</a><a href="#footer">Contact</a></div>
         <div class="link-col"><h4>GET IN TOUCH</h4><div class="rule"></div><a href="#footer">Laboratory partnership</a><a href="#footer">Investor relations</a><a href="#footer">Research collaboration</a><a href="#footer">Media &amp; press</a></div>
       </div>
@@ -596,7 +540,7 @@
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   // Tuning knob (open item): scroll distance per beat, in viewport heights.
-  const VH_PER_BEAT = 1;
+  const VH_PER_BEAT = 1.3; // ~1:1 px mapping (35pharma: 2212px travel for 2 x 1211px shifts)
 
   /* ---------- 1. Lenis smooth scroll (site-wide) ---------- */
   const lenis = new Lenis({ lerp: 0.1, wheelMultiplier: 0.7 });
@@ -625,7 +569,7 @@
   const $ = (sel) => document.querySelector(sel);
   const stacks = [
     { panel: $('#hero'),     wrap: $('.hero-wrap'),     over: $('.approach-wrap') },
-    { panel: $('#approach'), wrap: $('.approach-wrap'), over: $('.mission-wrap') },
+    { panel: $('#approach'), wrap: $('.approach-wrap'), over: $('.tech-wrap') }, // 1:1, no data-slide: the tech section pins itself
   ];
   stacks.forEach(s => {
     s.slide = parseFloat(s.over.dataset.slide) || 1;
@@ -741,8 +685,11 @@
     // Outer section height = one viewport + (n-1) beats of scroll distance.
     tech.style.height = `calc(100vh + ${(n - 1) * VH_PER_BEAT * 100}vh)`;
 
-    const tween = gsap.to(track, {
-      x: () => -(n - 1) * stepPx(),
+    // Active card sits centered in the content area so the previous and next
+    // cards both peek (35pharma pattern) instead of the next one only.
+    const centerX = () => (track.parentElement.clientWidth - cards[0].offsetWidth) / 2;
+    const tween = gsap.fromTo(track, { x: () => centerX() }, {
+      x: () => centerX() - (n - 1) * stepPx(),
       ease: 'none',
       scrollTrigger: {
         trigger: tech,
