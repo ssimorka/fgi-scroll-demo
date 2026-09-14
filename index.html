@@ -211,12 +211,13 @@
   /* Mission: full-bleed gradient panel, one viewport tall like the pinned Technology block */
   .mission{padding:0}
   .mission-card{
-    width:100vw;margin-left:calc(50% - 50vw);height:100svh;
+    position:relative;overflow:hidden;width:100vw;margin-left:calc(50% - 50vw);height:100svh;
     display:flex;flex-direction:column;justify-content:space-between;gap:clamp(32px,6svh,64px);
     padding:112px var(--pad-x) var(--pad-x); /* top clears the fixed nav pill */
     background:var(--grad-dark-depth);color:var(--text-on-dark);
   }
   /* same split as the hero: eyebrow + statement left, CTA right, top-aligned */
+  .mission-statement,.mission-cols{position:relative;z-index:1}
   .mission-statement{display:flex;align-items:flex-start;justify-content:space-between;gap:64px}
   .mission-statement .headline{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:24px}
   .mission-statement .aside{flex:0 0 clamp(400px,32vw,520px);display:flex;flex-direction:column;gap:32px;padding-top:44px}
@@ -502,6 +503,7 @@
   <div class="mission-wrap">
   <section class="mission" id="mission">
     <div class="mission-card">
+      <canvas class="hero-viz" aria-hidden="true"></canvas>
       <div class="mission-statement">
         <div class="headline">
           <p class="eyebrow on-dark"><span class="num">03</span>Our Mission</p>
@@ -623,9 +625,7 @@
      (columns of glowing bands drifting upward, after the 03 clip) and a soft
      double helix of glowing points sweeping in from the right. Everything is
      masked so it fades out toward the headline. Pauses off-screen. */
-  (() => {
-    const canvas = document.getElementById('heroViz');
-    if (!canvas) return;
+  const mountViz = (canvas) => {
     const ctx = canvas.getContext('2d');
     const card = canvas.parentElement;
     let W = 0, H = 0, dpr = 1, lanes = [], raf = 0, visible = true, last = 0;
@@ -764,7 +764,8 @@
     if (reduceMotion) { frame(performance.now()); return; } // one static frame
     new IntersectionObserver((e) => { visible = e[0].isIntersecting; visible ? start() : stop(); }).observe(card);
     let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(build, 120); });
-  })();
+  };
+  document.querySelectorAll('.hero-viz').forEach(mountViz);
 
   /* ---------- 1b. Fact tiles: fade in and count up when they come into view ---------- */
   const factsEl = document.querySelector('.facts');
