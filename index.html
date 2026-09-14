@@ -773,11 +773,11 @@
     // Outer section height = one viewport + (n-1) beats of scroll distance.
     tech.style.height = `calc(100vh + ${(n - 1) * VH_PER_BEAT * 100}vh)`;
 
-    // Active card is left-aligned with the section heading; the next card
-    // peeks in from the right (and the previous one from the left once moving).
-    const tween = gsap.fromTo(track, { x: 0 }, {
-      x: () => -(n - 1) * stepPx(),
-      ease: 'none',
+    // Active card is left-aligned with the section heading and the next card
+    // peeks in from the right. The final beat stops with the last card's right
+    // edge on the content edge (same 48px gutter as the bottom), not left-aligned.
+    const endX = () => -(track.scrollWidth - track.parentElement.clientWidth);
+    const tween = gsap.timeline({
       scrollTrigger: {
         trigger: tech,
         start: 'top top',
@@ -787,6 +787,10 @@
         onUpdate: (st) => setBeat(Math.round(st.progress * (n - 1))),
       }
     });
+    gsap.set(track, { x: 0 });
+    for (let i = 1; i < n; i++) {
+      tween.to(track, { x: i === n - 1 ? endX : () => -i * stepPx(), ease: 'none', duration: 1 });
+    }
 
     goTo = (i) => {
       const st = tween.scrollTrigger;
