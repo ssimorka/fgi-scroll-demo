@@ -410,7 +410,7 @@
       <div class="hero-card">
         <canvas class="hero-viz" id="heroViz" aria-hidden="true"></canvas>
         <div class="hero-copy">
-          <div class="headline" data-viz-avoid>
+          <div class="headline">
             <p class="eyebrow">Non-invasive fetal sequencing</p>
             <h1 class="t-hero">Revolutionizing prenatal care with scalable genomics.</h1>
             <p class="t-subtitle">The first fetal sequencing test to deliver comprehensive genetic screening at NIPT scale, with no invasive procedure.</p>
@@ -506,13 +506,13 @@
     <div class="mission-card">
       <canvas class="hero-viz" data-helix="off" aria-hidden="true"></canvas>
       <div class="mission-statement">
-        <div class="headline" data-viz-avoid>
+        <div class="headline">
           <p class="eyebrow on-dark"><span class="num">03</span>Our Mission</p>
           <h2 class="t-page">We're building the infrastructure for a new standard of prenatal care, scientifically rigorous, responsibly deployed.</h2>
           <div class="hero-actions" style="padding-top:8px"><a class="btn btn-outline-light" href="#footer">Get in touch <img src="assets/arrow-right.svg" alt=""></a></div>
         </div>
       </div>
-      <div class="mission-cols" data-viz-avoid>
+      <div class="mission-cols">
         <div class="mission-col">
           <p class="eyebrow on-dark">Where FGI is today</p>
           <p class="t-subheading">Validating NIFS through prospective studies, ahead of a planned launch.</p>
@@ -731,24 +731,23 @@
     };
 
     const maskCanvas = document.createElement('canvas');
-    const avoid = card.querySelectorAll('[data-viz-avoid]');
     const mask = () => {
-      // erase a feathered box around every text block so the texture never overlays copy
+      // clear only where the copy sits (top-left corner); texture runs under it lower down
       const mc = maskCanvas.getContext('2d');
       maskCanvas.width = W; maskCanvas.height = H;
-      mc.clearRect(0, 0, W, H);
-      mc.filter = 'blur(28px)'; mc.fillStyle = '#000';
-      const cr = card.getBoundingClientRect();
-      avoid.forEach(el => {
-        const r = el.getBoundingClientRect();
-        mc.beginPath(); mc.roundRect(r.left - cr.left - 40, r.top - cr.top - 32, r.width + 80, r.height + 64, 32); mc.fill();
-      });
+      const gx = mc.createLinearGradient(0, 0, W, 0);
+      gx.addColorStop(0, 'rgba(0,0,0,1)'); gx.addColorStop(0.3, 'rgba(0,0,0,1)'); gx.addColorStop(0.68, 'rgba(0,0,0,0)');
+      mc.fillStyle = gx; mc.fillRect(0, 0, W, H);
+      mc.globalCompositeOperation = 'destination-in';
+      const gy = mc.createLinearGradient(0, 0, 0, H);
+      gy.addColorStop(0, 'rgba(0,0,0,1)'); gy.addColorStop(0.42, 'rgba(0,0,0,1)'); gy.addColorStop(0.7, 'rgba(0,0,0,0)');
+      mc.fillStyle = gy; mc.fillRect(0, 0, W, H);
       ctx.globalCompositeOperation = 'destination-out';
       ctx.drawImage(maskCanvas, 0, 0);
-      // and a light lift off the very top edge under the nav
+      // and a light lift off the very top edge so the lead copy stays clean
       ctx.globalCompositeOperation = 'destination-in';
       const gt = ctx.createLinearGradient(0, 0, 0, H);
-      gt.addColorStop(0, 'rgba(0,0,0,0.2)'); gt.addColorStop(0.2, 'rgba(0,0,0,1)');
+      gt.addColorStop(0, 'rgba(0,0,0,0.15)'); gt.addColorStop(0.42, 'rgba(0,0,0,1)');
       ctx.fillStyle = gt; ctx.fillRect(0, 0, W, H);
       ctx.globalCompositeOperation = 'source-over';
     };
