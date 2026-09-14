@@ -185,7 +185,7 @@
   /* Stacked panels share one language: 24px page gutter, 16px radius, solid
      ground, 48px inside. The Approach panel recedes as one rounded rectangle. */
   .approach{min-height:calc(100svh - 88px);display:flex;flex-direction:column;padding:24px} /* same height as the hero (card + facts) */
-  .approach-panel,.founders-panel{
+  .approach-panel{
     flex:1 1 0;min-height:0;display:flex;flex-direction:column;gap:24px;padding:48px;border-radius:var(--radius);
     background:var(--bg-secondary);
     filter:drop-shadow(0 4px 2px rgba(32,32,32,.1)) drop-shadow(0 4px 2px rgba(32,32,32,.05)); /* Drop Shadow/300 */
@@ -195,7 +195,7 @@
   .panel-img img{width:100%;height:100%;object-fit:cover;--flip:1;--zoom:1.12;--px:0px;--py:0px;
     transform:scale(calc(var(--flip) * var(--zoom)),var(--zoom)) translate(var(--px),var(--py))} /* zoom = headroom for parallax */
   .approach .panel-img img{--flip:-1;object-position:60% 50%}
-  .approach-card,.founders-card{
+  .approach-card{
     position:absolute;left:48px;bottom:48px;width:560px;
     display:flex;flex-direction:column;gap:24px;padding:32px;
     background:rgba(255,255,255,.8);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
@@ -252,31 +252,30 @@
   .dots button{width:8px;height:8px;border-radius:50%;background:rgba(53,66,91,.2);padding:0}
   .dots button[aria-current="true"]{background:var(--text-default)}
 
-  /* ============ FOUNDERS (node 6079:297) ============ */
-  /* Same composition as Approach (solid panel, full photo, frosted card), card on the right */
-  .founders{min-height:calc(100svh - 88px);display:flex;flex-direction:column;padding:96px var(--pad-x)} /* same section padding as Research & News */
-  .founders .panel-img img{--zoom:1.25;--px:-110px;object-position:50% 11.5%} /* Mike sits left, clear of the card; hair at the top edge */
-  /* Founders card per node 6315:1117: Dark Depth gradient, 48px padding, 16px gap, on-dark text */
-  .founders-card{
-    left:auto;right:48px;gap:16px;padding:48px;
-    background:linear-gradient(140.78deg,#00202e 14.644%,#00364d 50%,#001f52 85.356%);
-    border:0;color:var(--text-on-dark);
-    backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:var(--shadow-400);
-  }
-  .founders-card .eyebrow{color:var(--text-on-dark-2)}
-  .founders-card .t-body{color:var(--text-on-dark-2)}
-
-  /* ============ RESEARCH & NEWS (replaces Bento + FAQ; tile styles reused from FGI/Bento Tile) ============ */
-  .news{padding:96px var(--pad-x);display:flex;flex-direction:column;gap:48px}
-  .news-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px}
-  .news-grid{display:flex;gap:24px;align-items:stretch}
+  /* ============ BENTO: Founders (largest tile) + Research & News ============ */
+  .bento{min-height:calc(100svh - 88px);display:flex;padding:96px var(--pad-x)}
+  .bento-grid{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:2fr 1fr;grid-template-rows:repeat(3,minmax(0,1fr));gap:24px}
   .tile{display:flex;flex-direction:column;gap:24px;padding:40px;border-radius:var(--radius)}
   .tile-head{display:flex;gap:8px;align-items:flex-start}
   .tile-content{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:12px}
   .tile-light{background:rgba(248,250,252,.7);box-shadow:var(--shadow-400);color:var(--text-default)}
-  .news-item{flex:1 1 0;min-width:0;min-height:264px;transition:transform .25s}
+  .news-item{min-width:0;min-height:0;padding:32px 36px;justify-content:center;transition:transform .25s}
   .news-item:hover{transform:translateY(-2px)}
   .news-item .t-heading{color:var(--text-default);letter-spacing:-.01em}
+  /* Founders tile: the photo is the tile, the dark card sits inside it (node 6315:1117) */
+  .tile-founders{grid-column:1;grid-row:1/4;position:relative;min-height:0;border-radius:var(--radius);overflow:hidden;background:#ebebeb;box-shadow:var(--shadow-400)}
+  .tile-founders .panel-img{position:absolute;inset:0;border-radius:0}
+  .tile-founders .panel-img img{--zoom:1.25;--px:-110px;object-position:50% 11.5%} /* Mike sits left, clear of the card; hair at the top edge */
+  .founders-card{
+    position:absolute;right:32px;bottom:32px;width:min(560px,60%);
+    display:flex;flex-direction:column;gap:16px;padding:clamp(28px,3vw,48px);
+    border-radius:var(--radius);
+    background:linear-gradient(140.78deg,#00202e 14.644%,#00364d 50%,#001f52 85.356%);
+    color:var(--text-on-dark);box-shadow:var(--shadow-400);
+  }
+  .founders-card .eyebrow{color:var(--text-on-dark-2)}
+  .founders-card .t-body{color:var(--text-on-dark-2)}
+  .founders-card .t-page{font-size:clamp(28px,2.6vw,48.83px)}
 
   /* ============ FOOTER (node 6260:7642) ============ */
   .footer{padding:48px var(--pad-x) 32px;display:flex;flex-direction:column;gap:32px;color:var(--text-neutral)}
@@ -318,15 +317,17 @@
     .facts{flex-direction:column;gap:16px;padding:20px}
     .fact .t-heading{font-size:36px}
     .fact .t-small-strong{font-size:15px}
-    .approach,.founders{padding:12px}
+    .approach{padding:12px}
     .approach{min-height:0;display:block}
-    .approach-panel,.founders-panel,.panel{flex:0 0 auto;display:block}
-    .news{padding:64px var(--pad-x)}
+    .approach-panel,.panel{flex:0 0 auto;display:block}
     .approach-panel{padding:20px;gap:16px}
     .panel-img{flex:0 0 auto;height:min(60vw,480px)}
     .approach-card{position:static;width:auto;margin:-40px 16px 0;background:rgba(255,255,255,.92);padding:24px}
-    .founders{min-height:0;display:block;padding:64px var(--pad-x)}
-    .founders-panel{padding:20px;gap:16px}
+    .bento{min-height:0;display:block;padding:64px var(--pad-x)}
+    .bento-grid{display:flex;flex-direction:column;gap:16px}
+    .tile-founders{grid-row:auto;display:flex;flex-direction:column;background:none;box-shadow:none;overflow:visible;border-radius:0}
+    .tile-founders .panel-img{position:static;height:min(60vw,480px);border-radius:var(--radius)}
+    .tile-founders .panel-img img{--zoom:1.12;--px:0px;object-position:50% 15%}
     .founders-card{position:static;width:auto;margin:-40px 16px 0;padding:32px 24px}
     .mission-card{height:auto;padding:64px 20px 56px;gap:40px}
     .mission-cols{flex-direction:column;gap:32px;padding-top:32px}
@@ -343,11 +344,8 @@
     .card-num{font-size:56px}
     .card-media{order:2;aspect-ratio:16/10;flex:0 0 auto}
     .dots{display:flex}
-    .news{gap:24px}
-    .news-head{flex-direction:column;align-items:flex-start}
-    .news-grid{flex-direction:column}
     .tile{padding:28px}
-    .news-item{flex:0 0 auto;min-height:0}
+    .news-item{flex:0 0 auto;padding:28px}
     .footer-content{flex-direction:column;gap:32px}
     .brand{flex-direction:row;justify-content:space-between;align-items:center}
     .link-cols{flex-wrap:wrap;gap:24px}
@@ -361,8 +359,8 @@
     .nav-list a{font-size:16px}
     .facts{flex-direction:row;gap:24px;padding:24px 32px}
     .mission-cols{flex-direction:row;gap:48px}
-    .news-grid{flex-direction:row}
-    .approach-card,.founders-card{width:min(560px,80%)}
+    .approach-card{width:min(560px,80%)}
+    .founders-card{width:min(560px,80%)}
     .footer-content{flex-direction:row;gap:48px}
     .brand{flex-direction:column;align-items:flex-start}
     .link-cols{flex-wrap:nowrap}
@@ -515,32 +513,19 @@
   </section>
   </div>
 
-  <!-- ============ FOUNDERS ============ -->
-  <section class="founders" id="founders">
-    <div class="founders-panel">
-      <div class="panel">
+  <!-- ============ BENTO: Founders + Research & News ============ -->
+  <section class="bento" id="founders">
+    <div class="bento-grid">
+      <article class="tile-founders">
         <div class="panel-img"><img data-parallax-img="28" src="assets/founders-photo.jpg" alt="Founders or laboratory photography, final asset pending"></div>
-        <div class="founders-card" data-parallax="90">
+        <div class="founders-card" data-parallax="60">
           <p class="eyebrow">Founders</p>
           <h2 class="t-page">Founded by leaders in genomic and maternal-fetal medicine.</h2>
           <p class="t-body">Three physician-scientists from Harvard, Columbia, and the Broad Institute.</p>
           <div class="card-actions"><a class="btn btn-neutral" href="#founders">Meet the founders <img src="assets/arrow-right.svg" alt="" style="filter:brightness(0) saturate(100%) invert(22%) sepia(14%) saturate(1200%) hue-rotate(184deg)"></a></div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ RESEARCH & NEWS (replaces Bento + FAQ) ============ -->
-  <section class="news" id="news">
-    <div class="news-head">
-      <div class="section-heading">
-        <p class="eyebrow">Research &amp; News</p>
-        <h2 class="t-page">The work behind the platform.</h2>
-      </div>
-      <a class="btn btn-neutral btn-sm" href="#news">Explore more research <img src="assets/arrow-right.svg" alt="" style="filter:brightness(0) saturate(100%) invert(22%) sepia(14%) saturate(1200%) hue-rotate(184deg)"></a>
-    </div>
-    <div class="news-grid">
-      <a class="tile tile-light news-item" href="#news">
+      </article>
+      <a class="tile tile-light news-item" id="news" href="#news">
         <div class="tile-head">
           <div class="tile-content">
             <p class="eyebrow">Publication &middot; NEJM</p>
@@ -569,7 +554,6 @@
       </a>
     </div>
   </section>
-
 
   <!-- ============ FOOTER ============ -->
   <footer class="footer" id="footer">
