@@ -645,13 +645,13 @@
     const fmt = (v) => Math.round(v).toLocaleString('en-US');
     const run = () => {
       const facts = factsEl.querySelectorAll('.fact');
-      gsap.to(facts, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', stagger: 0.15, clearProps: 'transform' });
+      gsap.to(facts, { opacity: 1, y: 0, duration: 1.2, ease: 'power3.out', stagger: 0.25, clearProps: 'transform' });
       facts.forEach((f, i) => {
         const v = f.querySelector('[data-count]');
         if (!v) return; // "Zero" just fades in
         const target = parseFloat(v.dataset.count), suffix = v.dataset.suffix || '';
         const o = { n: 0 };
-        gsap.to(o, { n: target, duration: 1.6, delay: 0.15 * i, ease: 'power2.out', onUpdate: () => { v.textContent = fmt(o.n) + suffix; } });
+        gsap.to(o, { n: target, duration: 3, delay: 0.25 * i, ease: 'power2.out', onUpdate: () => { v.textContent = fmt(o.n) + suffix; } });
       });
     };
     const io = new IntersectionObserver((entries) => {
