@@ -210,11 +210,15 @@
   .mission{padding:0}
   .mission-card{
     width:100vw;margin-left:calc(50% - 50vw);height:100svh;
-    display:flex;flex-direction:column;justify-content:center;gap:clamp(32px,6svh,64px);
+    display:flex;flex-direction:column;justify-content:space-between;gap:clamp(32px,6svh,64px);
     padding:112px var(--pad-x) var(--pad-x); /* top clears the fixed nav pill */
     background:var(--grad-dark-depth);color:var(--text-on-dark);
   }
-  .mission-statement{display:flex;flex-direction:column;gap:24px}
+  /* same split as the hero: eyebrow + statement left, CTA right, top-aligned */
+  .mission-statement{display:flex;align-items:flex-start;justify-content:space-between;gap:64px}
+  .mission-statement .headline{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:24px}
+  .mission-statement .aside{flex:0 0 clamp(400px,32vw,520px);display:flex;flex-direction:column;gap:32px;padding-top:44px}
+  .mission-statement .aside .t-body{color:var(--text-on-dark-2)}
   .mission-statement .eyebrow{text-transform:none;letter-spacing:1.5px}
   .mission-cols{display:flex;gap:80px;padding-top:48px;border-top:1px solid var(--border-on-dark)}
   .mission-col{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:16px}
@@ -331,6 +335,8 @@
     .founders-card{position:static;width:auto;margin:-40px 16px 0;padding:32px 24px}
     .mission-card{height:auto;padding:64px 20px 56px;gap:40px}
     .mission-cols{flex-direction:column;gap:32px;padding-top:32px}
+    .mission-statement{flex-direction:column;gap:24px}
+    .mission-statement .aside{flex:0 0 auto;padding-top:0}
     /* technology: no scroll-jack, native swipe carousel */
     .tech{padding:64px 0;height:auto!important}
     .tech::before{box-shadow:none}
@@ -496,8 +502,13 @@
   <section class="mission" id="mission">
     <div class="mission-card">
       <div class="mission-statement">
-        <p class="eyebrow on-dark"><span class="num">03</span>Our Mission</p>
-        <h2 class="t-page">We're building the infrastructure for a new standard of prenatal care, scientifically rigorous, responsibly deployed.</h2>
+        <div class="headline">
+          <p class="eyebrow on-dark"><span class="num">03</span>Our Mission</p>
+          <h2 class="t-page">We're building the infrastructure for a new standard of prenatal care, scientifically rigorous, responsibly deployed.</h2>
+        </div>
+        <div class="aside">
+          <div class="hero-actions"><a class="btn btn-outline-light" href="#footer">Get in touch <img src="assets/arrow-right.svg" alt=""></a></div>
+        </div>
       </div>
       <div class="mission-cols">
         <div class="mission-col">
