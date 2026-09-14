@@ -202,7 +202,7 @@
     border:1px solid var(--border-default);border-radius:var(--radius);
     box-shadow:0 1px 4px rgba(32,32,32,.1),0 1px 4px rgba(32,32,32,.05);
   }
-  .approach-card .t-body,.founders-card .t-body{color:var(--text-secondary)}
+  .approach-card .t-body{color:var(--text-secondary)}
   .card-actions{padding-top:16px;display:flex}
 
   /* ============ MISSION (node 6078:291) ============ */
@@ -255,7 +255,15 @@
   /* Same composition as Approach (solid panel, full photo, frosted card), card on the right */
   .founders{min-height:calc(100svh - 88px);display:flex;flex-direction:column;padding:24px}
   .founders .panel-img img{--zoom:1.25;--px:-110px;object-position:50% 11.5%} /* Mike sits left, clear of the card; hair at the top edge */
-  .founders-card{left:auto;right:48px}
+  /* Founders card per node 6315:1117: Dark Depth gradient, 48px padding, 16px gap, on-dark text */
+  .founders-card{
+    left:auto;right:48px;gap:16px;padding:48px;
+    background:linear-gradient(140.78deg,#00202e 14.644%,#00364d 50%,#001f52 85.356%);
+    border:0;color:var(--text-on-dark);
+    backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:var(--shadow-400);
+  }
+  .founders-card .eyebrow{color:var(--text-on-dark-2)}
+  .founders-card .t-body{color:var(--text-on-dark-2)}
 
   /* ============ RESEARCH & NEWS (replaces Bento + FAQ; tile styles reused from FGI/Bento Tile) ============ */
   .news{padding:96px var(--pad-x);display:flex;flex-direction:column;gap:48px}
@@ -318,7 +326,7 @@
     .approach-card{position:static;width:auto;margin:-40px 16px 0;background:rgba(255,255,255,.92);padding:24px}
     .founders{min-height:0;display:block}
     .founders-panel{padding:20px;gap:16px}
-    .founders-card{position:static;width:auto;margin:-40px 16px 0;background:rgba(255,255,255,.92);padding:24px}
+    .founders-card{position:static;width:auto;margin:-40px 16px 0;padding:32px 24px}
     .mission{padding:12px}
     .mission-card{height:auto;padding:40px 24px 56px;gap:40px}
     .mission-cols{flex-direction:column;gap:32px;padding-top:32px}
@@ -516,7 +524,7 @@
           <p class="eyebrow">Founders</p>
           <h2 class="t-page">Founded by leaders in genomic and maternal-fetal medicine.</h2>
           <p class="t-body">Three physician-scientists from Harvard, Columbia, and the Broad Institute.</p>
-          <div class="card-actions"><a class="btn btn-brand" href="#founders">Meet the founders <img src="assets/arrow-right-light.svg" alt=""></a></div>
+          <div class="card-actions"><a class="btn btn-neutral" href="#founders">Meet the founders <img src="assets/arrow-right.svg" alt="" style="filter:brightness(0) saturate(100%) invert(22%) sepia(14%) saturate(1200%) hue-rotate(184deg)"></a></div>
         </div>
       </div>
     </div>
