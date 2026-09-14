@@ -1,0 +1,800 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FGI — Homepage scroll demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&family=Roboto+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ============ Tokens (from Figma: FGI-Site-Design, node 6070:13) ============ */
+  :root{
+    /* text */
+    --text-default:#35425b;        /* sds text/default/default */
+    --text-secondary:#4e6287;      /* sds text/default/secondary */
+    --text-tertiary:#bed3e4;       /* sds text/default/tertiary (nav on hero) */
+    --text-brand-secondary:#0077a0;/* sds text/brand/secondary (eyebrows) */
+    --text-on-dark:#f0fdff;        /* text/on-dark/default */
+    --text-on-dark-2:#b8e5ed;      /* text/on-dark/secondary */
+    --text-neutral:#3b3b3b;
+    --text-neutral-2:#767676;
+    --text-neutral-3:#949494;
+    /* backgrounds / borders */
+    --bg-page:#ffffff;
+    --bg-secondary:#f8fafc;
+    --bg-tertiary:#d1e0ec;
+    --bg-neutral-3:#ebebeb;
+    --bg-brand:#004c6c;
+    --bg-brand-hover:#00364d;
+    --pink-100:#e8ebf5;
+    --pink-800:#36439a;
+    --border-default:#d1e0ec;
+    --border-on-dark:#006286;
+    --border-neutral-2:#949494;
+    --border-neutral-3:#dadada;
+    /* gradients */
+    --grad-hero:linear-gradient(148.8deg,#00364d 14.644%,#006286 53.536%,#0065ac 85.356%);
+    --grad-dark-depth:linear-gradient(157deg,#00202e 14.644%,#00364d 50%,#001f52 85.356%);
+    --grad-tile-brand:linear-gradient(167.4deg,#004c6c 14.644%,#0065ac 85.356%);
+    /* effects */
+    --shadow-400:0 4px 4px -4px rgba(32,32,32,.05),0 16px 32px -4px rgba(32,32,32,.1);
+    --shadow-300:0 4px 4px -1px rgba(32,32,32,.05),0 4px 4px -1px rgba(32,32,32,.1);
+    --shadow-panel:0 24px 24px rgba(0,0,0,.1),0 4px 2px rgba(0,0,0,.05);
+    /* type */
+    --font-body:"Roboto",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --font-display:"Roboto Condensed","Roboto",system-ui,sans-serif;
+    /* layout */
+    --section-w:1280px;
+    --pad-x:48px;
+    --radius:16px;
+    --card-w:min(1035px,calc(100% - 128px)); /* 1035 in the file; keeps the next card peeking on narrower desktops */
+    --card-h:clamp(380px,calc(100svh - 270px),541px); /* 541 in the file; fits the pinned viewport on short screens */
+    --copy-w:384px;
+    --gap:24px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{overflow-x:clip} /* clip (not hidden) keeps the viewport as the sticky scroller; stops the 100vw full-bleed layers and the card overflow from adding a horizontal scroll */
+  html.lenis,html.lenis body{height:auto}
+  .lenis.lenis-smooth{scroll-behavior:auto!important}
+  body{
+    background:var(--bg-page);color:var(--text-default);
+    font-family:var(--font-body);font-size:18px;line-height:1.4;
+    -webkit-font-smoothing:antialiased;overflow-x:clip; /* not hidden: hidden makes body the sticky scroller */
+  }
+  img,video{display:block}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+  .page{max-width:var(--section-w);margin:0 auto;position:relative}
+
+  /* ---- type styles ---- */
+  .t-hero{font-family:var(--font-display);font-weight:700;font-size:76.3px;line-height:1.2;letter-spacing:-.03em}
+  .t-page{font-family:var(--font-display);font-weight:700;font-size:48.83px;line-height:1.2;letter-spacing:-.02em}
+  .t-subtitle{font-family:var(--font-display);font-weight:400;font-size:31.25px;line-height:1.2}
+  .t-heading{font-family:var(--font-display);font-weight:600;font-size:25px;line-height:1.2;letter-spacing:-.02em}
+  .t-subheading{font-family:var(--font-display);font-weight:400;font-size:20px;line-height:1.2}
+  .t-body{font-size:18px;line-height:1.4}
+  .t-small{font-size:14px;line-height:1.4}
+  .t-small-strong{font-size:14px;line-height:1.4;font-weight:600}
+  .eyebrow{font-size:14px;line-height:1.4;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text-brand-secondary)}
+  .eyebrow.on-dark{color:var(--text-on-dark-2)}
+
+  /* ---- buttons ---- */
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:16px 32px;border-radius:9999px;border:1px solid transparent;font-size:18px;line-height:1;white-space:nowrap;transition:filter .2s}
+  .btn:hover{filter:brightness(1.08)}
+  .btn img{width:16px;height:16px;transition:transform .25s cubic-bezier(.2,.7,.2,1)}
+  .btn:hover img{transform:translateX(4px)}
+  .btn-outline-light{border-color:var(--border-neutral-3);color:#fff}
+  .btn-brand{background:var(--bg-brand);border-color:var(--bg-brand);color:var(--text-on-dark)}
+  .btn-neutral{background:var(--bg-neutral-3);border-color:var(--border-neutral-2);color:var(--text-default)}
+  .btn-sm{padding:12px 24px}
+  .icon-btn{width:39px;height:39px;border-radius:31.25px;display:grid;place-items:center;padding:12px;transition:background .2s}
+  .icon-btn img{width:20px;height:20px}
+  .icon-btn:hover{background:rgba(53,66,91,.08)}
+  .icon-btn[disabled]{opacity:.3;cursor:default}
+  .icon-btn.on-dark:hover{background:rgba(255,255,255,.12)}
+  .icon-btn.on-dark img{filter:brightness(0) invert(1)}
+  .icon-btn img{transition:transform .25s cubic-bezier(.2,.7,.2,1)}
+  .icon-btn:not([disabled]):hover img,.tile:hover .icon-btn img{transform:translateX(4px)}
+  .icon-btn.flip img{transform:rotate(180deg)}
+  .icon-btn.flip:not([disabled]):hover img{transform:rotate(180deg) translateX(4px)}
+
+  /* ============ Page gradient — mesh background layer (node 6159:233) ============ */
+  .mesh{
+    position:absolute;top:0;bottom:0;left:50%;width:100vw;transform:translateX(-50%);z-index:0;pointer-events:none;
+    background-color:#fff;
+    background-image:
+      radial-gradient(70% 16% at 33% 89%,rgba(212,241,246,.6) 0%,rgba(212,241,246,.3) 50%,rgba(212,241,246,0) 100%),
+      radial-gradient(70% 15% at 15% 80%,rgba(0,119,160,.14) 0%,rgba(0,119,160,.07) 50%,rgba(0,119,160,0) 100%),
+      radial-gradient(75% 16% at 92% 71%,rgba(78,168,194,.24) 0%,rgba(78,168,194,.12) 50%,rgba(78,168,194,0) 100%),
+      radial-gradient(70% 16% at 4% 55%,rgba(0,119,160,.3) 0%,rgba(0,119,160,.2) 50%,rgba(0,119,160,0) 100%),
+      radial-gradient(70% 14% at 55% 36%,rgba(78,168,194,.3) 0%,rgba(78,168,194,.2) 50%,rgba(78,168,194,0) 100%),
+      radial-gradient(85% 18% at 88% 28%,rgba(212,241,246,.65) 0%,rgba(212,241,246,.325) 50%,rgba(212,241,246,0) 100%),
+      radial-gradient(70% 15% at 28% 18%,rgba(78,168,194,.28) 0%,rgba(78,168,194,.14) 50%,rgba(78,168,194,0) 100%),
+      radial-gradient(75% 15% at 95% 9%,rgba(0,101,172,.32) 0%,rgba(0,101,172,.11) 50%,rgba(0,101,172,.1) 100%),
+      radial-gradient(80% 16% at 10% 3%,rgba(15,108,141,.26) 0%,rgba(15,108,141,.13) 50%,rgba(15,108,141,0) 100%);
+  }
+  section,footer{position:relative;z-index:2}
+
+  /* ============ HERO (node 6071:131) ============ */
+  /* ---- Panel stacking (Hero -> Approach -> Mission) ----
+     A .stack-panel is content-sized and sticky inside its .stack-wrap. The
+     wrap carries a 100vh spacer (a real child, not padding: sticky range is
+     the containing block's content box) so the panel pins while the next
+     .stack-over section, pulled up by -100vh, slides over it. `top` is set
+     in JS so a panel taller than the viewport pins on its bottom edge. */
+  .stack-wrap{position:relative}
+  .stack-wrap::after{content:'';display:block;height:var(--spacer,100vh)}
+  .stack-panel{position:sticky;top:0;transform-origin:50% 50%;will-change:transform,opacity}
+  .stack-over{margin-top:-100vh}
+  .hero-wrap{z-index:1}
+  .approach-wrap{z-index:2}
+  .mission-wrap{z-index:3}
+
+  .hero{
+    display:flex;flex-direction:column;gap:24px;padding:24px 48px;
+    overflow:hidden; /* no background: the page mesh shows through the gutter */
+  }
+  .hero-card{
+    display:flex;flex-direction:column;align-items:center;gap:96px;
+    padding:24px 48px 96px;border-radius:var(--radius);
+    background:var(--grad-hero);color:var(--text-on-dark);overflow:hidden;
+    filter:drop-shadow(0 4px 2px rgba(32,32,32,.1)) drop-shadow(0 4px 2px rgba(32,32,32,.05)); /* Drop Shadow/300 */
+  }
+  .navbar{width:100%;max-width:1440px;display:flex;align-items:center;gap:8px}
+  .navbar .logo{width:187px;height:56px}
+  .navbar .logo img{width:100%;height:100%}
+  .nav-list{flex:1;display:flex;justify-content:flex-end;gap:16px;list-style:none}
+  .nav-list a{display:block;padding:8px;border-radius:8px;color:var(--text-tertiary);font-size:18px;line-height:1}
+  .nav-list a:hover{color:#fff}
+  .hero-copy{max-width:880px;text-align:center;display:flex;flex-direction:column;gap:24px}
+  .hero-copy .eyebrow{color:var(--text-on-dark-2);letter-spacing:1.5px}
+  .hero-copy .t-subtitle{color:var(--text-on-dark-2)}
+  .hero-actions{display:flex;justify-content:center;width:100%}
+
+  .facts{
+    flex:0 0 auto;display:flex;gap:24px;padding:24px 48px;
+    background:var(--pink-100);border-radius:var(--radius);
+    filter:drop-shadow(0 4px 2px rgba(32,32,32,.1)) drop-shadow(0 4px 2px rgba(32,32,32,.05)); /* Drop Shadow/300 */
+  }
+  .fact{flex:1 1 0;min-width:0;padding:0 16px;border-left:1px solid var(--pink-800);display:flex;flex-direction:column;gap:2px}
+  .fact .t-heading{color:var(--text-neutral)}
+  .fact .t-small-strong{color:var(--text-neutral-2)}
+
+  /* ============ FGI'S APPROACH (node 6305:8644) ============ */
+  .approach{padding:96px var(--pad-x)}
+  .panel{position:relative;padding-bottom:48px;filter:drop-shadow(0 24px 24px rgba(0,0,0,.1)) drop-shadow(0 4px 2px rgba(0,0,0,.05))}
+  .panel-img{height:600px;border-radius:var(--radius);overflow:hidden;background:#ebebeb}
+  .panel-img img{width:100%;height:100%;object-fit:cover;--flip:1;--zoom:1.12;--px:0px;--py:0px;
+    transform:scale(calc(var(--flip) * var(--zoom)),var(--zoom)) translate(var(--px),var(--py))} /* zoom = headroom for parallax */
+  .approach .panel-img img{--flip:-1;object-position:60% 50%}
+  .approach-card{
+    position:absolute;left:48px;bottom:-50px;width:560px;
+    display:flex;flex-direction:column;gap:24px;padding:32px;
+    background:rgba(255,255,255,.8);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    border:1px solid var(--border-default);border-radius:var(--radius);
+    box-shadow:0 1px 4px rgba(32,32,32,.1),0 1px 4px rgba(32,32,32,.05);
+  }
+  .approach-card .t-body{color:var(--text-secondary)}
+  .card-actions{padding-top:16px;display:flex}
+
+  /* ============ MISSION (node 6078:291) ============ */
+  .mission{padding:24px}
+  .mission-card{
+    display:flex;flex-direction:column;justify-content:center;gap:64px;height:700px;padding:64px 48px 96px;
+    border-radius:var(--radius);background:var(--grad-dark-depth);color:var(--text-on-dark);
+    filter:drop-shadow(0 4px 2px rgba(32,32,32,.1)) drop-shadow(0 4px 2px rgba(32,32,32,.05));
+  }
+  .mission-statement{display:flex;flex-direction:column;gap:24px}
+  .mission-statement .eyebrow{text-transform:none;letter-spacing:1.5px}
+  .mission-cols{display:flex;gap:80px;padding-top:48px;border-top:1px solid var(--border-on-dark)}
+  .mission-col{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:16px}
+
+  /* ============ TECHNOLOGY SCROLL SEQUENCE (node 6305:9001) ============ */
+  .tech{background:transparent}
+  /* full-bleed ground: content stays in the 1280 column, the tint runs edge to edge */
+  .tech::before{content:'';position:absolute;top:0;bottom:0;left:50%;width:100vw;transform:translateX(-50%);
+    background:var(--bg-tertiary);box-shadow:var(--shadow-400);z-index:-1}
+  .tech-pin{position:sticky;top:0;height:100vh;height:100svh;overflow:visible;display:flex;flex-direction:column;justify-content:center;padding:48px var(--pad-x)}
+  .tech-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:64px}
+  .section-heading{display:flex;flex-direction:column;gap:8px;max-width:704px}
+  .controls{display:flex;gap:8px;flex-shrink:0}
+  .track-clip{overflow:visible} /* cards run past the 1280 column onto the full-bleed ground; body overflow-x:clip stops a scrollbar */
+  .track{display:flex;gap:var(--gap);will-change:transform}
+  .card{
+    flex:0 0 var(--card-w);width:var(--card-w);height:var(--card-h);
+    display:flex;border-radius:var(--radius);overflow:hidden;
+    background:var(--bg-neutral-3);box-shadow:var(--shadow-400);
+  }
+  .card-copy{flex:0 0 var(--copy-w);width:var(--copy-w);padding:48px;display:flex;flex-direction:column;justify-content:space-between}
+  .card-copy .t-subtitle{color:var(--text-neutral)}
+  .card-num{font-family:var(--font-display);font-weight:700;font-size:76.3px;line-height:1.2;letter-spacing:-.03em;color:var(--text-neutral-3);opacity:.3;white-space:nowrap}
+  .card-media{position:relative;flex:1 1 auto;min-width:0;background:#0d1117}
+  .card-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .media-label{
+    position:absolute;left:0;right:0;bottom:0;padding:16px;z-index:2;
+    display:flex;flex-direction:column;gap:8px;
+    color:var(--text-secondary);font-size:14px;line-height:1.4;white-space:nowrap;
+    text-shadow:0 0 6px rgba(255,255,255,.9),0 0 2px rgba(255,255,255,.9);
+  }
+  .media-label b{font-weight:600}
+  .dots{display:none;justify-content:center;gap:8px;margin-top:24px}
+  .dots button{width:8px;height:8px;border-radius:50%;background:rgba(53,66,91,.2);padding:0}
+  .dots button[aria-current="true"]{background:var(--text-default)}
+
+  /* ============ FOUNDERS (node 6079:297) ============ */
+  .founders{padding:96px var(--pad-x)}
+  /* Founders: zoom a little more and slide the frame left so Mike sits clear of the card; hair stays at the top edge as in the file */
+  .founders .panel-img img{--zoom:1.25;--px:-110px;object-position:50% 11.5%}
+  .founders-card{
+    position:absolute;right:48px;bottom:0;width:560px;
+    display:flex;flex-direction:column;gap:16px;padding:48px;
+    border-radius:var(--radius);background:var(--grad-dark-depth);color:var(--text-on-dark);
+    box-shadow:var(--shadow-400);
+  }
+  .founders-card .t-body{color:var(--text-on-dark-2)}
+
+  /* ============ BENTO (node 6362:9218) ============ */
+  .bento{padding:96px var(--pad-x)}
+  .bento-grid{display:flex;flex-direction:column;gap:24px}
+  .bento-row{display:flex;gap:24px;align-items:stretch}
+  .tile{display:flex;flex-direction:column;gap:24px;padding:40px;border-radius:var(--radius)}
+  .tile-head{display:flex;gap:8px;align-items:flex-start}
+  .tile-content{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:12px}
+  .tile-light{background:rgba(248,250,252,.7);box-shadow:var(--shadow-400);color:var(--text-default)}
+  .tile-light .t-body{color:var(--text-secondary)}
+  .tile-dark{background:var(--grad-dark-depth);color:var(--text-on-dark);gap:8px;filter:drop-shadow(0 16px 16px rgba(32,32,32,.1)) drop-shadow(0 4px 2px rgba(32,32,32,.05))}
+  .tile-brand{background:var(--grad-tile-brand);color:var(--text-on-dark);gap:8px;filter:drop-shadow(0 16px 16px rgba(32,32,32,.1)) drop-shadow(0 4px 2px rgba(32,32,32,.05))}
+  .tile-dark .t-body,.tile-brand .t-body{color:var(--text-on-dark-2)}
+  .tile-media{flex:1 1 0;min-height:1px;border-radius:8px;background:var(--bg-brand-hover);opacity:.45}
+  .tile-nifs{flex:1 1 0;height:396px}
+  .tile-how{flex:1 1 0}
+  .tile-technology{flex:0 0 380px}
+  .tile-research{flex:1 1 0}
+  .tile-partners{height:264px}
+
+  /* ============ FAQ (node 6370:9625) ============ */
+  .faq{padding:48px var(--pad-x);display:flex;flex-direction:column;gap:32px}
+  .faq::before{content:'';position:absolute;top:0;bottom:0;left:50%;width:100vw;transform:translateX(-50%);background:var(--bg-secondary);z-index:-1} /* full-bleed ground */
+  .faq-cols{display:flex;gap:24px}
+  .faq-col{flex:1 1 0;min-width:0;display:flex;flex-direction:column}
+  .faq-item{border-bottom:1px solid var(--border-default);padding:24px 0}
+  .faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;text-align:left}
+  .faq-q .t-subheading{flex:1 1 0;min-width:0}
+  .faq-icon{width:44px;height:44px;flex:0 0 44px;display:grid;place-items:center}
+  .faq-icon img{width:20px;height:20px;transition:transform .25s}
+  .faq-item[open] .faq-icon img{transform:rotate(45deg)}
+  .faq-a{padding:12px 60px 0 0;color:var(--text-secondary)}
+  details summary{list-style:none}
+  details summary::-webkit-details-marker{display:none}
+
+  /* ============ FOOTER (node 6260:7642) ============ */
+  .footer{padding:48px var(--pad-x) 32px;display:flex;flex-direction:column;gap:32px;color:var(--text-neutral)}
+  .footer::before{content:'';position:absolute;top:0;bottom:0;left:50%;width:100vw;transform:translateX(-50%);background:var(--bg-secondary);border-top:1px solid var(--border-neutral-3);z-index:-1} /* full-bleed ground + rule */
+  .footer-content{display:flex;gap:clamp(48px,12vw,160px)}
+  .brand{display:flex;flex-direction:column;justify-content:space-between;flex:0 0 auto}
+  .brand .mini{width:56px;height:41px}
+  .brand .li{width:28px;height:28px}
+  .link-cols{flex:1 1 0;min-width:0;display:flex;gap:48px}
+  .link-col{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:12px}
+  .link-col h4{font-size:14px;line-height:1.4;font-weight:600;color:var(--text-neutral-2)}
+  .link-col .rule{height:4px}
+  .link-col a{font-size:14px;line-height:1.4}
+  .link-col a:hover{color:var(--bg-brand)}
+  .legal{display:flex;justify-content:space-between;padding-top:12px;border-top:1px solid var(--bg-brand);font-size:14px;line-height:1.4;white-space:nowrap}
+
+  /* ============ Responsive ============ */
+  @media (max-width:1279.98px){
+    .t-hero{font-size:clamp(44px,6vw,76.3px)}
+    .t-page{font-size:clamp(32px,4vw,48.83px)}
+    .t-subtitle{font-size:clamp(20px,2.4vw,31.25px)}
+  }
+  @media (max-width:1023.98px){
+    :root{--pad-x:20px}
+    .stack-wrap::after{display:none}
+    .stack-panel{position:static}
+    .stack-over{margin-top:0!important;padding-bottom:0!important}
+    .hero{padding:12px;gap:12px}
+    .hero-card{padding:16px 20px 40px;gap:40px}
+    .navbar .logo{width:134px;height:40px}
+    .nav-list{display:none}
+    .facts{flex-direction:column;gap:16px;padding:20px}
+    .approach,.founders,.bento{padding:64px var(--pad-x)}
+    .panel{padding-bottom:0}
+    .panel-img{height:min(60vw,480px)}
+    .approach-card,.founders-card{position:static;width:auto;margin:-40px 16px 0;background:rgba(255,255,255,.92)}
+    .founders-card{background:var(--grad-dark-depth)}
+    .approach-card{padding:24px}
+    .founders-card{padding:32px}
+    .mission{padding:12px}
+    .mission-card{height:auto;padding:40px 24px 56px;gap:40px}
+    .mission-cols{flex-direction:column;gap:32px;padding-top:32px}
+    /* technology: no scroll-jack, native swipe carousel */
+    .tech{padding:64px 0;height:auto!important}
+    .tech::before{box-shadow:none}
+    .tech-pin{position:static;height:auto;overflow:visible;display:block;padding:0 var(--pad-x)}
+    .tech-head{margin-bottom:24px;align-items:flex-end}
+    .track-clip{overflow:hidden}
+    .track{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;transform:none!important;gap:16px}
+    .track::-webkit-scrollbar{display:none}
+    .card{flex:0 0 100%;width:100%;height:auto;flex-direction:column;scroll-snap-align:start}
+    .card-copy{flex:0 0 auto;width:auto;padding:24px;gap:24px;order:1}
+    .card-num{font-size:56px}
+    .card-media{order:2;aspect-ratio:16/10;flex:0 0 auto}
+    .dots{display:flex}
+    .bento-row{flex-direction:column}
+    .tile{padding:28px}
+    .tile-nifs,.tile-partners{height:auto;min-height:260px}
+    .tile-technology{flex:1 1 auto}
+    .faq{padding:48px var(--pad-x)}
+    .faq-cols{flex-direction:column;gap:0}
+    .footer-content{flex-direction:column;gap:32px}
+    .brand{flex-direction:row;justify-content:space-between;align-items:center}
+    .link-cols{flex-wrap:wrap;gap:24px}
+    .link-col{flex:1 1 40%}
+    .legal{flex-direction:column;gap:8px;white-space:normal}
+  }
+  /* ---------- tablet (768-1023): static layout, but use the width ---------- */
+  @media (min-width:768px) and (max-width:1023.98px){
+    :root{--pad-x:32px}
+    .nav-list{display:flex;gap:4px}
+    .nav-list a{font-size:16px}
+    .facts{flex-direction:row;gap:24px;padding:24px 32px}
+    .tiles{grid-template-columns:repeat(3,1fr)}
+    .mission-cols{flex-direction:row;gap:48px}
+    .bento-row{flex-direction:row}
+    .tile-technology{flex:0 0 40%}
+    .approach-card,.founders-card{width:min(560px,80%)}
+    .faq-cols{flex-direction:row;gap:24px}
+    .footer-content{flex-direction:row;gap:48px}
+    .brand{flex-direction:column;align-items:flex-start}
+    .link-cols{flex-wrap:nowrap}
+    .legal{flex-direction:row}
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="mesh" aria-hidden="true"></div>
+
+  <!-- ============ HERO ============ -->
+  <div class="hero-wrap stack-wrap">
+    <section class="hero stack-panel" id="hero">
+      <div class="hero-card">
+        <nav class="navbar" aria-label="Primary">
+          <a class="logo" href="#hero" aria-label="First Genomic Insights"><img src="assets/fgi-logo-light.svg" alt=""></a>
+          <ul class="nav-list">
+            <li><a href="#tech">Technology</a></li>
+            <li><a href="#bento">Research</a></li>
+            <li><a href="#bento">Partners</a></li>
+            <li><a href="#founders">Company</a></li>
+          </ul>
+          <a class="btn btn-neutral btn-sm" href="#footer">Contact Us</a>
+        </nav>
+        <div class="hero-copy">
+          <p class="eyebrow">Non-invasive fetal sequencing</p>
+          <h1 class="t-hero">Revolutionizing prenatal care with scalable genomics.</h1>
+          <p class="t-subtitle">The first fetal sequencing test to deliver comprehensive genetic screening at NIPT scale, with no invasive procedure.</p>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-outline-light" href="#approach">Learn more <img src="assets/arrow-right.svg" alt=""></a>
+        </div>
+      </div>
+      <div class="facts">
+        <div class="fact"><div class="t-heading">22,995</div><div class="t-small-strong">Genes screened per test</div></div>
+        <div class="fact"><div class="t-heading">8 years</div><div class="t-small-strong">of R&amp;D and validation</div></div>
+        <div class="fact"><div class="t-heading">Zero</div><div class="t-small-strong">Procedure risk to the fetus</div></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ FGI'S APPROACH ============ -->
+  <div class="approach-wrap stack-wrap stack-over" data-slide="0.65">
+  <section class="approach stack-panel" id="approach">
+    <div class="panel">
+      <div class="panel-img"><img data-parallax-img="-28" src="assets/approach-lab.jpg" alt="Founders or laboratory photography, final asset pending"></div>
+      <div class="approach-card" data-parallax="90">
+        <p class="eyebrow">FGI's Approach</p>
+        <h2 class="t-page">Every prenatal test today is a trade-off</h2>
+        <p class="t-body">Non-invasive testing misses most clinically relevant conditions. Invasive testing catches them, but carries real risk.</p>
+        <div class="card-actions"><a class="btn btn-brand" href="#tech">See the Technology <img src="assets/arrow-right-light.svg" alt=""></a></div>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <!-- ============ MISSION ============ -->
+  <div class="mission-wrap stack-over" data-slide="0.65">
+  <section class="mission" id="mission">
+    <div class="mission-card">
+      <div class="mission-statement">
+        <p class="eyebrow on-dark">Our Mission</p>
+        <h2 class="t-page">We're building the infrastructure for a new standard of prenatal care, scientifically rigorous, responsibly deployed.</h2>
+      </div>
+      <div class="mission-cols">
+        <div class="mission-col">
+          <p class="eyebrow on-dark">Where FGI is today</p>
+          <p class="t-subheading">Validating NIFS through prospective studies, ahead of a planned launch.</p>
+        </div>
+        <div class="mission-col">
+          <p class="eyebrow on-dark">What FGI is building toward</p>
+          <p class="t-subheading">Population-scale screening that replaces NIPT as the standard of care.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <!-- ============ TECHNOLOGY SCROLL SEQUENCE ============ -->
+  <section class="tech" id="tech">
+    <div class="tech-pin">
+      <div class="tech-head">
+        <div class="section-heading">
+          <p class="eyebrow">NIFS</p>
+          <h2 class="t-page">How a sample becomes a result.</h2>
+        </div>
+        <div class="controls">
+          <button class="icon-btn flip" id="prevBtn" aria-label="Previous card"><img src="assets/arrow-20-dark.svg" alt=""></button>
+          <button class="icon-btn" id="nextBtn" aria-label="Next card"><img src="assets/arrow-20-dark.svg" alt=""></button>
+        </div>
+      </div>
+
+      <div class="track-clip">
+        <div class="track" id="track">
+          <article class="card">
+            <div class="card-copy">
+              <p class="t-subtitle">A single blood draw. No procedure risk to mother or fetus.</p>
+              <div class="card-num">01</div>
+            </div>
+            <div class="card-media">
+              <video muted loop playsinline preload="metadata" src="assets/01-blood-draw.mp4"></video>
+              <div class="media-label"><b>CLIP: BLOOD DRAW</b><span>Watermarked placeholder, pending license</span></div>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-copy">
+              <p class="t-subtitle">The sample is processed and prepared for sequencing within hours of collection.</p>
+              <div class="card-num">02</div>
+            </div>
+            <div class="card-media">
+              <video muted loop playsinline preload="metadata" src="assets/02-processing.mp4"></video>
+              <div class="media-label"><b>CLIP: CENTRIFUGE / PROCESSING</b><span>Watermarked placeholder, pending license</span></div>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-copy">
+              <p class="t-subtitle">Millions of data points resolve into a clear genomic result.</p>
+              <div class="card-num">03</div>
+            </div>
+            <div class="card-media">
+              <video muted loop playsinline preload="metadata" src="assets/03-sequencing.mp4"></video>
+              <div class="media-label"><b>CLIP: DNA SEQUENCING VISUALIZATION</b><span>Watermarked placeholder, pending license</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+      <div class="dots" id="dots" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- ============ FOUNDERS ============ -->
+  <section class="founders" id="founders">
+    <div class="panel">
+      <div class="panel-img"><img data-parallax-img="28" src="assets/founders-photo.jpg" alt="Founders or laboratory photography, final asset pending"></div>
+      <div class="founders-card" data-parallax="90">
+        <p class="eyebrow on-dark">Founders</p>
+        <h2 class="t-page">Founded by leaders in genomic and maternal-fetal medicine.</h2>
+        <p class="t-body">Three physician-scientists from Harvard, Columbia, and the Broad Institute.</p>
+        <div class="card-actions"><a class="btn btn-neutral" href="#founders">Meet the founders <img src="assets/arrow-right.svg" alt="" style="filter:brightness(0) saturate(100%) invert(22%) sepia(14%) saturate(1200%) hue-rotate(184deg)"></a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BENTO ============ -->
+  <section class="bento" id="bento">
+    <div class="bento-grid">
+      <div class="bento-row">
+        <a class="tile tile-dark tile-nifs" href="#tech">
+          <div class="tile-head">
+            <div class="tile-content">
+              <p class="eyebrow on-dark">Platform</p>
+              <h3 class="t-page">Non-Invasive Fetal Sequencing</h3>
+              <p class="t-body">The platform FGI has developed, and the laboratory partnerships being established to deliver it internationally.</p>
+            </div>
+            <span class="icon-btn on-dark"><img src="assets/arrow-20-light.svg" alt=""></span>
+          </div>
+          <div class="tile-media" aria-hidden="true"></div>
+        </a>
+        <a class="tile tile-light tile-how" href="#tech">
+          <div class="tile-head">
+            <div class="tile-content">
+              <h3 class="t-page">How NIFS works</h3>
+              <p class="t-body">The workflow end to end, from blood draw through sequencing to interpreted variation.</p>
+            </div>
+            <span class="icon-btn"><img src="assets/arrow-20-dark.svg" alt=""></span>
+          </div>
+        </a>
+      </div>
+      <div class="bento-row">
+        <a class="tile tile-light tile-technology" href="#tech">
+          <div class="tile-head">
+            <div class="tile-content">
+              <h3 class="t-page">Technology</h3>
+              <p class="t-body">The sequencing technology and data science the platform is built on.</p>
+            </div>
+            <span class="icon-btn"><img src="assets/arrow-20-dark.svg" alt=""></span>
+          </div>
+        </a>
+        <a class="tile tile-light tile-research" href="#bento">
+          <div class="tile-head">
+            <div class="tile-content">
+              <h3 class="t-page">Research and publications</h3>
+              <p class="t-body">Peer-reviewed work behind the platform, beginning with the NEJM paper.</p>
+            </div>
+            <span class="icon-btn"><img src="assets/arrow-20-dark.svg" alt=""></span>
+          </div>
+        </a>
+      </div>
+      <a class="tile tile-brand tile-partners" href="#footer">
+        <div class="tile-head">
+          <div class="tile-content">
+            <p class="eyebrow on-dark">Eyebrow</p>
+            <h3 class="t-page">Partners and laboratories</h3>
+            <p class="t-body">FGI is establishing partnerships with commercial laboratories to expand delivery of NIFS.</p>
+          </div>
+          <span class="icon-btn on-dark"><img src="assets/arrow-20-light.svg" alt=""></span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="faq" id="faq">
+    <p class="eyebrow">Frequently Asked Questions</p>
+    <div class="faq-cols">
+      <div class="faq-col">
+        <details class="faq-item"><summary class="faq-q"><span class="t-subheading">A question a provider or investor would actually ask.</span><span class="faq-icon"><img src="assets/icon-plus.svg" alt=""></span></summary><p class="faq-a t-body">Answer copy pending.</p></details>
+        <details class="faq-item"><summary class="faq-q"><span class="t-subheading">A question a provider or investor would actually ask.</span><span class="faq-icon"><img src="assets/icon-plus.svg" alt=""></span></summary><p class="faq-a t-body">Answer copy pending.</p></details>
+        <details class="faq-item"><summary class="faq-q"><span class="t-subheading">A question a provider or investor would actually ask.</span><span class="faq-icon"><img src="assets/icon-plus.svg" alt=""></span></summary><p class="faq-a t-body">Answer copy pending.</p></details>
+      </div>
+      <div class="faq-col">
+        <details class="faq-item"><summary class="faq-q"><span class="t-subheading">A question a provider or investor would actually ask.</span><span class="faq-icon"><img src="assets/icon-plus.svg" alt=""></span></summary><p class="faq-a t-body">Answer copy pending.</p></details>
+        <details class="faq-item"><summary class="faq-q"><span class="t-subheading">A question a provider or investor would actually ask.</span><span class="faq-icon"><img src="assets/icon-plus.svg" alt=""></span></summary><p class="faq-a t-body">Answer copy pending.</p></details>
+        <details class="faq-item"><summary class="faq-q"><span class="t-subheading">A question a provider or investor would actually ask.</span><span class="faq-icon"><img src="assets/icon-plus.svg" alt=""></span></summary><p class="faq-a t-body">Answer copy pending.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer" id="footer">
+    <div class="footer-content">
+      <div class="brand">
+        <img class="mini" src="assets/fgi-mini.svg" alt="FGI">
+        <a class="li" href="https://www.linkedin.com/company/first-genomic-insights-inc/posts/?feedView=all" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="assets/linkedin.svg" alt=""></a>
+      </div>
+      <div class="link-cols">
+        <div class="link-col"><h4>PLATFORM</h4><div class="rule"></div><a href="#tech">Technology Overview</a><a href="#tech">How NIFS Works</a><a href="#bento">Clinical Applications</a><a href="#bento">Research &amp; Publications</a></div>
+        <div class="link-col"><h4>FOR YOU</h4><div class="rule"></div><a href="#bento">Clinical &amp; Lab Partners</a><a href="#footer">Investors</a><a href="#bento">Researchers</a><a href="#footer">Careers</a></div>
+        <div class="link-col"><h4>COMPANY</h4><div class="rule"></div><a href="#mission">Our Story</a><a href="#founders">Leadership</a><a href="#footer">Contact</a></div>
+        <div class="link-col"><h4>GET IN TOUCH</h4><div class="rule"></div><a href="#footer">Laboratory partnership</a><a href="#footer">Investor relations</a><a href="#footer">Research collaboration</a><a href="#footer">Media &amp; press</a></div>
+      </div>
+    </div>
+    <div class="legal">
+      <p>© 2026 First Genomic Insights. All rights reserved.</p>
+      <a href="#footer">Privacy Policy</a>
+    </div>
+  </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.1/dist/lenis.min.js"></script>
+<script>
+(() => {
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Tuning knob (open item): scroll distance per beat, in viewport heights.
+  const VH_PER_BEAT = 1;
+
+  /* ---------- 1. Lenis smooth scroll (site-wide) ---------- */
+  const lenis = new Lenis({ lerp: 0.1, wheelMultiplier: 0.7 });
+  window.lenis = lenis; // exposed for poking at in devtools
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add((t) => lenis.raf(t * 1000));
+  gsap.ticker.lagSmoothing(0);
+
+  // Anchor links go through Lenis so they decelerate too
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (!target) return;
+      e.preventDefault();
+      lenis.scrollTo(target, { duration: 1.2 });
+    });
+  });
+
+  /* ---------- 2. Panel stacking: Hero -> Approach -> Mission ---------- */
+  // Each .stack-panel pins (sticky) while the next .stack-over section slides
+  // up over it; the covered panel recedes and fades out completely, scrubbed
+  // to exactly that overlap. Desktop only — below 1024 everything is static.
+  // `over` is the .stack-over wrapper that slides in; data-slide on it (0-1)
+  // slows the cover to that fraction of scroll speed (the pin holds longer to
+  // compensate), by translating the wrapper's inner section while it slides.
+  const $ = (sel) => document.querySelector(sel);
+  const stacks = [
+    { panel: $('#hero'),     wrap: $('.hero-wrap'),     over: $('.approach-wrap') },
+    { panel: $('#approach'), wrap: $('.approach-wrap'), over: $('.mission-wrap') },
+  ];
+  stacks.forEach(s => {
+    s.slide = parseFloat(s.over.dataset.slide) || 1;
+    s.inner = s.over.firstElementChild;
+    // y0: where the next section's top sits (in the viewport) the instant the
+    // panel pins; D: scroll distance the cover takes at this slide speed.
+    s.y0 = () => Math.min(window.innerHeight, s.panel.offsetHeight);
+    s.D  = () => s.y0() / s.slide;
+  });
+  const layoutStacks = () => stacks.forEach(s => {
+    // If this panel itself slid in slowed (it is the inner of a previous
+    // stack), it carries a permanent translateY once its slide completes.
+    // Sticky offsets are computed in layout space, so shift the pin `top` by
+    // that amount to keep the visual pin position correct.
+    const prev = stacks.find(o => o.inner === s.panel);
+    const offset = prev ? prev.D() - prev.y0() : 0;
+    s.panel._slideOffset = offset;
+    // A panel taller than the viewport pins on its bottom edge, not its top.
+    s.panel.style.top = (Math.min(0, window.innerHeight - s.panel.offsetHeight) - offset) + 'px';
+    s.wrap.style.setProperty('--spacer', s.D() + 'px');   // pin range
+    s.over.style.marginTop = -s.D() + 'px';               // pull the next section up over it
+    s.over.style.paddingBottom = (s.D() - s.y0()) + 'px'; // room for the slowed section's final offset
+  });
+
+  const mmStack = gsap.matchMedia();
+  mmStack.add('(min-width: 1024px)', () => {
+    layoutStacks();
+    ScrollTrigger.addEventListener('refreshInit', layoutStacks); // re-measure before ST measures
+    stacks.forEach(s => {
+      const st = () => ({
+        trigger: s.over,
+        start: () => `top ${s.y0()}px`,          // the instant the panel pins
+        end:   () => `top ${s.y0() - s.D()}px`,  // the next section has fully covered it
+        invalidateOnRefresh: true,
+      });
+      gsap.to(s.panel, { scale: 0.9, borderRadius: 40, opacity: 0, ease: 'none', scrollTrigger: { ...st(), scrub: 1 } });
+      if (s.slide < 1) {
+        gsap.fromTo(s.inner, { y: 0 }, { y: () => s.D() - s.y0(), ease: 'none', scrollTrigger: { ...st(), scrub: true } });
+      }
+    });
+    return () => {
+      ScrollTrigger.removeEventListener('refreshInit', layoutStacks);
+      stacks.forEach(s => {
+        s.panel.style.top = ''; s.wrap.style.removeProperty('--spacer');
+        s.over.style.marginTop = ''; s.over.style.paddingBottom = '';
+        gsap.set([s.panel, s.inner], { clearProps: 'all' });
+      });
+    };
+  });
+
+  /* ---------- 2b. Panel parallax (Approach / Founders) ---------- */
+  // Card floats up faster than the photo; the photo counter-drifts behind it.
+  // data-parallax="90" => the card starts +90px low as the section enters and
+  // comes to rest at its designed position (0) the moment the panel pins
+  // (or, for an unpinned section, once it is fully in frame).
+  mmStack.add('(min-width: 1024px)', () => {
+    const travel = (el, from, prop) => {
+      const section = el.closest('section');
+      gsap.fromTo(el, { [prop]: from }, {
+        [prop]: typeof from === 'number' ? 0 : '0px', ease: 'none',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top bottom',
+          // a slowed stack-panel carries a translateY; rest when it is visually at the top
+          end: section.classList.contains('stack-panel') ? () => `top ${-(section._slideOffset || 0)}px` : 'bottom bottom',
+          scrub: true,
+          invalidateOnRefresh: true,
+        }
+      });
+    };
+    document.querySelectorAll('[data-parallax]').forEach(el => {
+      travel(el, parseFloat(el.dataset.parallax), 'y');
+    });
+    document.querySelectorAll('[data-parallax-img]').forEach(el => {
+      travel(el, el.dataset.parallaxImg + 'px', '--py');
+    });
+  });
+
+  /* ---------- 3. Technology sequence ---------- */
+  const tech   = document.getElementById('tech');
+  const track  = document.getElementById('track');
+  const cards  = Array.from(track.querySelectorAll('.card'));
+  const videos = Array.from(track.querySelectorAll('video'));
+  const prev   = document.getElementById('prevBtn');
+  const next   = document.getElementById('nextBtn');
+  const dots   = document.getElementById('dots');
+  const n      = cards.length;
+
+  const gapPx  = () => parseFloat(getComputedStyle(track).gap) || 0;
+  // Shift per beat comes from the rendered card, never a hardcoded px.
+  const stepPx = () => cards[0].offsetWidth + gapPx();
+
+  let currentBeat = 0;
+  const setBeat = (i) => {
+    currentBeat = Math.max(0, Math.min(n - 1, i));
+    prev.disabled = currentBeat === 0;
+    next.disabled = currentBeat === n - 1;
+    dots.querySelectorAll('button').forEach((d, k) => d.setAttribute('aria-current', k === currentBeat));
+  };
+
+  let goTo = () => {};
+  cards.forEach((_, i) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.addEventListener('click', () => goTo(i));
+    dots.appendChild(b);
+  });
+
+  const mm = gsap.matchMedia();
+
+  // ---- Desktop (>=1024): pinned + scroll-linked horizontal translate ----
+  mm.add('(min-width: 1024px)', () => {
+    // Outer section height = one viewport + (n-1) beats of scroll distance.
+    tech.style.height = `calc(100vh + ${(n - 1) * VH_PER_BEAT * 100}vh)`;
+
+    const tween = gsap.to(track, {
+      x: () => -(n - 1) * stepPx(),
+      ease: 'none',
+      scrollTrigger: {
+        trigger: tech,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: true,               // exact proportion; Lenis supplies the easing
+        invalidateOnRefresh: true,
+        onUpdate: (st) => setBeat(Math.round(st.progress * (n - 1))),
+      }
+    });
+
+    goTo = (i) => {
+      const st = tween.scrollTrigger;
+      const idx = Math.max(0, Math.min(n - 1, i));
+      lenis.scrollTo(st.start + (st.end - st.start) * (idx / (n - 1)), { duration: 1 });
+    };
+
+    setBeat(0);
+    return () => { tech.style.height = ''; goTo = () => {}; };
+  });
+
+  // ---- Mobile / tablet (<1024): native swipe carousel ----
+  mm.add('(max-width: 1023.98px)', () => {
+    goTo = (i) => {
+      const idx = Math.max(0, Math.min(n - 1, i));
+      track.scrollTo({ left: cards[idx].offsetLeft - track.offsetLeft, behavior: 'smooth' });
+    };
+    const onScroll = () => setBeat(Math.round(track.scrollLeft / stepPx()));
+    track.addEventListener('scroll', onScroll, { passive: true });
+    setBeat(0);
+    return () => { track.removeEventListener('scroll', onScroll); track.scrollLeft = 0; goTo = () => {}; };
+  });
+
+  prev.addEventListener('click', () => goTo(currentBeat - 1));
+  next.addEventListener('click', () => goTo(currentBeat + 1));
+
+  /* ---------- Video playback: only when >= 50% in view ---------- */
+  if (reduceMotion) {
+    // Leave the first frame visible; never autoplay.
+    videos.forEach(v => v.pause());
+  } else {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(({ target, isIntersecting, intersectionRatio }) => {
+        if (isIntersecting && intersectionRatio >= 0.5) target.play().catch(() => {});
+        else target.pause();
+      });
+    }, { threshold: [0, 0.5, 1] });
+    videos.forEach(v => io.observe(v));
+  }
+
+  window.addEventListener('load', () => ScrollTrigger.refresh());
+})();
+</script>
+</body>
+</html>
