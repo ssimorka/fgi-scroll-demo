@@ -49,7 +49,7 @@
     --pad-x:48px;
     --radius:16px;
     --card-w:min(81vw,calc(100% - 128px)); /* 1035 at the 1280 comp (81%); scales with the viewport, keeps the neighbours peeking */
-    --card-h:clamp(380px,calc(100svh - 270px),541px); /* 541 in the file; fits the pinned viewport on short screens */
+    --card-h:clamp(380px,calc(100svh - 230px),760px); /* 541 in the file at 817 tall; grows with the pinned viewport */
     --copy-w:384px;
     --gap:24px;
   }
@@ -224,8 +224,8 @@
   /* full-bleed ground: content stays in the 1280 column, the tint runs edge to edge */
   .tech::before{content:'';position:absolute;top:0;bottom:0;left:50%;width:100vw;transform:translateX(-50%);
     background:var(--bg-tertiary);box-shadow:var(--shadow-400);z-index:-1}
-  .tech-pin{position:sticky;top:0;height:100vh;height:100svh;overflow:visible;display:flex;flex-direction:column;justify-content:center;padding:48px var(--pad-x)}
-  .tech-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:64px}
+  .tech-pin{position:sticky;top:0;height:100vh;height:100svh;overflow:visible;display:flex;flex-direction:column;justify-content:center;padding:40px var(--pad-x)}
+  .tech-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:40px}
   .section-heading{display:flex;flex-direction:column;gap:8px;max-width:704px}
   .controls{display:flex;gap:8px;flex-shrink:0}
   .track-clip{overflow:visible} /* cards run past the 1280 column onto the full-bleed ground; body overflow-x:clip stops a scrollbar */
@@ -772,11 +772,10 @@
     // Outer section height = one viewport + (n-1) beats of scroll distance.
     tech.style.height = `calc(100vh + ${(n - 1) * VH_PER_BEAT * 100}vh)`;
 
-    // Active card sits centered in the content area so the previous and next
-    // cards both peek (35pharma pattern) instead of the next one only.
-    const centerX = () => (track.parentElement.clientWidth - cards[0].offsetWidth) / 2;
-    const tween = gsap.fromTo(track, { x: () => centerX() }, {
-      x: () => centerX() - (n - 1) * stepPx(),
+    // Active card is left-aligned with the section heading; the next card
+    // peeks in from the right (and the previous one from the left once moving).
+    const tween = gsap.fromTo(track, { x: 0 }, {
+      x: () => -(n - 1) * stepPx(),
       ease: 'none',
       scrollTrigger: {
         trigger: tech,
