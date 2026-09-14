@@ -225,7 +225,7 @@
   .tech::before{content:'';position:absolute;top:0;bottom:0;left:50%;width:100vw;transform:translateX(-50%);
     background:var(--bg-page);box-shadow:var(--shadow-400);z-index:-1} /* sds background/default/default #ffffff */
   /* pinned block: 48px on every side; the card track takes all remaining height so the card's bottom gap equals the side gutter */
-  .tech-pin{position:sticky;top:0;height:100vh;height:100svh;overflow:visible;display:flex;flex-direction:column;justify-content:flex-start;padding:var(--pad-x)}
+  .tech-pin{position:sticky;top:0;height:100vh;height:100svh;overflow:visible;display:flex;flex-direction:column;justify-content:flex-start;padding:112px var(--pad-x) var(--pad-x)} /* top clears the fixed nav pill (~72px) */
   .tech-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:40px}
   .section-heading{display:flex;flex-direction:column;gap:8px;max-width:704px}
   .controls{display:flex;gap:8px;flex-shrink:0}
