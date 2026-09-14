@@ -163,7 +163,9 @@
     background:var(--grad-hero);color:var(--text-on-dark);overflow:hidden;
     filter:drop-shadow(0 4px 2px rgba(32,32,32,.1)) drop-shadow(0 4px 2px rgba(32,32,32,.05)); /* Drop Shadow/300 */
   }
-  .hero-copy{display:flex;align-items:flex-start;justify-content:space-between;gap:64px}
+  .hero-card{position:relative}
+  .hero-viz{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.9}
+  .hero-copy{position:relative;z-index:1;display:flex;align-items:flex-start;justify-content:space-between;gap:64px}
   .hero-copy .headline{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:24px}
   .hero-copy .eyebrow{color:var(--text-on-dark-2);letter-spacing:1.5px}
   .hero-copy .t-hero{max-width:none}
@@ -404,6 +406,7 @@
   <div class="hero-wrap stack-wrap">
     <section class="hero stack-panel" id="hero">
       <div class="hero-card">
+        <canvas class="hero-viz" id="heroViz" aria-hidden="true"></canvas>
         <div class="hero-copy">
           <div class="headline">
             <p class="eyebrow">Non-invasive fetal sequencing</p>
@@ -616,6 +619,102 @@
       lenis.scrollTo(target, { duration: 1.2 });
     });
   });
+
+  /* ---------- 1a. Hero data-points animation ----------
+     Two layers on a canvas behind the copy: a sequencing-readout texture
+     (columns of glowing bands drifting upward, after the 03 clip) and a soft
+     double helix of glowing points sweeping in from the right. Everything is
+     masked so it fades out toward the headline. Pauses off-screen. */
+  (() => {
+    const canvas = document.getElementById('heroViz');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const card = canvas.parentElement;
+    let W = 0, H = 0, dpr = 1, lanes = [], raf = 0, visible = true, last = 0;
+
+    const rnd = (a, b) => a + Math.random() * (b - a);
+    const build = () => {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = card.clientWidth; H = card.clientHeight;
+      canvas.width = W * dpr; canvas.height = H * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      // readout lanes across the right ~60% of the card
+      lanes = [];
+      const x0 = W * 0.42, gap = 22;
+      for (let x = x0; x < W + gap; x += gap) {
+        const segs = [];
+        let y = -rnd(0, 80);
+        while (y < H + 80) { const h = rnd(4, 42); segs.push({ y, h, a: rnd(0.25, 1) }); y += h + rnd(6, 48); }
+        lanes.push({ x: x + rnd(-4, 4), w: rnd(2.5, 5), speed: rnd(6, 26), segs, hue: Math.random() < 0.7 ? '78,168,194' : '184,229,237' });
+      }
+    };
+
+    const drawLanes = (dt) => {
+      ctx.globalCompositeOperation = 'lighter';
+      for (const l of lanes) {
+        for (const sg of l.segs) {
+          sg.y -= l.speed * dt;
+          if (sg.y + sg.h < -80) { sg.y = H + rnd(0, 80); sg.h = rnd(4, 42); sg.a = rnd(0.25, 1); }
+          // glow + core, like a lit band on a gel
+          ctx.fillStyle = `rgba(${l.hue},${0.10 * sg.a})`;
+          ctx.fillRect(l.x - l.w * 1.5, sg.y - 3, l.w * 4, sg.h + 6);
+          ctx.fillStyle = `rgba(${l.hue},${0.55 * sg.a})`;
+          ctx.fillRect(l.x, sg.y, l.w, sg.h);
+        }
+      }
+    };
+
+    const drawHelix = (t) => {
+      // centreline runs diagonally from lower-middle to upper-right, like the reference
+      const ax = W * 0.55, ay = H * 1.05, bx = W * 1.02, by = -H * 0.1;
+      const len = Math.hypot(bx - ax, by - ay), nx = -(by - ay) / len, ny = (bx - ax) / len; // unit normal
+      const steps = 56, amp = Math.min(W, H) * 0.23, phase = t * 0.35;
+      ctx.globalCompositeOperation = 'lighter';
+      for (let i = 0; i <= steps; i++) {
+        const u = i / steps, cx = ax + (bx - ax) * u, cy = ay + (by - ay) * u;
+        const th = u * Math.PI * 4 + phase;
+        for (const side of [1, -1]) {
+          const sn = Math.sin(th) * side, depth = (Math.cos(th) * side + 1) / 2; // 0 = back, 1 = front
+          const x = cx + nx * amp * sn, y = cy + ny * amp * sn;
+          const r = 3.5 + depth * 8, a = 0.25 + depth * 0.7;
+          const g = ctx.createRadialGradient(x, y, 0, x, y, r * 3.2);
+          g.addColorStop(0, `rgba(190,235,245,${a})`); g.addColorStop(0.35, `rgba(78,168,194,${a * 0.45})`); g.addColorStop(1, 'rgba(78,168,194,0)');
+          ctx.fillStyle = g; ctx.beginPath(); ctx.arc(x, y, r * 3.2, 0, Math.PI * 2); ctx.fill();
+        }
+        if (i % 3 === 0) { // rung between the strands
+          const sn = Math.sin(th);
+          ctx.strokeStyle = `rgba(184,229,237,${0.08 + 0.12 * Math.abs(Math.cos(th))})`; ctx.lineWidth = 1.5;
+          ctx.beginPath(); ctx.moveTo(cx + nx * amp * sn, cy + ny * amp * sn); ctx.lineTo(cx - nx * amp * sn, cy - ny * amp * sn); ctx.stroke();
+        }
+      }
+    };
+
+    const mask = () => {
+      // fade toward the headline (left) and the lead copy (top)
+      ctx.globalCompositeOperation = 'destination-in';
+      const gx = ctx.createLinearGradient(0, 0, W, 0);
+      gx.addColorStop(0, 'rgba(0,0,0,0)'); gx.addColorStop(0.32, 'rgba(0,0,0,0)'); gx.addColorStop(0.62, 'rgba(0,0,0,1)');
+      ctx.fillStyle = gx; ctx.fillRect(0, 0, W, H);
+      const gy = ctx.createLinearGradient(0, 0, 0, H);
+      gy.addColorStop(0, 'rgba(0,0,0,0.15)'); gy.addColorStop(0.38, 'rgba(0,0,0,1)');
+      ctx.fillStyle = gy; ctx.fillRect(0, 0, W, H);
+      ctx.globalCompositeOperation = 'source-over';
+    };
+
+    const frame = (now) => {
+      const dt = Math.min((now - last) / 1000, 0.05); last = now;
+      ctx.clearRect(0, 0, W, H);
+      drawLanes(dt); drawHelix(now / 1000); mask();
+      if (visible && !reduceMotion) raf = requestAnimationFrame(frame);
+    };
+    const start = () => { if (!raf) { last = performance.now(); raf = requestAnimationFrame(frame); } };
+    const stop = () => { cancelAnimationFrame(raf); raf = 0; };
+
+    build();
+    if (reduceMotion) { frame(performance.now()); return; } // one static frame
+    new IntersectionObserver((e) => { visible = e[0].isIntersecting; visible ? start() : stop(); }).observe(card);
+    let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(build, 120); });
+  })();
 
   /* ---------- 1b. Fact tiles: fade in and count up when they come into view ---------- */
   const factsEl = document.querySelector('.facts');
