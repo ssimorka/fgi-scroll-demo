@@ -132,24 +132,23 @@
   .approach-wrap{z-index:2}
   .tech-wrap{z-index:3}
 
-  /* ---- Site nav: fixed bar above every panel so it survives the hero recede.
-     Transparent over the hero (light text); once the hero recedes it picks up a
-     frosted light ground, dark text and the compact mark (.scrolled, set in JS). */
-  .site-nav{position:fixed;top:0;left:0;right:0;z-index:50;pointer-events:none}
-  .navbar{
-    pointer-events:auto;max-width:var(--section-w);margin:0 auto;padding:24px 48px 0;
-    display:flex;align-items:center;gap:8px;
-  }
-  .navbar-inner{flex:1;display:flex;align-items:center;gap:8px;padding:0 0 0 24px;border-radius:9999px;transition:background .3s,box-shadow .3s,padding .3s}
+  /* ---- Site nav: its own bar on the page ground, above the hero card (35pharma
+     pattern), dark wordmark and links. The slot keeps its height; once the bar
+     scrolls out, it comes back as a fixed frosted pill with the compact mark. */
+  .nav-slot{position:relative;z-index:50;height:88px}
+  .site-nav{position:absolute;top:0;left:0;right:0}
+  .navbar{max-width:var(--section-w);margin:0 auto;padding:16px 48px 0;display:flex;align-items:center;gap:8px}
+  .navbar-inner{flex:1;display:flex;align-items:center;gap:8px;padding:0;border-radius:9999px;transition:background .3s,box-shadow .3s,padding .3s}
   .navbar .logo{width:187px;height:56px;display:block}
   .navbar .logo img{width:100%;height:100%;object-fit:contain;object-position:left center}
   .navbar .logo .mark{display:none;width:44px;height:32px}
   .nav-list{flex:1;display:flex;justify-content:flex-end;gap:16px;list-style:none}
-  .nav-list a{display:block;padding:8px;border-radius:8px;color:var(--text-tertiary);font-size:18px;line-height:1;transition:color .3s}
-  .nav-list a:hover{color:#fff}
+  .nav-list a{display:block;padding:8px;border-radius:8px;color:var(--text-default);font-size:18px;line-height:1;transition:color .3s}
+  .nav-list a:hover{color:var(--bg-brand)}
+  .site-nav.scrolled{position:fixed;animation:nav-in .3s ease-out}
+  @keyframes nav-in{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+  .site-nav.scrolled .navbar{padding-top:12px}
   .site-nav.scrolled .navbar-inner{background:rgba(248,250,252,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--shadow-300);padding:8px 8px 8px 24px}
-  .site-nav.scrolled .nav-list a{color:var(--text-default)}
-  .site-nav.scrolled .nav-list a:hover{color:var(--bg-brand)}
   .site-nav.scrolled .logo .full{display:none}
   .site-nav.scrolled .logo .mark{display:block}
   .site-nav.scrolled .logo{width:44px;height:32px}
@@ -158,9 +157,9 @@
      headline left, lead + CTA right. Card fills the viewport minus the gutter. */
   .hero{padding:24px;overflow:hidden} /* no background: the page mesh shows through the gutter */
   .hero-card{
-    min-height:calc(100svh - 48px);
+    min-height:calc(100svh - 88px - 48px); /* viewport minus nav slot and gutter */
     display:flex;flex-direction:column;justify-content:flex-end;gap:48px;
-    padding:120px 48px 48px;border-radius:var(--radius);
+    padding:64px 48px 48px;border-radius:var(--radius);
     background:var(--grad-hero);color:var(--text-on-dark);overflow:hidden;
     filter:drop-shadow(0 4px 2px rgba(32,32,32,.1)) drop-shadow(0 4px 2px rgba(32,32,32,.05)); /* Drop Shadow/300 */
   }
@@ -305,13 +304,13 @@
     .stack-wrap::after{display:none}
     .stack-panel{position:static}
     .stack-over{margin-top:0!important;padding-bottom:0!important}
+    .nav-slot{height:64px}
     .navbar{padding:12px 12px 0}
-    .navbar-inner{padding-left:12px}
     .site-nav.scrolled .navbar-inner{padding:6px 6px 6px 12px}
     .navbar .logo{width:134px;height:40px}
     .nav-list{display:none}
     .hero{padding:12px}
-    .hero-card{min-height:calc(100svh - 24px);padding:96px 20px 32px;gap:32px}
+    .hero-card{min-height:calc(100svh - 64px - 24px);padding:48px 20px 32px;gap:32px}
     .hero-copy{flex-direction:column;align-items:stretch;gap:24px}
     .hero-copy .aside{flex:0 0 auto}
     .hero-copy .t-subtitle{font-size:20px}
@@ -376,12 +375,13 @@
 <div class="page">
   <div class="mesh" aria-hidden="true"></div>
 
-  <!-- ============ SITE NAV (fixed) ============ -->
+  <!-- ============ SITE NAV (own bar above the hero card) ============ -->
+  <div class="nav-slot">
   <header class="site-nav" id="siteNav">
     <nav class="navbar" aria-label="Primary">
       <div class="navbar-inner">
         <a class="logo" href="#hero" aria-label="First Genomic Insights">
-          <img class="full" src="assets/fgi-logo-light.svg" alt="">
+          <img class="full" src="assets/fgi-logo-dark.svg" alt="">
           <img class="mark" src="assets/fgi-mini.svg" alt="">
         </a>
         <ul class="nav-list">
@@ -394,6 +394,7 @@
       </div>
     </nav>
   </header>
+  </div>
 
   <!-- ============ HERO ============ -->
   <div class="hero-wrap stack-wrap">
@@ -614,7 +615,7 @@
   lenis.on('scroll', ScrollTrigger.update);
   // Site nav: transparent over the hero, frosted + dark once the page has moved.
   const siteNav = document.getElementById('siteNav');
-  const navState = () => siteNav.classList.toggle('scrolled', window.scrollY > 40);
+  const navState = () => siteNav.classList.toggle('scrolled', window.scrollY > 88);
   lenis.on('scroll', navState); navState();
   gsap.ticker.add((t) => lenis.raf(t * 1000));
   gsap.ticker.lagSmoothing(0);
