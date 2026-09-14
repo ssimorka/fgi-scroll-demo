@@ -207,7 +207,9 @@
   /* ============ MISSION (node 6078:291) ============ */
   .mission{padding:24px}
   .mission-card{
-    display:flex;flex-direction:column;justify-content:center;gap:64px;height:700px;padding:64px 48px 96px;
+    display:flex;flex-direction:column;justify-content:center;gap:clamp(32px,6svh,64px);
+    height:min(700px,calc(100svh - 48px)); /* 700 in the file; never taller than the viewport minus the gutter */
+    padding:clamp(40px,6svh,64px) 48px clamp(48px,8svh,96px);
     border-radius:var(--radius);background:var(--grad-dark-depth);color:var(--text-on-dark);
     filter:drop-shadow(0 4px 2px rgba(32,32,32,.1)) drop-shadow(0 4px 2px rgba(32,32,32,.05));
   }
@@ -251,7 +253,8 @@
   /* ============ FOUNDERS (node 6079:297) ============ */
   .founders{padding:24px}
   .founders-panel{
-    display:flex;flex-direction:column;gap:56px;padding:64px 48px;border-radius:var(--radius);
+    max-height:calc(100svh - 48px); /* panel always fits the viewport */
+    display:flex;flex-direction:column;gap:clamp(24px,5svh,56px);padding:clamp(40px,6svh,64px) 48px;border-radius:var(--radius);
     background:var(--grad-dark-depth);color:var(--text-on-dark);
     filter:drop-shadow(0 4px 2px rgba(32,32,32,.1)) drop-shadow(0 4px 2px rgba(32,32,32,.05)); /* Drop Shadow/300 */
   }
@@ -261,7 +264,8 @@
   .founders-row .aside{flex:0 0 400px;display:flex;flex-direction:column;gap:8px}
   .founders-row .aside .t-body{color:var(--text-on-dark-2)}
   .portraits{display:flex;gap:24px}
-  .portrait{flex:1 1 0;min-width:0;aspect-ratio:5/4;border-radius:8px;overflow:hidden;background:rgba(255,255,255,.06);position:relative}
+  .portraits{min-height:0}
+  .portrait{flex:1 1 0;min-width:0;aspect-ratio:5/4;max-height:clamp(180px,calc(100svh - 500px),320px);border-radius:8px;overflow:hidden;background:rgba(255,255,255,.06);position:relative}
   .portrait img{width:100%;height:100%;object-fit:cover}
   .portrait.pending{display:grid;place-items:center;border:1px dashed var(--border-on-dark)}
   .portrait.pending span{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-on-dark-2);opacity:.7}
