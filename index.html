@@ -224,14 +224,15 @@
   /* full-bleed ground: content stays in the 1280 column, the tint runs edge to edge */
   .tech::before{content:'';position:absolute;top:0;bottom:0;left:50%;width:100vw;transform:translateX(-50%);
     background:var(--bg-tertiary);box-shadow:var(--shadow-400);z-index:-1}
-  .tech-pin{position:sticky;top:0;height:100vh;height:100svh;overflow:visible;display:flex;flex-direction:column;justify-content:center;padding:40px var(--pad-x)}
+  /* pinned block: 48px on every side; the card track takes all remaining height so the card's bottom gap equals the side gutter */
+  .tech-pin{position:sticky;top:0;height:100vh;height:100svh;overflow:visible;display:flex;flex-direction:column;justify-content:flex-start;padding:var(--pad-x)}
   .tech-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:40px}
   .section-heading{display:flex;flex-direction:column;gap:8px;max-width:704px}
   .controls{display:flex;gap:8px;flex-shrink:0}
-  .track-clip{overflow:visible} /* cards run past the 1280 column onto the full-bleed ground; body overflow-x:clip stops a scrollbar */
-  .track{display:flex;gap:var(--gap);will-change:transform}
+  .track-clip{overflow:visible;flex:1 1 0;min-height:0} /* cards run past the column onto the full-bleed ground; body overflow-x:clip stops a scrollbar */
+  .track{display:flex;gap:var(--gap);height:100%;will-change:transform}
   .card{
-    flex:0 0 var(--card-w);width:var(--card-w);height:var(--card-h);
+    flex:0 0 var(--card-w);width:var(--card-w);height:100%; /* fills the pinned block; --card-h only used below 1024 */
     display:flex;border-radius:var(--radius);overflow:hidden;
     background:var(--bg-neutral-3);box-shadow:var(--shadow-400);
   }
