@@ -504,7 +504,7 @@
   <div class="mission-wrap">
   <section class="mission" id="mission">
     <div class="mission-card">
-      <canvas class="hero-viz" aria-hidden="true"></canvas>
+      <canvas class="hero-viz" data-helix="off" aria-hidden="true"></canvas>
       <div class="mission-statement">
         <div class="headline">
           <p class="eyebrow on-dark"><span class="num">03</span>Our Mission</p>
@@ -755,7 +755,7 @@
     const frame = (now) => {
       const dt = Math.min((now - last) / 1000, 0.05); last = now;
       ctx.clearRect(0, 0, W, H);
-      drawLanes(dt); drawHelix(now / 1000); mask();
+      drawLanes(dt); if (canvas.dataset.helix !== 'off') drawHelix(now / 1000); mask();
       if (visible && !reduceMotion) raf = requestAnimationFrame(frame);
     };
     const start = () => { if (!raf) { last = performance.now(); raf = requestAnimationFrame(frame); } };
