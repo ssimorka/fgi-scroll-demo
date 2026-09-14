@@ -45,10 +45,10 @@
     --font-body:"Roboto",system-ui,-apple-system,"Segoe UI",sans-serif;
     --font-display:"Roboto Condensed","Roboto",system-ui,sans-serif;
     /* layout */
-    --section-w:1280px;
+    --section-w:1920px; /* fluid like 35pharma: panels run to the viewport (24px gutter); 1280 is the Figma comp, not a cap */
     --pad-x:48px;
     --radius:16px;
-    --card-w:min(1035px,calc(100% - 128px)); /* 1035 in the file; keeps the next card peeking on narrower desktops */
+    --card-w:min(81vw,calc(100% - 128px)); /* 1035 at the 1280 comp (81%); scales with the viewport, keeps the neighbours peeking */
     --card-h:clamp(380px,calc(100svh - 270px),541px); /* 541 in the file; fits the pinned viewport on short screens */
     --copy-w:384px;
     --gap:24px;
@@ -167,7 +167,7 @@
   .hero-copy .headline{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:24px}
   .hero-copy .eyebrow{color:var(--text-on-dark-2);letter-spacing:1.5px}
   .hero-copy .t-hero{max-width:none}
-  .hero-copy .aside{flex:0 0 440px;display:flex;flex-direction:column;gap:32px}
+  .hero-copy .aside{flex:0 0 clamp(400px,32vw,520px);display:flex;flex-direction:column;gap:32px}
   .hero-copy .t-subtitle{color:var(--text-on-dark-2);font-size:25px}
   .hero-actions{display:flex}
 
@@ -260,8 +260,8 @@
   }
   .founders-row{display:flex;align-items:flex-end;justify-content:space-between;gap:64px}
   .founders-row .statement{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:24px}
-  .founders-row .statement .t-page{max-width:16ch}
-  .founders-row .aside{flex:0 0 400px;display:flex;flex-direction:column;gap:8px}
+  .founders-row .statement .t-page{max-width:22ch}
+  .founders-row .aside{flex:0 0 clamp(360px,30vw,480px);display:flex;flex-direction:column;gap:8px}
   .founders-row .aside .t-body{color:var(--text-on-dark-2)}
   .portraits{display:flex;gap:24px}
   .portraits{min-height:0}
