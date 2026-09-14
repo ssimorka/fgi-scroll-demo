@@ -172,13 +172,13 @@
   .hero-actions{display:flex}
 
   .facts{
-    flex:0 0 auto;display:flex;gap:24px;padding:24px 48px;
+    flex:0 0 auto;display:flex;gap:24px;padding:clamp(28px,4svh,48px) 48px;
     background:var(--pink-100);border-radius:var(--radius);
     filter:drop-shadow(0 4px 2px rgba(32,32,32,.1)) drop-shadow(0 4px 2px rgba(32,32,32,.05)); /* Drop Shadow/300 */
   }
-  .fact{flex:1 1 0;min-width:0;padding:0 16px;border-left:1px solid var(--pink-800);display:flex;flex-direction:column;gap:2px}
-  .fact .t-heading{color:var(--text-neutral)}
-  .fact .t-small-strong{color:var(--text-neutral-2)}
+  .fact{flex:1 1 0;min-width:0;padding:4px 24px;border-left:2px solid var(--pink-800);display:flex;flex-direction:column;gap:8px}
+  .fact .t-heading{color:var(--text-neutral);font-size:clamp(40px,4.5svh,56px);font-weight:700;letter-spacing:-.02em} /* Title Page scale */
+  .fact .t-small-strong{color:var(--text-neutral-2);font-size:18px;font-weight:400}
 
   /* ============ FGI'S APPROACH (node 6305:8644) ============ */
   /* Stacked panels share one language: 24px page gutter, 16px radius, solid
@@ -320,6 +320,8 @@
     .hero-copy .aside{flex:0 0 auto}
     .hero-copy .t-subtitle{font-size:20px}
     .facts{flex-direction:column;gap:16px;padding:20px}
+    .fact .t-heading{font-size:36px}
+    .fact .t-small-strong{font-size:15px}
     .approach,.founders{padding:12px}
     .news{padding:64px var(--pad-x)}
     .approach-panel{padding:20px;gap:16px}
