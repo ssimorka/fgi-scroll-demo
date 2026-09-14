@@ -132,29 +132,48 @@
   .approach-wrap{z-index:2}
   .tech-wrap{z-index:3}
 
-  .hero{
-    display:flex;flex-direction:column;gap:24px;padding:24px 48px;
-    overflow:hidden; /* no background: the page mesh shows through the gutter */
+  /* ---- Site nav: fixed bar above every panel so it survives the hero recede.
+     Transparent over the hero (light text); once the hero recedes it picks up a
+     frosted light ground, dark text and the compact mark (.scrolled, set in JS). */
+  .site-nav{position:fixed;top:0;left:0;right:0;z-index:50;pointer-events:none}
+  .navbar{
+    pointer-events:auto;max-width:var(--section-w);margin:0 auto;padding:24px 48px 0;
+    display:flex;align-items:center;gap:8px;
   }
+  .navbar-inner{flex:1;display:flex;align-items:center;gap:8px;padding:0 0 0 24px;border-radius:9999px;transition:background .3s,box-shadow .3s,padding .3s}
+  .navbar .logo{width:187px;height:56px;display:block}
+  .navbar .logo img{width:100%;height:100%;object-fit:contain;object-position:left center}
+  .navbar .logo .mark{display:none;width:44px;height:32px}
+  .nav-list{flex:1;display:flex;justify-content:flex-end;gap:16px;list-style:none}
+  .nav-list a{display:block;padding:8px;border-radius:8px;color:var(--text-tertiary);font-size:18px;line-height:1;transition:color .3s}
+  .nav-list a:hover{color:#fff}
+  .site-nav.scrolled .navbar-inner{background:rgba(248,250,252,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--shadow-300);padding:8px 8px 8px 24px}
+  .site-nav.scrolled .nav-list a{color:var(--text-default)}
+  .site-nav.scrolled .nav-list a:hover{color:var(--bg-brand)}
+  .site-nav.scrolled .logo .full{display:none}
+  .site-nav.scrolled .logo .mark{display:block}
+  .site-nav.scrolled .logo{width:44px;height:32px}
+
+  /* ---- Hero: single card, 24px gutter, bottom-anchored split (35pharma pattern):
+     headline left, lead + CTA right. Card fills the viewport minus the gutter. */
+  .hero{padding:24px;overflow:hidden} /* no background: the page mesh shows through the gutter */
   .hero-card{
-    display:flex;flex-direction:column;align-items:center;gap:96px;
-    padding:24px 48px 96px;border-radius:var(--radius);
+    min-height:calc(100svh - 48px);
+    display:flex;flex-direction:column;justify-content:flex-end;gap:48px;
+    padding:120px 48px 48px;border-radius:var(--radius);
     background:var(--grad-hero);color:var(--text-on-dark);overflow:hidden;
     filter:drop-shadow(0 4px 2px rgba(32,32,32,.1)) drop-shadow(0 4px 2px rgba(32,32,32,.05)); /* Drop Shadow/300 */
   }
-  .navbar{width:100%;max-width:1440px;display:flex;align-items:center;gap:8px}
-  .navbar .logo{width:187px;height:56px}
-  .navbar .logo img{width:100%;height:100%}
-  .nav-list{flex:1;display:flex;justify-content:flex-end;gap:16px;list-style:none}
-  .nav-list a{display:block;padding:8px;border-radius:8px;color:var(--text-tertiary);font-size:18px;line-height:1}
-  .nav-list a:hover{color:#fff}
-  .hero-copy{max-width:880px;text-align:center;display:flex;flex-direction:column;gap:24px}
+  .hero-copy{display:flex;align-items:flex-end;justify-content:space-between;gap:64px}
+  .hero-copy .headline{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:24px}
   .hero-copy .eyebrow{color:var(--text-on-dark-2);letter-spacing:1.5px}
-  .hero-copy .t-subtitle{color:var(--text-on-dark-2)}
-  .hero-actions{display:flex;justify-content:center;width:100%}
+  .hero-copy .t-hero{max-width:none}
+  .hero-copy .aside{flex:0 0 440px;display:flex;flex-direction:column;gap:32px}
+  .hero-copy .t-subtitle{color:var(--text-on-dark-2);font-size:25px}
+  .hero-actions{display:flex}
 
   .facts{
-    flex:0 0 auto;display:flex;gap:24px;padding:24px 48px;
+    display:flex;gap:24px;padding:24px 48px;
     background:var(--pink-100);border-radius:var(--radius);
     filter:drop-shadow(0 4px 2px rgba(32,32,32,.1)) drop-shadow(0 4px 2px rgba(32,32,32,.05)); /* Drop Shadow/300 */
   }
@@ -163,14 +182,21 @@
   .fact .t-small-strong{color:var(--text-neutral-2)}
 
   /* ============ FGI'S APPROACH (node 6305:8644) ============ */
-  .approach{padding:96px var(--pad-x)}
-  .panel{position:relative;padding-bottom:48px;filter:drop-shadow(0 24px 24px rgba(0,0,0,.1)) drop-shadow(0 4px 2px rgba(0,0,0,.05))}
-  .panel-img{height:600px;border-radius:var(--radius);overflow:hidden;background:#ebebeb}
+  /* Stacked panels share one language: 24px page gutter, 16px radius, solid
+     ground, 48px inside. The Approach panel recedes as one rounded rectangle. */
+  .approach{padding:24px}
+  .approach-panel{
+    display:flex;flex-direction:column;gap:24px;padding:48px;border-radius:var(--radius);
+    background:var(--bg-secondary);
+    filter:drop-shadow(0 4px 2px rgba(32,32,32,.1)) drop-shadow(0 4px 2px rgba(32,32,32,.05)); /* Drop Shadow/300 */
+  }
+  .panel{position:relative}
+  .panel-img{height:clamp(420px,calc(100svh - 300px),600px);border-radius:var(--radius);overflow:hidden;background:#ebebeb} /* 600 in the file; shrinks so the pinned Approach panel fits short viewports */
   .panel-img img{width:100%;height:100%;object-fit:cover;--flip:1;--zoom:1.12;--px:0px;--py:0px;
     transform:scale(calc(var(--flip) * var(--zoom)),var(--zoom)) translate(var(--px),var(--py))} /* zoom = headroom for parallax */
   .approach .panel-img img{--flip:-1;object-position:60% 50%}
   .approach-card{
-    position:absolute;left:48px;bottom:-50px;width:560px;
+    position:absolute;left:48px;bottom:48px;width:560px;
     display:flex;flex-direction:column;gap:24px;padding:32px;
     background:rgba(255,255,255,.8);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
     border:1px solid var(--border-default);border-radius:var(--radius);
@@ -224,16 +250,22 @@
   .dots button[aria-current="true"]{background:var(--text-default)}
 
   /* ============ FOUNDERS (node 6079:297) ============ */
-  .founders{padding:96px var(--pad-x)}
-  /* Founders: zoom a little more and slide the frame left so Mike sits clear of the card; hair stays at the top edge as in the file */
-  .founders .panel-img img{--zoom:1.25;--px:-110px;object-position:50% 11.5%}
-  .founders-card{
-    position:absolute;right:48px;bottom:0;width:560px;
-    display:flex;flex-direction:column;gap:16px;padding:48px;
-    border-radius:var(--radius);background:var(--grad-dark-depth);color:var(--text-on-dark);
-    box-shadow:var(--shadow-400);
+  .founders{padding:24px}
+  .founders-panel{
+    display:flex;flex-direction:column;gap:56px;padding:64px 48px;border-radius:var(--radius);
+    background:var(--grad-dark-depth);color:var(--text-on-dark);
+    filter:drop-shadow(0 4px 2px rgba(32,32,32,.1)) drop-shadow(0 4px 2px rgba(32,32,32,.05)); /* Drop Shadow/300 */
   }
-  .founders-card .t-body{color:var(--text-on-dark-2)}
+  .founders-row{display:flex;align-items:flex-end;justify-content:space-between;gap:64px}
+  .founders-row .statement{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:24px}
+  .founders-row .statement .t-page{max-width:16ch}
+  .founders-row .aside{flex:0 0 400px;display:flex;flex-direction:column;gap:8px}
+  .founders-row .aside .t-body{color:var(--text-on-dark-2)}
+  .portraits{display:flex;gap:24px}
+  .portrait{flex:1 1 0;min-width:0;aspect-ratio:5/4;border-radius:8px;overflow:hidden;background:rgba(255,255,255,.06);position:relative}
+  .portrait img{width:100%;height:100%;object-fit:cover}
+  .portrait.pending{display:grid;place-items:center;border:1px dashed var(--border-on-dark)}
+  .portrait.pending span{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-on-dark-2);opacity:.7}
 
   /* ============ RESEARCH & NEWS (replaces Bento + FAQ; tile styles reused from FGI/Bento Tile) ============ */
   .news{padding:96px var(--pad-x);display:flex;flex-direction:column;gap:48px}
@@ -273,18 +305,27 @@
     .stack-wrap::after{display:none}
     .stack-panel{position:static}
     .stack-over{margin-top:0!important;padding-bottom:0!important}
-    .hero{padding:12px;gap:12px}
-    .hero-card{padding:16px 20px 40px;gap:40px}
+    .navbar{padding:12px 12px 0}
+    .navbar-inner{padding-left:12px}
+    .site-nav.scrolled .navbar-inner{padding:6px 6px 6px 12px}
     .navbar .logo{width:134px;height:40px}
     .nav-list{display:none}
+    .hero{padding:12px}
+    .hero-card{min-height:calc(100svh - 24px);padding:96px 20px 32px;gap:32px}
+    .hero-copy{flex-direction:column;align-items:stretch;gap:24px}
+    .hero-copy .aside{flex:0 0 auto}
+    .hero-copy .t-subtitle{font-size:20px}
     .facts{flex-direction:column;gap:16px;padding:20px}
-    .approach,.founders,.news{padding:64px var(--pad-x)}
-    .panel{padding-bottom:0}
+    .approach,.founders{padding:12px}
+    .news{padding:64px var(--pad-x)}
+    .approach-panel{padding:20px;gap:16px}
     .panel-img{height:min(60vw,480px)}
-    .approach-card,.founders-card{position:static;width:auto;margin:-40px 16px 0;background:rgba(255,255,255,.92)}
-    .founders-card{background:var(--grad-dark-depth)}
-    .approach-card{padding:24px}
-    .founders-card{padding:32px}
+    .approach-card{position:static;width:auto;margin:-40px 16px 0;background:rgba(255,255,255,.92);padding:24px}
+    .founders-panel{padding:40px 20px;gap:32px}
+    .founders-row{flex-direction:column;align-items:stretch;gap:24px}
+    .founders-row .aside{flex:0 0 auto}
+    .portraits{flex-direction:column}
+    .portrait{flex:0 0 auto;width:100%;aspect-ratio:4/3}
     .mission{padding:12px}
     .mission-card{height:auto;padding:40px 24px 56px;gap:40px}
     .mission-cols{flex-direction:column;gap:32px;padding-top:32px}
@@ -320,7 +361,9 @@
     .facts{flex-direction:row;gap:24px;padding:24px 32px}
     .mission-cols{flex-direction:row;gap:48px}
     .news-grid{flex-direction:row}
-    .approach-card,.founders-card{width:min(560px,80%)}
+    .approach-card{width:min(560px,80%)}
+    .portraits{flex-direction:row}
+    .portrait{flex:1 1 0;width:auto;aspect-ratio:5/4}
     .footer-content{flex-direction:row;gap:48px}
     .brand{flex-direction:column;align-items:flex-start}
     .link-cols{flex-wrap:nowrap}
@@ -333,33 +376,41 @@
 <div class="page">
   <div class="mesh" aria-hidden="true"></div>
 
+  <!-- ============ SITE NAV (fixed) ============ -->
+  <header class="site-nav" id="siteNav">
+    <nav class="navbar" aria-label="Primary">
+      <div class="navbar-inner">
+        <a class="logo" href="#hero" aria-label="First Genomic Insights">
+          <img class="full" src="assets/fgi-logo-light.svg" alt="">
+          <img class="mark" src="assets/fgi-mini.svg" alt="">
+        </a>
+        <ul class="nav-list">
+          <li><a href="#tech">Technology</a></li>
+          <li><a href="#news">Research</a></li>
+          <li><a href="#news">Partners</a></li>
+          <li><a href="#founders">Company</a></li>
+        </ul>
+        <a class="btn btn-neutral btn-sm" href="#footer">Contact Us</a>
+      </div>
+    </nav>
+  </header>
+
   <!-- ============ HERO ============ -->
   <div class="hero-wrap stack-wrap">
     <section class="hero stack-panel" id="hero">
       <div class="hero-card">
-        <nav class="navbar" aria-label="Primary">
-          <a class="logo" href="#hero" aria-label="First Genomic Insights"><img src="assets/fgi-logo-light.svg" alt=""></a>
-          <ul class="nav-list">
-            <li><a href="#tech">Technology</a></li>
-            <li><a href="#news">Research</a></li>
-            <li><a href="#news">Partners</a></li>
-            <li><a href="#founders">Company</a></li>
-          </ul>
-          <a class="btn btn-neutral btn-sm" href="#footer">Contact Us</a>
-        </nav>
         <div class="hero-copy">
-          <p class="eyebrow">Non-invasive fetal sequencing</p>
-          <h1 class="t-hero">Revolutionizing prenatal care with scalable genomics.</h1>
-          <p class="t-subtitle">The first fetal sequencing test to deliver comprehensive genetic screening at NIPT scale, with no invasive procedure.</p>
+          <div class="headline">
+            <p class="eyebrow">Non-invasive fetal sequencing</p>
+            <h1 class="t-hero">Revolutionizing prenatal care with scalable genomics.</h1>
+          </div>
+          <div class="aside">
+            <p class="t-subtitle">The first fetal sequencing test to deliver comprehensive genetic screening at NIPT scale, with no invasive procedure.</p>
+            <div class="hero-actions">
+              <a class="btn btn-outline-light" href="#approach">Learn more <img src="assets/arrow-right.svg" alt=""></a>
+            </div>
+          </div>
         </div>
-        <div class="hero-actions">
-          <a class="btn btn-outline-light" href="#approach">Learn more <img src="assets/arrow-right.svg" alt=""></a>
-        </div>
-      </div>
-      <div class="facts">
-        <div class="fact"><div class="t-heading">22,995</div><div class="t-small-strong">Genes screened per test</div></div>
-        <div class="fact"><div class="t-heading">8 years</div><div class="t-small-strong">of R&amp;D and validation</div></div>
-        <div class="fact"><div class="t-heading">Zero</div><div class="t-small-strong">Procedure risk to the fetus</div></div>
       </div>
     </section>
   </div>
@@ -367,13 +418,20 @@
   <!-- ============ FGI'S APPROACH ============ -->
   <div class="approach-wrap stack-wrap stack-over" data-slide="0.65">
   <section class="approach stack-panel" id="approach">
-    <div class="panel">
-      <div class="panel-img"><img data-parallax-img="-28" src="assets/approach-lab.jpg" alt="Founders or laboratory photography, final asset pending"></div>
-      <div class="approach-card" data-parallax="90">
-        <p class="eyebrow"><span class="num">01</span>FGI's Approach</p>
-        <h2 class="t-page">Every prenatal test today is a trade-off</h2>
-        <p class="t-body">Non-invasive testing misses most clinically relevant conditions. Invasive testing catches them, but carries real risk.</p>
-        <div class="card-actions"><a class="btn btn-brand" href="#tech">See the Technology <img src="assets/arrow-right-light.svg" alt=""></a></div>
+    <div class="approach-panel">
+      <div class="facts">
+        <div class="fact"><div class="t-heading">22,995</div><div class="t-small-strong">Genes screened per test</div></div>
+        <div class="fact"><div class="t-heading">8 years</div><div class="t-small-strong">of R&amp;D and validation</div></div>
+        <div class="fact"><div class="t-heading">Zero</div><div class="t-small-strong">Procedure risk to the fetus</div></div>
+      </div>
+      <div class="panel">
+        <div class="panel-img"><img data-parallax-img="-28" src="assets/approach-lab.jpg" alt="Founders or laboratory photography, final asset pending"></div>
+        <div class="approach-card" data-parallax="90">
+          <p class="eyebrow"><span class="num">01</span>FGI's Approach</p>
+          <h2 class="t-page">Every prenatal test today is a trade-off</h2>
+          <p class="t-body">Non-invasive testing misses most clinically relevant conditions. Invasive testing catches them, but carries real risk.</p>
+          <div class="card-actions"><a class="btn btn-brand" href="#tech">See the Technology <img src="assets/arrow-right-light.svg" alt=""></a></div>
+        </div>
       </div>
     </div>
   </section>
@@ -458,13 +516,21 @@
 
   <!-- ============ FOUNDERS ============ -->
   <section class="founders" id="founders">
-    <div class="panel">
-      <div class="panel-img"><img data-parallax-img="28" src="assets/founders-photo.jpg" alt="Founders or laboratory photography, final asset pending"></div>
-      <div class="founders-card" data-parallax="90">
-        <p class="eyebrow on-dark">Founders</p>
-        <h2 class="t-page">Founded by leaders in genomic and maternal-fetal medicine.</h2>
-        <p class="t-body">Three physician-scientists from Harvard, Columbia, and the Broad Institute.</p>
-        <div class="card-actions"><a class="btn btn-neutral" href="#founders">Meet the founders <img src="assets/arrow-right.svg" alt="" style="filter:brightness(0) saturate(100%) invert(22%) sepia(14%) saturate(1200%) hue-rotate(184deg)"></a></div>
+    <div class="founders-panel">
+      <div class="founders-row">
+        <div class="statement">
+          <p class="eyebrow on-dark">Founders</p>
+          <h2 class="t-page">Founded by leaders in genomic and maternal-fetal medicine.</h2>
+        </div>
+        <div class="aside">
+          <p class="t-body">Three physician-scientists from Harvard, Columbia, and the Broad Institute.</p>
+          <div class="card-actions"><a class="btn btn-neutral" href="#founders">Meet the founders <img src="assets/arrow-right.svg" alt="" style="filter:brightness(0) saturate(100%) invert(22%) sepia(14%) saturate(1200%) hue-rotate(184deg)"></a></div>
+        </div>
+      </div>
+      <div class="portraits">
+        <div class="portrait"><img src="assets/founders-photo.jpg" alt="Founder portrait, final asset pending" style="object-position:50% 12%"></div>
+        <div class="portrait pending"><span>Portrait pending</span></div>
+        <div class="portrait pending"><span>Portrait pending</span></div>
       </div>
     </div>
   </section>
@@ -546,6 +612,10 @@
   const lenis = new Lenis({ lerp: 0.1, wheelMultiplier: 0.7 });
   window.lenis = lenis; // exposed for poking at in devtools
   lenis.on('scroll', ScrollTrigger.update);
+  // Site nav: transparent over the hero, frosted + dark once the page has moved.
+  const siteNav = document.getElementById('siteNav');
+  const navState = () => siteNav.classList.toggle('scrolled', window.scrollY > 40);
+  lenis.on('scroll', navState); navState();
   gsap.ticker.add((t) => lenis.raf(t * 1000));
   gsap.ticker.lagSmoothing(0);
 
