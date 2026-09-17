@@ -158,6 +158,17 @@
   .site-nav.scrolled .logo .full{display:none}
   .site-nav.scrolled .logo .mark{display:block}
   .site-nav.scrolled .logo{width:44px;height:32px}
+  .menu-btn{display:none;width:39px;height:39px;padding:8px;margin-left:auto}
+  .menu-btn .close,.menu-btn[aria-expanded="true"] .open{display:none}
+  .menu-btn[aria-expanded="true"] .close{display:block}
+  /* mobile menu: frosted sheet under the bar (no comp for the open state; follows the scrolled-nav pill) */
+  .mobile-menu{position:absolute;left:12px;right:12px;top:calc(100% + 8px);z-index:49;display:flex;flex-direction:column;gap:4px;padding:12px;
+    background:rgba(248,250,252,.96);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:var(--radius);box-shadow:var(--shadow-400);animation:nav-in .2s ease-out}
+  .mobile-menu[hidden]{display:none}
+  .mobile-menu > a:not(.btn){padding:12px 16px;border-radius:16px;color:var(--text-secondary);font-size:18px;line-height:1;transition:color .2s,background .2s}
+  .mobile-menu > a:not(.btn):hover{background:var(--bg-brand);color:var(--text-on-dark)}
+  .mobile-menu > a.active{color:var(--bg-brand)}
+  .mobile-menu > .btn{justify-content:center;margin-top:8px}
 
   /* ---- Hero: single card, 24px gutter, bottom-anchored split (35pharma pattern):
      headline left, lead + CTA right. Card fills the viewport minus the gutter. */
@@ -385,6 +396,16 @@
     .link-col{flex:1 1 40%}
     .legal{flex-direction:column;gap:8px;white-space:normal}
   }
+  /* ---------- mobile (< 768): mini mark + hamburger (comp 6423:636) ---------- */
+  @media (max-width:767.98px){
+    .navbar{padding:16px 12px 0}
+    .navbar .logo,.site-nav.scrolled .logo{width:49px;height:36px}
+    .navbar .logo .full{display:none}
+    .navbar .logo .mark{display:block}
+    .navbar-inner > .btn{display:none}
+    .menu-btn{display:grid}
+    .site-nav.scrolled .navbar-inner{padding:6px 6px 6px 12px}
+  }
   /* ---------- tablet (768-1023): static layout, but use the width ---------- */
   @media (min-width:768px) and (max-width:1023.98px){
     :root{--pad-x:32px;--nav-h:82px}
@@ -428,8 +449,16 @@
           <li><a href="#founders">Company</a></li>
         </ul>
         <a class="btn btn-neutral btn-sm" href="#footer">Contact Us</a>
+        <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu"><img class="open" src="assets/icon-menu.svg" alt=""><img class="close" src="assets/icon-close.svg" alt=""></button>
       </div>
     </nav>
+    <div class="mobile-menu" id="mobileMenu" hidden>
+      <a href="#tech">Technology</a>
+      <a href="#news">Research</a>
+      <a href="#news">Partners</a>
+      <a href="#founders">Company</a>
+      <a class="btn btn-brand" href="#footer">Contact Us <img src="assets/arrow-right-light.svg" alt=""></a>
+    </div>
   </header>
   </div>
 
@@ -637,7 +666,7 @@
   const navState = () => siteNav.classList.toggle('scrolled', window.scrollY > siteNav.parentElement.offsetHeight);
   lenis.on('scroll', navState); navState();
   // Active nav item: the link whose section is nearest the top of the viewport (kit State=Active)
-  const navLinks = Array.from(document.querySelectorAll('.nav-list a'));
+  const navLinks = Array.from(document.querySelectorAll('.nav-list a, .mobile-menu a:not(.btn)'));
   const navTargets = navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
   const navActive = () => {
     let cur = null;
@@ -645,6 +674,13 @@
     navLinks.forEach(a => a.classList.toggle('active', !!cur && a.getAttribute('href') === '#' + cur.id));
   };
   lenis.on('scroll', navActive); navActive();
+  // Mobile menu (< 768): hamburger toggles the sheet; any link or Escape closes it
+  const menuBtn = document.getElementById('menuBtn'), mobileMenu = document.getElementById('mobileMenu');
+  const setMenu = (open) => { menuBtn.setAttribute('aria-expanded', String(open)); mobileMenu.hidden = !open; };
+  menuBtn.addEventListener('click', () => setMenu(mobileMenu.hidden));
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
+  lenis.on('scroll', () => { if (!mobileMenu.hidden && Math.abs(lenis.velocity) > 2) setMenu(false); });
   gsap.ticker.add((t) => lenis.raf(t * 1000));
   gsap.ticker.lagSmoothing(0);
 
