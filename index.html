@@ -100,7 +100,7 @@
   .icon-btn.on-dark:hover{background:rgba(255,255,255,.12)}
   .icon-btn.on-dark img{filter:brightness(0) invert(1)}
   .icon-btn img{transition:transform .25s cubic-bezier(.2,.7,.2,1)}
-  .icon-btn:not([disabled]):hover img,.tile:hover .icon-btn img{transform:translateX(4px)}
+  .icon-btn:not([disabled]):not(.menu-btn):hover img,.tile:hover .icon-btn img{transform:translateX(4px)} /* arrows nudge; the menu glyph stays put */
   .icon-btn.flip img{transform:rotate(180deg)}
   .icon-btn.flip:not([disabled]):hover img{transform:rotate(180deg) translateX(4px)}
 
