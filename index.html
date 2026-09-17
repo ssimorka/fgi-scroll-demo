@@ -167,13 +167,13 @@
     display:flex;flex-direction:column;justify-content:flex-start;gap:48px;
     padding:64px 48px 48px;border-radius:var(--radius);
     background:var(--grad-hero);color:var(--text-on-overlay);overflow:hidden;
-    filter:drop-shadow(0 4px 2px rgba(32,32,32,.1)) drop-shadow(0 4px 2px rgba(32,32,32,.05)); /* Drop Shadow/300 */
+    box-shadow:var(--shadow-300); /* box-shadow, not filter: a filter here would re-blur the animating canvases every frame */
   }
   .hero-card{position:relative}
   .hero-viz{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.75} /* data-points texture: reads like the comp's 25% dash layer once the band alpha is in */
   /* 3D helix: a WebGL canvas over the whole card (drawn bottom-left to top-right, see
      section 1b). The still is only shown if WebGL / three.js is unavailable. */
-  .hero-helix{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.78;filter:drop-shadow(0 24px 30px rgba(0,58,88,.22))} /* part-translucent so the card gradient shows through and the strand sits in the scene */
+  .hero-helix{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.78} /* part-translucent so the card gradient shows through; no filter: it would re-blur the WebGL frame every tick */
   .hero-helix-still{object-fit:cover;object-position:right bottom;opacity:.94}
   .hero-helix-still[hidden]{display:none} /* the img reset sets display:block, which would beat [hidden] */
   .hero-copy{position:relative;z-index:1;display:flex;align-items:flex-start;justify-content:space-between;gap:64px}
@@ -187,7 +187,7 @@
   .facts{
     flex:0 0 auto;display:flex;gap:24px;padding:clamp(28px,4svh,48px) 48px;
     background:var(--pink-100);border-radius:var(--radius);
-    filter:drop-shadow(0 4px 2px rgba(32,32,32,.1)) drop-shadow(0 4px 2px rgba(32,32,32,.05)); /* Drop Shadow/300 */
+    box-shadow:var(--shadow-300);
   }
   .fact{flex:1 1 0;min-width:0;padding:4px 24px;border-left:2px solid var(--pink-800);display:flex;flex-direction:column;gap:8px}
   .fact .t-heading{color:var(--text-neutral);font-size:clamp(40px,4.5svh,56px);font-weight:700;letter-spacing:-.02em} /* Title Page scale */
@@ -201,7 +201,7 @@
   .approach-panel{
     flex:1 1 0;min-height:0;display:flex;flex-direction:column;gap:24px;padding:48px;border-radius:var(--radius);
     background:var(--bg-secondary);
-    filter:drop-shadow(0 4px 2px rgba(32,32,32,.1)) drop-shadow(0 4px 2px rgba(32,32,32,.05)); /* Drop Shadow/300 */
+    box-shadow:var(--shadow-300);
   }
   .panel{position:relative;flex:1 1 0;display:flex;flex-direction:column;min-height:0}
   .panel-img{flex:1 1 0;min-height:0;border-radius:var(--radius);overflow:hidden;background:#ebebeb} /* fills the panel; the panel itself is sized to the viewport */
@@ -619,7 +619,7 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.1/dist/lenis.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 <script>
 (() => {
   gsap.registerPlugin(ScrollTrigger);
@@ -672,7 +672,7 @@
     const hues = canvas.dataset.tone === 'light' ? ['78,168,194', '0,119,160'] : ['78,168,194', '184,229,237'];
     const dense = parseFloat(canvas.dataset.density || '1'); // >1 = tighter rows and shorter gaps (hero)
     const build = () => {
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      dpr = Math.min(window.devicePixelRatio || 1, 1.5);
       W = card.clientWidth; H = card.clientHeight;
       canvas.width = W * dpr; canvas.height = H * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -747,8 +747,10 @@
      a curved axis that runs in from the bottom-left and climbs the right edge.
      The phase advances every frame, so the helix turns about its own axis.
      Scene units are card pixels at z=0 (camera distance derived from the fov),
-     so the composition stays put as the card resizes. Pauses off-screen. */
-  (() => {
+     so the composition stays put as the card resizes. Pauses off-screen.
+     three.js is deferred, so this waits for load and then for an idle moment,
+     keeping the first paint and the copy ahead of the 3D. Renders at 30fps. */
+  const initHelix = () => {
     const canvas = document.getElementById('heroHelix'), still = document.querySelector('.hero-helix-still');
     if (!canvas) return;
     if (!window.THREE) { canvas.remove(); still.hidden = false; return; }
@@ -756,7 +758,7 @@
     let renderer;
     try { renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: 'low-power' }); }
     catch (e) { canvas.remove(); still.hidden = false; return; }
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
     renderer.setClearColor(0x000000, 0);
 
     const scene = new THREE.Scene();
@@ -769,7 +771,7 @@
     const mat = new THREE.MeshMatcapMaterial({ matcap, color: 0xffffff });
     const rungMat = new THREE.MeshStandardMaterial({ color: 0x9ad6f2, roughness: 0.7, metalness: 0.0, transparent: true, opacity: 0.4 });
     const STEPS = 150, BEADS = (STEPS + 1) * 2, RUNGS = Math.floor(STEPS / 10);
-    const beads = new THREE.InstancedMesh(new THREE.SphereGeometry(1, 24, 16), mat, BEADS);
+    const beads = new THREE.InstancedMesh(new THREE.SphereGeometry(1, 20, 14), mat, BEADS);
     const rungs = new THREE.InstancedMesh(new THREE.CylinderGeometry(1, 1, 1, 12, 1), rungMat, RUNGS);
     scene.add(beads, rungs);
     scene.add(new THREE.HemisphereLight(0xf2fbff, 0x1a6a9c, 1.5));
@@ -827,14 +829,17 @@
       renderer.render(scene, camera);
     };
 
-    const frame = (now) => { draw(now / 1000); if (visible && !reduceMotion) raf = requestAnimationFrame(frame); };
+    let tick = 0;
+    const frame = (now) => { if (!(tick++ & 1)) draw(now / 1000); if (visible && !reduceMotion) raf = requestAnimationFrame(frame); }; // every other frame
     const start = () => { if (!raf) raf = requestAnimationFrame(frame); };
     const stop = () => { cancelAnimationFrame(raf); raf = 0; };
     build();
     if (reduceMotion) { draw(0); return; } // one static frame
     new IntersectionObserver((e) => { visible = e[0].isIntersecting; visible ? start() : stop(); }).observe(card);
     let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { build(); if (reduceMotion) draw(0); }, 120); });
-  })();
+  };
+  const scheduleHelix = () => (window.requestIdleCallback ? requestIdleCallback(initHelix, { timeout: 1200 }) : setTimeout(initHelix, 200));
+  if (document.readyState === 'complete') scheduleHelix(); else window.addEventListener('load', scheduleHelix);
 
 
   /* ---------- 1b. Fact tiles: fade in and count up when they come into view ---------- */
