@@ -170,7 +170,7 @@
   .hero-viz{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.75} /* data-points texture: reads like the comp's 25% dash layer once the band alpha is in */
   /* 3D helix: a WebGL canvas over the whole card (drawn bottom-left to top-right, see
      section 1b). The still is only shown if WebGL / three.js is unavailable. */
-  .hero-helix{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;filter:drop-shadow(0 24px 30px rgba(0,58,88,.32))}
+  .hero-helix{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.78;filter:drop-shadow(0 24px 30px rgba(0,58,88,.22))} /* part-translucent so the card gradient shows through and the strand sits in the scene */
   .hero-helix-still{object-fit:cover;object-position:right bottom;opacity:.94}
   .hero-helix-still[hidden]{display:none} /* the img reset sets display:block, which would beat [hidden] */
   .hero-copy{position:relative;z-index:1;display:flex;align-items:flex-start;justify-content:space-between;gap:64px}
