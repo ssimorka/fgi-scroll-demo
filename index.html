@@ -17,6 +17,7 @@
     --text-brand-secondary:#0077a0;/* sds text/brand/secondary (eyebrows) */
     --text-on-dark:#f0fdff;        /* text/on-dark/default */
     --text-on-dark-2:#b8e5ed;      /* text/on-dark/secondary */
+    --text-on-overlay:#111a1d;     /* sds text/utilities/on-overlay (hero copy on the light card) */
     --text-neutral:#3b3b3b;
     --text-neutral-2:#767676;
     --text-neutral-3:#949494;
@@ -34,7 +35,9 @@
     --border-neutral-2:#949494;
     --border-neutral-3:#dadada;
     /* gradients */
-    --grad-hero:linear-gradient(148.8deg,#00364d 14.644%,#006286 53.536%,#0065ac 85.356%);
+    /* Core Gradient 4: navy starts off-canvas top-left, brand blue through the copy, near-white bottom-right (angle re-fit per card aspect) */
+    --grad-hero:linear-gradient(var(--grad-hero-angle,112deg),#00364d -21%,#0077a0 11%,#4ea8c2 37%,#f0fdff 100%);
+    --nav-h:102px;
     --grad-dark-depth:linear-gradient(157deg,#00202e 14.644%,#00364d 50%,#001f52 85.356%);
     --grad-tile-brand:linear-gradient(167.4deg,#004c6c 14.644%,#0065ac 85.356%);
     /* effects */
@@ -135,11 +138,11 @@
   /* ---- Site nav: its own bar on the page ground, above the hero card (35pharma
      pattern), dark wordmark and links. The slot keeps its height; once the bar
      scrolls out, it comes back as a fixed frosted pill with the compact mark. */
-  .nav-slot{position:relative;z-index:50;height:88px}
+  .nav-slot{position:relative;z-index:50;height:var(--nav-h)}
   .site-nav{position:absolute;top:0;left:0;right:0}
-  .navbar{max-width:var(--section-w);margin:0 auto;padding:16px 48px 0;display:flex;align-items:center;gap:8px}
+  .navbar{max-width:var(--section-w);margin:0 auto;padding:24px 48px 0;display:flex;align-items:center;gap:8px}
   .navbar-inner{flex:1;display:flex;align-items:center;gap:8px;padding:0;border-radius:9999px;transition:background .3s,box-shadow .3s,padding .3s}
-  .navbar .logo{width:187px;height:56px;display:block}
+  .navbar .logo{width:220px;height:66px;display:block}
   .navbar .logo img{width:100%;height:100%;object-fit:contain;object-position:left center}
   .navbar .logo .mark{display:none;width:44px;height:32px}
   .nav-list{flex:1;display:flex;justify-content:flex-end;gap:16px;list-style:none}
@@ -155,23 +158,28 @@
 
   /* ---- Hero: single card, 24px gutter, bottom-anchored split (35pharma pattern):
      headline left, lead + CTA right. Card fills the viewport minus the gutter. */
-  .hero{min-height:calc(100svh - 88px);display:flex;flex-direction:column;gap:24px;padding:24px;overflow:hidden} /* no background: the page mesh shows through the gutter */
+  .hero{min-height:calc(100svh - var(--nav-h));display:flex;flex-direction:column;gap:24px;padding:24px;overflow:hidden} /* no background: the page mesh shows through the gutter */
   .hero-card{
     flex:1 1 auto;min-height:0; /* fills the viewport minus nav slot, gutter and fact tiles */
     display:flex;flex-direction:column;justify-content:flex-start;gap:48px;
     padding:64px 48px 48px;border-radius:var(--radius);
-    background:var(--grad-hero);color:var(--text-on-dark);overflow:hidden;
+    background:var(--grad-hero);color:var(--text-on-overlay);overflow:hidden;
     filter:drop-shadow(0 4px 2px rgba(32,32,32,.1)) drop-shadow(0 4px 2px rgba(32,32,32,.05)); /* Drop Shadow/300 */
   }
   .hero-card{position:relative}
-  .hero-viz{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.9}
+  .hero-viz{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.75} /* data-points texture: reads like the comp's 25% dash layer once the band alpha is in */
+  /* 3D helix: a WebGL canvas over the whole card (drawn bottom-left to top-right, see
+     section 1b). The still is only shown if WebGL / three.js is unavailable. */
+  .hero-helix{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;filter:drop-shadow(0 24px 30px rgba(0,58,88,.32))}
+  .hero-helix-still{object-fit:cover;object-position:right bottom;opacity:.94}
+  .hero-helix-still[hidden]{display:none} /* the img reset sets display:block, which would beat [hidden] */
   .hero-copy{position:relative;z-index:1;display:flex;align-items:flex-start;justify-content:space-between;gap:64px}
   .hero-copy .headline{flex:1 1 0;min-width:0;max-width:960px;display:flex;flex-direction:column;gap:24px}
-  .hero-copy .eyebrow{color:var(--text-on-dark-2);letter-spacing:1.5px}
+  .hero-copy .eyebrow{color:var(--text-on-overlay);letter-spacing:1.5px}
   .hero-copy .t-hero{max-width:none}
   .hero-copy .aside{flex:0 0 clamp(400px,32vw,520px);display:flex;flex-direction:column;gap:32px}
-  .hero-copy .t-subtitle{color:var(--text-on-dark-2);font-size:25px;max-width:46ch}
-  .hero-actions{display:flex}
+  .hero-copy .t-subtitle{color:var(--text-on-overlay);font-size:25px;max-width:46ch}
+  .hero-actions{display:flex;padding-top:8px}
 
   .facts{
     flex:0 0 auto;display:flex;gap:24px;padding:clamp(28px,4svh,48px) 48px;
@@ -186,7 +194,7 @@
   /* ============ FGI'S APPROACH (node 6305:8644) ============ */
   /* Stacked panels share one language: 24px page gutter, 16px radius, solid
      ground, 48px inside. The Approach panel recedes as one rounded rectangle. */
-  .approach{min-height:calc(100svh - 88px);display:flex;flex-direction:column;padding:24px} /* same height as the hero (card + facts) */
+  .approach{min-height:calc(100svh - var(--nav-h));display:flex;flex-direction:column;padding:24px} /* same height as the hero (card + facts) */
   .approach-panel{
     flex:1 1 0;min-height:0;display:flex;flex-direction:column;gap:24px;padding:48px;border-radius:var(--radius);
     background:var(--bg-secondary);
@@ -261,7 +269,7 @@
   .dots button[aria-current="true"]{background:var(--text-default)}
 
   /* ============ BENTO: Founders (largest tile) + Research & News ============ */
-  .bento{min-height:calc(100svh - 88px);display:flex;padding:96px var(--pad-x)}
+  .bento{min-height:calc(100svh - var(--nav-h));display:flex;padding:96px var(--pad-x)}
   .bento-grid{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:2fr 1fr;grid-template-rows:repeat(3,minmax(0,1fr));gap:24px}
   .tile{display:flex;flex-direction:column;gap:24px;padding:40px;border-radius:var(--radius)}
   .tile-head{display:flex;gap:8px;align-items:flex-start}
@@ -311,17 +319,18 @@
     .stack-wrap::after{display:none}
     .stack-panel{position:static}
     .stack-over{margin-top:0!important;padding-bottom:0!important}
-    .nav-slot{height:64px}
-    .navbar{padding:12px 12px 0}
+    :root{--nav-h:64px;--grad-hero-angle:135deg}
+    .navbar{padding:16px 12px 0}
     .site-nav.scrolled .navbar-inner{padding:6px 6px 6px 12px}
     .navbar .logo{width:134px;height:40px}
     .nav-list{display:none}
     .hero{padding:12px}
-    .hero{min-height:calc(100svh - 64px)}
     .hero-card{padding:40px 20px 32px;gap:32px}
     .hero-copy{flex-direction:column;align-items:stretch;gap:24px}
     .hero-copy .aside{flex:0 0 auto}
     .hero-copy .t-subtitle{font-size:20px}
+    .hero-copy .headline{gap:16px}
+    .hero .hero-actions{padding-top:24px} /* mobile comp: CTA sits 24px under the lead */
     .facts{flex-direction:column;gap:16px;padding:20px}
     .fact .t-heading{font-size:36px}
     .fact .t-small-strong{font-size:15px}
@@ -364,7 +373,11 @@
   }
   /* ---------- tablet (768-1023): static layout, but use the width ---------- */
   @media (min-width:768px) and (max-width:1023.98px){
-    :root{--pad-x:32px}
+    :root{--pad-x:32px;--nav-h:82px}
+    .navbar{padding:16px 12px 0}
+    .navbar .logo{width:168px;height:50px}
+    .hero-copy .headline{gap:24px}
+    .hero .hero-actions{padding-top:8px}
     .nav-list{display:flex;gap:4px}
     .nav-list a{font-size:16px}
     .facts{flex-direction:row;gap:24px;padding:24px 32px}
@@ -408,14 +421,16 @@
   <div class="hero-wrap stack-wrap">
     <section class="hero stack-panel" id="hero">
       <div class="hero-card">
-        <canvas class="hero-viz" id="heroViz" aria-hidden="true"></canvas>
+        <canvas class="hero-viz" id="heroViz" data-tone="light" data-density="1.7" aria-hidden="true"></canvas>
+        <canvas class="hero-helix" id="heroHelix" aria-hidden="true"></canvas>
+        <img class="hero-helix hero-helix-still" src="assets/hero-helix.webp" alt="" aria-hidden="true" hidden>
         <div class="hero-copy">
           <div class="headline">
             <p class="eyebrow">Non-invasive fetal sequencing</p>
             <h1 class="t-hero">Revolutionizing prenatal care with scalable genomics.</h1>
             <p class="t-subtitle">The first fetal sequencing test to deliver comprehensive genetic screening at NIPT scale, with no invasive procedure.</p>
-            <div class="hero-actions" style="padding-top:8px">
-              <a class="btn btn-outline-light" href="#approach">Learn more <img src="assets/arrow-right.svg" alt=""></a>
+            <div class="hero-actions">
+              <a class="btn btn-brand" href="#approach">Learn more <img src="assets/arrow-right-light.svg" alt=""></a>
             </div>
           </div>
         </div>
@@ -504,12 +519,12 @@
   <div class="mission-wrap">
   <section class="mission" id="mission">
     <div class="mission-card">
-      <canvas class="hero-viz" data-helix="off" aria-hidden="true"></canvas>
+      <canvas class="hero-viz" aria-hidden="true"></canvas>
       <div class="mission-statement">
         <div class="headline">
           <p class="eyebrow on-dark"><span class="num">03</span>Our Mission</p>
           <h2 class="t-page">We're building the infrastructure for a new standard of prenatal care, scientifically rigorous, responsibly deployed.</h2>
-          <div class="hero-actions" style="padding-top:8px"><a class="btn btn-outline-light" href="#footer">Get in touch <img src="assets/arrow-right.svg" alt=""></a></div>
+          <div class="hero-actions"><a class="btn btn-outline-light" href="#footer">Get in touch <img src="assets/arrow-right.svg" alt=""></a></div>
         </div>
       </div>
       <div class="mission-cols">
@@ -592,6 +607,7 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.1/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 <script>
 (() => {
   gsap.registerPlugin(ScrollTrigger);
@@ -606,7 +622,7 @@
   lenis.on('scroll', ScrollTrigger.update);
   // Site nav: transparent over the hero, frosted + dark once the page has moved.
   const siteNav = document.getElementById('siteNav');
-  const navState = () => siteNav.classList.toggle('scrolled', window.scrollY > 88);
+  const navState = () => siteNav.classList.toggle('scrolled', window.scrollY > siteNav.parentElement.offsetHeight);
   lenis.on('scroll', navState); navState();
   gsap.ticker.add((t) => lenis.raf(t * 1000));
   gsap.ticker.lagSmoothing(0);
@@ -622,16 +638,18 @@
   });
 
   /* ---------- 1a. Hero data-points animation ----------
-     Two layers on a canvas behind the copy: a sequencing-readout texture
-     (columns of glowing bands drifting upward, after the 03 clip) and a soft
-     double helix of glowing points sweeping in from the right. Everything is
-     masked so it fades out toward the headline. Pauses off-screen. */
+     A sequencing-readout texture on a canvas behind the copy (bands drifting
+     sideways, after the 03 clip), masked so it fades out toward the headline.
+     The helix is a separate WebGL layer (1b). Pauses off-screen. */
   const mountViz = (canvas) => {
     const ctx = canvas.getContext('2d');
     const card = canvas.parentElement;
     let W = 0, H = 0, dpr = 1, lanes = [], raf = 0, visible = true, last = 0;
 
     const rnd = (a, b) => a + Math.random() * (b - a);
+    // band colours: brand blues on the light hero card, pale cyan on the dark mission ground
+    const hues = canvas.dataset.tone === 'light' ? ['78,168,194', '0,119,160'] : ['78,168,194', '184,229,237'];
+    const dense = parseFloat(canvas.dataset.density || '1'); // >1 = tighter rows and shorter gaps (hero)
     const build = () => {
       dpr = Math.min(window.devicePixelRatio || 1, 2);
       W = card.clientWidth; H = card.clientHeight;
@@ -644,9 +662,9 @@
       while (y < H + 40) {
         const segs = [];
         let x = -rnd(0, 120);
-        while (x < W + 120) { const w = rnd(8, 70); segs.push({ x, w, a: rnd(0.2, 1) }); x += w + rnd(28, 110); }
-        lanes.push({ y, h: rnd(3, 6), speed: rnd(6, 28), segs, hue: Math.random() < 0.7 ? '78,168,194' : '184,229,237' });
-        y += 34 + rnd(0, 40) * (1.8 - 1.2 * (y / H)); // >= band + halo apart: no overlaps; sparser at the top
+        while (x < W + 120) { const w = rnd(8, 70); segs.push({ x, w, a: rnd(0.2, 1) }); x += w + rnd(28, 110) / dense; }
+        lanes.push({ y, h: rnd(3, 6), speed: rnd(6, 28), segs, hue: hues[Math.random() < 0.7 ? 0 : 1] });
+        y += Math.max(26, (34 + rnd(0, 40) * (1.8 - 1.2 * (y / H))) / dense); // >= band + halo apart: no overlaps; sparser at the top
       }
     };
 
@@ -663,71 +681,6 @@
           ctx.beginPath(); ctx.roundRect(sg.x, l.y, sg.w, l.h, l.h / 2); ctx.fill();
         }
       }
-    };
-
-    // Soft 3D beads (Geneticus feel): sphere sprites pre-rendered at a few blur
-    // levels, drawn solid and overlapping into a tube; back strand out of focus.
-    const sprites = [1.5, 3, 6, 12].map(blur => {
-      const c = document.createElement('canvas'); c.width = c.height = 160; const g = c.getContext('2d');
-      g.filter = `blur(${blur}px)`;
-      // frosted pale-blue sphere, key light upper-left, soft edge that melts into neighbours
-      const body = g.createRadialGradient(56, 50, 4, 80, 80, 64);
-      body.addColorStop(0, 'rgba(244,252,255,0.95)'); body.addColorStop(0.3, 'rgba(205,236,246,0.9)');
-      body.addColorStop(0.7, 'rgba(150,210,230,0.8)'); body.addColorStop(0.92, 'rgba(110,185,212,0.45)'); body.addColorStop(1, 'rgba(100,180,210,0)');
-      g.fillStyle = body; g.beginPath(); g.arc(80, 80, 64, 0, Math.PI * 2); g.fill();
-      // gentle shade on the far side of the light
-      const shade = g.createRadialGradient(104, 104, 10, 80, 80, 64);
-      shade.addColorStop(0, 'rgba(20,80,120,0.28)'); shade.addColorStop(0.6, 'rgba(20,80,120,0.08)'); shade.addColorStop(1, 'rgba(20,80,120,0)');
-      g.globalCompositeOperation = 'source-atop'; g.fillStyle = shade; g.beginPath(); g.arc(80, 80, 64, 0, Math.PI * 2); g.fill();
-      return c;
-    });
-
-    // stable per-bead randomness so sizes/offsets don't flicker between frames
-    const hash = (i) => { const x = Math.sin(i * 12.9898 + 78.233) * 43758.5453; return x - Math.floor(x); };
-
-    const drawHelix = (t) => {
-      // one big, loose stretch of helix crossing the right side, partly off-canvas,
-      // like the reference: fewer, larger, unevenly sized beads, wide amplitude.
-      const P = [
-        [W * 0.42, H * 1.25],
-        [W * (0.66 + 0.03 * Math.sin(t * 0.09)), H * (0.72 + 0.05 * Math.cos(t * 0.07))],
-        [W * (0.94 + 0.03 * Math.cos(t * 0.08)), H * (0.9 + 0.05 * Math.sin(t * 0.1))],
-        [W * 1.18, H * -0.05],
-      ];
-      const bez = (u) => { const m = 1 - u; return [
-        m*m*m*P[0][0] + 3*m*m*u*P[1][0] + 3*m*u*u*P[2][0] + u*u*u*P[3][0],
-        m*m*m*P[0][1] + 3*m*m*u*P[1][1] + 3*m*u*u*P[2][1] + u*u*u*P[3][1] ]; };
-      const steps = 74, amp0 = Math.min(W, H) * 0.34, phase = t * 0.035, rBase = Math.min(W, H) * 0.052;
-      ctx.globalCompositeOperation = 'source-over';
-      const beads = [], rungs = [];
-      for (let i = 0; i <= steps; i++) {
-        const u = (i + (hash(i) - 0.5) * 0.5) / steps;               // uneven spacing along the strand
-        const [cx, cy] = bez(u), [px, py] = bez(Math.min(1, u + 0.005));
-        const tl = Math.hypot(px - cx, py - cy) || 1, nx = -(py - cy) / tl, ny = (px - cx) / tl;
-        const amp = amp0 * (0.85 + 0.2 * Math.sin(u * 2.6 + t * 0.08));
-        const th = u * Math.PI * 2.6 + 0.3 * Math.sin(u * 1.9 + t * 0.07) + phase; // ~1.3 turns across the card
-        for (const side of [1, -1]) {
-          const sn = Math.sin(th) * side, depth = (Math.cos(th) * side + 1) / 2;
-          const k = i * 2 + (side > 0 ? 0 : 1);
-          const size = 0.55 + hash(k + 100) * 1.1;                       // beads range ~0.55x - 1.65x
-          const wob = (hash(k + 200) - 0.5) * rBase * 0.9;                // slight wander off the strand
-          beads.push({ x: cx + nx * (amp * sn + wob), y: cy + ny * (amp * sn + wob), r: rBase * size * (0.7 + depth * 0.6), depth });
-        }
-        if (i % 12 === 6) rungs.push({ x1: cx + nx * amp * Math.sin(th), y1: cy + ny * amp * Math.sin(th), x2: cx - nx * amp * Math.sin(th), y2: cy - ny * amp * Math.sin(th), d: Math.abs(Math.cos(th)) });
-      }
-      for (const rg of rungs) {
-        ctx.strokeStyle = `rgba(158,222,238,${0.08 + 0.2 * rg.d})`; ctx.lineWidth = rBase * 0.35; ctx.lineCap = 'round';
-        ctx.beginPath(); ctx.moveTo(rg.x1, rg.y1); ctx.lineTo(rg.x2, rg.y2); ctx.stroke();
-      }
-      // depth of field: the nearer a bead, the sharper; the far strand goes soft
-      beads.sort((a, b) => a.depth - b.depth);
-      for (const bd of beads) {
-        const focus = bd.depth;                                          // 1 = nearest = sharp
-        const sp = sprites[focus > 0.8 ? 0 : focus > 0.55 ? 1 : focus > 0.3 ? 2 : 3];
-        ctx.globalAlpha = 0.35 + bd.depth * 0.5;
-        ctx.drawImage(sp, bd.x - bd.r * 1.2, bd.y - bd.r * 1.2, bd.r * 2.4, bd.r * 2.4);
-      }
-      ctx.globalAlpha = 1;
     };
 
     const maskCanvas = document.createElement('canvas');
@@ -755,7 +708,7 @@
     const frame = (now) => {
       const dt = Math.min((now - last) / 1000, 0.05); last = now;
       ctx.clearRect(0, 0, W, H);
-      drawLanes(dt); if (canvas.dataset.helix !== 'off') drawHelix(now / 1000); mask();
+      drawLanes(dt); mask();
       if (visible && !reduceMotion) raf = requestAnimationFrame(frame);
     };
     const start = () => { if (!raf) { last = performance.now(); raf = requestAnimationFrame(frame); } };
@@ -767,6 +720,101 @@
     let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(build, 120); });
   };
   document.querySelectorAll('.hero-viz').forEach(mountViz);
+
+  /* ---------- 1b. Hero helix: rotating 3D double helix ----------
+     Beaded strands (overlapping spheres, like the reference render) wound round
+     a curved axis that runs in from the bottom-left and climbs the right edge.
+     The phase advances every frame, so the helix turns about its own axis.
+     Scene units are card pixels at z=0 (camera distance derived from the fov),
+     so the composition stays put as the card resizes. Pauses off-screen. */
+  (() => {
+    const canvas = document.getElementById('heroHelix'), still = document.querySelector('.hero-helix-still');
+    if (!canvas) return;
+    if (!window.THREE) { canvas.remove(); still.hidden = false; return; }
+    const card = canvas.parentElement;
+    let renderer;
+    try { renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: 'low-power' }); }
+    catch (e) { canvas.remove(); still.hidden = false; return; }
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setClearColor(0x000000, 0);
+
+    const scene = new THREE.Scene();
+    const FOV = 34, camera = new THREE.PerspectiveCamera(FOV, 1, 10, 6000);
+
+    // Beads are shaded with a matcap cropped from the reference render (one lit
+    // bead, assets/helix-matcap.png), so every sphere carries its frosted grain and
+    // key light (high, slightly right) from any angle. Lights above only affect the rungs.
+    const matcap = new THREE.TextureLoader().load('assets/helix-matcap.png'); matcap.colorSpace = THREE.SRGBColorSpace;
+    const mat = new THREE.MeshMatcapMaterial({ matcap, color: 0xffffff });
+    const rungMat = new THREE.MeshStandardMaterial({ color: 0x9ad6f2, roughness: 0.7, metalness: 0.0, transparent: true, opacity: 0.4 });
+    const STEPS = 150, BEADS = (STEPS + 1) * 2, RUNGS = Math.floor(STEPS / 10);
+    const beads = new THREE.InstancedMesh(new THREE.SphereGeometry(1, 24, 16), mat, BEADS);
+    const rungs = new THREE.InstancedMesh(new THREE.CylinderGeometry(1, 1, 1, 12, 1), rungMat, RUNGS);
+    scene.add(beads, rungs);
+    scene.add(new THREE.HemisphereLight(0xf2fbff, 0x1a6a9c, 1.5));
+    const key = new THREE.DirectionalLight(0xffffff, 1.3); key.position.set(0.5, 1.4, 0.5); scene.add(key); // high top, slightly right, same as the bead matcap
+    const rim = new THREE.DirectionalLight(0x9fdcff, 0.9); rim.position.set(-1, -0.2, -0.5); scene.add(rim);
+
+    const hash = (i) => { const x = Math.sin(i * 12.9898 + 78.233) * 43758.5453; return x - Math.floor(x); };
+    let W = 0, H = 0, curve, rBase, amp, raf = 0, visible = true;
+    const m = new THREE.Matrix4(), q = new THREE.Quaternion(), sc = new THREE.Vector3(), up = new THREE.Vector3(0, 1, 0);
+    const P = new THREE.Vector3(), T = new THREE.Vector3(), N = new THREE.Vector3(), B = new THREE.Vector3(), pos = new THREE.Vector3();
+    const a = new THREE.Vector3(), b = new THREE.Vector3(), mid = new THREE.Vector3(), dir = new THREE.Vector3();
+
+    const build = () => {
+      W = card.clientWidth; H = card.clientHeight;
+      renderer.setSize(W, H, false);
+      camera.aspect = W / H; camera.position.set(0, 0, (H / 2) / Math.tan(THREE.MathUtils.degToRad(FOV / 2))); camera.updateProjectionMatrix();
+      // axis in card space (x right, y up, origin at the card centre): tail below the
+      // bottom-left, a wide sweep across the lower half, then up and out top-right
+      const portrait = H > W;
+      curve = new THREE.CatmullRomCurve3(portrait ? [
+        new THREE.Vector3(-0.15 * W, -0.66 * H, -50), new THREE.Vector3(0.22 * W, -0.52 * H, 10),
+        new THREE.Vector3(0.5 * W, -0.28 * H, 30), new THREE.Vector3(0.54 * W, 0.66 * H, -30),
+      ] : [
+        new THREE.Vector3(-0.12 * W, -0.72 * H, -60), new THREE.Vector3(0.14 * W, -0.46 * H, 0),
+        new THREE.Vector3(0.4 * W, -0.38 * H, 30), new THREE.Vector3(0.52 * W, 0.05 * H, 20),
+        new THREE.Vector3(0.56 * W, 0.7 * H, -40),
+      ], false, 'catmullrom', 0.6);
+      rBase = Math.min(W, H) * (portrait ? 0.05 : 0.058); amp = Math.min(W, H) * (portrait ? 0.15 : 0.19); // portrait: the run hugs the right edge, half off-canvas, clear of the copy
+    };
+
+    const draw = (t) => {
+      const phase = t * 0.35; // rad/s: one turn every ~18s
+      let bi = 0, ri = 0;
+      for (let i = 0; i <= STEPS; i++) {
+        const u = Math.min(1, Math.max(0, (i + (hash(i) - 0.5) * 0.3) / STEPS));
+        curve.getPointAt(u, P); curve.getTangentAt(u, T);
+        N.crossVectors(T, up).normalize(); if (N.lengthSq() < 1e-4) N.set(1, 0, 0); B.crossVectors(T, N).normalize();
+        const th = u * Math.PI * 2 * 1.5 + phase;                       // ~1.5 turns along the visible run
+        for (const side of [1, -1]) {
+          const cs = Math.cos(th) * side, sn = Math.sin(th) * side;
+          const k = i * 2 + (side > 0 ? 0 : 1), size = 0.85 + hash(k + 100) * 0.4, r = rBase * size;
+          pos.set(P.x + N.x * amp * cs + B.x * amp * sn, P.y + N.y * amp * cs + B.y * amp * sn, P.z + N.z * amp * cs + B.z * amp * sn);
+          m.compose(pos, q.identity(), sc.set(r, r, r)); beads.setMatrixAt(bi++, m);
+        }
+        if (i % 10 === 5 && ri < RUNGS) {
+          const cs = Math.cos(th), sn = Math.sin(th);
+          a.set(P.x + N.x * amp * cs + B.x * amp * sn, P.y + N.y * amp * cs + B.y * amp * sn, P.z + N.z * amp * cs + B.z * amp * sn);
+          b.set(P.x - N.x * amp * cs - B.x * amp * sn, P.y - N.y * amp * cs - B.y * amp * sn, P.z - N.z * amp * cs - B.z * amp * sn);
+          mid.addVectors(a, b).multiplyScalar(0.5); dir.subVectors(b, a); const len = dir.length();
+          q.setFromUnitVectors(up, dir.normalize());
+          m.compose(mid, q, sc.set(rBase * 0.22, len, rBase * 0.22)); rungs.setMatrixAt(ri++, m);
+        }
+      }
+      beads.instanceMatrix.needsUpdate = true; rungs.instanceMatrix.needsUpdate = true;
+      renderer.render(scene, camera);
+    };
+
+    const frame = (now) => { draw(now / 1000); if (visible && !reduceMotion) raf = requestAnimationFrame(frame); };
+    const start = () => { if (!raf) raf = requestAnimationFrame(frame); };
+    const stop = () => { cancelAnimationFrame(raf); raf = 0; };
+    build();
+    if (reduceMotion) { draw(0); return; } // one static frame
+    new IntersectionObserver((e) => { visible = e[0].isIntersecting; visible ? start() : stop(); }).observe(card);
+    let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { build(); if (reduceMotion) draw(0); }, 120); });
+  })();
+
 
   /* ---------- 1b. Fact tiles: fade in and count up when they come into view ---------- */
   const factsEl = document.querySelector('.facts');
