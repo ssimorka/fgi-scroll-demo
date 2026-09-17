@@ -244,8 +244,8 @@
   .pathway:hover{transform:translateY(-2px)}
   .pathway .tile-content{gap:12px}
   .pathway .t-heading{letter-spacing:-.02em}
-  .icon-btn-brand{width:36px;height:36px;padding:8px;background:var(--bg-brand)} /* Icon Button, Primary / Small */
-  .icon-btn-brand:hover{background:var(--bg-brand-hover)}
+  .tile .icon-btn{width:36px;height:36px;padding:8px} /* Icon Button / Small: no fill, the arrow carries the colour (Icon/Brand/Default on light, On Brand on the gradient) */
+  .tile-brand .icon-btn:hover{background:rgba(255,255,255,.12)}
   /* Founders tile: the photo is the tile, the Dark Depth card sits inside it */
   .tile-founders{position:relative;min-height:0;border-radius:var(--radius);overflow:hidden;background:var(--bg-neutral-3);box-shadow:var(--shadow-400)}
   .tile-founders .panel-img{position:absolute;inset:0;border-radius:0}
@@ -543,20 +543,20 @@
           <div class="bento-row">
             <a class="tile tile-light pathway" href="#news">
               <div class="tile-content">
-                <div class="tile-head"><p class="eyebrow">Publication &middot; NEJM</p><span class="icon-btn icon-btn-brand"><img src="assets/arrow-20-light.svg" alt=""></span></div>
+                <div class="tile-head"><p class="eyebrow">Publication &middot; NEJM</p><span class="icon-btn"><img src="assets/arrow-20-brand.svg" alt=""></span></div>
                 <h3 class="t-heading">Peer-reviewed work behind the platform, beginning with the NEJM paper.</h3>
               </div>
             </a>
             <a class="tile tile-light pathway" href="#tech">
               <div class="tile-content">
-                <div class="tile-head"><p class="eyebrow">Clinical &middot; Validation</p><span class="icon-btn icon-btn-brand"><img src="assets/arrow-20-light.svg" alt=""></span></div>
+                <div class="tile-head"><p class="eyebrow">Clinical &middot; Validation</p><span class="icon-btn"><img src="assets/arrow-20-brand.svg" alt=""></span></div>
                 <h3 class="t-heading">Validating NIFS through prospective studies, ahead of a planned launch.</h3>
               </div>
             </a>
           </div>
           <a class="tile tile-brand pathway" href="#footer">
             <div class="tile-content">
-              <div class="tile-head"><p class="eyebrow">Partners &middot; Laboratories</p><span class="icon-btn icon-btn-brand"><img src="assets/arrow-20-light.svg" alt=""></span></div>
+              <div class="tile-head"><p class="eyebrow">Partners &middot; Laboratories</p><span class="icon-btn"><img src="assets/arrow-20-light.svg" alt=""></span></div>
               <h3 class="t-heading">Establishing partnerships with commercial laboratories to expand delivery of NIFS.</h3>
             </div>
           </a>
