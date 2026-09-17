@@ -365,13 +365,13 @@
     .approach-panel,.panel{flex:0 0 auto;display:block}
     .approach-panel{padding:20px;gap:16px}
     .panel-img{flex:0 0 auto;height:min(60vw,480px)}
-    .approach-card{position:static;width:auto;margin:-40px 16px 0;background:rgba(255,255,255,.92);border:1px solid var(--border-default);padding:24px}
+    .approach-card{position:relative;z-index:1;width:auto;margin:-40px 16px 0;background:rgba(255,255,255,.92);border:1px solid var(--border-default);padding:24px} /* relative + z-index: the transformed photo would otherwise paint over it */
     .bento-grid{display:flex;flex-direction:column;gap:16px}
     .bento-row{display:flex;flex-direction:column;gap:24px;min-height:0}
     .tile-founders{display:flex;flex-direction:column;background:none;box-shadow:none;overflow:visible;border-radius:0} /* comp: founders closes the stack */
     .tile-founders .panel-img{position:static;height:min(60vw,480px);border-radius:var(--radius)}
     .tile-founders .panel-img img{--zoom:1.12;--px:0px;object-position:50% 15%}
-    .founders-card{position:static;max-width:none;margin:-40px 16px 0;padding:32px 24px}
+    .founders-card{position:relative;z-index:1;inset:auto;max-width:none;margin:-40px 16px 0;padding:32px 24px}
     .mission-card{padding:64px 20px 56px;gap:40px}
     .faq{padding:48px var(--pad-x)}
     .faq-cols{grid-template-columns:1fr}
