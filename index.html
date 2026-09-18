@@ -163,6 +163,18 @@
   .nav-list a{display:block;padding:8px;border-radius:16px;color:var(--text-secondary);font-size:18px;line-height:1;transition:color .2s,background .2s}
   .nav-list a.active{color:var(--bg-brand)}
   .nav-list a:hover{background:var(--bg-brand);color:var(--text-on-dark)}
+  /* dropdown: the item's link stays a link; hover (200ms grace) or focus opens a frosted panel of sub-links beneath it */
+  .nav-item{position:relative}
+  .nav-list a.nav-sub-toggle{display:inline-flex;align-items:center;gap:8px}
+  .chev{width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;opacity:.6;transform:translateY(-2px) rotate(45deg);transition:transform .25s cubic-bezier(.2,.7,.2,1),opacity .2s} /* a hint, not an icon */
+  .nav-list a:hover .chev,.has-sub.is-open .chev{opacity:1}
+  .has-sub.is-open .chev,.nav-item:focus-within .chev{transform:translateY(1px) rotate(225deg)}
+  .nav-sub{position:absolute;top:calc(100% + 10px);left:0;min-width:248px;padding:8px;display:flex;flex-direction:column;gap:2px;
+    background:rgba(248,250,252,.96);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--border-default);border-radius:var(--radius);box-shadow:var(--shadow-400);
+    opacity:0;transform:translateY(-6px);pointer-events:none;transition:opacity .2s,transform .25s cubic-bezier(.2,.7,.2,1)}
+  .nav-sub::before{content:'';position:absolute;left:0;right:0;top:-12px;height:12px} /* hover bridge across the gap */
+  .has-sub.is-open .nav-sub,.nav-item:focus-within .nav-sub{opacity:1;transform:none;pointer-events:auto}
+  .nav-list .nav-sub a{display:block;padding:10px 14px;border-radius:12px;font-size:16px;line-height:1.2;white-space:nowrap}
   .site-nav.scrolled{position:fixed;animation:nav-in .3s ease-out}
   @keyframes nav-in{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
   .site-nav.scrolled .navbar{padding-top:12px}
@@ -185,9 +197,22 @@
     background:var(--grad-dark-depth);border-radius:var(--radius) 0 0 var(--radius);box-shadow:var(--shadow-panel)} /* start position is set by GSAP */
   .nav-modal-top{display:flex;justify-content:space-between;align-items:center;height:39px}
   .nav-modal-mark{width:49px;height:36px;filter:brightness(0) invert(1)}
-  .nav-modal-links{display:flex;flex-direction:column;gap:.1em}
-  .nav-modal-links a{display:block;font-family:var(--font-display);font-weight:700;font-size:clamp(36px,4vw,56px);line-height:1.1;letter-spacing:-.03em;color:var(--text-on-dark);transition:color .25s}
-  .nav-modal-links a:hover{color:var(--text-on-dark-2)}
+  .nav-modal-links{display:flex;flex-direction:column;gap:calc(.1em + 12px)}
+  .nav-modal-links > a,.tray-toggle{display:block;font-family:var(--font-display);font-weight:700;font-size:clamp(36px,4vw,56px);line-height:1.1;letter-spacing:-.03em;color:var(--text-on-dark);transition:color .25s}
+  .nav-modal-links > a:hover,.tray-toggle:hover{color:var(--text-on-dark-2)}
+  /* accordion item (BillionToOne mobile pattern): the row opens on hover or tap, sub-links unfold beneath it */
+  .tray-toggle{width:100%;text-align:left;padding:0}
+  .tray-toggle .mask .in{display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .tray-toggle .chev{display:inline-block;flex:0 0 auto;opacity:1;margin-right:11px} /* in the tray it is the affordance, so full strength; sits on the close button's centre line */
+  .tray-toggle .chev{width:12px;height:12px;border-width:2px;transform:translateY(-4px) rotate(45deg)}
+  .has-sub.is-open .tray-toggle .chev{transform:translateY(2px) rotate(225deg)}
+  .tray-sub{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.2,.7,.2,1)}
+  .has-sub.is-open .tray-sub{grid-template-rows:1fr}
+  .tray-sub-inner{overflow:hidden;display:flex;flex-direction:column}
+  .tray-sub a{display:block;padding:7px 0;font-size:18px;line-height:1.2;color:var(--text-on-dark-2);transition:color .2s}
+  .tray-sub a:first-child{margin-top:8px}
+  .tray-sub a:last-child{margin-bottom:12px}
+  .tray-sub a:hover{color:var(--text-on-dark)}
   .mask{display:block;overflow:hidden}
   .mask .in{display:block} /* start offset is set by GSAP */
   .nav-modal-foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px 24px;padding-top:24px;border-top:1px solid rgba(240,253,255,.2)}
@@ -427,7 +452,7 @@
     .card-media{order:2;aspect-ratio:16/10;flex:0 0 auto}
     .sec-num{font-size:clamp(32px,4vw,48.83px)}
     .nav-modal-tray{width:100%;border-radius:0;padding:17px 22px 24px 20px}
-    .nav-modal-links a{font-size:clamp(34px,9vw,56px)}
+    .nav-modal-links > a{font-size:clamp(34px,9vw,56px)}
     .nav-modal-foot{flex-direction:column;flex-wrap:nowrap;align-items:flex-start;gap:16px}
     .nav-modal-foot .t-small{flex-basis:auto}
     .cta{padding:64px var(--pad-x)}
@@ -499,7 +524,14 @@
           <li><a href="#tech">Technology</a></li>
           <li><a href="#news">Research</a></li>
           <li><a href="#news">Partners</a></li>
-          <li><a href="#founders">Company</a></li>
+          <li class="nav-item has-sub">
+            <a class="nav-sub-toggle" href="#founders" aria-haspopup="true" aria-expanded="false" aria-controls="subCompany">Company <span class="chev" aria-hidden="true"></span></a>
+            <div class="nav-sub" id="subCompany">
+              <a href="#mission">Mission, Vision, Values</a>
+              <a href="#founders">Leadership &amp; Board</a>
+              <a href="#news">Company Milestones</a>
+            </div>
+          </li>
         </ul>
         <a class="btn btn-neutral btn-sm" href="#contact">Contact Us</a>
         <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navModal"><img class="open" src="assets/icon-menu.svg" alt=""></button>
@@ -517,11 +549,19 @@
         <button class="icon-btn on-dark menu-close" id="menuClose" type="button" aria-label="Close menu"><img src="assets/icon-close.svg" alt=""></button>
       </div>
       <nav class="nav-modal-links" aria-label="Site">
-        <a href="#approach"><span class="mask"><span class="in">Approach</span></span></a>
         <a href="#tech"><span class="mask"><span class="in">Technology</span></span></a>
-        <a href="#mission"><span class="mask"><span class="in">Mission</span></span></a>
-        <a href="#news"><span class="mask"><span class="in">Research &amp; News</span></span></a>
-        <a href="#founders"><span class="mask"><span class="in">Founders</span></span></a>
+        <a href="#news"><span class="mask"><span class="in">Research</span></span></a>
+        <a href="#news"><span class="mask"><span class="in">Partners</span></span></a>
+        <div class="tray-item has-sub">
+          <button class="tray-toggle" type="button" aria-expanded="false" aria-controls="traySubCompany"><span class="mask"><span class="in">Company <span class="chev" aria-hidden="true"></span></span></span></button>
+          <div class="tray-sub" id="traySubCompany">
+            <div class="tray-sub-inner">
+              <a href="#mission">Mission, Vision, Values</a>
+              <a href="#founders">Leadership &amp; Board</a>
+              <a href="#news">Company Milestones</a>
+            </div>
+          </div>
+        </div>
       </nav>
       <div class="nav-modal-foot">
         <a class="btn btn-outline-light" href="#contact">Get in touch <span class="arrow"></span></a>
@@ -755,6 +795,23 @@
     navLinks.forEach(a => a.classList.toggle('active', !!cur && a.getAttribute('href') === '#' + cur.id));
   };
   lenis.on('scroll', navActive); navActive();
+  // Dropdowns: open on hover or focus, close 200ms after the pointer leaves (grace to reach the panel), on Escape, or on a pick
+  document.querySelectorAll('.has-sub').forEach(item => {
+    const toggle = item.querySelector('.nav-sub-toggle, .tray-toggle'); let t;
+    const isOpen = () => item.classList.contains('is-open');
+    const open = () => { clearTimeout(t); item.classList.add('is-open'); toggle.setAttribute('aria-expanded', 'true'); };
+    const close = (now) => { clearTimeout(t); t = setTimeout(() => { item.classList.remove('is-open'); toggle.setAttribute('aria-expanded', 'false'); }, now ? 0 : 200); };
+    item.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') open(); });
+    item.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') close(); });
+    if (toggle.tagName === 'BUTTON') { // tray accordion: a tap or keypress toggles; a mouse click just keeps it open (hover already opened it)
+      let pt = ''; toggle.addEventListener('pointerdown', (e) => { pt = e.pointerType; });
+      toggle.addEventListener('click', () => { if (pt === 'mouse') open(); else (isOpen() ? close(true) : open()); pt = ''; });
+    } else { // desktop dropdown: keyboard focus opens, leaving closes
+      item.addEventListener('focusin', open); item.addEventListener('focusout', (e) => { if (!item.contains(e.relatedTarget)) close(true); });
+    }
+    item.querySelectorAll('.nav-sub a').forEach(a => a.addEventListener('click', () => close(true)));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(true); });
+  });
   // Full-screen menu: columns wipe down, links rise in; close reverses. Any link closes then scrolls.
   const menuBtn = document.getElementById('menuBtn'), navModal = document.getElementById('navModal');
   const mScrim = document.getElementById('menuScrim'), mTray = navModal.querySelector('.nav-modal-tray'), mIns = navModal.querySelectorAll('.mask .in');
