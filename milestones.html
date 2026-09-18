@@ -120,27 +120,28 @@
         <h2 class="t-page">Seven milestones on the path to launch.</h2>
       </div>
     </div>
-    <div class="road">
-      <div class="road-head road-cols" aria-hidden="true">
-        <span>Phase</span><span>Milestone</span>
-        <div class="road-stages"><span>Planned</span><span>Under way</span><span>Complete</span></div>
+    <div class="chart" data-reveal>
+      <div class="chart-head">
+        <div><p class="chart-title">Roadmap</p><p class="chart-sub">Seven milestones, by the stage each has reached</p></div>
+        <a class="btn btn-neutral btn-sm" href="index.html#news">Our research <span class="arrow"></span></a>
       </div>
-      <div class="road-legend" aria-hidden="true"><span><i style="background:var(--viz-orange-500)"></i>Planned</span><span><i style="background:var(--viz-blue-500)"></i>Under way</span><span><i style="background:var(--viz-purple-600)"></i>Complete</span></div>
-
-      <div class="road-group" data-reveal>
-        <div class="road-row road-cols is-done"><div class="road-phase">Research</div><div><p class="road-name">Retrospective feasibility study</p><p class="road-note">Complete</p></div><div class="road-track"><span class="road-bar" aria-hidden="true"></span></div></div>
-        <div class="road-row road-cols is-done"><div class="road-phase">Research</div><div><p class="road-name">Proof of principle, third trimester</p><p class="road-note">Complete</p></div><div class="road-track"><span class="road-bar" aria-hidden="true"></span></div></div>
-        <div class="road-row road-cols is-done"><div class="road-phase">Research</div><div><p class="road-name">Prospective first- and second-trimester study</p><p class="road-note">Complete</p></div><div class="road-track"><span class="road-bar" aria-hidden="true"></span></div></div>
-      </div>
-      <div class="road-group" data-reveal>
-        <div class="road-row road-cols is-done"><div class="road-phase">Validation<a class="btn btn-neutral btn-sm" href="index.html#news">Our research <span class="arrow"></span></a></div><div><p class="road-name">Large-scale validation</p><p class="road-note">Complete</p></div><div class="road-track"><span class="road-bar" aria-hidden="true"></span></div></div>
-        <div class="road-row road-cols is-done"><div class="road-phase">Validation</div><div><p class="road-name">Published validation</p><p class="road-note">Complete &middot; NEJM</p></div><div class="road-track"><span class="road-bar" aria-hidden="true"></span></div></div>
-      </div>
-      <div class="road-group" data-reveal>
-        <div class="road-row road-cols is-now"><div class="road-phase">Launch preparation</div><div><p class="road-name">Prospective validation, launch preparation and partnerships</p><p class="road-note">Under way</p></div><div class="road-track"><span class="road-bar" aria-hidden="true"></span></div></div>
-      </div>
-      <div class="road-group" data-reveal>
-        <div class="road-row road-cols is-planned"><div class="road-phase">Launch</div><div><p class="road-name">Initial launch</p><p class="road-note">Planned, late 2027 / early 2028</p></div><div class="road-track"><span class="road-bar" aria-hidden="true"></span></div></div>
+      <div class="chart-body">
+        <div class="chart-plot" style="--ticks:3">
+          <div class="chart-grid" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <p class="chart-group">Research</p>
+          <div class="chart-row is-done"><span class="chart-label">Retrospective feasibility study</span><span class="chart-track"><span class="chart-bar" aria-hidden="true"></span><span class="chart-val">Complete</span></span></div>
+          <div class="chart-row is-done"><span class="chart-label">Proof of principle, third trimester</span><span class="chart-track"><span class="chart-bar" aria-hidden="true"></span><span class="chart-val">Complete</span></span></div>
+          <div class="chart-row is-done"><span class="chart-label">Prospective first- and second-trimester study</span><span class="chart-track"><span class="chart-bar" aria-hidden="true"></span><span class="chart-val">Complete</span></span></div>
+          <p class="chart-group">Validation</p>
+          <div class="chart-row is-done"><span class="chart-label">Large-scale validation</span><span class="chart-track"><span class="chart-bar" aria-hidden="true"></span><span class="chart-val">Complete</span></span></div>
+          <div class="chart-row is-done"><span class="chart-label">Published validation</span><span class="chart-track"><span class="chart-bar" aria-hidden="true"></span><span class="chart-val">Complete &middot; NEJM</span></span></div>
+          <p class="chart-group">Launch preparation</p>
+          <div class="chart-row is-now"><span class="chart-label">Prospective validation, launch preparation and partnerships</span><span class="chart-track"><span class="chart-bar" aria-hidden="true"></span><span class="chart-val">Under way</span></span></div>
+          <p class="chart-group">Launch</p>
+          <div class="chart-row is-planned"><span class="chart-label">Initial launch</span><span class="chart-track"><span class="chart-bar" aria-hidden="true"></span><span class="chart-val">Planned, late 2027 / early 2028</span></span></div>
+          <div class="chart-axis" aria-hidden="true"><span></span><div class="chart-ticks"><span>Planned</span><span>Under way</span><span>Complete</span></div></div>
+        </div>
+        <div class="chart-legend"><span><i class="s1"></i>Complete</span><span><i class="s2"></i>Under way</span><span><i class="s3"></i>Planned</span></div>
       </div>
     </div>
     <p class="t-body roadmap-note" data-reveal>Supported by more than $10M in grants and internal funding to date.</p>
@@ -199,10 +200,10 @@
   // hero clip: a still under reduced motion
   const v = document.getElementById('heroVideo');
   if (reduceMotion) { v.removeAttribute('autoplay'); v.pause(); }
-  // roadmap bars draw in from the left as their card enters, after the card's own reveal
+  // chart bars draw in from the left as the card enters, after the card's own reveal
   // (start state set here, not in CSS: GSAP drops an identity transform at the end, which would fall back to the CSS scaleX(0))
-  if (!reduceMotion) gsap.set('.road-bar', { scaleX: 0 });
-  if (!reduceMotion) ScrollTrigger.batch('.road-bar', {
+  if (!reduceMotion) gsap.set('.chart-bar', { scaleX: 0 });
+  if (!reduceMotion) ScrollTrigger.batch('.chart-bar', {
     start: 'top 88%', once: true,
     onEnter: (batch) => gsap.to(batch, { scaleX: 1, duration: 1.1, ease: 'power3.out', stagger: .1, delay: .25, overwrite: true }),
   });
