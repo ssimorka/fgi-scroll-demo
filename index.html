@@ -87,22 +87,34 @@
   /* ---- buttons ---- */
   .btn{display:inline-flex;align-items:center;gap:8px;padding:16px 32px;border-radius:9999px;border:1px solid transparent;font-size:18px;line-height:1;white-space:nowrap;transition:filter .2s}
   .btn:hover{filter:brightness(1.08)}
-  .btn img{width:16px;height:16px;transition:transform .25s cubic-bezier(.2,.7,.2,1)}
-  .btn:hover img{transform:translateX(4px)}
+  /* long arrow: a shaft that grows on hover, drawn in the button's text colour */
+  .arrow{position:relative;display:inline-block;flex:0 0 auto;width:22px;height:12px}
+  .arrow::before{content:"";position:absolute;right:1px;top:50%;width:12px;height:1.5px;background:currentColor;transform:translateY(-50%);transition:width .35s cubic-bezier(.2,.7,.2,1)}
+  .arrow::after{content:"";position:absolute;right:1px;top:50%;width:7px;height:7px;border-top:1.5px solid currentColor;border-right:1.5px solid currentColor;transform:translateY(-50%) rotate(45deg)}
+  .btn:hover .arrow::before,a:hover > .arrow::before,.cta-route:hover .arrow::before,.tile:hover .arrow::before,.icon-btn:not([disabled]):hover .arrow::before{width:22px} /* every arrow extends on hover */
   .btn-outline-light{border-color:var(--border-neutral-3);color:#fff}
   .btn-brand{background:var(--bg-brand);border-color:var(--bg-brand);color:var(--text-on-dark)}
   .btn-neutral{background:var(--bg-neutral-3);border-color:var(--border-neutral-2);color:var(--text-default)}
   .btn-sm{padding:12px 24px}
-  .icon-btn{width:39px;height:39px;border-radius:31.25px;display:grid;place-items:center;padding:12px;transition:background .2s}
+  .icon-btn{width:39px;height:39px;border-radius:31.25px;display:grid;place-items:center;padding:0;transition:background .2s} /* no padding: the 20px glyph centres in the full box */
   .icon-btn img{width:20px;height:20px}
+  .icon-btn .arrow{transform:rotate(var(--rot,0deg))}
   .icon-btn:hover{background:rgba(53,66,91,.08)}
   .icon-btn[disabled]{opacity:.3;cursor:default}
   .icon-btn.on-dark:hover{background:rgba(255,255,255,.12)}
   .icon-btn.on-dark img{filter:brightness(0) invert(1)}
-  .icon-btn img{transition:transform .25s cubic-bezier(.2,.7,.2,1)}
-  .icon-btn:not([disabled]):not(.menu-btn):hover img,.tile:hover .icon-btn img{transform:translateX(4px)} /* arrows nudge; the menu glyph stays put */
-  .icon-btn.flip img{transform:rotate(180deg)}
-  .icon-btn.flip:not([disabled]):hover img{transform:rotate(180deg) translateX(4px)}
+  .icon-btn.flip{--rot:180deg}
+
+  /* ---- Page entrance: nav and hero copy rise in on load ---- */
+  html.js-motion .hero-copy .headline > *,html.js-motion .hero .facts,html.js-motion .site-nav{opacity:0} /* start hidden; the intro timeline brings them in */
+
+  /* ---- Scroll reveals: rise and fade in as they enter ---- */
+  html.js-motion [data-reveal]{opacity:0;transform:translateY(28px)}
+
+  /* ---- Numbered sections (01/02/03), display size, brand blue, faint ---- */
+  .sec-num{font-family:var(--font-display);font-weight:700;font-size:48.83px;line-height:1.2;letter-spacing:-.02em;color:var(--text-brand-secondary);opacity:.55;font-variant-numeric:tabular-nums}
+  .sec-num.corner{position:absolute;top:24px;right:32px;opacity:.35}
+  .mission .sec-num{color:var(--text-on-dark-2);opacity:.6}
 
   /* ============ Page gradient — mesh background layer (node 6159:233) ============ */
   .mesh{
@@ -158,17 +170,31 @@
   .site-nav.scrolled .logo .full{display:none}
   .site-nav.scrolled .logo .mark{display:block}
   .site-nav.scrolled .logo{width:44px;height:32px}
-  .menu-btn{display:none;width:39px;height:39px;padding:8px;margin-left:auto}
-  .menu-btn .close,.menu-btn[aria-expanded="true"] .open{display:none}
-  .menu-btn[aria-expanded="true"] .close{display:block}
-  /* mobile menu: frosted sheet under the bar (no comp for the open state; follows the scrolled-nav pill) */
-  .mobile-menu{position:absolute;left:12px;right:12px;top:calc(100% + 8px);z-index:49;display:flex;flex-direction:column;gap:4px;padding:12px;
-    background:rgba(248,250,252,.96);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:var(--radius);box-shadow:var(--shadow-400);animation:nav-in .2s ease-out}
-  .mobile-menu[hidden]{display:none}
-  .mobile-menu > a:not(.btn){padding:12px 16px;border-radius:16px;color:var(--text-secondary);font-size:18px;line-height:1;transition:color .2s,background .2s}
-  .mobile-menu > a:not(.btn):hover{background:var(--bg-brand);color:var(--text-on-dark)}
-  .mobile-menu > a.active{color:var(--bg-brand)}
-  .mobile-menu > .btn{justify-content:center;margin-top:8px}
+  .menu-btn{display:none;width:39px;height:39px;margin-left:auto}
+  .menu-btn .close{display:none}
+  /* scrolled: the links fold away and the pill keeps the mark, Contact and a menu button (35pharma pattern) */
+  .site-nav.scrolled .nav-list{display:none}
+  .site-nav.scrolled .menu-btn{display:grid;margin-left:0}
+  .site-nav.scrolled .navbar-inner{justify-content:flex-end;gap:8px}
+  .site-nav.scrolled .logo{margin-right:auto}
+  /* menu tray: a Dark Depth panel slides in from the right over the dimmed page (35pharma team-modal pattern); links rise inside it */
+  .nav-modal{position:fixed;inset:0;z-index:90;color:var(--text-on-dark)}
+  .nav-modal[hidden]{display:none}
+  .nav-modal-scrim{position:absolute;inset:0;background:rgba(0,32,46,.55);opacity:0}
+  .nav-modal-tray{position:absolute;top:0;right:0;bottom:0;width:min(600px,100%);display:flex;flex-direction:column;justify-content:space-between;padding:22px 56px 48px 48px; /* top row lands on the nav pill's items (centre y 41.5, close under the menu button) */
+    background:var(--grad-dark-depth);border-radius:var(--radius) 0 0 var(--radius);box-shadow:var(--shadow-panel)} /* start position is set by GSAP */
+  .nav-modal-top{display:flex;justify-content:space-between;align-items:center;height:39px}
+  .nav-modal-mark{width:49px;height:36px;filter:brightness(0) invert(1)}
+  .nav-modal-links{display:flex;flex-direction:column;gap:.1em}
+  .nav-modal-links a{display:block;font-family:var(--font-display);font-weight:700;font-size:clamp(36px,4vw,56px);line-height:1.1;letter-spacing:-.03em;color:var(--text-on-dark);transition:color .25s}
+  .nav-modal-links a:hover{color:var(--text-on-dark-2)}
+  .mask{display:block;overflow:hidden}
+  .mask .in{display:block} /* start offset is set by GSAP */
+  .nav-modal-foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px 24px;padding-top:24px;border-top:1px solid rgba(240,253,255,.2)}
+  .nav-modal-foot .t-small{flex-basis:100%;order:3}
+  .nav-modal-foot .li{width:28px;height:28px;filter:brightness(0) invert(1);opacity:.85}
+  .nav-modal-foot .li:hover{opacity:1}
+  .nav-modal-foot .t-small{color:var(--text-on-dark-2)}
 
   /* ---- Hero: single card, 24px gutter, bottom-anchored split (35pharma pattern):
      headline left, lead + CTA right. Card fills the viewport minus the gutter. */
@@ -258,7 +284,8 @@
   .pathway:hover{transform:translateY(-2px)}
   .pathway .tile-content{gap:12px}
   .pathway .t-heading{letter-spacing:-.02em}
-  .tile .icon-btn{width:36px;height:36px;padding:8px} /* Icon Button / Small: no fill, the arrow carries the colour (Icon/Brand/Default on light, On Brand on the gradient) */
+  .tile .icon-btn{width:36px;height:36px;color:var(--bg-brand)} /* arrow drawn in Icon/Brand/Default on light tiles */
+  .tile-brand .icon-btn{color:var(--text-on-dark)} /* Icon Button / Small: no fill, the arrow carries the colour (Icon/Brand/Default on light, On Brand on the gradient) */
   .tile-brand .icon-btn:hover{background:rgba(255,255,255,.12)}
   /* Founders tile: the photo is the tile, the Dark Depth card sits inside it */
   .tile-founders{position:relative;min-height:0;border-radius:var(--radius);overflow:hidden;background:var(--bg-neutral-3);box-shadow:var(--shadow-400)}
@@ -273,19 +300,6 @@
   .founders-card .eyebrow{color:var(--text-on-dark-2)}
   .founders-card .t-body{color:var(--text-on-dark-2)}
 
-  /* ============ FAQ (node 6463:6105) ============ */
-  .faq{background:var(--bg-secondary);padding:48px var(--pad-x);display:flex;flex-direction:column;gap:32px}
-  .faq-cols{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-  .faq-col{min-width:0}
-  .faq-item{border-bottom:1px solid var(--border-default);padding:24px 0}
-  .faq-item summary{display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer;list-style:none;color:var(--text-default)}
-  .faq-item summary::-webkit-details-marker{display:none}
-  .faq-item .icon-slot{flex:0 0 44px;width:44px;height:44px;display:grid;place-items:center;border-radius:50%;transition:background .2s} /* 44px so the tap target holds on mobile */
-  .faq-item summary:hover .icon-slot{background:rgba(53,66,91,.08)}
-  .faq-item .icon-slot img{width:20px;height:20px;transition:transform .25s cubic-bezier(.2,.7,.2,1)}
-  .faq-item[open] .icon-slot img{transform:rotate(45deg)}
-  .faq-item .answer{padding:16px 60px 0 0;color:var(--text-secondary)}
-
   /* ============ TECHNOLOGY SCROLL SEQUENCE (node 6305:9001) ============ */
   .tech{background:transparent}
   /* full-bleed ground: content stays in the 1280 column, the tint runs edge to edge */
@@ -294,7 +308,10 @@
   /* pinned block: 48px on every side; the card track takes all remaining height so the card's bottom gap equals the side gutter */
   .tech-pin{position:sticky;top:0;height:100vh;height:100svh;overflow:visible;display:flex;flex-direction:column;justify-content:flex-start;padding:112px var(--pad-x) var(--pad-x)} /* top clears the fixed nav pill (~72px) */
   .tech-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:40px}
-  .section-heading{display:flex;flex-direction:column;gap:8px;max-width:704px}
+  .section-heading{display:flex;flex-direction:row;align-items:flex-start;gap:24px} /* number left, eyebrow + heading right (35pharma "02  Heading") */
+  .section-heading > div{display:flex;flex-direction:column;gap:8px;max-width:704px}
+  .section-heading .sec-num{flex:0 0 auto;margin-top:calc(14px * 1.4 + 8px)} /* sits on the heading's first line, below the eyebrow */
+  .mission .section-heading > div{max-width:1040px}
   .controls{display:flex;gap:8px;flex-shrink:0}
   .track-clip{overflow:visible;flex:1 1 0;min-height:0} /* cards run past the column onto the full-bleed ground; body overflow-x:clip stops a scrollbar */
   .track{display:flex;gap:var(--gap);height:100%;will-change:transform}
@@ -315,13 +332,35 @@
   .card.is-dark{background:var(--grad-dark-depth)}
   .card.is-dark .card-copy .t-subtitle{color:var(--text-on-dark)}
   .card.is-dark .card-num{color:var(--text-on-dark)}
+  .card-foot{display:flex;flex-direction:column;gap:16px}
+  .card-link{display:inline-flex;align-items:center;gap:10px;font-size:18px;line-height:1.2;color:var(--text-on-dark);border-bottom:1px solid rgba(240,253,255,.4);padding-bottom:6px;align-self:flex-start;transition:border-color .2s}
+  .card-link:hover{border-color:var(--text-on-dark)}
+  .card-link .arrow{width:24px}
+  .card-link:hover .arrow::before{width:24px}
   .card.is-dark .card-media video{mix-blend-mode:screen;filter:none} /* black ground drops out, only the lanes sit on the card gradient */
   .dots{display:none;justify-content:center;gap:8px;margin-top:24px}
   .dots button{width:8px;height:8px;border-radius:50%;background:rgba(53,66,91,.2);padding:0}
   .dots button[aria-current="true"]{background:var(--text-default)}
 
+  /* ============ CLOSING CTA: one brand panel, "Let's talk." beside the contact routes (35pharma "Subscribe" panel) ============ */
+  /* full-bleed light ground (as the FAQ was), content on the section line, no card */
+  .cta{background:var(--bg-secondary);padding:96px var(--pad-x);color:var(--text-default)}
+  .cta::before{content:'';position:absolute;top:0;bottom:0;left:50%;width:100vw;transform:translateX(-50%);background:var(--bg-secondary);z-index:-1}
+  .cta-panel{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+  .cta-head{display:flex;gap:24px;align-items:flex-start}
+  .cta .sec-num{margin-top:.5em}
+  .cta-head .t-hero{max-width:10ch}
+  .cta-body{display:flex;flex-direction:column;gap:32px;padding-top:.5em}
+  .cta-body .t-subtitle{color:var(--text-secondary);font-size:25px;max-width:40ch}
+  .cta-routes{display:flex;flex-direction:column}
+  .cta-route{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0;border-top:1px solid var(--border-default);font-size:20px;line-height:1.2;transition:padding-left .35s cubic-bezier(.2,.7,.2,1),color .2s}
+  .cta-route:last-child{border-bottom:1px solid var(--border-default)}
+  .cta-route:hover{padding-left:10px;color:var(--bg-brand)}
+  .cta-route .arrow{width:28px}
+  .cta-route:hover .arrow::before{width:28px}
+
   /* ============ FOOTER (node 6260:7642) ============ */
-  .footer{padding:48px var(--pad-x) 32px;display:flex;flex-direction:column;gap:32px;color:var(--text-neutral)}
+  .footer{padding:64px var(--pad-x) 40px;display:flex;flex-direction:column;gap:40px;color:var(--text-neutral)} /* same section line as the CTA above */
   .footer::before{content:'';position:absolute;top:0;bottom:0;left:50%;width:100vw;transform:translateX(-50%);background:var(--bg-secondary);border-top:1px solid var(--border-neutral-3);z-index:-1} /* full-bleed ground + rule */
   .footer-content{display:flex;gap:clamp(48px,12vw,160px)}
   .brand{display:flex;flex-direction:column;justify-content:space-between;flex:0 0 auto}
@@ -374,9 +413,6 @@
     .tile-founders .panel-img img{--zoom:1.12;--px:0px;object-position:50% 15%}
     .founders-card{position:relative;z-index:1;inset:auto;max-width:none;margin:-40px 16px 0;padding:32px 24px}
     .mission-card{padding:64px 20px 56px;gap:40px}
-    .faq{padding:48px var(--pad-x)}
-    .faq-cols{grid-template-columns:1fr}
-    .faq-item .answer{padding-right:0}
     /* technology: no scroll-jack, native swipe carousel */
     .tech{padding:64px 0;height:auto!important}
     .tech::before{box-shadow:none}
@@ -389,6 +425,19 @@
     .card-copy{flex:0 0 auto;width:auto;padding:24px;gap:24px;order:1}
     .card-num{font-size:56px}
     .card-media{order:2;aspect-ratio:16/10;flex:0 0 auto}
+    .sec-num{font-size:clamp(32px,4vw,48.83px)}
+    .nav-modal-tray{width:100%;border-radius:0;padding:17px 22px 24px 20px}
+    .nav-modal-links a{font-size:clamp(34px,9vw,56px)}
+    .nav-modal-foot{flex-direction:column;flex-wrap:nowrap;align-items:flex-start;gap:16px}
+    .nav-modal-foot .t-small{flex-basis:auto}
+    .cta{padding:64px var(--pad-x)}
+    .cta-panel{grid-template-columns:1fr;gap:32px}
+    .cta-head .t-hero{font-size:clamp(40px,10vw,56px)}
+    .cta-body .t-subtitle{font-size:20px}
+    .cta-route{font-size:17px;padding:14px 0}
+    .section-heading{flex-direction:column;gap:4px} /* stacked: number above the eyebrow */
+    .section-heading .sec-num{margin-top:0}
+    .sec-num.corner{top:16px;right:20px}
     .card-media video{--media-fade:linear-gradient(180deg,transparent 0,rgba(0,0,0,.12) 10%,rgba(0,0,0,.45) 22%,rgba(0,0,0,.82) 34%,#000 44%)} /* stacked: bleed from the copy above */
     .dots{display:flex}
     .tile{padding:24px}
@@ -406,6 +455,7 @@
     .navbar .logo .mark{display:block}
     .navbar-inner > .btn{display:none}
     .menu-btn{display:grid}
+    .nav-list{display:none}
     .site-nav.scrolled .navbar-inner{padding:6px 10px 6px 16px}
     .approach-card,.founders-card{margin-left:0;margin-right:0} /* comp: full inner width, 40px over the photo */
   }
@@ -451,18 +501,34 @@
           <li><a href="#news">Partners</a></li>
           <li><a href="#founders">Company</a></li>
         </ul>
-        <a class="btn btn-neutral btn-sm" href="#footer">Contact Us</a>
-        <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu"><img class="open" src="assets/icon-menu.svg" alt=""><img class="close" src="assets/icon-close.svg" alt=""></button>
+        <a class="btn btn-neutral btn-sm" href="#contact">Contact Us</a>
+        <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navModal"><img class="open" src="assets/icon-menu.svg" alt=""></button>
       </div>
     </nav>
-    <div class="mobile-menu" id="mobileMenu" hidden>
-      <a href="#tech">Technology</a>
-      <a href="#news">Research</a>
-      <a href="#news">Partners</a>
-      <a href="#founders">Company</a>
-      <a class="btn btn-brand" href="#footer">Contact Us <img src="assets/arrow-right-light.svg" alt=""></a>
-    </div>
   </header>
+  </div>
+
+  <!-- ============ FULL-SCREEN MENU ============ -->
+  <div class="nav-modal" id="navModal" hidden>
+    <div class="nav-modal-scrim" id="menuScrim" aria-hidden="true"></div>
+    <div class="nav-modal-tray">
+      <div class="nav-modal-top">
+        <img class="nav-modal-mark" src="assets/fgi-mini.svg" alt="FGI">
+        <button class="icon-btn on-dark menu-close" id="menuClose" type="button" aria-label="Close menu"><img src="assets/icon-close.svg" alt=""></button>
+      </div>
+      <nav class="nav-modal-links" aria-label="Site">
+        <a href="#approach"><span class="mask"><span class="in">Approach</span></span></a>
+        <a href="#tech"><span class="mask"><span class="in">Technology</span></span></a>
+        <a href="#mission"><span class="mask"><span class="in">Mission</span></span></a>
+        <a href="#news"><span class="mask"><span class="in">Research &amp; News</span></span></a>
+        <a href="#founders"><span class="mask"><span class="in">Founders</span></span></a>
+      </nav>
+      <div class="nav-modal-foot">
+        <a class="btn btn-outline-light" href="#contact">Get in touch <span class="arrow"></span></a>
+        <p class="t-small">First Genomic Insights · Non-invasive fetal sequencing</p>
+        <a class="li" href="https://www.linkedin.com/company/first-genomic-insights-inc/posts/?feedView=all" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="assets/linkedin.svg" alt=""></a>
+      </div>
+    </div>
   </div>
 
   <!-- ============ HERO ============ -->
@@ -476,9 +542,9 @@
           <div class="headline">
             <p class="eyebrow">Non-invasive fetal sequencing</p>
             <h1 class="t-hero">Revolutionizing prenatal care with scalable genomics.</h1>
-            <p class="t-subtitle">The first fetal sequencing test to deliver comprehensive genetic screening at NIPT scale, with no invasive procedure.</p>
+            <p class="t-subtitle">Fetal sequencing designed to deliver comprehensive genetic screening at NIPT scale, with no invasive procedure. Now in clinical validation, ahead of launch.</p>
             <div class="hero-actions">
-              <a class="btn btn-brand" href="#approach">Learn more <img src="assets/arrow-right-light.svg" alt=""></a>
+              <a class="btn btn-brand" href="#tech">Explore the Technology <span class="arrow"></span></a>
             </div>
           </div>
         </div>
@@ -498,10 +564,11 @@
       <div class="panel">
         <div class="panel-img"><img data-parallax-img="-28" src="assets/approach-lab.jpg" alt="Founders or laboratory photography, final asset pending"></div>
         <div class="approach-card" data-parallax="90">
-          <p class="eyebrow section">FGI's Approach</p>
-          <h2 class="t-page">Every prenatal test today is a trade-off</h2>
-          <p class="t-body">Non-invasive testing misses most clinically relevant conditions. Invasive testing catches them, but carries real risk.</p>
-          <div class="card-actions"><a class="btn btn-brand" href="#tech">See the Technology <img src="assets/arrow-right-light.svg" alt=""></a></div>
+          <span class="sec-num corner" aria-hidden="true">01</span>
+          <p class="eyebrow section" data-reveal>FGI's Approach</p>
+          <h2 class="t-page" data-reveal>Every prenatal test today is a trade-off</h2>
+          <p class="t-body" data-reveal>Non-invasive testing misses most clinically relevant conditions. Invasive testing catches them, but carries real risk.</p>
+          <div class="card-actions" data-reveal><a class="btn btn-brand" href="#tech">See how it works <span class="arrow"></span></a></div>
         </div>
       </div>
     </div>
@@ -514,13 +581,16 @@
   <section class="tech" id="tech">
     <div class="tech-pin">
       <div class="tech-head">
-        <div class="section-heading">
-          <p class="eyebrow section">Non-invasive fetal sequencing</p>
-          <h2 class="t-page">How a sample becomes a result.</h2>
+        <div class="section-heading" data-reveal>
+          <span class="sec-num" aria-hidden="true">02</span>
+          <div>
+            <p class="eyebrow section">Non-invasive fetal sequencing</p>
+            <h2 class="t-page">How a sample becomes a result.</h2>
+          </div>
         </div>
         <div class="controls">
-          <button class="icon-btn flip" id="prevBtn" aria-label="Previous card"><img src="assets/arrow-20-dark.svg" alt=""></button>
-          <button class="icon-btn" id="nextBtn" aria-label="Next card"><img src="assets/arrow-20-dark.svg" alt=""></button>
+          <button class="icon-btn flip" id="prevBtn" aria-label="Previous card"><span class="arrow"></span></button>
+          <button class="icon-btn" id="nextBtn" aria-label="Next card"><span class="arrow"></span></button>
         </div>
       </div>
 
@@ -528,7 +598,7 @@
         <div class="track" id="track">
           <article class="card">
             <div class="card-copy">
-              <p class="t-subtitle">A single blood draw. No procedure risk to mother or fetus.</p>
+              <p class="t-subtitle" data-reveal>A single blood draw. No procedure risk to mother or fetus.</p>
               <div class="card-num">01</div>
             </div>
             <div class="card-media">
@@ -547,7 +617,10 @@
           <article class="card is-dark">
             <div class="card-copy">
               <p class="t-subtitle">Millions of data points resolve into a clear genomic result.</p>
-              <div class="card-num">03</div>
+              <div class="card-foot">
+                <a class="card-link" href="#contact">Contact about partnership <span class="arrow"></span></a>
+                <div class="card-num">03</div>
+              </div>
             </div>
             <div class="card-media">
               <video muted loop playsinline preload="metadata" poster="assets/stills/03-sequencing.jpg" src="assets/03-sequencing.mp4"></video>
@@ -566,40 +639,45 @@
     <div class="mission-card">
       <canvas class="hero-viz" aria-hidden="true"></canvas>
       <div class="mission-statement">
-        <p class="eyebrow section on-dark">Our Mission</p>
-        <h2 class="t-page">We're building the infrastructure for a new standard of prenatal care, scientifically rigorous, responsibly deployed.</h2>
-        <div class="hero-actions"><a class="btn btn-outline-light" href="#footer">Get in touch <img src="assets/arrow-right.svg" alt=""></a></div>
+        <div class="section-heading" data-reveal>
+          <span class="sec-num" aria-hidden="true">03</span>
+          <div>
+            <p class="eyebrow section on-dark">Our Mission</p>
+            <h2 class="t-page">We're building the infrastructure for a new standard of prenatal care, scientifically rigorous, responsibly deployed.</h2>
+          </div>
+        </div>
+        <div class="hero-actions" data-reveal><a class="btn btn-outline-light" href="#contact">Get in touch <span class="arrow"></span></a></div>
       </div>
       <div class="bento-grid" id="news">
         <div class="bento-col">
           <div class="bento-row">
-            <a class="tile tile-light pathway" href="#footer">
+            <a class="tile tile-light pathway" data-reveal href="#footer">
               <div class="tile-content">
-                <div class="tile-head"><p class="eyebrow">Partners &middot; Laboratories</p><span class="icon-btn"><img src="assets/arrow-20-brand.svg" alt=""></span></div>
+                <div class="tile-head"><p class="eyebrow">Partners &middot; Laboratories</p><span class="icon-btn"><span class="arrow"></span></span></div>
                 <h3 class="t-heading">Establishing partnerships with commercial laboratories to expand delivery of NIFS.</h3>
               </div>
             </a>
-            <a class="tile tile-light pathway" href="#tech">
+            <a class="tile tile-light pathway" data-reveal href="#tech">
               <div class="tile-content">
-                <div class="tile-head"><p class="eyebrow">Clinical &middot; Validation</p><span class="icon-btn"><img src="assets/arrow-20-brand.svg" alt=""></span></div>
+                <div class="tile-head"><p class="eyebrow">Clinical &middot; Validation</p><span class="icon-btn"><span class="arrow"></span></span></div>
                 <h3 class="t-heading">Validating NIFS through prospective studies, ahead of a planned launch.</h3>
               </div>
             </a>
           </div>
-          <a class="tile tile-brand pathway" href="#news">
+          <a class="tile tile-brand pathway" data-reveal href="#news">
             <div class="tile-content">
-              <div class="tile-head"><p class="eyebrow">Publication &middot; NEJM</p><span class="icon-btn"><img src="assets/arrow-20-light.svg" alt=""></span></div>
+              <div class="tile-head"><p class="eyebrow">Publication &middot; NEJM</p><span class="icon-btn"><span class="arrow"></span></span></div>
               <h3 class="t-heading">Peer-reviewed work behind the platform, beginning with the NEJM paper.</h3>
             </div>
           </a>
         </div>
-        <article class="tile-founders" id="founders">
+        <article class="tile-founders" id="founders" data-reveal>
           <div class="panel-img"><img data-parallax-img="28" src="assets/founders-photo.jpg" alt="Founders or laboratory photography, final asset pending"></div>
           <div class="founders-card" data-parallax="60">
             <p class="eyebrow">Founders</p>
             <h3 class="t-heading">Founded by leaders in genomic and maternal-fetal medicine.</h3>
             <p class="t-body">Three physician-scientists from Harvard, Columbia, and the Broad Institute.</p>
-            <div class="card-actions"><a class="btn btn-neutral" href="#founders">Meet the founders <img src="assets/arrow-right.svg" alt="" style="filter:brightness(0) saturate(100%) invert(22%) sepia(14%) saturate(1200%) hue-rotate(184deg)"></a></div>
+            <div class="card-actions"><a class="btn btn-neutral" href="#founders">Meet the founders <span class="arrow"></span></a></div>
           </div>
         </article>
       </div>
@@ -607,19 +685,22 @@
   </section>
   </div>
 
-  <!-- ============ FAQ ============ -->
-  <section class="faq" id="faq">
-    <p class="eyebrow section">Frequently Asked Questions</p>
-    <div class="faq-cols">
-      <div class="faq-col">
-        <details class="faq-item"><summary><span class="t-subheading">What is non-invasive fetal sequencing (NIFS)?</span><span class="icon-slot"><img src="assets/icon-plus.svg" alt=""></span></summary><p class="answer t-body">Draft answer, pending review. A short, plain-language explanation of how NIFS reads fetal DNA from a maternal blood sample.</p></details>
-        <details class="faq-item"><summary><span class="t-subheading">How does NIFS differ from NIPT?</span><span class="icon-slot"><img src="assets/icon-plus.svg" alt=""></span></summary><p class="answer t-body">Draft answer, pending review. NIPT screens for a handful of chromosomal conditions; NIFS is designed to look across many more genes from the same kind of sample.</p></details>
-        <details class="faq-item"><summary><span class="t-subheading">Is there any risk to the pregnancy?</span><span class="icon-slot"><img src="assets/icon-plus.svg" alt=""></span></summary><p class="answer t-body">Draft answer, pending review. The test uses a standard maternal blood draw, with no procedure that reaches the fetus.</p></details>
+  <!-- ============ CLOSING CTA ============ -->
+  <section class="cta" id="contact">
+    <div class="cta-panel">
+      <div class="cta-head">
+        <span class="sec-num" aria-hidden="true">04</span>
+        <h2 class="t-hero" data-reveal>Let's talk.</h2>
       </div>
-      <div class="faq-col">
-        <details class="faq-item"><summary><span class="t-subheading">When will NIFS be available to patients?</span><span class="icon-slot"><img src="assets/icon-plus.svg" alt=""></span></summary><p class="answer t-body">Draft answer, pending review. Availability follows the prospective validation studies and laboratory partnerships now under way.</p></details>
-        <details class="faq-item"><summary><span class="t-subheading">How can a laboratory partner with FGI?</span><span class="icon-slot"><img src="assets/icon-plus.svg" alt=""></span></summary><p class="answer t-body">Draft answer, pending review. Use the laboratory partnership link in the footer and the team will follow up.</p></details>
-        <details class="faq-item"><summary><span class="t-subheading">Where is the science published?</span><span class="icon-slot"><img src="assets/icon-plus.svg" alt=""></span></summary><p class="answer t-body">Draft answer, pending review. The platform's peer-reviewed work begins with the NEJM paper linked under Research.</p></details>
+      <div class="cta-body">
+        <p class="t-subtitle" data-reveal>Laboratories, clinicians, investors and researchers: tell us what you're working on.</p>
+        <div class="cta-routes">
+          <a class="cta-route" href="#footer" data-reveal><span>General enquiry</span><span class="arrow"></span></a>
+          <a class="cta-route" href="#footer" data-reveal><span>Laboratory partnership</span><span class="arrow"></span></a>
+          <a class="cta-route" href="#footer" data-reveal><span>Investor relations</span><span class="arrow"></span></a>
+          <a class="cta-route" href="#footer" data-reveal><span>Research collaboration</span><span class="arrow"></span></a>
+          <a class="cta-route" href="#footer" data-reveal><span>Media &amp; press</span><span class="arrow"></span></a>
+        </div>
       </div>
     </div>
   </section>
@@ -632,10 +713,10 @@
         <a class="li" href="https://www.linkedin.com/company/first-genomic-insights-inc/posts/?feedView=all" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="assets/linkedin.svg" alt=""></a>
       </div>
       <div class="link-cols">
-        <div class="link-col"><h4>PLATFORM</h4><div class="rule"></div><a href="#tech">Technology Overview</a><a href="#tech">How NIFS Works</a><a href="#news">Clinical Applications</a><a href="#news">Research &amp; Publications</a></div>
-        <div class="link-col"><h4>FOR YOU</h4><div class="rule"></div><a href="#news">Clinical &amp; Lab Partners</a><a href="#footer">Investors</a><a href="#news">Researchers</a><a href="#footer">Careers</a></div>
-        <div class="link-col"><h4>COMPANY</h4><div class="rule"></div><a href="#mission">Our Story</a><a href="#founders">Leadership</a><a href="#footer">Contact</a></div>
-        <div class="link-col"><h4>GET IN TOUCH</h4><div class="rule"></div><a href="#footer">Laboratory partnership</a><a href="#footer">Investor relations</a><a href="#footer">Research collaboration</a><a href="#footer">Media &amp; press</a></div>
+        <div class="link-col" data-reveal><h4>PLATFORM</h4><div class="rule"></div><a href="#tech">Technology Overview</a><a href="#tech">How NIFS Works</a><a href="#news">Clinical Applications</a><a href="#news">Research &amp; Publications</a></div>
+        <div class="link-col" data-reveal><h4>FOR YOU</h4><div class="rule"></div><a href="#news">Clinical &amp; Lab Partners</a><a href="#footer">Investors</a><a href="#news">Researchers</a><a href="#footer">Careers</a></div>
+        <div class="link-col" data-reveal><h4>COMPANY</h4><div class="rule"></div><a href="#mission">Our Story</a><a href="#founders">Leadership</a><a href="#contact">Contact</a></div>
+        <div class="link-col" data-reveal><h4>GET IN TOUCH</h4><div class="rule"></div><a href="#contact">Laboratory partnership</a><a href="#contact">Investor relations</a><a href="#contact">Research collaboration</a><a href="#contact">Media &amp; press</a></div>
       </div>
     </div>
     <div class="legal">
@@ -666,7 +747,7 @@
   const navState = () => siteNav.classList.toggle('scrolled', window.scrollY > siteNav.parentElement.offsetHeight);
   lenis.on('scroll', navState); navState();
   // Active nav item: the link whose section is nearest the top of the viewport (kit State=Active)
-  const navLinks = Array.from(document.querySelectorAll('.nav-list a, .mobile-menu a:not(.btn)'));
+  const navLinks = Array.from(document.querySelectorAll('.nav-list a'));
   const navTargets = navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
   const navActive = () => {
     let cur = null;
@@ -674,18 +755,47 @@
     navLinks.forEach(a => a.classList.toggle('active', !!cur && a.getAttribute('href') === '#' + cur.id));
   };
   lenis.on('scroll', navActive); navActive();
-  // Mobile menu (< 768): hamburger toggles the sheet; any link or Escape closes it
-  const menuBtn = document.getElementById('menuBtn'), mobileMenu = document.getElementById('mobileMenu');
-  const setMenu = (open) => { menuBtn.setAttribute('aria-expanded', String(open)); mobileMenu.hidden = !open; };
-  menuBtn.addEventListener('click', () => setMenu(mobileMenu.hidden));
-  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
-  lenis.on('scroll', () => { if (!mobileMenu.hidden && Math.abs(lenis.velocity) > 2) setMenu(false); });
+  // Full-screen menu: columns wipe down, links rise in; close reverses. Any link closes then scrolls.
+  const menuBtn = document.getElementById('menuBtn'), navModal = document.getElementById('navModal');
+  const mScrim = document.getElementById('menuScrim'), mTray = navModal.querySelector('.nav-modal-tray'), mIns = navModal.querySelectorAll('.mask .in');
+  const mTop = navModal.querySelector('.nav-modal-top'), mFoot = navModal.querySelector('.nav-modal-foot');
+  let menuOpen = false, menuBusy = false, menuThen = null;
+  const openMenu = () => {
+    if (menuOpen || menuBusy) return;
+    menuOpen = true; menuBusy = true; navModal.hidden = false; menuBtn.setAttribute('aria-expanded', 'true'); lenis.stop();
+    if (reduceMotion) { gsap.set(mScrim, { opacity: 1 }); gsap.set(mTray, { xPercent: 0 }); gsap.set(mIns, { yPercent: 0 }); gsap.set([mTop, mFoot], { opacity: 1 }); menuBusy = false; return; }
+    gsap.timeline({ onComplete: () => { menuBusy = false; } })
+      .fromTo(mScrim, { opacity: 0 }, { opacity: 1, duration: .6, ease: 'power2.out' }, 0)
+      .fromTo(mTray, { xPercent: 100 }, { xPercent: 0, duration: .75, ease: 'power3.out' }, 0) // tray slides in from the right
+      .fromTo(mTop, { opacity: 0 }, { opacity: 1, duration: .5 }, .3)
+      .fromTo(mIns, { yPercent: 120 }, { yPercent: 0, duration: .8, ease: 'power3.out', stagger: .06 }, .25) // links rise as the tray lands
+      .fromTo(mFoot, { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: .5, ease: 'power2.out' }, .55);
+  };
+  const closeMenu = () => {
+    if (!menuOpen || menuBusy) return;
+    menuBusy = true;
+    const done = () => {
+      navModal.hidden = true; menuOpen = false; menuBusy = false; menuBtn.setAttribute('aria-expanded', 'false'); lenis.start();
+      if (menuThen) { const t = menuThen; menuThen = null; lenis.scrollTo(t, { duration: 1.2 }); }
+    };
+    if (reduceMotion) { done(); return; }
+    gsap.timeline({ onComplete: done })
+      .to(mTray, { xPercent: 100, duration: .55, ease: 'power3.in' }, 0) // tray slides back out, contents ride with it
+      .to(mScrim, { opacity: 0, duration: .45, ease: 'power2.in' }, .1);
+  };
+  menuBtn.addEventListener('click', openMenu);
+  document.getElementById('menuClose').addEventListener('click', closeMenu);
+  mScrim.addEventListener('click', closeMenu);
+  navModal.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', (e) => {
+    e.preventDefault(); menuThen = document.querySelector(a.getAttribute('href')); closeMenu();
+  }));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
   gsap.ticker.add((t) => lenis.raf(t * 1000));
   gsap.ticker.lagSmoothing(0);
 
   // Anchor links go through Lenis so they decelerate too
   document.querySelectorAll('a[href^="#"]').forEach(a => {
+    if (a.closest('.nav-modal')) return; // the menu closes first, then scrolls
     a.addEventListener('click', (e) => {
       const target = document.querySelector(a.getAttribute('href'));
       if (!target) return;
@@ -693,6 +803,27 @@
       lenis.scrollTo(target, { duration: 1.2 });
     });
   });
+
+  /* ---------- 0. Page entrance: nav and hero copy rise in (no loader) ----------
+     Skipped under reduced motion. Resolves `introDone` so the fact counters wait for it. */
+  let introResolve; const introDone = new Promise(r => { introResolve = r; });
+  if (reduceMotion) { introResolve(); }
+  else {
+    document.documentElement.classList.add('js-motion');
+    const heroBits = [...document.querySelectorAll('.hero-copy .headline > *'), document.querySelector('.hero .facts')];
+    gsap.timeline({ onComplete: () => { introResolve(); ScrollTrigger.refresh(); } })
+      .fromTo('.site-nav', { y: -12, opacity: 0 }, { y: 0, opacity: 1, duration: .8, ease: 'power2.out', clearProps: 'transform' }, .15)
+      .fromTo(heroBits, { y: 48, opacity: 0 }, { y: 0, opacity: 1, duration: 1.1, ease: 'power3.out', stagger: .09, clearProps: 'transform' }, .1);
+  }
+
+  /* ---------- 0b. Scroll reveals: anything with data-reveal rises in once as it enters ---------- */
+  if (!reduceMotion) {
+    document.documentElement.classList.add('js-motion');
+    ScrollTrigger.batch('[data-reveal]', {
+      start: 'top 90%', once: true,
+      onEnter: (batch) => gsap.to(batch, { opacity: 1, y: 0, duration: 1, ease: 'power3.out', stagger: .08, overwrite: true, clearProps: 'transform' }),
+    });
+  }
 
   /* ---------- 1a. Hero data-points animation ----------
      A sequencing-readout texture on a canvas behind the copy (bands drifting
@@ -885,7 +1016,7 @@
     const fmt = (v) => Math.round(v).toLocaleString('en-US');
     const run = () => {
       const facts = factsEl.querySelectorAll('.fact');
-      gsap.to(facts, { opacity: 1, y: 0, duration: 1.4, ease: 'sine.out', stagger: 0.25, clearProps: 'transform' });
+      gsap.to(facts, { opacity: 1, y: 0, duration: 1.4, ease: 'sine.out', stagger: 0.25, clearProps: 'transform' }); // .will-count holds them at 0 until now
       facts.forEach((f, i) => {
         const v = f.querySelector('[data-count]');
         if (!v) return; // "Zero" just fades in
@@ -897,7 +1028,7 @@
     const io = new IntersectionObserver((entries) => {
       if (entries.some(e => e.isIntersecting && e.intersectionRatio >= 0.5)) { run(); io.disconnect(); }
     }, { threshold: [0.5] });
-    io.observe(factsEl);
+    introDone.then(() => io.observe(factsEl));
   }
 
   /* ---------- 2. Panel stacking: Hero -> Approach -> Mission ---------- */
@@ -946,7 +1077,7 @@
         end:   () => `top ${s.y0() - s.D()}px`,  // the next section has fully covered it
         invalidateOnRefresh: true,
       });
-      gsap.to(s.panel, { scale: 0.9, borderRadius: 40, opacity: 0, ease: 'none', scrollTrigger: { ...st(), scrub: 1 } });
+      gsap.to(s.panel, { scale: 0.9, borderRadius: 40, opacity: 0.35, ease: 'none', scrollTrigger: { ...st(), scrub: 1 } });
       if (s.slide < 1) {
         gsap.fromTo(s.inner, { y: 0 }, { y: () => s.D() - s.y0(), ease: 'none', scrollTrigger: { ...st(), scrub: true } });
       }
