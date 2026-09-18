@@ -8,6 +8,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&family=Roboto+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
+<script>/* motion start states go on before first paint, so nothing is shown and then re-hidden when the scripts land; released if GSAP never arrives */
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('js-motion');setTimeout(function(){if(!window.gsap)document.documentElement.classList.remove('js-motion')},4000)}</script>
 </head>
 <body>
 
