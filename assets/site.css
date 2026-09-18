@@ -402,9 +402,9 @@
   .photo-hero-copy .actions{display:flex;gap:12px;flex-shrink:0}
   /* 01 company statement: brand panel, number + statement, eyebrow + body (35pharma "Our company") */
   .statement{padding:24px;min-height:calc(100svh - var(--nav-h));display:flex;flex-direction:column} /* a full viewport, like the Approach panel: it must hide the pinned hero completely before it unpins */
-  .statement-panel{flex:1 1 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:56px 64px;align-items:start;align-content:space-between;padding:64px 48px;border-radius:var(--radius);background:var(--grad-tile-brand);color:var(--text-on-dark);box-shadow:var(--shadow-300)}
+  .statement-panel{flex:1 1 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:40px 64px;align-items:start;align-content:space-between;padding:56px 48px;border-radius:var(--radius);background:var(--grad-tile-brand);color:var(--text-on-dark);box-shadow:var(--shadow-300)}
   .statement-panel .sec-num{color:var(--text-on-dark-2);opacity:.7;margin-top:.1em}
-  .statement-panel .t-page{max-width:28ch;font-size:39px;font-weight:600} /* a statement, not a title: one step lighter than the page scale */
+  .statement-panel .t-page{max-width:30ch;font-size:clamp(28px,3.9vh,39px);font-weight:600} /* a statement, not a title; scales with viewport height so the panel always fits one screen */
   .statement-panel .eyebrow{color:var(--text-on-dark-2);padding-top:4px}
   .statement-body{display:flex;flex-direction:column;gap:28px;max-width:58ch}
   .statement-body .t-body{color:var(--text-on-dark-2)}
@@ -463,6 +463,27 @@
   .founders-band-faces{display:flex;justify-content:flex-end}
   .founders-band-faces img{width:clamp(96px,11vw,160px);aspect-ratio:1;object-fit:cover;object-position:50% 25%;border-radius:50%;border:3px solid rgba(240,253,255,.9);margin-left:-24px;box-shadow:var(--shadow-300)}
   .founders-band-faces img:first-child{margin-left:0}
+
+  /* mission pillars: three columns in the statement panel's lower row */
+  .pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+  .pillar{display:flex;flex-direction:column;gap:8px}
+  .pillar .t-heading{font-size:19px}
+  .pillar .t-body{color:var(--text-on-dark-2);font-size:15px;line-height:1.45}
+  /* milestones: a horizontal track of seven, done / now / planned */
+  .milestones{padding:32px var(--pad-x) 112px;display:flex;flex-direction:column;gap:56px}
+  .timeline{list-style:none;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:24px;position:relative;padding-top:28px}
+  .timeline::before{content:'';position:absolute;left:0;right:0;top:9px;height:2px;background:var(--border-default)}
+  .timeline li{position:relative;display:flex;flex-direction:column;gap:6px;padding-right:8px}
+  .timeline .dot{position:absolute;top:-28px;left:0;width:20px;height:20px;border-radius:50%;background:var(--bg-page);border:2px solid var(--border-neutral-2);box-sizing:border-box}
+  .timeline .is-done .dot{background:var(--text-brand-secondary);border-color:var(--text-brand-secondary)}
+  .timeline .is-done .dot::after{content:'';position:absolute;left:6px;top:3px;width:4px;height:8px;border-right:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(45deg)}
+  .timeline .is-now .dot{border-color:var(--text-brand-secondary);background:var(--bg-page)}
+  .timeline .is-now .dot::before{content:'';position:absolute;inset:4px;border-radius:50%;background:var(--text-brand-secondary);animation:tl-pulse 2s ease-in-out infinite}
+  @keyframes tl-pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.6);opacity:.6}}
+  .timeline .t-subheading{font-weight:600;font-size:17px}
+  .timeline .t-small{color:var(--text-secondary)}
+  .timeline li:not(.is-done):not(.is-now) .t-subheading{color:var(--text-secondary)}
+  .timeline-note{color:var(--text-secondary);max-width:60ch}
 
   /* ============ Responsive ============ */
   @media (max-width:1279.98px){
@@ -535,6 +556,12 @@
     .vision-media{height:min(56vw,420px)}
     .vision-caption{left:16px;right:16px;bottom:16px;max-width:none;padding:16px}
     .values{padding:40px var(--pad-x) 64px;gap:32px}
+    .pillars{grid-template-columns:1fr;gap:20px}
+    .milestones{padding:16px var(--pad-x) 64px;gap:32px}
+    .timeline{grid-template-columns:1fr;gap:24px;padding-top:0;padding-left:36px}
+    .timeline::before{left:9px;right:auto;top:0;bottom:0;width:2px;height:auto}
+    .timeline .dot{top:0;left:-36px}
+    .timeline li{padding-right:0}
     .values-grid{grid-template-columns:1fr;gap:16px}
     .value{min-height:0}
     .founders-band{grid-template-columns:1fr;gap:24px;padding:28px 24px}
@@ -581,7 +608,8 @@
     .hero .hero-actions{padding-top:8px}
     .nav-list{display:flex;gap:4px}
     .nav-list a{font-size:16px}
-    .facts{flex-direction:row;gap:24px;padding:24px 32px}
+    .facts{flex-direction:row;flex-wrap:wrap;gap:24px;padding:24px 32px}
+    .fact{flex:1 1 40%}
     .bento-row{flex-direction:row}
     .bento-row .pathway{flex:1 1 0}
     .tile{padding:28px}
@@ -590,6 +618,8 @@
     .footer-content{flex-direction:row;gap:48px}
     .team-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
     .values-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .timeline{grid-template-columns:repeat(4,minmax(0,1fr));row-gap:48px}
+    .timeline::before{display:none}
     .brand{flex-direction:column;align-items:flex-start}
     .link-cols{flex-wrap:nowrap}
     .legal{flex-direction:row}

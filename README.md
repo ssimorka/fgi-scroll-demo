@@ -16,6 +16,6 @@ Copy, layout and assets come from the Figma file *FGI Site Design* (node `6070:1
 
 Leadership & Board (`leadership.html`, after 35pharma's About page): photo hero → "01" company statement panel → "02" Leadership, each sliding over the last with the same panel stacking as the home page (now generic in `site.js`: any `.stack-wrap` followed by a `.stack-over`). Three founder cards open a bio tray from the right (same move as the menu tray, light surface). Founders and affiliations are from the old site's Company page; bios are drafts pending FGI review. Headshots in `assets/team/` (originals in `assets/team/src/`); the hero photo is an EDSR ×2 super-resolution of the 1024px original. Board section to come when there is one.
 
-Mission, Vision & Values (`company.html`): photo hero → "01" mission statement panel → "02" vision (split heading / copy, photo card) and "03" values (the four core principles as tiles) with a founders band linking to Leadership. All copy is FGI's own from the old site's home and Company pages.
+Mission, Vision & Values (`company.html`): photo hero → "01" mission statement panel → "02" vision (split heading / copy, photo card) and "03" values (the four core principles as tiles) with a founders band linking to Leadership, then "04" company milestones (a seven-step track from feasibility to the planned launch). Copy is FGI's own, from the old site and the investor deck (mission pillars, milestones, founder titles).
 
 Stack: plain HTML/CSS/JS, GSAP + ScrollTrigger and Lenis from CDN. No build step.

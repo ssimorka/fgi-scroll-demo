@@ -32,7 +32,7 @@
             <div class="nav-sub" id="subCompany">
               <a href="company.html">Mission, Vision, Values</a>
               <a href="leadership.html">Leadership &amp; Board</a>
-              <a href="index.html#news">Company Milestones</a>
+              <a href="company.html#milestones">Company Milestones</a>
             </div>
           </li>
         </ul>
@@ -61,7 +61,7 @@
             <div class="tray-sub-inner">
               <a href="company.html">Mission, Vision, Values</a>
               <a href="leadership.html">Leadership &amp; Board</a>
-              <a href="index.html#news">Company Milestones</a>
+              <a href="company.html#milestones">Company Milestones</a>
             </div>
           </div>
         </div>
@@ -83,7 +83,8 @@
       <div class="photo-hero-copy">
         <div class="headline">
           <p class="eyebrow" data-entrance>Leadership &amp; Board</p>
-          <h1 class="t-hero" data-entrance>Founded by the people who translate genomics into care.</h1>
+          <h1 class="t-hero" data-entrance>Founded by world leaders in prenatal diagnostics.</h1>
+          <p class="t-subtitle" data-entrance>Bridging the interface of genomic technologies, precision health and fetal medicine.</p>
         </div>
         <div class="actions" data-entrance>
           <a class="btn btn-outline-light" href="index.html#news">Our research <span class="arrow"></span></a>
@@ -194,15 +195,15 @@
 (() => { // leadership page: founder cards and the bio tray
   const { lenis, reduceMotion } = window.FGI;
   const people = [
-      { name: 'Michael Talkowski, PhD', role: 'Co-Founder', affil: 'Director, Center for Genomic Medicine, Massachusetts General Hospital · Harvard Medical School · Broad Institute of MIT and Harvard', img: 'assets/team/talkowski.jpg',
-        bio: ['Michael Talkowski leads the Center for Genomic Medicine at Massachusetts General Hospital and holds appointments at Harvard Medical School and the Broad Institute of MIT and Harvard.', 'His research applies genome sequencing to the discovery and interpretation of genetic variation in human disease, including the methods that underpin non-invasive fetal sequencing.'] },
-      { name: 'Wendy Chung, MD, PhD', role: 'Co-Founder', affil: 'Chief of Pediatrics, Boston Children\'s Hospital · Harvard Medical School', img: 'assets/team/chung.jpg',
-        bio: ['A clinical and molecular geneticist, Wendy Chung is Chief of Pediatrics at Boston Children\'s Hospital and a professor at Harvard Medical School.', 'Her work spans the genetic basis of pediatric conditions and the responsible use of genomic testing for newborns and families.'] },
-      { name: 'Ronald Wapner, MD', role: 'Co-Founder', affil: 'Director of Women\'s Genetics, Columbia University Irving Medical Center', img: 'assets/team/wapner.jpg',
-        bio: ['A maternal-fetal medicine specialist, Ronald Wapner directs Women\'s Genetics at Columbia University Irving Medical Center.', 'He has led national studies evaluating how prenatal genetic testing performs in clinical practice.'] },
+      { name: 'Michael Talkowski, PhD', role: 'Co-Founder', tag: 'Pioneer in translational genomic technologies', affil: 'Director, Center for Genomic Medicine · Professor of Neurology, Mass General Brigham and Harvard · Broad Institute of MIT and Harvard', img: 'assets/team/talkowski.jpg',
+        bio: ['A pioneer in translational genomic technologies, Michael Talkowski directs the Center for Genomic Medicine at Mass General Brigham, is Professor of Neurology at Harvard Medical School and a member of the Broad Institute of MIT and Harvard.', 'His research applies genome sequencing to the discovery and interpretation of genetic variation in human disease, including the methods that underpin non-invasive fetal sequencing.'] },
+      { name: 'Wendy Chung, MD, PhD', role: 'Co-Founder', tag: 'World-renowned expert in clinical genetics and newborn screening', affil: 'Chief of Pediatrics, Boston Children\'s Hospital · Professor of Pediatrics, Harvard Medical School', img: 'assets/team/chung.jpg',
+        bio: ['A world-renowned expert in clinical genetics and newborn screening, Wendy Chung is Chief of Pediatrics at Boston Children\'s Hospital and Professor of Pediatrics at Harvard Medical School.', 'Her work spans the genetic basis of pediatric conditions and the responsible use of genomic testing for newborns and families.'] },
+      { name: 'Ronald Wapner, MD', role: 'Co-Founder', tag: 'Field leader in reproductive genetics and the delivery of genomic technologies into prenatal care', affil: 'Director of Reproductive Genetics · Professor of Obstetrics and Gynecology, Columbia University Medical Center', img: 'assets/team/wapner.jpg',
+        bio: ['A field leader in reproductive genetics and the delivery of genomic technologies into prenatal care, Ronald Wapner directs Reproductive Genetics and is Professor of Obstetrics and Gynecology at Columbia University Medical Center.', 'He has led national studies evaluating how prenatal genetic testing performs in clinical practice.'] },
   ];
   const grid = document.getElementById('teamGrid');
-  grid.innerHTML = people.map((p, i) => `<button class="team-card" type="button" data-i="${i}"><div class="portrait"><img src="${p.img}" alt=""></div><p class="name">${p.name}</p><p class="role">${p.role}</p></button>`).join('');
+  grid.innerHTML = people.map((p, i) => `<button class="team-card" type="button" data-i="${i}"><div class="portrait"><img src="${p.img}" alt=""></div><p class="name">${p.name}</p><p class="role">${p.role} · ${p.tag}</p></button>`).join('');
   if (!reduceMotion) { // rendered after the shared reveal pass, so register the cards' own
     gsap.set(grid.children, { opacity: 0, y: 28 });
     ScrollTrigger.batch(grid.children, { start: 'top 90%', once: true, onEnter: (b) => gsap.to(b, { opacity: 1, y: 0, duration: 1, ease: 'power3.out', stagger: .08, clearProps: 'transform' }) });
@@ -214,7 +215,7 @@
   const fill = (p) => {
     document.getElementById('bioName').textContent = p.name;
     document.getElementById('bioImg').src = p.img;
-    document.getElementById('bioRole').textContent = p.role;
+    document.getElementById('bioRole').textContent = `${p.role} · ${p.tag}`;
     document.getElementById('bioAffil').textContent = p.affil;
     document.getElementById('bioText').innerHTML = p.bio.map(t => `<p>${t}</p>`).join('') + '<p class="draft">Draft bio, pending review by FGI.</p>';
   };
