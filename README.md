@@ -1,6 +1,6 @@
-# FGI homepage — scroll / transition demo
+# FGI site — scroll / transition demo
 
-Throwaway motion demo for the FGI homepage. Open `index.html` directly in a browser, or serve the folder with any static server (e.g. `python -m http.server 8765`).
+Motion demo for the FGI site. Serve the folder with `python serve.py` (or any static server) and open `index.html`; `leadership.html` is the Leadership & Board page. Shared styles and behaviour (tokens, nav, menu tray, buttons, reveals, footer) live in `assets/site.css` and `assets/site.js`; each page keeps only its own script inline.
 
 What it demonstrates:
 
@@ -13,5 +13,7 @@ What it demonstrates:
 - Numbered sections (01 Approach, 02 Technology, 03 Mission, 04 Let's talk), drawn arrows everywhere whose shaft extends on hover, scroll-in reveals on headings / cards / tiles (`data-reveal`), and a closing "Let's talk." section of contact routes on a light ground above the footer
 
 Copy, layout and assets come from the Figma file *FGI Site Design* (node `6070:13`). Video clips are 720p web encodes of licensed stock footage (`blood-draw-by-medical-professional-at-clinic-*.mov`, `mixing of blood 1.mov`, `DNA Sequence_LOOP.mov`; 4K / 1080p ProRes masters kept outside the repo). Posters in `assets/stills/` are each clip's first frame.
+
+Leadership & Board (`leadership.html`, after 35pharma's About page): photo hero → "01" company statement panel → "02" Leadership, each sliding over the last with the same panel stacking as the home page (now generic in `site.js`: any `.stack-wrap` followed by a `.stack-over`). Three founder cards open a bio tray from the right (same move as the menu tray, light surface). Founders and affiliations are from the old site's Company page; bios are drafts pending FGI review. Headshots in `assets/team/` (originals in `assets/team/src/`); the hero photo is an EDSR ×2 super-resolution of the 1024px original. Board section to come when there is one.
 
 Stack: plain HTML/CSS/JS, GSAP + ScrollTrigger and Lenis from CDN. No build step.
