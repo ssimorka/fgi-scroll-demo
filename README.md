@@ -9,6 +9,6 @@ What it demonstrates:
 - Technology scroll sequence: pinned section, cards translate horizontally in proportion to scroll, next card peeks in; swipe carousel below 1024px
 - Parallax on the Approach / Founders panels
 
-Copy, layout and assets come from the Figma file *FGI Site Design* (node `6070:13`). Video clips are watermarked stock placeholders, licensing pending — not final assets.
+Copy, layout and assets come from the Figma file *FGI Site Design* (node `6070:13`). Video clips are 720p web encodes of licensed stock footage (`blood-draw-by-medical-professional-at-clinic-*.mov`, `mixing of blood 1.mov`, `DNA Sequence_LOOP.mov`; 4K / 1080p ProRes masters kept outside the repo). Posters in `assets/stills/` are each clip's first frame.
 
 Stack: plain HTML/CSS/JS, GSAP + ScrollTrigger and Lenis from CDN. No build step.
