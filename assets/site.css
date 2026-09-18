@@ -25,6 +25,10 @@
     --border-on-dark:#006286;
     --border-neutral-2:#949494;
     --border-neutral-3:#dadada;
+    /* data-viz palette (Brand Guidelines, Color Palettes, node 3920:1969): the three chart series */
+    --viz-purple-600:#4555b0;
+    --viz-blue-500:#3bb8f0;
+    --viz-orange-500:#f5ad49;
     /* gradients */
     /* Core Gradient 4: navy starts off-canvas top-left, brand blue through the copy, near-white bottom-right (angle re-fit per card aspect) */
     --grad-hero:linear-gradient(var(--grad-hero-angle,112deg),#00364d -21%,#0077a0 11%,#4ea8c2 37%,#f0fdff 100%);
@@ -488,10 +492,10 @@
   .road-note{font-size:14px;line-height:1.4;color:var(--text-secondary);margin-top:4px}
   .road-track{position:relative;height:44px}
   .road-bar{position:absolute;left:0;top:0;height:100%;border-radius:10px;width:calc(var(--n) / 3 * 100%);transform-origin:0 50%} /* drawn in from the left by the page script */
-  .is-done .road-bar{--n:3;background:var(--grad-tile-brand)}
-  .is-now .road-bar{--n:2;background:var(--text-brand-secondary)}
-  .is-planned .road-bar{--n:1;background:var(--bg-tertiary)}
-  .is-now .road-bar::after{content:'';position:absolute;right:-4px;top:50%;width:8px;height:8px;margin-top:-4px;border-radius:50%;background:var(--text-brand-secondary);animation:tl-pulse 2s ease-in-out infinite} /* the live edge */
+  .is-done .road-bar{--n:3;background:var(--viz-purple-600)} /* the chart palette's series 1 / 2 / 3, in the guideline's order */
+  .is-now .road-bar{--n:2;background:var(--viz-blue-500)}
+  .is-planned .road-bar{--n:1;background:var(--viz-orange-500)}
+  .is-now .road-bar::after{content:'';position:absolute;right:-4px;top:50%;width:8px;height:8px;margin-top:-4px;border-radius:50%;background:var(--viz-blue-500);animation:tl-pulse 2s ease-in-out infinite} /* the live edge */
   @keyframes tl-pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.6);opacity:.6}}
   .road-legend{display:none;gap:20px;flex-wrap:wrap;font-size:14px;color:var(--text-secondary)}
   .road-legend span{display:inline-flex;align-items:center;gap:8px}
