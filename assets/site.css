@@ -462,10 +462,12 @@
   .vision-caption .t-body{color:var(--text-secondary);font-size:16px}
   .values{padding:64px var(--pad-x) 112px;display:flex;flex-direction:column;gap:48px}
   .values-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:24px} /* bento: tile 01 + the founders band over three tiles (2 over 3) */
-  .value{gap:16px;min-height:280px;grid-column:span 2;background:var(--bg-brand-tint);border-color:var(--border-brand-tertiary)} /* the kit's FGI comparison column: pale cyan ground, brand-tertiary edge */
+  .value{gap:16px;min-height:280px;grid-column:span 2}
+  .values-grid > .value:first-child{background:var(--bg-brand-tint);border-color:var(--border-brand-tertiary)} /* the tile beside the founders band takes the kit's FGI comparison-column colours: pale cyan ground, brand-tertiary edge */
   .values-grid .founders-band{grid-column:span 4;grid-template-columns:minmax(0,1fr) auto} /* in the bento the band is two-thirds wide: copy takes the room, the faces hug */
   .values-grid .founders-band-faces img{width:clamp(84px,7.5vw,116px)}
-  .value-icon{display:grid;place-items:center;width:48px;height:48px;border-radius:12px;background:var(--bg-page);border:1px solid var(--border-brand-tertiary);color:var(--bg-brand)} /* Design Kit icon (Feather, 24) on a soft tile; decorative, the heading carries the meaning */
+  .value-icon{display:grid;place-items:center;width:48px;height:48px;border-radius:12px;background:var(--pink-100);color:var(--bg-brand)}
+  .values-grid > .value:first-child .value-icon{background:var(--bg-page);border:1px solid var(--border-brand-tertiary)} /* Design Kit icon (Feather, 24) on a soft tile; decorative, the heading carries the meaning */
   .value-icon svg{width:24px;height:24px}
   .value .t-heading{margin-top:auto}
   .value .t-body{color:var(--text-secondary);font-size:16px}
