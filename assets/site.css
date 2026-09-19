@@ -188,7 +188,7 @@
   .nav-modal{position:fixed;inset:0;z-index:90;color:var(--text-on-dark)}
   .nav-modal[hidden]{display:none}
   .nav-modal-scrim{position:absolute;inset:0;background:rgba(0,32,46,.55);opacity:0}
-  .nav-modal-tray{position:absolute;top:0;right:0;bottom:0;width:min(600px,100%);display:flex;flex-direction:column;justify-content:space-between;padding:22px 56px 48px 48px; /* top row lands on the nav pill's items (centre y 41.5, close under the menu button) */
+  .nav-modal-tray{position:absolute;top:0;right:0;bottom:0;width:min(600px,100%);display:flex;flex-direction:column;justify-content:space-between;gap:32px;overflow:auto;overscroll-behavior:contain;padding:22px 56px 48px 48px; /* scrolls on short viewports (data-lenis-prevent lets the wheel / touch through Lenis) */ /* top row lands on the nav pill's items (centre y 41.5, close under the menu button) */
     background:var(--grad-dark-depth);border-radius:var(--radius) 0 0 var(--radius);box-shadow:var(--shadow-panel)} /* start position is set by GSAP */
   .nav-modal-top{display:flex;justify-content:space-between;align-items:center;height:39px}
   .nav-modal-mark{width:49px;height:36px;filter:brightness(0) invert(1)}
@@ -428,7 +428,7 @@
   /* bio tray: the menu tray's move on a light surface */
   .bio-modal{position:fixed;inset:0;z-index:90;color:var(--text-default)}
   .bio-modal[hidden]{display:none}
-  .bio-tray{position:absolute;top:0;right:0;bottom:0;width:min(880px,100%);overflow:auto;padding:22px 56px 56px 48px;background:var(--bg-secondary);border-radius:var(--radius) 0 0 var(--radius);box-shadow:var(--shadow-panel)}
+  .bio-tray{position:absolute;top:0;right:0;bottom:0;width:min(880px,100%);overflow:auto;overscroll-behavior:contain;padding:22px 56px 56px 48px;background:var(--bg-secondary);border-radius:var(--radius) 0 0 var(--radius);box-shadow:var(--shadow-panel)}
   .bio-head{display:flex;justify-content:space-between;align-items:flex-start;gap:24px}
   .bio-head .t-page{max-width:14ch;padding-top:2px}
   .bio-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:40px;margin-top:40px}

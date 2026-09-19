@@ -48,7 +48,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
   <!-- ============ FULL-SCREEN MENU ============ -->
   <div class="nav-modal" id="navModal" hidden>
     <div class="nav-modal-scrim" id="menuScrim" aria-hidden="true"></div>
-    <div class="nav-modal-tray">
+    <div class="nav-modal-tray" data-lenis-prevent>
       <div class="nav-modal-top">
         <img class="nav-modal-mark" src="assets/fgi-mini.svg" alt="FGI">
         <button class="icon-btn on-dark menu-close" id="menuClose" type="button" aria-label="Close menu"><img src="assets/icon-close.svg" alt=""></button>
@@ -173,7 +173,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
 <!-- ============ BIO TRAY ============ -->
 <div class="bio-modal" id="bioModal" hidden>
   <div class="nav-modal-scrim" id="bioScrim" aria-hidden="true"></div>
-  <div class="bio-tray" role="dialog" aria-modal="true" aria-labelledby="bioName">
+  <div class="bio-tray" role="dialog" data-lenis-prevent aria-modal="true" aria-labelledby="bioName">
     <div class="bio-head">
       <h2 class="t-page" id="bioName"></h2>
       <button class="icon-btn menu-close" id="bioClose" type="button" aria-label="Close"><img src="assets/icon-close.svg" alt=""></button>
