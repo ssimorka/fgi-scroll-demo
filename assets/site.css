@@ -530,6 +530,28 @@
   .road .chart-legend{padding:8px 32px 0} /* the key, on the cards' inset */
   .roadmap-note{color:var(--text-secondary);max-width:60ch}
 
+
+  /* ============ MILESTONES PAGE: the Blue ramp (Design Kit Blue 100-1000) instead of the teal brand set ============ */
+  .theme-blue{--blue-100:#f0faff;--blue-200:#c7edff;--blue-300:#9fe0ff;--blue-500:#3bb8f0;--blue-600:#009de0;--blue-700:#0065ac;--blue-800:#002c77;--blue-900:#001f52;--blue-1000:#001538}
+  .theme-blue .photo-hero-card{background:var(--blue-1000)}
+  .theme-blue .photo-hero-card::after{background:linear-gradient(180deg,rgba(0,21,56,0) 30%,rgba(0,21,56,.85) 100%)} /* the clip's own ground under the copy */
+  .theme-blue .photo-hero-copy .eyebrow{color:var(--blue-300)}
+  .theme-blue .statement-panel{background:linear-gradient(167.4deg,var(--blue-900) 14.644%,var(--blue-700) 85.356%)} /* Blue 900 -> 700 */
+  .theme-blue .statement-panel .sec-num,.theme-blue .statement-panel .eyebrow,.theme-blue .statement-body .t-body{color:var(--blue-200)}
+  .theme-blue .sec-num,.theme-blue .eyebrow.section{color:var(--blue-600)}
+  .theme-blue .road-phase{color:var(--blue-800)}
+  .theme-blue .road-group{background:var(--blue-100);border-color:var(--blue-200)}
+  .theme-blue .road-row + .road-row{border-color:var(--blue-200)}
+  .theme-blue .road-head,.theme-blue .road-note{color:var(--blue-700)}
+  .theme-blue .btn-brand{background:var(--blue-800);border-color:var(--blue-800)}
+  .theme-blue .btn-brand:hover{background:var(--blue-700);border-color:var(--blue-700)}
+  .theme-blue .cta{background:var(--blue-100)}
+  .theme-blue .cta::before{background:var(--blue-100)}
+  .theme-blue .cta-route,.theme-blue .cta-route:last-child{border-color:var(--blue-200)}
+  .theme-blue .cta-route:hover{color:var(--blue-700)}
+  .theme-blue .footer::before{background:var(--blue-100);border-top-color:var(--blue-200)}
+  .theme-blue .legal{border-top-color:var(--blue-800)}
+
   /* ============ Responsive ============ */
   @media (max-width:1279.98px){
     .t-hero{font-size:clamp(44px,6vw,76.3px)}
