@@ -581,7 +581,7 @@
     .card-media{order:2;aspect-ratio:16/10;flex:0 0 auto}
     .sec-num{font-size:clamp(32px,4vw,48.83px)}
     .nav-modal-tray{width:100%;border-radius:0;padding:17px 22px 24px 20px}
-    .nav-modal-links > a{font-size:clamp(34px,9vw,56px)}
+    .nav-modal-links > a,.tray-toggle{font-size:clamp(34px,9vw,56px)} /* the Company toggle scales with the links */
     .nav-modal-foot{flex-direction:column;flex-wrap:nowrap;align-items:flex-start;gap:16px}
     .nav-modal-foot .t-small{flex-basis:auto}
     .cta{padding:64px var(--pad-x)}
