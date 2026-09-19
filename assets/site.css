@@ -65,6 +65,9 @@
   a{color:inherit;text-decoration:none}
   button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   .page{max-width:var(--section-w);margin:0 auto;position:relative}
+  main{display:block}
+  .skip-link{position:absolute;left:24px;top:-100px;z-index:100;padding:12px 20px;border-radius:9999px;background:var(--bg-brand);color:var(--text-on-dark);font-size:16px;line-height:1;transition:top .2s}
+  .skip-link:focus{top:24px;outline:2px solid var(--text-on-dark);outline-offset:2px}
 
   /* ---- type styles ---- */
   .t-hero{font-family:var(--font-display);font-weight:700;font-size:76.3px;line-height:1.2;letter-spacing:-.03em}
@@ -96,7 +99,8 @@
   .icon-btn .arrow{transform:rotate(var(--rot,0deg))}
   .icon-btn:hover{background:rgba(53,66,91,.08)}
   .icon-btn[disabled]{opacity:.3;cursor:default}
-  .icon-btn:focus-visible,.btn:focus-visible,.team-card:focus-visible{outline:2px solid var(--text-brand-secondary);outline-offset:3px} /* brand focus ring instead of the browser default */
+  .icon-btn:focus-visible,.btn:focus-visible,.team-card:focus-visible,a:focus-visible,button:focus-visible{outline:2px solid var(--text-brand-secondary);outline-offset:3px} /* brand focus ring instead of the browser default */
+  .nav-modal a:focus-visible,.nav-modal button:focus-visible,.founders-band:focus-visible,.card.is-dark a:focus-visible,.btn-outline-light:focus-visible,.icon-btn.on-dark:focus-visible{outline-color:var(--text-on-dark)} /* on dark grounds */
   .icon-btn.on-dark:hover{background:rgba(255,255,255,.12)}
   .icon-btn.on-dark img{filter:brightness(0) invert(1)}
   .icon-btn.flip{--rot:180deg}
@@ -108,8 +112,8 @@
   html.js-motion [data-reveal]{opacity:0;transform:translateY(28px)}
 
   /* ---- Numbered sections (01/02/03), display size, brand blue, faint ---- */
-  .sec-num{font-family:var(--font-display);font-weight:700;font-size:48.83px;line-height:1.2;letter-spacing:-.02em;color:var(--text-brand-secondary);opacity:.55;font-variant-numeric:tabular-nums}
-  .sec-num.corner{position:absolute;top:24px;right:32px;opacity:.35}
+  .sec-num{font-family:var(--font-display);font-weight:700;font-size:48.83px;line-height:1.2;letter-spacing:-.02em;color:var(--text-brand-secondary);opacity:.8;font-variant-numeric:tabular-nums} /* .8: 3.6:1 on white (large-text AA) */
+  .sec-num.corner{position:absolute;top:24px;right:32px;opacity:.8}
   .mission .sec-num{color:var(--text-on-dark-2);opacity:.6}
 
   /* ============ Page gradient — mesh background layer (node 6159:233) ============ */
@@ -251,7 +255,7 @@
   }
   .fact{flex:1 1 0;min-width:0;padding:4px 24px;border-left:2px solid var(--pink-800);display:flex;flex-direction:column;gap:8px}
   .fact .t-heading{color:var(--text-neutral);font-size:clamp(40px,4.5svh,56px);font-weight:700;letter-spacing:-.02em} /* Title Page scale */
-  .fact .t-small-strong{color:var(--text-neutral-2);font-size:18px;font-weight:400}
+  .fact .t-small-strong{color:#565656;font-size:18px;font-weight:400} /* Gray 800: Gray 700 is 3.8:1 on the pink tile */
   .facts.will-count .fact{opacity:0;transform:translateY(12px)} /* fade-in start state; GSAP animates from here */
 
   /* ============ FGI'S APPROACH (node 6305:8644) ============ */
@@ -391,7 +395,7 @@
   .brand .li{width:28px;height:28px}
   .link-cols{flex:1 1 0;min-width:0;display:flex;gap:48px}
   .link-col{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:12px}
-  .link-col h4{font-size:14px;line-height:1.4;font-weight:600;color:var(--text-neutral-2)}
+  .link-col h3{font-size:14px;line-height:1.4;font-weight:600;color:#565656} /* Gray 800: 4.5:1 on the footer ground */
   .link-col .rule{height:4px}
   .link-col a{font-size:14px;line-height:1.4}
   .link-col a:hover{color:var(--bg-brand)}
@@ -457,7 +461,7 @@
   .values{padding:64px var(--pad-x) 112px;display:flex;flex-direction:column;gap:48px}
   .values-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
   .value{gap:16px;min-height:280px}
-  .value-num{font-family:var(--font-display);font-weight:700;font-size:31.25px;line-height:1.2;color:var(--text-brand-secondary);opacity:.55}
+  .value-num{font-family:var(--font-display);font-weight:700;font-size:31.25px;line-height:1.2;color:var(--text-brand-secondary);opacity:.8}
   .value .t-heading{margin-top:auto}
   .value .t-body{color:var(--text-secondary);font-size:16px}
   /* founders band: dark panel, copy left, the three headshots right, whole thing is the link to Leadership */
@@ -538,7 +542,7 @@
   .theme-blue .photo-hero-copy .eyebrow{color:var(--blue-300)}
   .theme-blue .statement-panel{background:linear-gradient(167.4deg,var(--blue-900) 14.644%,var(--blue-700) 85.356%)} /* Blue 900 -> 700 */
   .theme-blue .statement-panel .sec-num,.theme-blue .statement-panel .eyebrow,.theme-blue .statement-body .t-body{color:var(--blue-200)}
-  .theme-blue .sec-num,.theme-blue .eyebrow.section{color:var(--blue-600)}
+  .theme-blue .sec-num,.theme-blue .eyebrow.section{color:var(--blue-700)} /* Blue 600 is 3:1 on white: light text only */
   .theme-blue .road-phase{color:var(--blue-800)}
   .theme-blue .road-group{background:var(--blue-100);border-color:var(--blue-200)}
   .theme-blue .road-row + .road-row{border-color:var(--blue-200)}

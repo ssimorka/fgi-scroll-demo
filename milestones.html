@@ -14,6 +14,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
 <body class="theme-blue">
 
 <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
   <div class="mesh" aria-hidden="true"></div>
 
   <!-- ============ SITE NAV (own bar above the hero card) ============ -->
@@ -77,11 +78,12 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
   </div>
 
 
+  <main id="main">
   <!-- ============ VIDEO HERO (35pharma pipeline) ============ -->
   <div class="stack-wrap">
   <section class="photo-hero stack-panel" id="top">
     <div class="photo-hero-card">
-      <video autoplay muted loop playsinline preload="metadata" poster="assets/stills/03-sequencing.jpg" src="assets/03-sequencing.mp4" id="heroVideo"></video>
+      <video autoplay muted loop playsinline aria-hidden="true" preload="metadata" poster="assets/stills/03-sequencing.jpg" src="assets/03-sequencing.mp4" id="heroVideo"></video>
       <div class="photo-hero-copy">
         <div class="headline">
           <p class="eyebrow" data-entrance>Company milestones</p>
@@ -169,6 +171,8 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
   </section>
 
 
+  </main>
+
   <!-- ============ FOOTER ============ -->
   <footer class="footer" id="footer">
     <div class="footer-content">
@@ -177,10 +181,10 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
         <a class="li" href="https://www.linkedin.com/company/first-genomic-insights-inc/posts/?feedView=all" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="assets/linkedin.svg" alt=""></a>
       </div>
       <div class="link-cols">
-        <div class="link-col" data-reveal><h4>PLATFORM</h4><div class="rule"></div><a href="index.html#tech">Technology Overview</a><a href="index.html#tech">How NIFS Works</a><a href="index.html#news">Clinical Applications</a><a href="index.html#news">Research &amp; Publications</a></div>
-        <div class="link-col" data-reveal><h4>FOR YOU</h4><div class="rule"></div><a href="index.html#news">Clinical &amp; Lab Partners</a><a href="#footer">Investors</a><a href="index.html#news">Researchers</a><a href="#footer">Careers</a></div>
-        <div class="link-col" data-reveal><h4>COMPANY</h4><div class="rule"></div><a href="company.html">Our Story</a><a href="leadership.html">Leadership</a><a href="milestones.html">Milestones</a><a href="#contact">Contact</a></div>
-        <div class="link-col" data-reveal><h4>GET IN TOUCH</h4><div class="rule"></div><a href="#contact">Laboratory partnership</a><a href="#contact">Investor relations</a><a href="#contact">Research collaboration</a><a href="#contact">Media &amp; press</a></div>
+        <div class="link-col" data-reveal><h3>PLATFORM</h3><div class="rule"></div><a href="index.html#tech">Technology Overview</a><a href="index.html#tech">How NIFS Works</a><a href="index.html#news">Clinical Applications</a><a href="index.html#news">Research &amp; Publications</a></div>
+        <div class="link-col" data-reveal><h3>FOR YOU</h3><div class="rule"></div><a href="index.html#news">Clinical &amp; Lab Partners</a><a href="#footer">Investors</a><a href="index.html#news">Researchers</a><a href="#footer">Careers</a></div>
+        <div class="link-col" data-reveal><h3>COMPANY</h3><div class="rule"></div><a href="company.html">Our Story</a><a href="leadership.html">Leadership</a><a href="milestones.html">Milestones</a><a href="#contact">Contact</a></div>
+        <div class="link-col" data-reveal><h3>GET IN TOUCH</h3><div class="rule"></div><a href="#contact">Laboratory partnership</a><a href="#contact">Investor relations</a><a href="#contact">Research collaboration</a><a href="#contact">Media &amp; press</a></div>
       </div>
     </div>
     <div class="legal">

@@ -3,7 +3,7 @@
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   /* ---------- 1. Lenis smooth scroll (site-wide) ---------- */
-  const lenis = new Lenis({ lerp: 0.1, wheelMultiplier: 0.7 });
+  const lenis = new Lenis({ lerp: 0.1, wheelMultiplier: 0.7, smoothWheel: !reduceMotion }); // reduced motion: native wheel scrolling
   window.lenis = lenis; // exposed for poking at in devtools
   const samePageHash = (a) => { // "#x" or "index.html#x" while on index -> the hash; another page -> null
     const u = new URL(a.href, location.href); const here = location.pathname.replace(/\/$/, '/index.html');
@@ -48,8 +48,9 @@
   const openMenu = () => {
     if (menuOpen || menuBusy) return;
     menuOpen = true; menuBusy = true; navModal.hidden = false; menuBtn.setAttribute('aria-expanded', 'true'); lenis.stop();
-    if (reduceMotion) { gsap.set(mScrim, { opacity: 1 }); gsap.set(mTray, { xPercent: 0 }); gsap.set(mIns, { yPercent: 0 }); gsap.set([mTop, mFoot], { opacity: 1 }); menuBusy = false; return; }
-    gsap.timeline({ onComplete: () => { menuBusy = false; } })
+    const menuCloseBtn = document.getElementById('menuClose');
+    if (reduceMotion) { gsap.set(mScrim, { opacity: 1 }); gsap.set(mTray, { xPercent: 0 }); gsap.set(mIns, { yPercent: 0 }); gsap.set([mTop, mFoot], { opacity: 1 }); menuBusy = false; menuCloseBtn.focus(); return; }
+    gsap.timeline({ onComplete: () => { menuBusy = false; menuCloseBtn.focus(); } })
       .fromTo(mScrim, { opacity: 0 }, { opacity: 1, duration: .6, ease: 'power2.out' }, 0)
       .fromTo(mTray, { xPercent: 100 }, { xPercent: 0, duration: .75, ease: 'power3.out' }, 0) // tray slides in from the right
       .fromTo(mTop, { opacity: 0 }, { opacity: 1, duration: .5 }, .3)
@@ -60,7 +61,7 @@
     if (!menuOpen || menuBusy) return;
     menuBusy = true;
     const done = () => {
-      navModal.hidden = true; menuOpen = false; menuBusy = false; menuBtn.setAttribute('aria-expanded', 'false'); lenis.start();
+      navModal.hidden = true; menuOpen = false; menuBusy = false; menuBtn.setAttribute('aria-expanded', 'false'); lenis.start(); if (!menuThen) menuBtn.focus();
       if (menuThen) { const t = menuThen; menuThen = null; lenis.scrollTo(t, { duration: 1.2 }); }
     };
     if (reduceMotion) { done(); return; }

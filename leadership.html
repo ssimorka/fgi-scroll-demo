@@ -14,6 +14,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
 <body>
 
 <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
   <div class="mesh" aria-hidden="true"></div>
 
   <!-- ============ SITE NAV (own bar above the hero card) ============ -->
@@ -77,6 +78,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
   </div>
 
 
+  <main id="main">
   <!-- ============ PHOTO HERO ============ -->
   <div class="stack-wrap">
   <section class="photo-hero stack-panel" id="top">
@@ -149,6 +151,8 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
   </section>
 
 
+  </main>
+
   <!-- ============ FOOTER ============ -->
   <footer class="footer" id="footer">
     <div class="footer-content">
@@ -157,10 +161,10 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
         <a class="li" href="https://www.linkedin.com/company/first-genomic-insights-inc/posts/?feedView=all" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="assets/linkedin.svg" alt=""></a>
       </div>
       <div class="link-cols">
-        <div class="link-col" data-reveal><h4>PLATFORM</h4><div class="rule"></div><a href="index.html#tech">Technology Overview</a><a href="index.html#tech">How NIFS Works</a><a href="index.html#news">Clinical Applications</a><a href="index.html#news">Research &amp; Publications</a></div>
-        <div class="link-col" data-reveal><h4>FOR YOU</h4><div class="rule"></div><a href="index.html#news">Clinical &amp; Lab Partners</a><a href="#footer">Investors</a><a href="index.html#news">Researchers</a><a href="#footer">Careers</a></div>
-        <div class="link-col" data-reveal><h4>COMPANY</h4><div class="rule"></div><a href="company.html">Our Story</a><a href="leadership.html">Leadership</a><a href="milestones.html">Milestones</a><a href="#contact">Contact</a></div>
-        <div class="link-col" data-reveal><h4>GET IN TOUCH</h4><div class="rule"></div><a href="#contact">Laboratory partnership</a><a href="#contact">Investor relations</a><a href="#contact">Research collaboration</a><a href="#contact">Media &amp; press</a></div>
+        <div class="link-col" data-reveal><h3>PLATFORM</h3><div class="rule"></div><a href="index.html#tech">Technology Overview</a><a href="index.html#tech">How NIFS Works</a><a href="index.html#news">Clinical Applications</a><a href="index.html#news">Research &amp; Publications</a></div>
+        <div class="link-col" data-reveal><h3>FOR YOU</h3><div class="rule"></div><a href="index.html#news">Clinical &amp; Lab Partners</a><a href="#footer">Investors</a><a href="index.html#news">Researchers</a><a href="#footer">Careers</a></div>
+        <div class="link-col" data-reveal><h3>COMPANY</h3><div class="rule"></div><a href="company.html">Our Story</a><a href="leadership.html">Leadership</a><a href="milestones.html">Milestones</a><a href="#contact">Contact</a></div>
+        <div class="link-col" data-reveal><h3>GET IN TOUCH</h3><div class="rule"></div><a href="#contact">Laboratory partnership</a><a href="#contact">Investor relations</a><a href="#contact">Research collaboration</a><a href="#contact">Media &amp; press</a></div>
       </div>
     </div>
     <div class="legal">
@@ -205,7 +209,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
         bio: ['A field leader in reproductive genetics and the delivery of genomic technologies into prenatal care, Ronald Wapner directs Reproductive Genetics and is Professor of Obstetrics and Gynecology at Columbia University Medical Center.', 'He has led national studies evaluating how prenatal genetic testing performs in clinical practice.'] },
   ];
   const grid = document.getElementById('teamGrid');
-  grid.innerHTML = people.map((p, i) => `<button class="team-card" type="button" data-i="${i}"><div class="portrait"><img src="${p.img}" alt=""></div><p class="name">${p.name}</p><p class="role">${p.role} · ${p.tag}</p></button>`).join('');
+  grid.innerHTML = people.map((p, i) => `<button class="team-card" type="button" data-i="${i}"><div class="portrait"><img src="${p.img}" alt="Portrait of ${p.name}"></div><p class="name">${p.name}</p><p class="role">${p.role} · ${p.tag}</p></button>`).join('');
   if (!reduceMotion) { // rendered after the shared reveal pass, so register the cards' own
     gsap.set(grid.children, { opacity: 0, y: 28 });
     ScrollTrigger.batch(grid.children, { start: 'top 90%', once: true, onEnter: (b) => gsap.to(b, { opacity: 1, y: 0, duration: 1, ease: 'power3.out', stagger: .08, clearProps: 'transform' }) });
@@ -218,7 +222,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
     document.getElementById('bioName').textContent = p.name;
     document.getElementById('bioImg').src = p.img;
     document.getElementById('bioRole').textContent = `${p.role} · ${p.tag}`;
-    document.getElementById('bioAffil').textContent = p.affil;
+    document.getElementById('bioAffil').textContent = p.affil; document.getElementById('bioImg').alt = 'Portrait of ' + p.name;
     document.getElementById('bioText').innerHTML = p.bio.map(t => `<p>${t}</p>`).join('') + '<p class="draft">Draft bio, pending review by FGI.</p>';
   };
   const openBio = (p, from) => {
