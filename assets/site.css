@@ -459,8 +459,10 @@
     background:rgba(255,255,255,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--border-default);border-radius:var(--radius)}
   .vision-caption .t-body{color:var(--text-secondary);font-size:16px}
   .values{padding:64px var(--pad-x) 112px;display:flex;flex-direction:column;gap:48px}
-  .values-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
-  .value{gap:16px;min-height:280px}
+  .values-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:24px} /* bento: tile 01 + the founders band over three tiles (2 over 3) */
+  .value{gap:16px;min-height:280px;grid-column:span 2}
+  .values-grid .founders-band{grid-column:span 4;grid-template-columns:minmax(0,1fr) auto} /* in the bento the band is two-thirds wide: copy takes the room, the faces hug */
+  .values-grid .founders-band-faces img{width:clamp(84px,7.5vw,116px)}
   .value-icon{display:grid;place-items:center;width:48px;height:48px;border-radius:12px;background:var(--pink-100);color:var(--bg-brand)} /* Design Kit icon (Feather, 24) on a soft tile; decorative, the heading carries the meaning */
   .value-icon svg{width:24px;height:24px}
   .value .t-heading{margin-top:auto}
@@ -647,6 +649,8 @@
     .chart-val{font-size:12px;flex-basis:100%;white-space:normal} /* the value drops under the bar */
     .chart-ticks{font-size:11px}
     .values-grid{grid-template-columns:1fr;gap:16px}
+    .value,.values-grid .founders-band{grid-column:auto}
+    .values-grid .founders-band{order:9} /* stacked: the band closes the group */
     .value{min-height:0}
     .founders-band{grid-template-columns:1fr;gap:24px;padding:28px 24px}
     .founders-band-faces{justify-content:flex-start}
@@ -678,6 +682,7 @@
     .fact{flex:1 1 40%}
     .team-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
     .values-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+    .values-grid .founders-band{grid-column:1/-1}
     .pillars{grid-template-columns:repeat(3,minmax(0,1fr))}
   }
   /* ---------- mobile (< 768): mini mark + hamburger (comp 6423:636) ---------- */
@@ -711,6 +716,7 @@
     .footer-content{flex-direction:row;gap:48px}
     .team-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
     .values-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .values-grid .founders-band{grid-column:1/-1}
     .brand{flex-direction:column;align-items:flex-start}
     .link-cols{flex-wrap:nowrap}
     .legal{flex-direction:row}
