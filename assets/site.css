@@ -554,6 +554,7 @@
     .fact .t-small-strong{font-size:15px}
     .approach{padding:12px}
     .approach{min-height:0;display:block}
+    .stack-over > .stack-panel{min-height:100svh;background:var(--bg-page)} /* a covering panel is at least a viewport tall and opaque, so the panel it pins over never shows beneath it */
     .approach-panel,.panel{flex:0 0 auto;display:block}
     .approach-panel{padding:20px;gap:16px}
     .panel-img{flex:0 0 auto;height:min(60vw,480px)}
