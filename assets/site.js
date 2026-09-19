@@ -108,7 +108,8 @@
     document.documentElement.classList.add('js-motion');
     ScrollTrigger.batch('[data-reveal]', {
       start: 'top 90%', once: true,
-      onEnter: (batch) => gsap.to(batch, { opacity: 1, y: 0, duration: 1, ease: 'power3.out', stagger: .08, overwrite: true }), // no clearProps: the CSS start state (28px low) would come back
+      onEnter: (batch) => gsap.to(batch, { opacity: 1, y: 0, duration: 1, ease: 'power3.out', stagger: .08, overwrite: true,
+        onComplete: () => batch.forEach(el => { el.classList.add('is-in'); gsap.set(el, { clearProps: 'transform' }); }) }), // .is-in releases the CSS start state, then the inline transform goes so CSS hover transforms apply
     });
   }
 

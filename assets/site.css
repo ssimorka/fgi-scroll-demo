@@ -111,7 +111,7 @@
   html.js-motion .hero-copy .headline > *,html.js-motion .hero .facts,html.js-motion [data-entrance],html.js-motion .site-nav{opacity:0} /* start hidden; the intro timeline brings them in */
 
   /* ---- Scroll reveals: rise and fade in as they enter ---- */
-  html.js-motion [data-reveal]{opacity:0;transform:translateY(28px)}
+  html.js-motion [data-reveal]:not(.is-in){opacity:0;transform:translateY(28px)} /* .is-in once revealed, so the inline transform can be cleared and hover transforms work */
 
   /* ---- Numbered sections (01/02/03), display size, brand blue, faint ---- */
   .sec-num{font-family:var(--font-display);font-weight:700;font-size:48.83px;line-height:1.2;letter-spacing:-.02em;color:var(--text-brand-secondary);opacity:.8;font-variant-numeric:tabular-nums} /* .8: 3.6:1 on white (large-text AA) */
@@ -309,8 +309,11 @@
   .tile-light .eyebrow{color:var(--bg-brand)} /* Text/Brand/Default */
   .tile-brand{background:var(--grad-tile-brand);box-shadow:var(--shadow-300);color:var(--text-on-dark)} /* FGI/Gradient/Tile Brand */
   .tile-brand .eyebrow{color:var(--text-on-dark-2)}
-  .pathway{min-width:0;transition:transform .25s}
-  .pathway:hover{transform:translateY(-2px)}
+  .pathway{min-width:0}
+  /* bento rollover: every tile lifts and its shadow deepens, so the grid reads as interactive */
+  .tile,.tile-founders,.founders-band{transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s cubic-bezier(.2,.7,.2,1)}
+  .tile:hover,.tile-founders:hover,.founders-band:hover{transform:translateY(-6px);box-shadow:var(--shadow-400)}
+  @media (prefers-reduced-motion:reduce){.tile:hover,.tile-founders:hover,.founders-band:hover{transform:none}}
   .pathway .tile-content{gap:12px}
   .pathway .t-heading{letter-spacing:-.02em}
   .tile .icon-btn{width:36px;height:36px;color:var(--bg-brand)} /* arrow drawn in Icon/Brand/Default on light tiles */
@@ -477,8 +480,7 @@
   .value .t-body{color:var(--text-secondary);font-size:16px}
   /* founders band: dark panel, copy left, the three headshots right, whole thing is the link to Leadership */
   .founders-band{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:32px;align-items:center;padding:48px;border-radius:var(--radius);
-    background:var(--grad-dark-depth);color:var(--text-on-dark);box-shadow:var(--shadow-400);transition:transform .3s cubic-bezier(.2,.7,.2,1)}
-  .founders-band:hover{transform:translateY(-2px)}
+    background:var(--grad-dark-depth);color:var(--text-on-dark);box-shadow:var(--shadow-400)}
   .founders-band-copy{display:flex;flex-direction:column;gap:16px;max-width:60ch}
   .founders-band-copy .t-body{color:var(--text-on-dark-2)}
   .founders-band-copy .btn{align-self:flex-start;margin-top:8px}
