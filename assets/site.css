@@ -461,7 +461,8 @@
   .values{padding:64px var(--pad-x) 112px;display:flex;flex-direction:column;gap:48px}
   .values-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
   .value{gap:16px;min-height:280px}
-  .value-num{font-family:var(--font-display);font-weight:700;font-size:31.25px;line-height:1.2;color:var(--text-brand-secondary);opacity:.8}
+  .value-icon{display:grid;place-items:center;width:48px;height:48px;border-radius:12px;background:var(--pink-100);color:var(--bg-brand)} /* Design Kit icon (Feather, 24) on a soft tile; decorative, the heading carries the meaning */
+  .value-icon svg{width:24px;height:24px}
   .value .t-heading{margin-top:auto}
   .value .t-body{color:var(--text-secondary);font-size:16px}
   /* founders band: dark panel, copy left, the three headshots right, whole thing is the link to Leadership */
