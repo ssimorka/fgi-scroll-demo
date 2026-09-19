@@ -197,8 +197,8 @@
   .nav-modal-links > a:hover,.tray-toggle:hover{color:var(--text-on-dark-2)}
   /* accordion item (BillionToOne mobile pattern): the row opens on hover or tap, sub-links unfold beneath it */
   .tray-toggle{width:100%;text-align:left;padding:0}
-  .tray-toggle .mask .in{display:flex;align-items:center;justify-content:space-between;gap:16px}
-  .tray-toggle .chev{display:inline-block;flex:0 0 auto;opacity:1;margin-right:11px} /* in the tray it is the affordance, so full strength; sits on the close button's centre line */
+  .tray-toggle .mask .in{display:flex;align-items:center;justify-content:flex-start;gap:18px} /* the chevron belongs to the label, so it sits beside it (not at the tray's far edge, where it floats on wide trays) */
+  .tray-toggle .chev{display:inline-block;flex:0 0 auto;opacity:1} /* in the tray it is the affordance, so full strength */
   .tray-toggle .chev{width:12px;height:12px;border-width:2px;transform:translateY(-4px) rotate(45deg)}
   .has-sub.is-open .tray-toggle .chev{transform:translateY(2px) rotate(225deg)}
   .tray-sub{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.2,.7,.2,1)}
@@ -546,6 +546,7 @@
     .hero{padding:12px}
     .hero-card{padding:40px 20px 32px;gap:32px}
     .hero-copy{flex-direction:column;align-items:stretch;gap:24px}
+    .hero-copy .headline,.photo-hero-copy .headline{max-width:640px} /* stacked copy keeps a measure on wide phones / small tablets */
     .hero-copy .aside{flex:0 0 auto}
     .hero-copy .t-subtitle{font-size:20px}
     .hero-copy .headline{gap:16px}
@@ -601,7 +602,7 @@
     .pillars{grid-template-columns:1fr;gap:20px}
     .roadmap{padding:64px var(--pad-x) 64px;gap:32px}
     .road{--bar-h:14px;--bar-r:4px}
-    .road-head{display:none}
+    .road .road-head{display:none} /* beats .road-cols{display:flex} below */
     .road-group{padding:4px 20px}
     .road-cols{display:flex;flex-direction:column;align-items:stretch;gap:12px}
     .road-row{padding:18px 0}
@@ -623,6 +624,7 @@
     .founders-band-faces{justify-content:flex-start}
     .team-head{margin-bottom:32px}
     .team-grid{grid-template-columns:1fr;gap:32px}
+    .team-card .portrait{max-height:440px} /* one column: the 11:12 portrait would otherwise fill the viewport */
     .bio-tray{width:100%;border-radius:0;padding:17px 22px 40px 20px}
     .bio-grid{grid-template-columns:1fr;gap:24px;margin-top:24px}
     .bio-side .portrait{max-width:280px}
@@ -641,6 +643,14 @@
     .link-cols{flex-wrap:wrap;gap:24px}
     .link-col{flex:1 1 40%}
     .legal{flex-direction:column;gap:8px;white-space:normal}
+  }
+  /* ---------- large phones / small tablets (600-767): phone nav, but use the width ---------- */
+  @media (min-width:600px) and (max-width:767.98px){
+    .facts{flex-direction:row;flex-wrap:wrap;gap:20px;padding:24px}
+    .fact{flex:1 1 40%}
+    .team-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+    .values-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+    .pillars{grid-template-columns:repeat(3,minmax(0,1fr))}
   }
   /* ---------- mobile (< 768): mini mark + hamburger (comp 6423:636) ---------- */
   @media (max-width:767.98px){
