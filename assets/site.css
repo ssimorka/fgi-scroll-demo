@@ -137,7 +137,8 @@
      in JS so a panel taller than the viewport pins on its bottom edge. */
   .stack-wrap{position:relative}
   .stack-wrap::after{content:'';display:block;height:var(--spacer,100vh)}
-  .stack-panel{position:sticky;top:0;transform-origin:50% 50%;will-change:transform,opacity}
+  .stack-panel{position:sticky;top:0;transform-origin:50% 50%;will-change:transform}
+  .stack-panel::after{content:'';position:absolute;inset:0;z-index:10;border-radius:inherit;background:var(--bg-page);opacity:var(--veil,0);pointer-events:none} /* the recede fades the panel toward the page with a veil, not opacity: nothing behind it shows through */
   .stack-over{margin-top:-100vh}
   .hero-wrap{z-index:1}
   .approach-wrap{z-index:2}
