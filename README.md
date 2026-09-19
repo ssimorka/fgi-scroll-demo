@@ -5,7 +5,7 @@ Motion demo for the FGI site. Serve the folder with `python serve.py` (or any st
 What it demonstrates:
 
 - Lenis smooth scroll site-wide
-- Panel stacking: Hero → FGI's Approach → Mission (the covered panel pins, recedes and fades while the next slides over it)
+- Panel stacking: Hero → FGI's Approach → Mission (the covered panel pins, recedes and fades while the next slides over it), at every breakpoint; a panel taller than the viewport pins on its bottom edge
 - Technology scroll sequence: pinned section, cards translate horizontally in proportion to scroll, next card peeks in; swipe carousel below 1024px
 - Parallax on the Approach / Founders panels
 - Page entrance: nav and hero copy rise in on load, fact tiles count up after. Skipped under `prefers-reduced-motion`

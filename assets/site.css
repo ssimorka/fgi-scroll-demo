@@ -535,9 +535,6 @@
   }
   @media (max-width:1023.98px){
     :root{--pad-x:20px}
-    .stack-wrap::after{display:none}
-    .stack-panel{position:static}
-    .stack-over{margin-top:0!important;padding-bottom:0!important}
     :root{--nav-h:64px;--grad-hero-angle:135deg}
     .navbar{padding:16px 12px 0}
     .site-nav.scrolled .navbar-inner{padding:6px 6px 6px 12px}
