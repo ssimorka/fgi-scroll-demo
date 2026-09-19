@@ -211,6 +211,8 @@
     if (!s.wrap.style.zIndex && !getComputedStyle(s.wrap).zIndex.match(/^\d/)) s.wrap.style.zIndex = i + 1;
     s.slide = parseFloat(s.over.dataset.slide) || 1;
     s.inner = s.over.firstElementChild;
+    // a page-coloured backdrop pinned behind the panel: as the panel recedes (scales down) it uncovers this, not the mesh
+    s.backdrop = document.createElement('div'); s.backdrop.className = 'stack-backdrop'; s.backdrop.setAttribute('aria-hidden', 'true'); s.wrap.insertBefore(s.backdrop, s.panel);
     // y0: where the next section's top sits (in the viewport) the instant the
     // panel pins; D: scroll distance the cover takes at this slide speed.
     s.y0 = () => Math.min(window.innerHeight, s.panel.offsetHeight);
@@ -244,6 +246,7 @@
         invalidateOnRefresh: true,
       });
       gsap.to(s.panel, { scale: 0.9, borderRadius: 40, '--veil': 1, ease: 'none', scrollTrigger: { ...st(), scrub: 1 } }); // veil (see .stack-panel::after), not opacity; fully opaque once covered, so it never shows through the cover's gutters
+      gsap.to(s.backdrop, { opacity: 1, ease: 'none', scrollTrigger: { ...st(), scrub: 1 } });
       if (s.slide < 1) {
         gsap.fromTo(s.inner, { y: 0 }, { y: () => s.D() - s.y0(), ease: 'none', scrollTrigger: { ...st(), scrub: true } });
       }
@@ -253,7 +256,7 @@
       stacks.forEach(s => {
         s.panel.style.top = ''; s.wrap.style.removeProperty('--spacer');
         s.over.style.marginTop = ''; s.over.style.paddingBottom = '';
-        gsap.set([s.panel, s.inner], { clearProps: 'all' });
+        gsap.set([s.panel, s.inner, s.backdrop], { clearProps: 'all' });
       });
     };
   });
