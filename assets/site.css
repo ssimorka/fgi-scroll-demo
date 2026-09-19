@@ -359,7 +359,7 @@
   .card.is-dark{background:var(--grad-blue-depth)}
   .card.is-dark .card-copy .t-subtitle{color:var(--text-on-dark)}
   .card.is-dark .card-num{color:var(--text-on-dark)}
-  .card-foot{display:flex;flex-direction:column;gap:16px}
+  .card-lead{display:flex;flex-direction:column;gap:24px} /* subtitle with its link under it; the number keeps the foot */
   .card-link{display:inline-flex;align-items:center;gap:10px;font-size:18px;line-height:1.2;color:var(--text-on-dark);border-bottom:1px solid rgba(240,253,255,.4);padding-bottom:6px;align-self:flex-start;transition:border-color .2s}
   .card-link:hover{border-color:var(--text-on-dark)}
   .card-link .arrow{width:24px}
