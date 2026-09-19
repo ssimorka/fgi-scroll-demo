@@ -243,7 +243,7 @@
         end:   () => `top ${s.y0() - s.D()}px`,  // the next section has fully covered it
         invalidateOnRefresh: true,
       });
-      gsap.to(s.panel, { scale: 0.9, borderRadius: 40, '--veil': 0.65, ease: 'none', scrollTrigger: { ...st(), scrub: 1 } }); // veil (see .stack-panel::after), not opacity
+      gsap.to(s.panel, { scale: 0.9, borderRadius: 40, '--veil': 1, ease: 'none', scrollTrigger: { ...st(), scrub: 1 } }); // veil (see .stack-panel::after), not opacity; fully opaque once covered, so it never shows through the cover's gutters
       if (s.slide < 1) {
         gsap.fromTo(s.inner, { y: 0 }, { y: () => s.D() - s.y0(), ease: 'none', scrollTrigger: { ...st(), scrub: true } });
       }
