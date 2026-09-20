@@ -27,7 +27,13 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
           <img class="mark" src="assets/fgi-mini-color.svg" alt="">
         </a>
         <ul class="nav-list">
-          <li><a href="index.html#tech">Technology</a></li>
+          <li class="nav-item has-sub">
+            <a class="nav-sub-toggle" href="index.html#tech" aria-haspopup="true" aria-expanded="false" aria-controls="subTechnology">Technology <span class="chev" aria-hidden="true"></span></a>
+            <div class="nav-sub" id="subTechnology">
+              <a href="index.html#tech">Our Technology</a>
+              <a href="index.html#news">Publications</a>
+            </div>
+          </li>
           <li><a href="#contact">Careers</a></li>
           <li><a href="#contact">Investors</a></li>
           <li class="nav-item has-sub">
@@ -55,7 +61,15 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
         <button class="icon-btn on-dark menu-close" id="menuClose" type="button" aria-label="Close menu"><img src="assets/icon-close.svg" alt=""></button>
       </div>
       <nav class="nav-modal-links" aria-label="Site">
-        <a href="index.html#tech"><span class="mask"><span class="in">Technology</span></span></a>
+        <div class="tray-item has-sub">
+          <button class="tray-toggle" type="button" aria-expanded="false" aria-controls="traySubTechnology"><span class="mask"><span class="in">Technology <span class="chev" aria-hidden="true"></span></span></span></button>
+          <div class="tray-sub" id="traySubTechnology">
+            <div class="tray-sub-inner">
+              <a href="index.html#tech">Our Technology</a>
+              <a href="index.html#news">Publications</a>
+            </div>
+          </div>
+        </div>
         <a href="#contact"><span class="mask"><span class="in">Careers</span></span></a>
         <a href="#contact"><span class="mask"><span class="in">Investors</span></span></a>
         <div class="tray-item has-sub">
