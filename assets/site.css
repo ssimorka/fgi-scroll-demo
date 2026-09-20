@@ -599,6 +599,9 @@
   .job-row .btn{flex:0 0 auto}
   .openings-foot{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;padding:32px;border-radius:var(--radius);background:var(--bg-brand-tint);border:1px solid var(--border-brand-tertiary)}
   .openings-foot .t-body{color:var(--text-secondary)}
+  .openings-actions{display:flex;gap:12px;flex-wrap:wrap}
+  .btn-li img{width:18px;height:18px;margin-right:2px} /* the LinkedIn mark, in the button's text colour */
+  .btn-li:hover{filter:none;background:var(--bg-tertiary)}
   .job-filters{display:flex;align-items:flex-end;gap:16px 24px;flex-wrap:wrap}
   .job-filter{display:flex;flex-direction:column;gap:8px;min-width:240px}
   .job-filter .t-small-strong{color:var(--text-secondary)}
