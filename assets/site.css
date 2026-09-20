@@ -106,6 +106,15 @@
   .icon-btn.on-dark:hover{background:rgba(255,255,255,.12)}
   .icon-btn.on-dark img{filter:brightness(0) invert(1)}
   .icon-btn.flip{--rot:180deg}
+  /* play / pause for moving content (WCAG 2.2.2): a frosted disc in the hero's top-right corner; inline in the technology controls */
+  .media-toggle{position:absolute;top:24px;right:24px;z-index:5;width:44px;height:44px;background:rgba(255,255,255,.85);color:var(--bg-brand);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:var(--shadow-300)}
+  .media-toggle:hover{background:#fff}
+  .media-toggle svg{width:18px;height:18px}
+  .media-toggle .ic-play{display:none}
+  .media-toggle.is-paused .ic-pause{display:none}
+  .media-toggle.is-paused .ic-play{display:block;margin-left:2px}
+  .media-toggle.inline{position:static;width:39px;height:39px;background:none;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;color:var(--text-default)}
+  .media-toggle.inline:hover{background:rgba(53,66,91,.08)}
 
   /* ---- Page entrance: nav and hero copy rise in on load ---- */
   html.js-motion .hero-copy .headline > *,html.js-motion .hero .facts,html.js-motion [data-entrance],html.js-motion .site-nav{opacity:0} /* start hidden; the intro timeline brings them in */
@@ -727,6 +736,7 @@
     .cta{padding:64px var(--pad-x)}
     .photo-hero{padding:12px}
     .photo-hero-card{height:auto;min-height:min(78svh,640px);padding:24px 20px}
+    .media-toggle{top:16px;right:16px}
     .photo-hero-copy{flex-direction:column;align-items:stretch;gap:24px}
     .photo-hero-copy .actions{flex-wrap:wrap}
     .statement{padding:12px;min-height:0;display:block}

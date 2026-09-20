@@ -99,6 +99,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
         <canvas class="hero-viz" id="heroViz" data-tone="light" data-density="1.7" aria-hidden="true"></canvas>
         <canvas class="hero-helix" id="heroHelix" aria-hidden="true"></canvas>
         <img class="hero-helix hero-helix-still" src="assets/hero-helix.webp" alt="" aria-hidden="true" hidden>
+        <button class="icon-btn media-toggle" type="button" aria-pressed="false" aria-label="Pause animation"><svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg><svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.5.87l12.5-7.5a1 1 0 0 0 0-1.74L8.5 3.63A1 1 0 0 0 7 4.5z"/></svg></button>
         <div class="hero-copy">
           <div class="headline">
             <p class="eyebrow">Non-invasive fetal sequencing</p>
@@ -151,6 +152,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
           </div>
         </div>
         <div class="controls">
+          <button class="icon-btn media-toggle inline" type="button" aria-pressed="false" aria-label="Pause animation"><svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg><svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.5.87l12.5-7.5a1 1 0 0 0 0-1.74L8.5 3.63A1 1 0 0 0 7 4.5z"/></svg></button>
           <button class="icon-btn flip" id="prevBtn" aria-label="Previous card"><span class="arrow"></span></button>
           <button class="icon-btn" id="nextBtn" aria-label="Next card"><span class="arrow"></span></button>
         </div>
@@ -297,7 +299,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
 <script src="assets/site.js"></script>
 <script>
 (() => { // home page only: helix, fact counters, panel stacking, parallax, the technology sequence
-  const { lenis, reduceMotion, introDone } = window.FGI;
+  const { lenis, reduceMotion, introDone, motion } = window.FGI;
   // Tuning knob (open item): scroll distance per beat, in viewport heights.
   const VH_PER_BEAT = 1.3; // ~1:1 px mapping (35pharma: 2212px travel for 2 x 1211px shifts)
 
@@ -389,13 +391,14 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
     };
 
     let tick = 0;
-    const frame = (now) => { if (!(tick++ & 1)) draw(now / 1000); if (visible && !reduceMotion) raf = requestAnimationFrame(frame); }; // every other frame
-    const start = () => { if (!raf) raf = requestAnimationFrame(frame); };
+    const frame = (now) => { if (!(tick++ & 1)) draw(now / 1000); if (visible && !motion.paused) raf = requestAnimationFrame(frame); }; // every other frame
+    const start = () => { if (!raf && visible && !motion.paused) raf = requestAnimationFrame(frame); };
     const stop = () => { cancelAnimationFrame(raf); raf = 0; };
     build();
-    if (reduceMotion) { draw(0); return; } // one static frame
+    draw(0); // one static frame; the loop takes over unless the page is paused (reduced motion, or the toggle)
     new IntersectionObserver((e) => { visible = e[0].isIntersecting; visible ? start() : stop(); }).observe(card);
-    let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { build(); if (reduceMotion) draw(0); }, 120); });
+    motion.add({ start, stop });
+    let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { build(); if (motion.paused) draw(0); }, 120); });
   };
   const scheduleHelix = () => (window.requestIdleCallback ? requestIdleCallback(initHelix, { timeout: 1200 }) : setTimeout(initHelix, 200));
   if (document.readyState === 'complete') scheduleHelix(); else window.addEventListener('load', scheduleHelix);
@@ -533,19 +536,16 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
   prev.addEventListener('click', () => goTo(currentBeat - 1));
   next.addEventListener('click', () => goTo(currentBeat + 1));
 
-  /* ---------- Video playback: only when >= 50% in view ---------- */
-  if (reduceMotion) {
-    // Leave the poster visible; never autoplay.
-    videos.forEach(v => v.pause());
-  } else {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(({ target, isIntersecting, intersectionRatio }) => {
-        if (isIntersecting && intersectionRatio >= 0.5) target.play().catch(() => {});
-        else target.pause();
-      });
-    }, { threshold: [0, 0.5, 1] });
-    videos.forEach(v => io.observe(v));
-  }
+  /* ---------- Video playback: only when >= 50% in view, and only while the page's motion is not paused ---------- */
+  const inView = new Set();
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(({ target, isIntersecting, intersectionRatio }) => {
+      if (isIntersecting && intersectionRatio >= 0.5) { inView.add(target); if (!motion.paused) target.play().catch(() => {}); }
+      else { inView.delete(target); target.pause(); }
+    });
+  }, { threshold: [0, 0.5, 1] });
+  videos.forEach(v => io.observe(v));
+  motion.add({ start: () => inView.forEach(v => v.play().catch(() => {})), stop: () => videos.forEach(v => v.pause()) });
 
 })();
 </script>

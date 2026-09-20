@@ -2,6 +2,16 @@
   gsap.registerPlugin(ScrollTrigger);
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* ---------- 0a. Motion registry: every animated hero / clip registers start + stop; one paused flag for the page ----------
+     Starts paused under reduced motion. The .media-toggle buttons (hero corner, technology controls) flip it, so a visitor
+     can stop moving content (WCAG 2.2.2) or, under reduced motion, choose to play it. */
+  const motion = {
+    paused: reduceMotion, items: [], buttons: [],
+    add(item) { this.items.push(item); if (!this.paused) item.start(); },
+    set(p) { this.paused = p; this.items.forEach(i => p ? i.stop() : i.start()); this.buttons.forEach(b => { b.classList.toggle('is-paused', p); b.setAttribute('aria-pressed', String(p)); b.setAttribute('aria-label', p ? 'Play animation' : 'Pause animation'); }); },
+    bind(btn) { this.buttons.push(btn); btn.addEventListener('click', () => this.set(!this.paused)); btn.classList.toggle('is-paused', this.paused); btn.setAttribute('aria-pressed', String(this.paused)); btn.setAttribute('aria-label', this.paused ? 'Play animation' : 'Pause animation'); },
+  };
+  document.querySelectorAll('.media-toggle').forEach(b => motion.bind(b));
   /* ---------- 1. Lenis smooth scroll (site-wide) ---------- */
   const lenis = new Lenis({ lerp: 0.1, wheelMultiplier: 0.7, smoothWheel: !reduceMotion }); // reduced motion: native wheel scrolling
   window.lenis = lenis; // exposed for poking at in devtools
@@ -185,14 +195,15 @@
       const dt = Math.min((now - last) / 1000, 0.05); last = now;
       ctx.clearRect(0, 0, W, H);
       drawLanes(dt); mask();
-      if (visible && !reduceMotion) raf = requestAnimationFrame(frame);
+      if (visible && !motion.paused) raf = requestAnimationFrame(frame);
     };
-    const start = () => { if (!raf) { last = performance.now(); raf = requestAnimationFrame(frame); } };
+    const start = () => { if (!raf && visible && !motion.paused) { last = performance.now(); raf = requestAnimationFrame(frame); } };
     const stop = () => { cancelAnimationFrame(raf); raf = 0; };
 
     build();
-    if (reduceMotion) { frame(performance.now()); return; } // one static frame
+    frame(performance.now()); // one frame now: the static state if paused (reduced motion), otherwise the loop takes over
     new IntersectionObserver((e) => { visible = e[0].isIntersecting; visible ? start() : stop(); }).observe(card);
+    motion.add({ start, stop });
     let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(build, 120); });
   };
   document.querySelectorAll('.hero-viz').forEach(mountViz);
@@ -263,6 +274,6 @@
     };
   });
 
-  window.FGI = { lenis, reduceMotion, introDone, mountViz }; // page scripts build on these
+  window.FGI = { lenis, reduceMotion, introDone, mountViz, motion }; // page scripts build on these
   window.addEventListener('load', () => ScrollTrigger.refresh());
 })();
