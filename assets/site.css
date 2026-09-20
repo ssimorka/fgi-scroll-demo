@@ -426,6 +426,8 @@
   .photo-hero-copy .headline{max-width:900px;display:flex;flex-direction:column;gap:20px}
   .photo-hero-copy .eyebrow{color:var(--text-on-dark-2)}
   .photo-hero-copy .actions{display:flex;gap:12px;flex-shrink:0}
+  .photo-hero-card .photo-hero-copy .btn-brand{background:var(--bg-page);border-color:var(--bg-page);color:var(--hero-cta-ink,var(--bg-brand))} /* the filled CTA inverts on a photo / clip hero: a dark fill sank into the dark gradient */
+  .photo-hero-card .photo-hero-copy .btn-brand:hover{filter:none;background:var(--bg-secondary)}
   /* 01 company statement: brand panel, number + statement, eyebrow + body (35pharma "Our company") */
   .statement{padding:24px;min-height:calc(100svh - var(--nav-h));display:flex;flex-direction:column} /* a full viewport, like the Approach panel: it must hide the pinned hero completely before it unpins */
   .statement-panel{flex:1 1 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:40px 64px;align-items:start;align-content:space-between;padding:56px 48px;border-radius:var(--radius);background:var(--grad-tile-brand);color:var(--text-on-dark);box-shadow:var(--shadow-300)}
@@ -562,7 +564,7 @@
 
 
   /* ============ MILESTONES PAGE: the Blue ramp (Design Kit Blue 100-1000) instead of the teal brand set ============ */
-  .theme-blue{--blue-100:#f0faff;--blue-200:#c7edff;--blue-300:#9fe0ff;--blue-500:#3bb8f0;--blue-600:#009de0;--blue-700:#0065ac;--blue-800:#002c77;--blue-900:#001f52;--blue-1000:#001538}
+  .theme-blue{--hero-cta-ink:#002c77;--blue-100:#f0faff;--blue-200:#c7edff;--blue-300:#9fe0ff;--blue-500:#3bb8f0;--blue-600:#009de0;--blue-700:#0065ac;--blue-800:#002c77;--blue-900:#001f52;--blue-1000:#001538}
   .theme-blue .photo-hero-card{background:var(--blue-1000)}
   .theme-blue .photo-hero-card::after{background:linear-gradient(180deg,rgba(0,21,56,0) 30%,rgba(0,21,56,.85) 100%)} /* the clip's own ground under the copy */
   .theme-blue .photo-hero-copy .eyebrow{color:var(--blue-300)}
@@ -622,7 +624,7 @@
 
 
   /* ============ Purple ramp (Design Kit), scoped by body.theme-purple: covers the careers and open-positions structures ============ */
-  .theme-purple{--r-100:#e8ebf5;--r-200:#c6cbe7;--r-300:#a1aad7;--r-400:#7c89c7;--r-500:#606fbb;--r-600:#4555b0;--r-700:#3f4da6;--r-800:#36439a;--r-900:#2e398e;--r-1000:#222878}
+  .theme-purple{--hero-cta-ink:#36439a;--r-100:#e8ebf5;--r-200:#c6cbe7;--r-300:#a1aad7;--r-400:#7c89c7;--r-500:#606fbb;--r-600:#4555b0;--r-700:#3f4da6;--r-800:#36439a;--r-900:#2e398e;--r-1000:#222878}
   .theme-purple .photo-hero-card::after{background:linear-gradient(180deg,rgba(34,40,120,0) 30%,rgba(34,40,120,.85) 100%)} /* the ramp's 1000 under the hero copy */
   .theme-purple .photo-hero-copy .eyebrow{color:var(--r-300)}
   .theme-purple .statement-panel{background:linear-gradient(167.4deg,var(--r-1000) 14.644%,var(--r-800) 85.356%)} /* 1000 -> 800 */
@@ -651,7 +653,7 @@
   .theme-purple .legal{border-top-color:var(--r-900)}
 
   /* ============ Blue Gray ramp (Design Kit), scoped by body.theme-bluegray: covers the careers and open-positions structures ============ */
-  .theme-bluegray{--r-100:#f8fafc;--r-200:#e5edf4;--r-300:#d1e0ec;--r-400:#bed3e4;--r-500:#a2b7cd;--r-600:#8096b2;--r-700:#627798;--r-800:#4e6287;--r-900:#35425b;--r-1000:#1b222f}
+  .theme-bluegray{--hero-cta-ink:#35425b;--r-100:#f8fafc;--r-200:#e5edf4;--r-300:#d1e0ec;--r-400:#bed3e4;--r-500:#a2b7cd;--r-600:#8096b2;--r-700:#627798;--r-800:#4e6287;--r-900:#35425b;--r-1000:#1b222f}
   .theme-bluegray .photo-hero-card::after{background:linear-gradient(180deg,rgba(27,34,47,0) 30%,rgba(27,34,47,.85) 100%)} /* the ramp's 1000 under the hero copy */
   .theme-bluegray .photo-hero-copy .eyebrow{color:var(--r-300)}
   .theme-bluegray .statement-panel{background:linear-gradient(167.4deg,var(--r-1000) 14.644%,var(--r-800) 85.356%)} /* 1000 -> 800 */
