@@ -608,53 +608,63 @@
   .job-empty{color:var(--text-secondary)}
 
 
-  /* ============ CAREERS PAGE: the Blue Gray ramp (Design Kit Blue gray 100-1000) ============ */
-  .theme-bluegray{--bg-100:#f8fafc;--bg-200:#e5edf4;--bg-300:#d1e0ec;--bg-400:#bed3e4;--bg-500:#a2b7cd;--bg-600:#8096b2;--bg-700:#627798;--bg-800:#4e6287;--bg-900:#35425b;--bg-1000:#1b222f}
-  .theme-bluegray .photo-hero-card::after{background:linear-gradient(180deg,rgba(27,34,47,0) 30%,rgba(27,34,47,.85) 100%)} /* Blue gray 1000 under the copy */
-  .theme-bluegray .photo-hero-copy .eyebrow{color:var(--bg-400)}
-  .theme-bluegray .statement-panel{background:linear-gradient(167.4deg,var(--bg-1000) 14.644%,var(--bg-800) 85.356%)} /* 1000 -> 800 */
-  .theme-bluegray .statement-panel .sec-num,.theme-bluegray .statement-panel .eyebrow.section,.theme-bluegray .statement-body .t-body{color:var(--bg-300)}
-  .theme-bluegray .sec-num,.theme-bluegray .eyebrow.section{color:var(--bg-700)} /* 700 is AA on white; 600 is light-text-only */
-  .theme-bluegray .culture .value{background:var(--bg-100);border-color:var(--bg-300)}
-  .theme-bluegray .culture .value-icon{background:var(--bg-200);color:var(--bg-900)}
-  .theme-bluegray .culture .t-body{color:var(--bg-800)}
-  .theme-bluegray .perk-group{background:var(--bg-200);border-color:var(--bg-400)}
-  .theme-bluegray .perk-group .value-icon{background:var(--bg-100);color:var(--bg-900)}
-  .theme-bluegray .perk-list li{border-color:var(--bg-400);color:var(--bg-800)}
-  .theme-bluegray .job-row,.theme-bluegray .job-row:last-child{border-color:var(--bg-300)}
-  .theme-bluegray .job-meta{color:var(--bg-700)}
-  .theme-bluegray .job-row:hover .job-title{color:var(--bg-900)}
-  .theme-bluegray .openings-foot{background:var(--bg-200);border-color:var(--bg-400)}
-  .theme-bluegray .btn-brand{background:var(--bg-900);border-color:var(--bg-900)}
-  .theme-bluegray .btn-brand:hover{background:var(--bg-800);border-color:var(--bg-800)}
-  .theme-bluegray .btn-neutral{background:var(--bg-200);border-color:var(--bg-500)}
-  .theme-bluegray .cta,.theme-bluegray .cta::before{background:var(--bg-100)}
-  .theme-bluegray .cta-route,.theme-bluegray .cta-route:last-child{border-color:var(--bg-300)}
-  .theme-bluegray .cta-route:hover{color:var(--bg-900)}
-  .theme-bluegray .footer::before{background:var(--bg-100);border-top-color:var(--bg-300)}
-  .theme-bluegray .legal{border-top-color:var(--bg-900)}
+  /* ============ Purple ramp (Design Kit), scoped by body.theme-purple: covers the careers and open-positions structures ============ */
+  .theme-purple{--r-100:#e8ebf5;--r-200:#c6cbe7;--r-300:#a1aad7;--r-400:#7c89c7;--r-500:#606fbb;--r-600:#4555b0;--r-700:#3f4da6;--r-800:#36439a;--r-900:#2e398e;--r-1000:#222878}
+  .theme-purple .photo-hero-card::after{background:linear-gradient(180deg,rgba(34,40,120,0) 30%,rgba(34,40,120,.85) 100%)} /* the ramp's 1000 under the hero copy */
+  .theme-purple .photo-hero-copy .eyebrow{color:var(--r-300)}
+  .theme-purple .statement-panel{background:linear-gradient(167.4deg,var(--r-1000) 14.644%,var(--r-800) 85.356%)} /* 1000 -> 800 */
+  .theme-purple .statement-panel .sec-num,.theme-purple .statement-panel .eyebrow.section,.theme-purple .statement-body .t-body{color:var(--r-200)}
+  .theme-purple .sec-num,.theme-purple .eyebrow.section{color:var(--r-600)} /* the first step that is AA for small text on white */
+  .theme-purple .culture .value{background:var(--r-100);border-color:var(--r-300)}
+  .theme-purple .culture .value-icon{background:var(--r-200);color:var(--r-900)}
+  .theme-purple .culture .t-body{color:var(--r-800)}
+  .theme-purple .perk-group{background:var(--r-200);border-color:var(--r-400)}
+  .theme-purple .perk-group .value-icon{background:var(--r-100);color:var(--r-900)}
+  .theme-purple .perk-list li{border-color:var(--r-400);color:var(--r-800)}
+  .theme-purple .job-filter select{border-color:var(--r-400);background-color:var(--r-100)}
+  .theme-purple .job-filter select:focus-visible{outline-color:var(--r-600)}
+  .theme-purple .job-filter .t-small-strong,.theme-purple .job-count{color:var(--r-700)}
+  .theme-purple .job-row,.theme-purple .job-row:last-child{border-color:var(--r-300)}
+  .theme-purple .job-meta{color:var(--r-700)}
+  .theme-purple .job-row:hover .job-title{color:var(--r-900)}
+  .theme-purple .openings-foot{background:var(--r-200);border-color:var(--r-400)}
+  .theme-purple .btn-brand{background:var(--r-900);border-color:var(--r-900)}
+  .theme-purple .btn-brand:hover{background:var(--r-800);border-color:var(--r-800)}
+  .theme-purple .btn-neutral{background:var(--r-100);border-color:var(--r-500)}
+  .theme-purple .cta,.theme-purple .cta::before{background:var(--r-100)}
+  .theme-purple .cta-route,.theme-purple .cta-route:last-child{border-color:var(--r-300)}
+  .theme-purple .cta-route:hover{color:var(--r-900)}
+  .theme-purple .footer::before{background:var(--r-100);border-top-color:var(--r-300)}
+  .theme-purple .legal{border-top-color:var(--r-900)}
 
-
-  /* ============ OPEN POSITIONS PAGE: the Purple ramp (Design Kit Purple 100-1000) ============ */
-  .theme-purple{--pu-100:#e8ebf5;--pu-200:#c6cbe7;--pu-300:#a1aad7;--pu-400:#7c89c7;--pu-500:#606fbb;--pu-600:#4555b0;--pu-700:#3f4da6;--pu-800:#36439a;--pu-900:#2e398e;--pu-1000:#222878}
-  .theme-purple .photo-hero-card::after{background:linear-gradient(180deg,rgba(34,40,120,0) 30%,rgba(34,40,120,.85) 100%)} /* Purple 1000 under the copy */
-  .theme-purple .photo-hero-copy .eyebrow{color:var(--pu-200)}
-  .theme-purple .sec-num,.theme-purple .eyebrow.section{color:var(--pu-600)} /* 600 is AA on white; 500 is light-text-only */
-  .theme-purple .job-filter select{border-color:var(--pu-400);background-color:var(--pu-100)}
-  .theme-purple .job-filter select:focus-visible{outline-color:var(--pu-600)}
-  .theme-purple .job-filter .t-small-strong,.theme-purple .job-count{color:var(--pu-700)}
-  .theme-purple .job-row,.theme-purple .job-row:last-child{border-color:var(--pu-200)}
-  .theme-purple .job-meta{color:var(--pu-700)}
-  .theme-purple .job-row:hover .job-title{color:var(--pu-800)}
-  .theme-purple .btn-brand{background:var(--pu-800);border-color:var(--pu-800)}
-  .theme-purple .btn-brand:hover{background:var(--pu-700);border-color:var(--pu-700)}
-  .theme-purple .btn-neutral{background:var(--pu-100);border-color:var(--pu-400)}
-  .theme-purple .cta,.theme-purple .cta::before{background:var(--pu-100)}
-  .theme-purple .cta-route,.theme-purple .cta-route:last-child{border-color:var(--pu-200)}
-  .theme-purple .cta-route:hover{color:var(--pu-800)}
-  .theme-purple .cta .sec-num{color:var(--pu-600)}
-  .theme-purple .footer::before{background:var(--pu-100);border-top-color:var(--pu-200)}
-  .theme-purple .legal{border-top-color:var(--pu-800)}
+  /* ============ Blue Gray ramp (Design Kit), scoped by body.theme-bluegray: covers the careers and open-positions structures ============ */
+  .theme-bluegray{--r-100:#f8fafc;--r-200:#e5edf4;--r-300:#d1e0ec;--r-400:#bed3e4;--r-500:#a2b7cd;--r-600:#8096b2;--r-700:#627798;--r-800:#4e6287;--r-900:#35425b;--r-1000:#1b222f}
+  .theme-bluegray .photo-hero-card::after{background:linear-gradient(180deg,rgba(27,34,47,0) 30%,rgba(27,34,47,.85) 100%)} /* the ramp's 1000 under the hero copy */
+  .theme-bluegray .photo-hero-copy .eyebrow{color:var(--r-300)}
+  .theme-bluegray .statement-panel{background:linear-gradient(167.4deg,var(--r-1000) 14.644%,var(--r-800) 85.356%)} /* 1000 -> 800 */
+  .theme-bluegray .statement-panel .sec-num,.theme-bluegray .statement-panel .eyebrow.section,.theme-bluegray .statement-body .t-body{color:var(--r-200)}
+  .theme-bluegray .sec-num,.theme-bluegray .eyebrow.section{color:var(--r-700)} /* the first step that is AA for small text on white */
+  .theme-bluegray .culture .value{background:var(--r-100);border-color:var(--r-300)}
+  .theme-bluegray .culture .value-icon{background:var(--r-200);color:var(--r-900)}
+  .theme-bluegray .culture .t-body{color:var(--r-800)}
+  .theme-bluegray .perk-group{background:var(--r-200);border-color:var(--r-400)}
+  .theme-bluegray .perk-group .value-icon{background:var(--r-100);color:var(--r-900)}
+  .theme-bluegray .perk-list li{border-color:var(--r-400);color:var(--r-800)}
+  .theme-bluegray .job-filter select{border-color:var(--r-400);background-color:var(--r-100)}
+  .theme-bluegray .job-filter select:focus-visible{outline-color:var(--r-700)}
+  .theme-bluegray .job-filter .t-small-strong,.theme-bluegray .job-count{color:var(--r-700)}
+  .theme-bluegray .job-row,.theme-bluegray .job-row:last-child{border-color:var(--r-300)}
+  .theme-bluegray .job-meta{color:var(--r-700)}
+  .theme-bluegray .job-row:hover .job-title{color:var(--r-900)}
+  .theme-bluegray .openings-foot{background:var(--r-200);border-color:var(--r-400)}
+  .theme-bluegray .btn-brand{background:var(--r-900);border-color:var(--r-900)}
+  .theme-bluegray .btn-brand:hover{background:var(--r-800);border-color:var(--r-800)}
+  .theme-bluegray .btn-neutral{background:var(--r-100);border-color:var(--r-500)}
+  .theme-bluegray .cta,.theme-bluegray .cta::before{background:var(--r-100)}
+  .theme-bluegray .cta-route,.theme-bluegray .cta-route:last-child{border-color:var(--r-300)}
+  .theme-bluegray .cta-route:hover{color:var(--r-900)}
+  .theme-bluegray .footer::before{background:var(--r-100);border-top-color:var(--r-300)}
+  .theme-bluegray .legal{border-top-color:var(--r-900)}
 
   /* ============ Responsive ============ */
   @media (max-width:1279.98px){
