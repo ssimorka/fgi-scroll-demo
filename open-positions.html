@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Leadership &amp; Board — First Genomic Insights</title>
+<title>Open Positions — First Genomic Insights</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&family=Roboto+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
@@ -100,47 +100,37 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
       <img src="assets/founders-photo.jpg" alt="">
       <div class="photo-hero-copy">
         <div class="headline">
-          <p class="eyebrow" data-entrance>Leadership &amp; Board</p>
-          <h1 class="t-hero" data-entrance>Founded by world leaders in prenatal diagnostics.</h1>
-          <p class="t-subtitle" data-entrance>Bridging the interface of genomic technologies, precision health and fetal medicine.</p>
+          <p class="eyebrow" data-entrance>Careers</p>
+          <h1 class="t-hero" data-entrance>Open positions.</h1>
+          <p class="t-subtitle" data-entrance>Roles across the lab, the platform and the clinic.</p>
         </div>
         <div class="actions" data-entrance>
-          <a class="btn btn-outline-light" href="index.html#news">Our research <span class="arrow"></span></a>
-          <a class="btn btn-brand" href="#contact">Get in touch <span class="arrow"></span></a>
+          <a class="btn btn-outline-light" href="careers.html">Life at FGI <span class="arrow"></span></a>
+          <a class="btn btn-brand" href="#positions">Browse roles <span class="arrow"></span></a>
         </div>
       </div>
     </div>
   </section>
   </div>
 
-  <!-- ============ 01 COMPANY STATEMENT (slides over the hero) ============ -->
-  <div class="stack-wrap stack-over" data-slide="0.65">
-  <section class="statement stack-panel" id="company">
-    <div class="statement-panel">
-      <span class="sec-num" aria-hidden="true" data-reveal>01</span>
-      <h2 class="t-page" data-reveal>FGI will redefine prenatal care by engineering scalable, comprehensive, non-invasive genomic technologies that deliver clinically relevant genetic information to patients.</h2>
-      <p class="eyebrow section" data-reveal>Our company</p>
-      <div class="statement-body">
-        <p class="t-body" data-reveal>Our founders have spent decades translating genomic research into clinical care for fetuses, newborns, children and adults. They created First Genomic Insights to move prenatal genomic medicine beyond limited testing, toward comprehensive genomic insight.</p>
-        <div data-reveal><a class="btn btn-outline-light" href="#contact">Join the team <span class="arrow"></span></a></div>
-      </div>
-    </div>
-  </section>
-  </div>
-
-  <!-- ============ 02 LEADERSHIP (slides over the statement, 1:1) ============ -->
+  <!-- ============ 01 POSITIONS (slides over the hero) ============ -->
   <div class="stack-over">
-  <section class="team on-white" id="leadership">
-    <div class="team-head">
-      <div class="section-heading" data-reveal>
-        <span class="sec-num" aria-hidden="true">02</span>
-        <div>
-          <p class="eyebrow section">Founders</p>
-          <h2 class="t-page">Leadership</h2>
-        </div>
+  <section class="openings on-white positions" id="positions">
+    <div class="section-heading" data-reveal>
+      <span class="sec-num" aria-hidden="true">01</span>
+      <div>
+        <p class="eyebrow section">Open positions</p>
+        <h2 class="t-page">Find your role.</h2>
       </div>
     </div>
-    <div class="team-grid" id="teamGrid"></div>
+    <div class="job-filters" data-reveal>
+      <label class="job-filter"><span class="t-small-strong">Department</span><select id="filterDept"><option>All</option></select></label>
+      <label class="job-filter"><span class="t-small-strong">Location</span><select id="filterLoc"><option>All</option></select></label>
+      <p class="t-small job-count" id="jobCount" aria-live="polite"></p>
+    </div>
+    <div class="job-list" id="jobList"></div>
+    <p class="t-body job-empty" id="jobEmpty" hidden>No positions match those filters. Clear one and try again, or tell us what you would bring.</p>
+    <p class="t-small draft-note" data-reveal>Sample listings, to be replaced by the live applicant-tracking feed.</p>
   </section>
   </div>
 
@@ -148,7 +138,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
   <section class="cta" id="contact">
     <div class="cta-panel">
       <div class="cta-head">
-        <span class="sec-num" aria-hidden="true">03</span>
+        <span class="sec-num" aria-hidden="true">02</span>
         <h2 class="t-hero" data-reveal>Let's talk.</h2>
       </div>
       <div class="cta-body">
@@ -188,78 +178,42 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
   </footer>
 </div>
 
-<!-- ============ BIO TRAY ============ -->
-<div class="bio-modal" id="bioModal" hidden>
-  <div class="nav-modal-scrim" id="bioScrim" aria-hidden="true"></div>
-  <div class="bio-tray" role="dialog" data-lenis-prevent aria-modal="true" aria-labelledby="bioName">
-    <div class="bio-head">
-      <h2 class="t-page" id="bioName"></h2>
-      <button class="icon-btn menu-close" id="bioClose" type="button" aria-label="Close"><img src="assets/icon-close.svg" alt=""></button>
-    </div>
-    <div class="bio-grid">
-      <div class="bio-side">
-        <div class="portrait"><img id="bioImg" src="" alt=""></div>
-        <p class="role" id="bioRole"></p>
-        <p class="affil" id="bioAffil"></p>
-      </div>
-      <div class="bio-text" id="bioText"></div>
-    </div>
-  </div>
-</div>
-
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.1/dist/lenis.min.js"></script>
 <script src="assets/site.js"></script>
 <script>
-(() => { // leadership page: founder cards and the bio tray
-  const { lenis, reduceMotion } = window.FGI;
-  const people = [
-      { name: 'Michael Talkowski, PhD', role: 'Co-Founder', tag: 'Pioneer in translational genomic technologies', affil: 'Director, Center for Genomic Medicine · Professor of Neurology, Mass General Brigham and Harvard · Broad Institute of MIT and Harvard', img: 'assets/team/talkowski.jpg',
-        bio: ['A pioneer in translational genomic technologies, Michael Talkowski directs the Center for Genomic Medicine at Mass General Brigham, is Professor of Neurology at Harvard Medical School and a member of the Broad Institute of MIT and Harvard.', 'His research applies genome sequencing to the discovery and interpretation of genetic variation in human disease, including the methods that underpin non-invasive fetal sequencing.'] },
-      { name: 'Wendy Chung, MD, PhD', role: 'Co-Founder', tag: 'World-renowned expert in clinical genetics and newborn screening', affil: 'Chief of Pediatrics, Boston Children\'s Hospital · Professor of Pediatrics, Harvard Medical School', img: 'assets/team/chung.jpg',
-        bio: ['A world-renowned expert in clinical genetics and newborn screening, Wendy Chung is Chief of Pediatrics at Boston Children\'s Hospital and Professor of Pediatrics at Harvard Medical School.', 'Her work spans the genetic basis of pediatric conditions and the responsible use of genomic testing for newborns and families.'] },
-      { name: 'Ronald Wapner, MD', role: 'Co-Founder', tag: 'Field leader in reproductive genetics and the delivery of genomic technologies into prenatal care', affil: 'Director of Reproductive Genetics · Professor of Obstetrics and Gynecology, Columbia University Medical Center', img: 'assets/team/wapner.jpg',
-        bio: ['A field leader in reproductive genetics and the delivery of genomic technologies into prenatal care, Ronald Wapner directs Reproductive Genetics and is Professor of Obstetrics and Gynecology at Columbia University Medical Center.', 'He has led national studies evaluating how prenatal genetic testing performs in clinical practice.'] },
+(() => { // open positions: a client-side list with department / location filters (sample roles until the ATS feed is wired in)
+  const jobs = [
+    { title: 'Clinical Laboratory Scientist', dept: 'Laboratory operations', loc: 'Boston, MA', type: 'Full-time' },
+    { title: 'Laboratory Operations Associate', dept: 'Laboratory operations', loc: 'Boston, MA', type: 'Full-time' },
+    { title: 'Bioinformatics Scientist, Fetal Variant Interpretation', dept: 'Research & Development', loc: 'Boston, MA · Hybrid', type: 'Full-time' },
+    { title: 'Research Associate, Sequencing Methods', dept: 'Research & Development', loc: 'Boston, MA', type: 'Full-time' },
+    { title: 'Senior Software Engineer, Sequencing Platform', dept: 'Software', loc: 'Remote (US)', type: 'Full-time' },
+    { title: 'Data Engineer, Genomic Pipelines', dept: 'Software', loc: 'Remote (US)', type: 'Full-time' },
+    { title: 'Genetic Counselor', dept: 'Clinical', loc: 'New York, NY · Hybrid', type: 'Full-time' },
+    { title: 'Clinical Study Coordinator, Prospective Validation', dept: 'Clinical', loc: 'New York, NY', type: 'Full-time' },
+    { title: 'Regulatory Affairs Manager', dept: 'Regulatory & Quality', loc: 'Boston, MA · Hybrid', type: 'Full-time' },
+    { title: 'Quality Systems Specialist', dept: 'Regulatory & Quality', loc: 'Boston, MA', type: 'Full-time' },
+    { title: 'Laboratory Partnerships Lead', dept: 'Commercial', loc: 'Remote (US)', type: 'Full-time' },
   ];
-  const grid = document.getElementById('teamGrid');
-  grid.innerHTML = people.map((p, i) => `<button class="team-card" type="button" data-i="${i}"><div class="portrait"><img src="${p.img}" alt="Portrait of ${p.name}"></div><p class="name">${p.name}</p><p class="role">${p.role} · ${p.tag}</p></button>`).join('');
-  if (!reduceMotion) { // rendered after the shared reveal pass, so register the cards' own
-    gsap.set(grid.children, { opacity: 0, y: 28 });
-    ScrollTrigger.batch(grid.children, { start: 'top 90%', once: true, onEnter: (b) => gsap.to(b, { opacity: 1, y: 0, duration: 1, ease: 'power3.out', stagger: .08, clearProps: 'transform' }) });
-  }
-
-  // bio tray: same choreography as the menu tray, light surface
-  const modal = document.getElementById('bioModal'), tray = modal.querySelector('.bio-tray'), scrim = document.getElementById('bioScrim');
-  let open = false, busy = false, last = null;
-  const fill = (p) => {
-    document.getElementById('bioName').textContent = p.name;
-    document.getElementById('bioImg').src = p.img;
-    document.getElementById('bioRole').textContent = `${p.role} · ${p.tag}`;
-    document.getElementById('bioAffil').textContent = p.affil; document.getElementById('bioImg').alt = 'Portrait of ' + p.name;
-    document.getElementById('bioText').innerHTML = p.bio.map(t => `<p>${t}</p>`).join('') + '<p class="draft">Draft bio, pending review by FGI.</p>';
+  const list = document.getElementById('jobList'), deptSel = document.getElementById('filterDept'), locSel = document.getElementById('filterLoc'), count = document.getElementById('jobCount'), empty = document.getElementById('jobEmpty');
+  const uniq = k => [...new Set(jobs.map(j => j[k]))].sort();
+  uniq('dept').forEach(d => deptSel.insertAdjacentHTML('beforeend', `<option>${d}</option>`));
+  uniq('loc').forEach(l => locSel.insertAdjacentHTML('beforeend', `<option>${l}</option>`));
+  const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+  const render = () => {
+    const d = deptSel.value, l = locSel.value;
+    const rows = jobs.filter(j => (d === 'All' || j.dept === d) && (l === 'All' || j.loc === l));
+    const groups = [...new Set(rows.map(j => j.dept))];
+    list.innerHTML = groups.map(g => `<div class="job-group"><h3 class="t-heading">${esc(g)}</h3>` + rows.filter(j => j.dept === g).map(j =>
+      `<a class="job-row" href="#contact"><div class="job-copy"><p class="job-title">${esc(j.title)}</p><p class="job-meta">${esc(j.loc)} · ${esc(j.type)}</p></div><span class="btn btn-neutral btn-sm">View position <span class="arrow"></span></span></a>`).join('') + '</div>').join('');
+    count.textContent = rows.length === 1 ? '1 open position' : rows.length + ' open positions';
+    empty.hidden = rows.length > 0;
+    // rows are added after the page's reveal batch ran, so show them directly
+    list.querySelectorAll('a[href*="#"]').forEach(a => a.addEventListener('click', (e) => { const t = document.querySelector(a.getAttribute('href')); if (t) { e.preventDefault(); window.FGI.lenis.scrollTo(t, { duration: 1.2 }); } }));
   };
-  const openBio = (p, from) => {
-    if (open || busy) return; open = true; busy = true; last = from; fill(p); modal.hidden = false; tray.scrollTop = 0; lenis.stop();
-    if (reduceMotion) { gsap.set(scrim, { opacity: 1 }); gsap.set(tray, { xPercent: 0 }); busy = false; return; }
-    gsap.timeline({ onComplete: () => { busy = false; document.getElementById('bioClose').focus(); } })
-      .fromTo(scrim, { opacity: 0 }, { opacity: 1, duration: .6, ease: 'power2.out' }, 0)
-      .fromTo(tray, { xPercent: 100 }, { xPercent: 0, duration: .75, ease: 'power3.out' }, 0)
-      .fromTo(tray.querySelectorAll('.bio-head, .bio-side, .bio-text'), { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: .6, ease: 'power2.out', stagger: .08 }, .25);
-  };
-  const closeBio = () => {
-    if (!open || busy) return; busy = true;
-    const done = () => { modal.hidden = true; open = false; busy = false; lenis.start(); if (last) last.focus(); };
-    if (reduceMotion) { done(); return; }
-    gsap.timeline({ onComplete: done })
-      .to(tray, { xPercent: 100, duration: .55, ease: 'power3.in' }, 0)
-      .to(scrim, { opacity: 0, duration: .45, ease: 'power2.in' }, .1);
-  };
-  grid.addEventListener('click', (e) => { const b = e.target.closest('.team-card[data-i]'); if (b) openBio(people[+b.dataset.i], b); });
-  document.getElementById('bioClose').addEventListener('click', closeBio);
-  scrim.addEventListener('click', closeBio);
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeBio(); });
-  modal.querySelectorAll('a[href*="#"]').forEach(a => a.addEventListener('click', closeBio));
+  deptSel.addEventListener('change', render); locSel.addEventListener('change', render); render();
 })();
 </script>
 </body>
