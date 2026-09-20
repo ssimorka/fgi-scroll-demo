@@ -421,6 +421,7 @@
   .photo-hero{padding:24px}
   .photo-hero-card{position:relative;height:calc(100svh - var(--nav-h) - 48px);min-height:520px;max-height:860px;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-300);display:flex;align-items:flex-end;padding:48px;color:var(--text-on-dark)}
   .photo-hero-card > img,.photo-hero-card > video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+  .photo-hero-card > img[src$="hero-open-positions.webp"]{object-position:50% 8%} /* 4:3 photo in a wide card: anchored near the top so the head and the pointing hand both stay in the crop */
   .photo-hero-card::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,32,46,0) 30%,rgba(0,32,46,.82) 100%)}
   .photo-hero-copy{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:flex-end;gap:48px;width:100%}
   .photo-hero-copy .headline{max-width:900px;display:flex;flex-direction:column;gap:20px}
