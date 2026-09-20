@@ -424,7 +424,7 @@
   .photo-hero-card::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,32,46,0) 30%,rgba(0,32,46,.82) 100%)}
   .photo-hero-copy{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:flex-end;gap:48px;width:100%}
   .photo-hero-copy .headline{max-width:900px;display:flex;flex-direction:column;gap:20px}
-  .photo-hero-copy .eyebrow{color:var(--text-on-dark-2)}
+  .photo-hero-copy .eyebrow{color:var(--text-on-dark);text-shadow:0 1px 12px rgba(0,32,46,.45)} /* the eyebrow sits above the gradient's dark zone, over whatever the photo has there: white with a soft shadow reads on any of them; a ramp tint did not */
   .photo-hero-copy .actions{display:flex;gap:12px;flex-shrink:0}
   .photo-hero-card .photo-hero-copy .btn-brand{background:var(--bg-page);border-color:var(--bg-page);color:var(--hero-cta-ink,var(--bg-brand))} /* the filled CTA inverts on a photo / clip hero: a dark fill sank into the dark gradient */
   .photo-hero-card .photo-hero-copy .btn-brand:hover{filter:none;background:var(--bg-secondary)}
@@ -567,7 +567,6 @@
   .theme-blue{--hero-cta-ink:#002c77;--blue-100:#f0faff;--blue-200:#c7edff;--blue-300:#9fe0ff;--blue-500:#3bb8f0;--blue-600:#009de0;--blue-700:#0065ac;--blue-800:#002c77;--blue-900:#001f52;--blue-1000:#001538}
   .theme-blue .photo-hero-card{background:var(--blue-1000)}
   .theme-blue .photo-hero-card::after{background:linear-gradient(180deg,rgba(0,21,56,0) 30%,rgba(0,21,56,.85) 100%)} /* the clip's own ground under the copy */
-  .theme-blue .photo-hero-copy .eyebrow{color:var(--blue-300)}
   .theme-blue .statement-panel{background:linear-gradient(167.4deg,var(--blue-900) 14.644%,var(--blue-700) 85.356%)} /* Blue 900 -> 700 */
   .theme-blue .statement-panel .sec-num,.theme-blue .statement-panel .eyebrow.section,.theme-blue .statement-body .t-body{color:var(--blue-200)} /* on the blue panel: Blue 200 (outranks the on-white Blue 700 rule below) */
   .theme-blue .sec-num,.theme-blue .eyebrow.section{color:var(--blue-700)} /* Blue 600 is 3:1 on white: light text only */
@@ -626,7 +625,6 @@
   /* ============ Purple ramp (Design Kit), scoped by body.theme-purple: covers the careers and open-positions structures ============ */
   .theme-purple{--hero-cta-ink:#36439a;--r-100:#e8ebf5;--r-200:#c6cbe7;--r-300:#a1aad7;--r-400:#7c89c7;--r-500:#606fbb;--r-600:#4555b0;--r-700:#3f4da6;--r-800:#36439a;--r-900:#2e398e;--r-1000:#222878}
   .theme-purple .photo-hero-card::after{background:linear-gradient(180deg,rgba(34,40,120,0) 30%,rgba(34,40,120,.85) 100%)} /* the ramp's 1000 under the hero copy */
-  .theme-purple .photo-hero-copy .eyebrow{color:var(--r-300)}
   .theme-purple .statement-panel{background:linear-gradient(167.4deg,var(--r-1000) 14.644%,var(--r-800) 85.356%)} /* 1000 -> 800 */
   .theme-purple .statement-panel .sec-num,.theme-purple .statement-panel .eyebrow.section,.theme-purple .statement-body .t-body{color:var(--r-200)}
   .theme-purple .sec-num,.theme-purple .eyebrow.section{color:var(--r-600)} /* the first step that is AA for small text on white */
@@ -655,7 +653,6 @@
   /* ============ Blue Gray ramp (Design Kit), scoped by body.theme-bluegray: covers the careers and open-positions structures ============ */
   .theme-bluegray{--hero-cta-ink:#35425b;--r-100:#f8fafc;--r-200:#e5edf4;--r-300:#d1e0ec;--r-400:#bed3e4;--r-500:#a2b7cd;--r-600:#8096b2;--r-700:#627798;--r-800:#4e6287;--r-900:#35425b;--r-1000:#1b222f}
   .theme-bluegray .photo-hero-card::after{background:linear-gradient(180deg,rgba(27,34,47,0) 30%,rgba(27,34,47,.85) 100%)} /* the ramp's 1000 under the hero copy */
-  .theme-bluegray .photo-hero-copy .eyebrow{color:var(--r-300)}
   .theme-bluegray .statement-panel{background:linear-gradient(167.4deg,var(--r-1000) 14.644%,var(--r-800) 85.356%)} /* 1000 -> 800 */
   .theme-bluegray .statement-panel .sec-num,.theme-bluegray .statement-panel .eyebrow.section,.theme-bluegray .statement-body .t-body{color:var(--r-200)}
   .theme-bluegray .sec-num,.theme-bluegray .eyebrow.section{color:var(--r-700)} /* the first step that is AA for small text on white */
