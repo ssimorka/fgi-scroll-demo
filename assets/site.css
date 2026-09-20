@@ -607,6 +607,33 @@
   .job-count{margin-left:auto;color:var(--text-secondary);padding-bottom:14px}
   .job-empty{color:var(--text-secondary)}
 
+
+  /* ============ CAREERS PAGE: the Blue Gray ramp (Design Kit Blue gray 100-1000) ============ */
+  .theme-bluegray{--bg-100:#f8fafc;--bg-200:#e5edf4;--bg-300:#d1e0ec;--bg-400:#bed3e4;--bg-500:#a2b7cd;--bg-600:#8096b2;--bg-700:#627798;--bg-800:#4e6287;--bg-900:#35425b;--bg-1000:#1b222f}
+  .theme-bluegray .photo-hero-card::after{background:linear-gradient(180deg,rgba(27,34,47,0) 30%,rgba(27,34,47,.85) 100%)} /* Blue gray 1000 under the copy */
+  .theme-bluegray .photo-hero-copy .eyebrow{color:var(--bg-400)}
+  .theme-bluegray .statement-panel{background:linear-gradient(167.4deg,var(--bg-1000) 14.644%,var(--bg-800) 85.356%)} /* 1000 -> 800 */
+  .theme-bluegray .statement-panel .sec-num,.theme-bluegray .statement-panel .eyebrow.section,.theme-bluegray .statement-body .t-body{color:var(--bg-300)}
+  .theme-bluegray .sec-num,.theme-bluegray .eyebrow.section{color:var(--bg-700)} /* 700 is AA on white; 600 is light-text-only */
+  .theme-bluegray .culture .value{background:var(--bg-100);border-color:var(--bg-300)}
+  .theme-bluegray .culture .value-icon{background:var(--bg-200);color:var(--bg-900)}
+  .theme-bluegray .culture .t-body{color:var(--bg-800)}
+  .theme-bluegray .perk-group{background:var(--bg-200);border-color:var(--bg-400)}
+  .theme-bluegray .perk-group .value-icon{background:var(--bg-100);color:var(--bg-900)}
+  .theme-bluegray .perk-list li{border-color:var(--bg-400);color:var(--bg-800)}
+  .theme-bluegray .job-row,.theme-bluegray .job-row:last-child{border-color:var(--bg-300)}
+  .theme-bluegray .job-meta{color:var(--bg-700)}
+  .theme-bluegray .job-row:hover .job-title{color:var(--bg-900)}
+  .theme-bluegray .openings-foot{background:var(--bg-200);border-color:var(--bg-400)}
+  .theme-bluegray .btn-brand{background:var(--bg-900);border-color:var(--bg-900)}
+  .theme-bluegray .btn-brand:hover{background:var(--bg-800);border-color:var(--bg-800)}
+  .theme-bluegray .btn-neutral{background:var(--bg-200);border-color:var(--bg-500)}
+  .theme-bluegray .cta,.theme-bluegray .cta::before{background:var(--bg-100)}
+  .theme-bluegray .cta-route,.theme-bluegray .cta-route:last-child{border-color:var(--bg-300)}
+  .theme-bluegray .cta-route:hover{color:var(--bg-900)}
+  .theme-bluegray .footer::before{background:var(--bg-100);border-top-color:var(--bg-300)}
+  .theme-bluegray .legal{border-top-color:var(--bg-900)}
+
   /* ============ Responsive ============ */
   @media (max-width:1279.98px){
     .t-hero{font-size:clamp(44px,6vw,76.3px)}
