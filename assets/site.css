@@ -634,6 +634,28 @@
   .theme-bluegray .footer::before{background:var(--bg-100);border-top-color:var(--bg-300)}
   .theme-bluegray .legal{border-top-color:var(--bg-900)}
 
+
+  /* ============ OPEN POSITIONS PAGE: the Purple ramp (Design Kit Purple 100-1000) ============ */
+  .theme-purple{--pu-100:#e8ebf5;--pu-200:#c6cbe7;--pu-300:#a1aad7;--pu-400:#7c89c7;--pu-500:#606fbb;--pu-600:#4555b0;--pu-700:#3f4da6;--pu-800:#36439a;--pu-900:#2e398e;--pu-1000:#222878}
+  .theme-purple .photo-hero-card::after{background:linear-gradient(180deg,rgba(34,40,120,0) 30%,rgba(34,40,120,.85) 100%)} /* Purple 1000 under the copy */
+  .theme-purple .photo-hero-copy .eyebrow{color:var(--pu-200)}
+  .theme-purple .sec-num,.theme-purple .eyebrow.section{color:var(--pu-600)} /* 600 is AA on white; 500 is light-text-only */
+  .theme-purple .job-filter select{border-color:var(--pu-400);background-color:var(--pu-100)}
+  .theme-purple .job-filter select:focus-visible{outline-color:var(--pu-600)}
+  .theme-purple .job-filter .t-small-strong,.theme-purple .job-count{color:var(--pu-700)}
+  .theme-purple .job-row,.theme-purple .job-row:last-child{border-color:var(--pu-200)}
+  .theme-purple .job-meta{color:var(--pu-700)}
+  .theme-purple .job-row:hover .job-title{color:var(--pu-800)}
+  .theme-purple .btn-brand{background:var(--pu-800);border-color:var(--pu-800)}
+  .theme-purple .btn-brand:hover{background:var(--pu-700);border-color:var(--pu-700)}
+  .theme-purple .btn-neutral{background:var(--pu-100);border-color:var(--pu-400)}
+  .theme-purple .cta,.theme-purple .cta::before{background:var(--pu-100)}
+  .theme-purple .cta-route,.theme-purple .cta-route:last-child{border-color:var(--pu-200)}
+  .theme-purple .cta-route:hover{color:var(--pu-800)}
+  .theme-purple .cta .sec-num{color:var(--pu-600)}
+  .theme-purple .footer::before{background:var(--pu-100);border-top-color:var(--pu-200)}
+  .theme-purple .legal{border-top-color:var(--pu-800)}
+
   /* ============ Responsive ============ */
   @media (max-width:1279.98px){
     .t-hero{font-size:clamp(44px,6vw,76.3px)}
