@@ -371,6 +371,15 @@
     mix-blend-mode:multiply;filter:saturate(.85) contrast(.94); /* whites become the card grey, footage sits a touch softer */
     -webkit-mask-image:var(--media-fade);mask-image:var(--media-fade);
     --media-fade:linear-gradient(90deg,transparent 0,rgba(0,0,0,.12) 12%,rgba(0,0,0,.45) 26%,rgba(0,0,0,.82) 38%,#000 48%)} /* eased, so no visible start line */
+  /* the light cards take a ramp each, so the sequence reads grey -> purple -> blue -> blue-gray; the footage multiplies onto the ground, so whites become the tint */
+  .card.is-purple{background:#c6cbe7} /* Purple 200 */
+  .card.is-purple .card-copy .t-subtitle{color:#222878} /* Purple 1000 */
+  .card.is-purple .card-num{color:#36439a;opacity:.35} /* Purple 800 */
+  .card.is-bluegray{background:#d1e0ec} /* Blue-gray 300 */
+  .card.is-bluegray .card-copy .t-subtitle{color:#1b222f} /* Blue-gray 1000 */
+  .card.is-bluegray .card-num{color:#4e6287;opacity:.35} /* Blue-gray 800 */
+  .card.is-bluegray .card-link{color:#1b222f;border-color:rgba(27,34,47,.35)}
+  .card.is-bluegray .card-link:hover{border-color:#1b222f}
   .card.is-dark{background:var(--grad-blue-depth)}
   .card.is-dark .card-copy .t-subtitle{color:var(--text-on-dark)}
   .card.is-dark .card-num{color:var(--text-on-dark)}
