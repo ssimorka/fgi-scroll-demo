@@ -738,6 +738,7 @@
     .cta{padding:64px var(--pad-x)}
     .photo-hero{padding:12px}
     .photo-hero-card{height:auto;min-height:min(78svh,640px);padding:24px 20px}
+    .photo-hero-card::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,20,40,0) 8%,rgba(0,20,40,.55) 55%)} /* stacked copy starts well above the theme gradient's dark zone: a neutral veil under it, on every theme */
     .media-toggle{top:12px;right:12px;width:32px;height:32px}
     .media-toggle svg{width:14px;height:14px}
     .photo-hero-copy{flex-direction:column;align-items:stretch;gap:24px}
@@ -773,7 +774,7 @@
     .road-cols{display:flex;flex-direction:column;align-items:stretch;gap:12px}
     .road-row{padding:18px 0}
     .road-row:not(:first-child) .road-phase{display:none}
-    .road-phase{font-size:18px;padding-bottom:4px}
+    .road-phase{font-size:18px;padding-bottom:4px;flex-direction:row;justify-content:space-between;align-items:center;gap:12px} /* stacked: the phase name and its button share the header line instead of the button splitting the list */
     .road .chart-legend{padding:4px 4px 0}
     .chart{--label-w:112px;--val-w:0px;--bar-h:14px;--bar-r:4px}
     .chart-head{padding:20px 20px 16px;flex-direction:column;gap:12px}
@@ -833,6 +834,13 @@
     .nav-list{display:none}
     .site-nav.scrolled .navbar-inner{padding:6px 10px 6px 16px}
     .approach-card,.founders-card{margin-left:0;margin-right:0} /* comp: full inner width, 40px over the photo */
+    /* touch targets: the visuals stay as drawn, the hit areas grow to roughly 40px */
+    .link-col{gap:0}
+    .link-col a{padding:9px 0}
+    .card-link{padding-top:10px}
+    .brand .li,.nav-modal-foot .li{box-sizing:content-box;padding:8px;margin:-8px}
+    .dots{gap:0}
+    .dots button{width:28px;height:28px;padding:10px;background-clip:content-box} /* the 8px dot is the content box; the padding is the hit area */
   }
   /* ---------- tablet (768-1023): static layout, but use the width ---------- */
   @media (min-width:768px) and (max-width:1023.98px){
