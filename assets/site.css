@@ -700,9 +700,10 @@
     .hero-copy .t-subtitle{font-size:20px}
     .hero-copy .headline{gap:16px}
     .hero .hero-actions{padding-top:24px} /* mobile comp: CTA sits 24px under the lead */
-    .facts{flex-direction:column;gap:16px;padding:20px}
-    .fact .t-heading{font-size:36px}
-    .fact .t-small-strong{font-size:15px}
+    .facts{flex-wrap:wrap;gap:16px 12px;padding:20px 16px} /* two-up, so the tile stays a glance rather than a scroll */
+    .fact{flex:1 1 40%;padding:2px 14px;gap:4px}
+    .fact .t-heading{font-size:28px}
+    .fact .t-small-strong{font-size:13px}
     .approach{padding:12px}
     .approach{min-height:0;display:block}
     .stack-over > .stack-panel{min-height:100svh;background:var(--bg-page)} /* a covering panel is at least a viewport tall and opaque, so the panel it pins over never shows beneath it */
