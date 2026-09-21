@@ -593,8 +593,10 @@
 
   /* ============ CAREERS + OPEN POSITIONS (after BillionToOne's careers pages) ============ */
   .culture{padding:96px var(--pad-x) 64px}
-  .culture-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
-  .culture .value{grid-column:auto;min-height:260px}
+  .culture-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:24px} /* bento: three-up with the wide tile swapping sides, 3/2/2 then 2/2/3 */
+  .culture .value{min-height:260px}
+  .culture .value:nth-child(6n+1),.culture .value:nth-child(6n+6){grid-column:span 3}
+  .culture .value:nth-child(6n+2),.culture .value:nth-child(6n+3),.culture .value:nth-child(6n+4),.culture .value:nth-child(6n+5){grid-column:span 2}
   .perks{padding:64px var(--pad-x) 64px;display:flex;flex-direction:column;gap:48px}
   .perks-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:24px} /* bento: the wide group swaps sides row to row, 3/2 then 2/3 */
   .perk-group:nth-child(4n+1),.perk-group:nth-child(4n+4){grid-column:span 3}
@@ -778,7 +780,7 @@
     .roadmap{padding:64px var(--pad-x) 64px;gap:32px}
     .culture{padding:64px var(--pad-x) 40px}
     .culture-grid{grid-template-columns:1fr;gap:16px}
-    .culture .value{min-height:0}
+    .culture .value:nth-child(n){min-height:0;grid-column:auto}
     .perks{padding:40px var(--pad-x) 40px;gap:32px}
     .perks-grid{grid-template-columns:1fr;gap:16px}
     .perk-group:nth-child(n){grid-column:auto} /* same specificity as the bento spans */
@@ -843,6 +845,7 @@
     .values-grid .founders-band{grid-column:1/-1}
     .culture-grid,.perks-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
     .perk-group:nth-child(n){grid-column:auto} /* same specificity as the bento spans */
+    .culture .value:nth-child(n){grid-column:auto}
     .pillars{grid-template-columns:repeat(3,minmax(0,1fr))}
   }
   /* ---------- mobile (< 768): mini mark + hamburger (comp 6423:636) ---------- */
@@ -892,6 +895,7 @@
     .values-grid .founders-band{grid-column:1/-1}
     .culture-grid,.perks-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
     .perk-group:nth-child(n){grid-column:auto} /* same specificity as the bento spans */
+    .culture .value:nth-child(n){grid-column:auto}
     .brand{flex-direction:column;align-items:flex-start}
     .link-cols{flex-wrap:nowrap}
     .legal{flex-direction:row}
