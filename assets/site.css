@@ -635,12 +635,24 @@
   .theme-purple .statement-panel{background:linear-gradient(167.4deg,var(--r-1000) 14.644%,var(--r-800) 85.356%)} /* 1000 -> 800 */
   .theme-purple .statement-panel .sec-num,.theme-purple .statement-panel .eyebrow.section,.theme-purple .statement-body .t-body{color:var(--r-200)}
   .theme-purple .sec-num,.theme-purple .eyebrow.section{color:var(--r-600)} /* the first step that is AA for small text on white */
-  .theme-purple .culture .value{background:var(--r-100);border-color:var(--r-300)}
-  .theme-purple .culture .value-icon{background:var(--r-200);color:var(--r-900)}
+  /* culture and perks tiles carry the same three treatments as the company bento, on the ramp: white base, a 100 tint, a 1000 -> 800 gradient */
+  .theme-purple .culture .value{background:var(--bg-page);border-color:var(--border-default)}
+  .theme-purple .culture .value-icon{background:var(--r-100);color:var(--r-900)}
   .theme-purple .culture .t-body{color:var(--r-800)}
-  .theme-purple .perk-group{background:var(--r-200);border-color:var(--r-400)}
+  .theme-purple .culture .value-tint{background:var(--r-100);border-color:var(--r-300)}
+  .theme-purple .culture .value-tint .value-icon{background:var(--bg-page);border:1px solid var(--r-300)}
+  .theme-purple .culture .value-brand{background:linear-gradient(167.4deg,var(--r-1000) 14.644%,var(--r-800) 85.356%);border:0}
+  .theme-purple .culture .value-brand .t-body{color:var(--r-200)}
+  .theme-purple .culture .value-brand .value-icon{background:rgba(240,253,255,.14);color:var(--text-on-dark)}
+  .theme-purple .perk-group{background:var(--bg-page);border-color:var(--border-default);box-shadow:var(--shadow-300)}
   .theme-purple .perk-group .value-icon{background:var(--r-100);color:var(--r-900)}
-  .theme-purple .perk-list li{border-color:var(--r-400);color:var(--r-800)}
+  .theme-purple .perk-list li{border-color:var(--r-300);color:var(--r-800)}
+  .theme-purple .perk-tint{background:var(--r-100);border-color:var(--r-300)}
+  .theme-purple .perk-tint .value-icon{background:var(--bg-page);border:1px solid var(--r-300)}
+  .theme-purple .perk-brand{background:linear-gradient(167.4deg,var(--r-1000) 14.644%,var(--r-800) 85.356%);border:0;color:var(--text-on-dark)}
+  .theme-purple .perk-brand .t-heading{color:var(--text-on-dark)}
+  .theme-purple .perk-brand .value-icon{background:rgba(240,253,255,.14);color:var(--text-on-dark)}
+  .theme-purple .perk-brand .perk-list li{border-color:rgba(240,253,255,.25);color:var(--r-200)}
   .theme-purple .job-filter select{border-color:var(--r-400);background-color:var(--r-100)}
   .theme-purple .job-filter select:focus-visible{outline-color:var(--r-600)}
   .theme-purple .job-filter .t-small-strong,.theme-purple .job-count{color:var(--r-700)}
