@@ -596,7 +596,9 @@
   .culture-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
   .culture .value{grid-column:auto;min-height:260px}
   .perks{padding:64px var(--pad-x) 64px;display:flex;flex-direction:column;gap:48px}
-  .perks-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+  .perks-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:24px} /* bento: the wide group swaps sides row to row, 3/2 then 2/3 */
+  .perk-group:nth-child(4n+1),.perk-group:nth-child(4n+4){grid-column:span 3}
+  .perk-group:nth-child(4n+2),.perk-group:nth-child(4n+3){grid-column:span 2}
   .perk-group{display:flex;flex-direction:column;gap:20px;padding:32px;border-radius:var(--radius);background:var(--bg-secondary);border:1px solid var(--border-default)}
   .perk-head{display:flex;align-items:center;gap:16px}
   .perk-list{list-style:none;display:flex;flex-direction:column}
@@ -779,6 +781,7 @@
     .culture .value{min-height:0}
     .perks{padding:40px var(--pad-x) 40px;gap:32px}
     .perks-grid{grid-template-columns:1fr;gap:16px}
+    .perk-group:nth-child(n){grid-column:auto} /* same specificity as the bento spans */
     .perk-group{padding:24px}
     .openings{padding:40px var(--pad-x) 64px;gap:32px}
     .positions{padding-top:64px}
@@ -839,6 +842,7 @@
     .values-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
     .values-grid .founders-band{grid-column:1/-1}
     .culture-grid,.perks-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .perk-group:nth-child(n){grid-column:auto} /* same specificity as the bento spans */
     .pillars{grid-template-columns:repeat(3,minmax(0,1fr))}
   }
   /* ---------- mobile (< 768): mini mark + hamburger (comp 6423:636) ---------- */
@@ -887,6 +891,7 @@
     .values-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
     .values-grid .founders-band{grid-column:1/-1}
     .culture-grid,.perks-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .perk-group:nth-child(n){grid-column:auto} /* same specificity as the bento spans */
     .brand{flex-direction:column;align-items:flex-start}
     .link-cols{flex-wrap:nowrap}
     .legal{flex-direction:row}
