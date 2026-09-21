@@ -858,7 +858,7 @@
     .road-row{padding:18px 0}
     .road-row:not(:first-child) .road-phase{display:none}
     .pubs{padding:40px var(--pad-x) 80px;gap:28px}
-    .tabs-band{padding:16px 20px}
+    .tabs-band{padding:16px 20px;justify-content:center} /* centred on phones */
     .tabs-band .tab{padding:4px 10px 8px}
     .entry{padding-left:20px}
     .year summary{padding:20px 0}
