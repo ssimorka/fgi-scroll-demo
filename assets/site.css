@@ -737,7 +737,8 @@
     .cta{padding:64px var(--pad-x)}
     .photo-hero{padding:12px}
     .photo-hero-card{height:auto;min-height:min(78svh,640px);padding:24px 20px}
-    .media-toggle{top:16px;right:16px}
+    .media-toggle{top:12px;right:12px;width:32px;height:32px}
+    .media-toggle svg{width:14px;height:14px}
     .photo-hero-copy{flex-direction:column;align-items:stretch;gap:24px}
     .photo-hero-card > img[src$="hero-careers.webp"]{object-position:22% 50%} /* the portrait crop keeps the copy over the soft monitor side; the subject reads at the right edge rather than under the headline */
     .photo-hero-copy .actions{flex-wrap:wrap}
