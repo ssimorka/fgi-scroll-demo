@@ -411,7 +411,9 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
     const fmt = (v) => Math.round(v).toLocaleString('en-US');
     const run = () => {
       const facts = factsEl.querySelectorAll('.fact');
-      gsap.to(facts, { opacity: 1, y: 0, duration: 0.7, ease: 'sine.out', stagger: 0.1, clearProps: 'transform' }); // .will-count holds them at 0 until now
+      // .will-count holds them at 0 / 12px low until now; drop it once they land, rather than clearProps,
+      // which let the stylesheet's 12px offset back in and left every tile sitting low
+      gsap.to(facts, { opacity: 1, y: 0, duration: 0.7, ease: 'sine.out', stagger: 0.1, onComplete: () => factsEl.classList.remove('will-count') });
       facts.forEach((f, i) => {
         const v = f.querySelector('[data-count]');
         if (!v) return; // "Zero" just fades in
