@@ -588,7 +588,7 @@
   .tab:hover{color:var(--text-neutral)}
   .tab[aria-selected="true"]{color:var(--text-neutral);border-bottom-color:var(--text-neutral)}
   .tab:focus-visible{outline-offset:-2px}
-  .tabs.on-dark .tab{color:rgba(240,253,255,.55);border-bottom-color:rgba(240,253,255,.3)} /* on a brand / blue ground the ramp is white */
+  .tabs.on-dark .tab{color:rgba(240,253,255,.55);border-bottom-color:transparent} /* on a brand / blue ground the ramp is white; only the open tab carries a rule */
   .tabs.on-dark .tab:hover,.tabs.on-dark .tab[aria-selected="true"]{color:var(--text-on-dark)}
   .tabs.on-dark .tab[aria-selected="true"]{border-bottom-color:var(--text-on-dark)}
   .tabs.on-dark .tab:focus-visible{outline-color:var(--text-on-dark)}
