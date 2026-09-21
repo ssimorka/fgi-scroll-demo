@@ -592,6 +592,16 @@
   .tabs.on-dark .tab:hover,.tabs.on-dark .tab[aria-selected="true"]{color:var(--text-on-dark)}
   .tabs.on-dark .tab[aria-selected="true"]{border-bottom-color:var(--text-on-dark)}
   .tabs.on-dark .tab:focus-visible{outline-color:var(--text-on-dark)}
+  /* fluid tabs (JS adds .is-fluid and sets --x / --w from the open tab): the rule is one bar that travels, leading edge first, trailing edge after */
+  .tabs.is-fluid{position:relative}
+  .tabs.is-fluid .tab{border-bottom-color:transparent}
+  .tabs.is-fluid::after{content:'';position:absolute;bottom:0;height:2px;background:currentColor;color:var(--text-neutral);pointer-events:none;
+    left:var(--x,0px);right:calc(100% - var(--x,0px) - var(--w,0px));
+    transition:left .4s cubic-bezier(.2,.8,.2,1),right .4s cubic-bezier(.2,.8,.2,1)}
+  .tabs.is-fluid[data-dir="right"]::after{transition-delay:.1s,0s}
+  .tabs.is-fluid[data-dir="left"]::after{transition-delay:0s,.1s}
+  .tabs.on-dark.is-fluid::after{color:var(--text-on-dark)}
+  @media (prefers-reduced-motion:reduce){.tabs.is-fluid::after{transition:none}}
   .tabs-band{display:flex;justify-content:flex-start;padding:28px 48px;border-radius:var(--radius);background:var(--grad-tile-brand);box-shadow:var(--shadow-300)} /* the tabs on the gradient band (35pharma news) */
   .tabs-band .tabs{gap:16px}
   .tabs-band .tab{padding:6px 16px 10px;font-family:var(--font-display);font-weight:700;font-size:clamp(28px,3vw,40px);line-height:1.1;letter-spacing:-.03em;border-bottom-width:2px} /* the tray's type, a step down, so both tabs fit a phone */

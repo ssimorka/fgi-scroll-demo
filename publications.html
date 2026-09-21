@@ -229,8 +229,19 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
 
   /* ---------- the band's tabs: click or arrow keys; #news / #publications deep-link ---------- */
   const tabs = [...document.querySelectorAll('.tabs .tab')];
+  const list = tabs[0].parentElement;
+  const { reduceMotion } = window.FGI;
+  // the rule is one bar under .tabs that slides to the open tab (see .tabs.is-fluid)
+  const placeRule = () => { const t = tabs.find(x => x.getAttribute('aria-selected') === 'true'); list.style.setProperty('--x', t.offsetLeft + 'px'); list.style.setProperty('--w', t.offsetWidth + 'px'); };
+  list.classList.add('is-fluid'); placeRule(); window.addEventListener('resize', placeRule);
   const select = (tab, focus) => {
-    tabs.forEach(t => { const on = t === tab; t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1; document.getElementById(t.getAttribute('aria-controls')).hidden = !on; });
+    const was = tabs.find(x => x.getAttribute('aria-selected') === 'true');
+    if (was !== tab) list.dataset.dir = tabs.indexOf(tab) > tabs.indexOf(was) ? 'right' : 'left';
+    tabs.forEach(t => { const on = t === tab; t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1; });
+    placeRule();
+    const panel = document.getElementById(tab.getAttribute('aria-controls'));
+    tabs.forEach(t => { const p = document.getElementById(t.getAttribute('aria-controls')); if (p !== panel) p.hidden = true; });
+    if (panel.hidden) { panel.hidden = false; if (!reduceMotion && window.gsap) gsap.fromTo(panel, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: .45, ease: 'power2.out', clearProps: 'transform' }); } // the list rises in
     if (focus) tab.focus();
     if (window.ScrollTrigger) ScrollTrigger.refresh(); // the page's height changed under the reveals
   };
