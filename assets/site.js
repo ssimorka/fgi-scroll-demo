@@ -102,7 +102,7 @@
   });
 
   /* ---------- 0. Page entrance: nav and hero copy rise in (no loader) ----------
-     Skipped under reduced motion. Resolves `introDone` so the fact counters wait for it. */
+     Skipped under reduced motion. Resolves `introDone` for anything that wants to follow it. */
   let introResolve; const introDone = new Promise(r => { introResolve = r; });
   if (reduceMotion) { introResolve(); }
   else {

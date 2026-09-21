@@ -308,7 +308,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
 <script src="assets/site.js"></script>
 <script>
 (() => { // home page only: helix, fact counters, panel stacking, parallax, the technology sequence
-  const { lenis, reduceMotion, introDone, motion } = window.FGI;
+  const { lenis, reduceMotion, motion } = window.FGI;
   // Tuning knob (open item): scroll distance per beat, in viewport heights.
   const VH_PER_BEAT = 1.3; // ~1:1 px mapping (35pharma: 2212px travel for 2 x 1211px shifts)
 
@@ -428,7 +428,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
         if (!v) return; // "Zero" just fades in
         const target = parseFloat(v.dataset.count), suffix = v.dataset.suffix || '';
         const o = { n: 0 };
-        gsap.to(o, { n: target, duration: 1.4, delay: 0.1 * i, ease: 'sine.inOut', onUpdate: () => { v.textContent = fmt(o.n) + suffix; } }); // gentle in and out, no slam at the end
+        gsap.to(o, { n: target, duration: 1.1, delay: 0.08 * i, ease: 'sine.inOut', onUpdate: () => { v.textContent = fmt(o.n) + suffix; } }); // gentle in and out, no slam at the end
       });
     };
     // Starts once the top of the block is a little way into the viewport: on a phone the block is
@@ -436,7 +436,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
     const io = new IntersectionObserver((entries) => {
       if (entries.some(e => e.isIntersecting)) { run(); io.disconnect(); }
     }, { threshold: 0, rootMargin: '0px 0px -12% 0px' });
-    introDone.then(() => io.observe(factsEl));
+    io.observe(factsEl); // not gated on the hero entrance: on desktop the tile is in view on load, so it counts as it fades in with the rest
   }
 
   /* ---------- 2b. Panel parallax (Approach / Founders) ---------- */
