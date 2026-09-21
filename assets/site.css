@@ -788,7 +788,7 @@
     .value,.values-grid .founders-band{grid-column:auto}
     .values-grid .founders-band{order:9} /* stacked: the band closes the group */
     .value{min-height:0}
-    .founders-band{grid-template-columns:1fr;gap:24px;padding:28px 24px}
+    .founders-band,.values-grid .founders-band{grid-template-columns:1fr;gap:24px;padding:28px 24px} /* the bento selector outranks the plain one, so it is named here too */
     .founders-band-faces{justify-content:flex-start}
     .team-head{margin-bottom:32px}
     .team-grid{grid-template-columns:1fr;gap:32px}
