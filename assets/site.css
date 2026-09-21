@@ -834,6 +834,12 @@
     .nav-list{display:none}
     .site-nav.scrolled .navbar-inner{padding:6px 10px 6px 16px}
     .approach-card,.founders-card{margin-left:0;margin-right:0} /* comp: full inner width, 40px over the photo */
+    /* no panel stacking on phones (site.js gates it at 768px): plain flow, so nothing is pinned or pulled up */
+    .stack-panel{position:static}
+    .stack-wrap::after{display:none}
+    .stack-over{margin-top:0}
+    .stack-over > .stack-panel{min-height:0}
+    .stack-backdrop{display:none}
     /* touch targets: the visuals stay as drawn, the hit areas grow to roughly 40px */
     .link-col{gap:0}
     .link-col a{padding:9px 0}

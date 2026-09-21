@@ -211,8 +211,10 @@
   /* ---------- 2. Panel stacking (any page) ---------- */
   // Each .stack-wrap holds a .stack-panel that pins (sticky) while the next
   // sibling .stack-over section slides up over it; the covered panel recedes,
-  // scrubbed to exactly that overlap. All breakpoints (a panel taller than the
-  // viewport pins on its bottom edge). data-slide on the .stack-over (0-1) slows the cover to that
+  // scrubbed to exactly that overlap. Tablet and up (a panel taller than the
+  // viewport pins on its bottom edge); phones scroll plainly, since a covering panel
+  // had to be held to a full viewport, which left blank ground under short sections.
+  // data-slide on the .stack-over (0-1) slows the cover to that
   // fraction of scroll speed (the pin holds longer to compensate), by
   // translating the wrapper's inner section while it slides.
   const stacks = [...document.querySelectorAll('.stack-wrap')].map(wrap => {
@@ -248,7 +250,7 @@
 
   ScrollTrigger.config({ ignoreMobileResize: true }); // the address bar showing / hiding is not a layout change
   const mmStack = gsap.matchMedia();
-  mmStack.add('(min-width: 0px)', () => {
+  mmStack.add('(min-width: 768px)', () => {
     layoutStacks();
     ScrollTrigger.addEventListener('refreshInit', layoutStacks); // re-measure before ST measures
     stacks.forEach(s => {
