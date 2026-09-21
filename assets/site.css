@@ -588,6 +588,11 @@
   .tab:hover{color:var(--text-neutral)}
   .tab[aria-selected="true"]{color:var(--text-neutral);border-bottom-color:var(--text-neutral)}
   .tab:focus-visible{outline-offset:-2px}
+  .tabs.on-dark .tab{color:rgba(240,253,255,.55);border-bottom-color:rgba(240,253,255,.3)} /* on a brand / blue ground the ramp is white */
+  .tabs.on-dark .tab:hover,.tabs.on-dark .tab[aria-selected="true"]{color:var(--text-on-dark)}
+  .tabs.on-dark .tab[aria-selected="true"]{border-bottom-color:var(--text-on-dark)}
+  .tabs.on-dark .tab:focus-visible{outline-color:var(--text-on-dark)}
+  .tabs-band{display:flex;justify-content:center;padding:28px 48px;border-radius:var(--radius);background:var(--grad-tile-brand);box-shadow:var(--shadow-300)} /* the tabs on the gradient band (35pharma news) */
 
   /* ---- Publications page (35pharma news): the two lists sit behind the tabs; publications in a per-year accordion, news a flat list. Entries: a rule down the left, title, meta, summary, button ---- */
   .pubs{padding:64px var(--pad-x) 112px;display:flex;flex-direction:column;gap:40px}
@@ -625,6 +630,7 @@
   .theme-blue .cta::before{background:var(--blue-100)}
   .theme-blue .cta-route,.theme-blue .cta-route:last-child{border-color:var(--blue-200)}
   .theme-blue .cta-route:hover{color:var(--blue-700)}
+  .theme-blue .tabs-band{background:linear-gradient(167.4deg,var(--blue-900) 14.644%,var(--blue-700) 85.356%)} /* Blue 900 -> 700, as the statement panel */
   .theme-blue .entry,.theme-blue .year,.theme-blue .year:last-of-type{border-color:var(--blue-200)}
   .theme-blue .entry-meta,.theme-blue .entry-who,.theme-blue .pubs-note{color:var(--blue-700)}
   .theme-blue .year summary:hover{color:var(--blue-700)}
@@ -840,6 +846,7 @@
     .road-row{padding:18px 0}
     .road-row:not(:first-child) .road-phase{display:none}
     .pubs{padding:40px var(--pad-x) 80px;gap:28px}
+    .tabs-band{padding:16px 20px}
     .entry{padding-left:20px}
     .year summary{padding:20px 0}
     .year .pubs-list{padding-bottom:32px;gap:32px}

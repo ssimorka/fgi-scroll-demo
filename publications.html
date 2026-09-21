@@ -116,9 +116,11 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
   <!-- ============ 01 PUBLICATIONS / NEWS (35pharma news: two lists behind the kit's tabs) ============ -->
   <div class="stack-over">
   <section class="pubs on-white" id="research">
-    <div class="tabs" data-reveal role="tablist" aria-label="Research and news">
-      <button class="tab" type="button" role="tab" id="tabPublications" aria-selected="true" aria-controls="panelPublications">Publications</button>
-      <button class="tab" type="button" role="tab" id="tabNews" aria-selected="false" aria-controls="panelNews" tabindex="-1">News</button>
+    <div class="tabs-band" data-reveal>
+      <div class="tabs on-dark" role="tablist" aria-label="Research and news">
+        <button class="tab" type="button" role="tab" id="tabPublications" aria-selected="true" aria-controls="panelPublications">Publications</button>
+        <button class="tab" type="button" role="tab" id="tabNews" aria-selected="false" aria-controls="panelNews" tabindex="-1">News</button>
+      </div>
     </div>
     <div class="pubs-panel" id="panelPublications" role="tabpanel" aria-labelledby="tabPublications"></div>
     <div class="pubs-panel" id="panelNews" role="tabpanel" aria-labelledby="tabNews" hidden></div>
