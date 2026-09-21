@@ -593,6 +593,8 @@
   .tabs.on-dark .tab[aria-selected="true"]{border-bottom-color:var(--text-on-dark)}
   .tabs.on-dark .tab:focus-visible{outline-color:var(--text-on-dark)}
   .tabs-band{display:flex;justify-content:center;padding:28px 48px;border-radius:var(--radius);background:var(--grad-tile-brand);box-shadow:var(--shadow-300)} /* the tabs on the gradient band (35pharma news) */
+  .tabs-band .tabs{gap:16px}
+  .tabs-band .tab{padding:6px 16px 10px;font-family:var(--font-display);font-weight:700;font-size:clamp(28px,3vw,40px);line-height:1.1;letter-spacing:-.03em;border-bottom-width:2px} /* the tray's type, a step down, so both tabs fit a phone */
 
   /* ---- Publications page (35pharma news): the two lists sit behind the tabs; publications in a per-year accordion, news a flat list. Entries: a rule down the left, title, meta, summary, button ---- */
   .pubs{padding:64px var(--pad-x) 112px;display:flex;flex-direction:column;gap:40px}
@@ -847,6 +849,7 @@
     .road-row:not(:first-child) .road-phase{display:none}
     .pubs{padding:40px var(--pad-x) 80px;gap:28px}
     .tabs-band{padding:16px 20px}
+    .tabs-band .tab{padding:4px 10px 8px}
     .entry{padding-left:20px}
     .year summary{padding:20px 0}
     .year .pubs-list{padding-bottom:32px;gap:32px}
