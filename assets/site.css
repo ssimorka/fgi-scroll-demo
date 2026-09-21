@@ -380,9 +380,15 @@
   .card-link .arrow{width:24px}
   .card-link:hover .arrow::before{width:24px}
   .card.is-dark .card-media video{mix-blend-mode:screen;filter:none} /* black ground drops out, only the lanes sit on the card gradient */
-  .dots{display:none;justify-content:center;gap:8px;margin-top:24px}
+  .dots{display:none;position:relative;width:max-content;margin:24px auto 0;gap:8px;--i:0;--step:16px;--pad:0px;--n:1} /* step = dot pitch, pad = the dot's inset within its button; --i is the current beat (JS) */
   .dots button{width:8px;height:8px;border-radius:50%;background:rgba(53,66,91,.2);padding:0}
-  .dots button[aria-current="true"]{background:var(--text-default)}
+  /* the active state is one indicator that travels between the dots: the leading edge sets off first and the trailing edge follows, so it stretches through the move and settles as a dot */
+  .dots::after{content:'';position:absolute;top:var(--pad);height:8px;border-radius:4px;background:var(--text-default);pointer-events:none;
+    left:calc(var(--i) * var(--step) + var(--pad));right:calc((var(--n) - 1 - var(--i)) * var(--step) + var(--pad));
+    transition:left .4s cubic-bezier(.2,.8,.2,1),right .4s cubic-bezier(.2,.8,.2,1)}
+  .dots[data-dir="right"]::after{transition-delay:.12s,0s} /* moving right: right edge leads, left edge trails */
+  .dots[data-dir="left"]::after{transition-delay:0s,.12s}
+  @media (prefers-reduced-motion:reduce){.dots::after{transition:none}}
 
   /* ============ CLOSING CTA: one brand panel, "Let's talk." beside the contact routes (35pharma "Subscribe" panel) ============ */
   /* full-bleed light ground (as the FAQ was), content on the section line, no card */
@@ -845,7 +851,7 @@
     .link-col a{padding:9px 0}
     .card-link{padding-top:10px}
     .brand .li,.nav-modal-foot .li{box-sizing:content-box;padding:8px;margin:-8px}
-    .dots{gap:0}
+    .dots{gap:0;--step:28px;--pad:10px}
     .dots button{width:28px;height:28px;padding:10px;background-clip:content-box} /* the 8px dot is the content box; the padding is the hit area */
   }
   /* ---------- tablet (768-1023): static layout, but use the width ---------- */

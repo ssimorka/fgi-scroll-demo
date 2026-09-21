@@ -479,6 +479,9 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
     prev.disabled = currentBeat === 0;
     next.disabled = currentBeat === n - 1;
     dots.querySelectorAll('button').forEach((d, k) => d.setAttribute('aria-current', k === currentBeat));
+    // the indicator (.dots::after) slides to the current dot; its edges lead and trail by direction
+    const was = +(dots.style.getPropertyValue('--i') || 0);
+    if (currentBeat !== was) { dots.dataset.dir = currentBeat > was ? 'right' : 'left'; dots.style.setProperty('--i', currentBeat); }
   };
 
   let goTo = () => {};
@@ -488,6 +491,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
     b.addEventListener('click', () => goTo(i));
     dots.appendChild(b);
   });
+  dots.style.setProperty('--n', n); // the indicator's right inset counts from the last dot
 
   const mm = gsap.matchMedia();
 
