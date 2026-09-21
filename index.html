@@ -411,18 +411,20 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
     const fmt = (v) => Math.round(v).toLocaleString('en-US');
     const run = () => {
       const facts = factsEl.querySelectorAll('.fact');
-      gsap.to(facts, { opacity: 1, y: 0, duration: 1.1, ease: 'sine.out', stagger: 0.2, clearProps: 'transform' }); // .will-count holds them at 0 until now
+      gsap.to(facts, { opacity: 1, y: 0, duration: 0.7, ease: 'sine.out', stagger: 0.1, clearProps: 'transform' }); // .will-count holds them at 0 until now
       facts.forEach((f, i) => {
         const v = f.querySelector('[data-count]');
         if (!v) return; // "Zero" just fades in
         const target = parseFloat(v.dataset.count), suffix = v.dataset.suffix || '';
         const o = { n: 0 };
-        gsap.to(o, { n: target, duration: 2.2, delay: 0.2 * i, ease: 'sine.inOut', onUpdate: () => { v.textContent = fmt(o.n) + suffix; } }); // gentle in and out, no slam at the end
+        gsap.to(o, { n: target, duration: 1.4, delay: 0.1 * i, ease: 'sine.inOut', onUpdate: () => { v.textContent = fmt(o.n) + suffix; } }); // gentle in and out, no slam at the end
       });
     };
+    // Starts once the top of the block is a little way into the viewport: on a phone the block is
+    // taller than half the screen, so waiting for half of it to show left it blank mid-scroll.
     const io = new IntersectionObserver((entries) => {
-      if (entries.some(e => e.isIntersecting && e.intersectionRatio >= 0.5)) { run(); io.disconnect(); }
-    }, { threshold: [0.5] });
+      if (entries.some(e => e.isIntersecting)) { run(); io.disconnect(); }
+    }, { threshold: 0, rootMargin: '0px 0px -12% 0px' });
     introDone.then(() => io.observe(factsEl));
   }
 
