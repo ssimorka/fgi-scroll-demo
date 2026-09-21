@@ -113,12 +113,12 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
   </section>
   </div>
 
-  <!-- ============ 01 PUBLICATIONS / NEWS (35pharma news: one band with the two lists behind it) ============ -->
+  <!-- ============ 01 PUBLICATIONS / NEWS (35pharma news: two lists behind the kit's tabs) ============ -->
   <div class="stack-over">
   <section class="pubs on-white" id="research">
-    <div class="pubs-band" data-reveal role="tablist" aria-label="Research and news">
-      <button class="pubs-tab" type="button" role="tab" id="tabPublications" aria-selected="true" aria-controls="panelPublications">Publications</button>
-      <button class="pubs-tab" type="button" role="tab" id="tabNews" aria-selected="false" aria-controls="panelNews" tabindex="-1">News</button>
+    <div class="tabs" data-reveal role="tablist" aria-label="Research and news">
+      <button class="tab" type="button" role="tab" id="tabPublications" aria-selected="true" aria-controls="panelPublications">Publications</button>
+      <button class="tab" type="button" role="tab" id="tabNews" aria-selected="false" aria-controls="panelNews" tabindex="-1">News</button>
     </div>
     <div class="pubs-panel" id="panelPublications" role="tabpanel" aria-labelledby="tabPublications"></div>
     <div class="pubs-panel" id="panelNews" role="tabpanel" aria-labelledby="tabNews" hidden></div>
@@ -226,7 +226,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
   document.getElementById('panelNews').innerHTML = `<div class="pubs-list">` + news.map(n => entry(n, `${esc(n.source)} · ${esc(n.date)}`, 'Read more')).join('') + `</div>`;
 
   /* ---------- the band's tabs: click or arrow keys; #news / #publications deep-link ---------- */
-  const tabs = [...document.querySelectorAll('.pubs-tab')];
+  const tabs = [...document.querySelectorAll('.tabs .tab')];
   const select = (tab, focus) => {
     tabs.forEach(t => { const on = t === tab; t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1; document.getElementById(t.getAttribute('aria-controls')).hidden = !on; });
     if (focus) tab.focus();
