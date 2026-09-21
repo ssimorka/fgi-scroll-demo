@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Leadership &amp; Board — First Genomic Insights</title>
+<title>Research &amp; Publications — First Genomic Insights</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&family=Roboto+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
@@ -11,7 +11,7 @@
 <script>/* motion start states go on before first paint, so nothing is shown and then re-hidden when the scripts land; released if GSAP never arrives */
 if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('js-motion');setTimeout(function(){if(!window.gsap)document.documentElement.classList.remove('js-motion')},4000)}</script>
 </head>
-<body>
+<body class="theme-blue">
 
 <div class="page">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -97,15 +97,15 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
   <div class="stack-wrap">
   <section class="photo-hero stack-panel" id="top">
     <div class="photo-hero-card">
-      <img src="assets/founders-photo.webp" srcset="assets/founders-photo-800.webp 800w, assets/founders-photo.webp 1400w" sizes="100vw" alt="" fetchpriority="high">
+      <img src="assets/approach-lab.webp" srcset="assets/approach-lab-900.webp 900w, assets/approach-lab.webp 1600w" sizes="100vw" alt="" fetchpriority="high">
       <div class="photo-hero-copy">
         <div class="headline">
-          <p class="eyebrow" data-entrance>Leadership &amp; Board</p>
-          <h1 class="t-hero" data-entrance>Founded by world leaders in prenatal diagnostics.</h1>
-          <p class="t-subtitle" data-entrance>Bridging the interface of genomic technologies, precision health and fetal medicine.</p>
+          <p class="eyebrow" data-entrance>Research &amp; publications</p>
+          <h1 class="t-hero" data-entrance>The peer-reviewed science behind the platform.</h1>
+          <p class="t-subtitle" data-entrance>Published work on non-invasive fetal sequencing, from the NEJM paper to prospective validation, and the coverage it has drawn.</p>
         </div>
         <div class="actions" data-entrance>
-          <a class="btn btn-outline-light" href="publications.html">Our research <span class="arrow"></span></a>
+          <a class="btn btn-outline-light" href="index.html#tech">Our technology <span class="arrow"></span></a>
           <a class="btn btn-brand" href="#contact">Get in touch <span class="arrow"></span></a>
         </div>
       </div>
@@ -113,34 +113,16 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
   </section>
   </div>
 
-  <!-- ============ 01 COMPANY STATEMENT (slides over the hero) ============ -->
-  <div class="stack-wrap stack-over" data-slide="0.65">
-  <section class="statement stack-panel" id="company">
-    <div class="statement-panel">
-      <span class="sec-num" aria-hidden="true" data-reveal>01</span>
-      <h2 class="t-page" data-reveal>FGI will redefine prenatal care by engineering scalable, comprehensive, non-invasive genomic technologies that deliver clinically relevant genetic information to patients.</h2>
-      <p class="eyebrow section" data-reveal>Our company</p>
-      <div class="statement-body">
-        <p class="t-body" data-reveal>Our founders have spent decades translating genomic research into clinical care for fetuses, newborns, children and adults. They created First Genomic Insights to move prenatal genomic medicine beyond limited testing, toward comprehensive genomic insight.</p>
-        <div data-reveal><a class="btn btn-outline-light" href="#contact">Join the team <span class="arrow"></span></a></div>
-      </div>
-    </div>
-  </section>
-  </div>
-
-  <!-- ============ 02 LEADERSHIP (slides over the statement, 1:1) ============ -->
+  <!-- ============ 01 PUBLICATIONS / NEWS (35pharma news: one band with the two lists behind it) ============ -->
   <div class="stack-over">
-  <section class="team on-white" id="leadership">
-    <div class="team-head">
-      <div class="section-heading" data-reveal>
-        <span class="sec-num" aria-hidden="true">02</span>
-        <div>
-          <p class="eyebrow section">Founders</p>
-          <h2 class="t-page">Leadership</h2>
-        </div>
-      </div>
+  <section class="pubs on-white" id="research">
+    <div class="pubs-band" data-reveal role="tablist" aria-label="Research and news">
+      <button class="pubs-tab" type="button" role="tab" id="tabPublications" aria-selected="true" aria-controls="panelPublications">Publications <span class="arrow" aria-hidden="true"></span></button>
+      <button class="pubs-tab" type="button" role="tab" id="tabNews" aria-selected="false" aria-controls="panelNews" tabindex="-1">News <span class="arrow" aria-hidden="true"></span></button>
     </div>
-    <div class="team-grid" id="teamGrid"></div>
+    <div class="pubs-panel" id="panelPublications" role="tabpanel" aria-labelledby="tabPublications"></div>
+    <div class="pubs-panel" id="panelNews" role="tabpanel" aria-labelledby="tabNews" hidden></div>
+    <p class="t-small pubs-note" data-reveal>Publications are listed by year; news is coverage of the work by third parties. Draft list, pending review by FGI.</p>
   </section>
   </div>
 
@@ -148,7 +130,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
   <section class="cta" id="contact">
     <div class="cta-panel">
       <div class="cta-head">
-        <span class="sec-num" aria-hidden="true">03</span>
+        <span class="sec-num" aria-hidden="true">02</span>
         <h2 class="t-hero" data-reveal>Let's talk.</h2>
       </div>
       <div class="cta-body">
@@ -188,78 +170,75 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
   </footer>
 </div>
 
-<!-- ============ BIO TRAY ============ -->
-<div class="bio-modal" id="bioModal" hidden>
-  <div class="nav-modal-scrim" id="bioScrim" aria-hidden="true"></div>
-  <div class="bio-tray" role="dialog" data-lenis-prevent aria-modal="true" aria-labelledby="bioName">
-    <div class="bio-head">
-      <h2 class="t-page" id="bioName"></h2>
-      <button class="icon-btn menu-close" id="bioClose" type="button" aria-label="Close"><img src="assets/icon-close.svg" alt=""></button>
-    </div>
-    <div class="bio-grid">
-      <div class="bio-side">
-        <div class="portrait"><img id="bioImg" src="" alt=""></div>
-        <p class="role" id="bioRole"></p>
-        <p class="affil" id="bioAffil"></p>
-      </div>
-      <div class="bio-text" id="bioText"></div>
-    </div>
-  </div>
-</div>
-
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.1/dist/lenis.min.js"></script>
 <script src="assets/site.js"></script>
 <script>
-(() => { // leadership page: founder cards and the bio tray
-  const { lenis, reduceMotion } = window.FGI;
-  const people = [
-      { name: 'Michael Talkowski, PhD', role: 'Co-Founder', tag: 'Pioneer in translational genomic technologies', affil: 'Director, Center for Genomic Medicine · Professor of Neurology, Mass General Brigham and Harvard · Broad Institute of MIT and Harvard', img: 'assets/team/talkowski.jpg',
-        bio: ['A pioneer in translational genomic technologies, Michael Talkowski directs the Center for Genomic Medicine at Mass General Brigham, is Professor of Neurology at Harvard Medical School and a member of the Broad Institute of MIT and Harvard.', 'His research applies genome sequencing to the discovery and interpretation of genetic variation in human disease, including the methods that underpin non-invasive fetal sequencing.'] },
-      { name: 'Wendy Chung, MD, PhD', role: 'Co-Founder', tag: 'World-renowned expert in clinical genetics and newborn screening', affil: 'Chief of Pediatrics, Boston Children\'s Hospital · Professor of Pediatrics, Harvard Medical School', img: 'assets/team/chung.jpg',
-        bio: ['A world-renowned expert in clinical genetics and newborn screening, Wendy Chung is Chief of Pediatrics at Boston Children\'s Hospital and Professor of Pediatrics at Harvard Medical School.', 'Her work spans the genetic basis of pediatric conditions and the responsible use of genomic testing for newborns and families.'] },
-      { name: 'Ronald Wapner, MD', role: 'Co-Founder', tag: 'Field leader in reproductive genetics and the delivery of genomic technologies into prenatal care', affil: 'Director of Reproductive Genetics · Professor of Obstetrics and Gynecology, Columbia University Medical Center', img: 'assets/team/wapner.jpg',
-        bio: ['A field leader in reproductive genetics and the delivery of genomic technologies into prenatal care, Ronald Wapner directs Reproductive Genetics and is Professor of Obstetrics and Gynecology at Columbia University Medical Center.', 'He has led national studies evaluating how prenatal genetic testing performs in clinical practice.'] },
+(() => {
+  /* ---------- the two lists: add an entry here ---------- */
+  const publications = [
+    { year: 2026, title: 'Non-invasive fetal sequencing (NIFS) across nearly 23,000 genes: prospective validation in 565 pregnancies',
+      venue: 'Oral presentation · European Society of Human Genetics conference, Gothenburg', date: 'June 2026',
+      who: 'Presented by Christopher Whelan, PhD (Broad Institute of MIT and Harvard; Center for Genomic Medicine, Massachusetts General Hospital)',
+      body: 'Deep cell-free DNA sequencing of maternal blood at a median of 17 weeks, compared against invasive genome sequencing: 97.2% of reportable fetal variants identified, with sensitivity of roughly 95–99% by variant type and results down to a 3% fetal fraction.',
+      href: 'https://www.eurekalert.org/news-releases/1131666', cta: 'Conference release' },
+    { year: 2023, title: 'High-Resolution and Noninvasive Fetal Exome Screening',
+      venue: 'Correspondence · The New England Journal of Medicine, 389:2014–2016', date: 'November 23, 2023',
+      who: 'Brand H, Whelan CW, Duyzend M, Lemanski J, Salani M, Hao SP, Wong I, Valkanas E, Cusick C, Genetti C, Dobson L, Studwell C, Gianforcaro K, Wilkins-Haug L, Guseh S, Currall B, Gray KJ, Talkowski ME',
+      body: 'A survey of sequence variation across the whole fetal exome from cell-free DNA in a maternal blood draw. In 51 pregnancies the approach captured variants inherited from the mother as well as de novo variants associated with prenatal diagnoses.',
+      href: 'https://www.nejm.org/doi/full/10.1056/NEJMc2216144', cta: 'Read the paper' },
   ];
-  const grid = document.getElementById('teamGrid');
-  grid.innerHTML = people.map((p, i) => `<button class="team-card" type="button" data-i="${i}"><div class="portrait"><img src="${p.img}" alt="Portrait of ${p.name}"></div><p class="name">${p.name}</p><p class="role">${p.role} · ${p.tag}</p></button>`).join('');
-  if (!reduceMotion) { // rendered after the shared reveal pass, so register the cards' own
-    gsap.set(grid.children, { opacity: 0, y: 28 });
-    ScrollTrigger.batch(grid.children, { start: 'top 90%', once: true, onEnter: (b) => gsap.to(b, { opacity: 1, y: 0, duration: 1, ease: 'power3.out', stagger: .08, clearProps: 'transform' }) });
-  }
+  const news = [
+    { title: 'New non-invasive prenatal testing technique gives results comparable to invasive methods, with advantages in both safety and cost',
+      source: 'European Society of Human Genetics, via EurekAlert!', date: 'June 12, 2026',
+      body: 'The ESHG release on the Gothenburg presentation: NIFS screens almost 23,000 genes plus everything current NIPT covers, in pregnancies with and without a detected anomaly.',
+      href: 'https://www.eurekalert.org/news-releases/1131666' },
+    { title: 'Maternal Blood Test Allows Comprehensive Genetic Fetal Screening',
+      source: 'Inside Precision Medicine', date: 'June 12, 2026',
+      body: 'Coverage of the 565-pregnancy validation, noting First Genomic Insights as the company developing the test for commercialization.',
+      href: 'https://www.insideprecisionmedicine.com/topics/molecular-dx/maternal-blood-test-allows-comprehensive-genetic-fetal-screening/' },
+    { title: 'Noninvasive sequencing expands prenatal genetic screening capabilities',
+      source: 'News-Medical', date: 'June 12, 2026',
+      body: 'On the prospective results presented at ESHG 2026 and what exome-scale non-invasive screening adds to today’s NIPT.',
+      href: 'https://www.news-medical.net/news/20260612/Noninvasive-sequencing-expands-prenatal-genetic-screening-capabilities.aspx' },
+    { title: 'Results of non-invasive prenatal testing compare well to those from invasive methods, with better safety and cost',
+      source: 'Medical Xpress', date: 'June 2026',
+      body: 'A report on the ESHG presentation and the comparison against invasive genome sequencing.',
+      href: 'https://medicalxpress.com/news/2026-06-results-invasive-prenatal-methods-safety.html' },
+    { title: 'A new method for prenatal genetic testing relies on just a blood draw',
+      source: 'Broad Institute of MIT and Harvard', date: 'November 23, 2023',
+      body: 'MGH, Brigham and Women’s and the Broad on the NEJM paper: a non-invasive test that surveys all genes for fetal sequence variants from a maternal blood sample.',
+      href: 'https://www.broadinstitute.org/news/new-method-prenatal-genetic-testing-relies-just-blood-draw' },
+    { title: 'Researchers develop new method for prenatal genetic testing',
+      source: 'ScienceDaily', date: 'November 22, 2023',
+      body: 'On the NEJM correspondence and its evaluation in 51 pregnancies.',
+      href: 'https://www.sciencedaily.com/releases/2023/11/231122192313.htm' },
+  ];
 
-  // bio tray: same choreography as the menu tray, light surface
-  const modal = document.getElementById('bioModal'), tray = modal.querySelector('.bio-tray'), scrim = document.getElementById('bioScrim');
-  let open = false, busy = false, last = null;
-  const fill = (p) => {
-    document.getElementById('bioName').textContent = p.name;
-    document.getElementById('bioImg').src = p.img;
-    document.getElementById('bioRole').textContent = `${p.role} · ${p.tag}`;
-    document.getElementById('bioAffil').textContent = p.affil; document.getElementById('bioImg').alt = 'Portrait of ' + p.name;
-    document.getElementById('bioText').innerHTML = p.bio.map(t => `<p>${t}</p>`).join('') + '<p class="draft">Draft bio, pending review by FGI.</p>';
+  const esc = (s) => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const entry = (e, meta, cta) => `<article class="entry"><h3 class="t-heading">${esc(e.title)}</h3><p class="entry-meta">${meta}</p>${e.who ? `<p class="entry-who">${esc(e.who)}</p>` : ''}<p class="t-body entry-body">${esc(e.body)}</p><a class="btn btn-neutral btn-sm" href="${esc(e.href)}" target="_blank" rel="noopener">${esc(cta)} <span class="arrow"></span></a></article>`;
+
+  const years = [...new Set(publications.map(p => p.year))].sort((a, b) => b - a);
+  document.getElementById('panelPublications').innerHTML = years.map((y, i) =>
+    `<details class="year"${i === 0 ? ' open' : ''}><summary><span>${y}</span><span class="chev" aria-hidden="true"></span></summary><div class="pubs-list">` +
+    publications.filter(p => p.year === y).map(p => entry(p, `${esc(p.venue)} · ${esc(p.date)}`, p.cta)).join('') + `</div></details>`).join('');
+  document.getElementById('panelNews').innerHTML = `<div class="pubs-list">` + news.map(n => entry(n, `${esc(n.source)} · ${esc(n.date)}`, 'Read more')).join('') + `</div>`;
+
+  /* ---------- the band's tabs: click or arrow keys; #news / #publications deep-link ---------- */
+  const tabs = [...document.querySelectorAll('.pubs-tab')];
+  const select = (tab, focus) => {
+    tabs.forEach(t => { const on = t === tab; t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1; document.getElementById(t.getAttribute('aria-controls')).hidden = !on; });
+    if (focus) tab.focus();
+    if (window.ScrollTrigger) ScrollTrigger.refresh(); // the page's height changed under the reveals
   };
-  const openBio = (p, from) => {
-    if (open || busy) return; open = true; busy = true; last = from; fill(p); modal.hidden = false; tray.scrollTop = 0; lenis.stop();
-    if (reduceMotion) { gsap.set(scrim, { opacity: 1 }); gsap.set(tray, { xPercent: 0 }); busy = false; return; }
-    gsap.timeline({ onComplete: () => { busy = false; document.getElementById('bioClose').focus(); } })
-      .fromTo(scrim, { opacity: 0 }, { opacity: 1, duration: .6, ease: 'power2.out' }, 0)
-      .fromTo(tray, { xPercent: 100 }, { xPercent: 0, duration: .75, ease: 'power3.out' }, 0)
-      .fromTo(tray.querySelectorAll('.bio-head, .bio-side, .bio-text'), { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: .6, ease: 'power2.out', stagger: .08 }, .25);
-  };
-  const closeBio = () => {
-    if (!open || busy) return; busy = true;
-    const done = () => { modal.hidden = true; open = false; busy = false; lenis.start(); if (last) last.focus(); };
-    if (reduceMotion) { done(); return; }
-    gsap.timeline({ onComplete: done })
-      .to(tray, { xPercent: 100, duration: .55, ease: 'power3.in' }, 0)
-      .to(scrim, { opacity: 0, duration: .45, ease: 'power2.in' }, .1);
-  };
-  grid.addEventListener('click', (e) => { const b = e.target.closest('.team-card[data-i]'); if (b) openBio(people[+b.dataset.i], b); });
-  document.getElementById('bioClose').addEventListener('click', closeBio);
-  scrim.addEventListener('click', closeBio);
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeBio(); });
-  modal.querySelectorAll('a[href*="#"]').forEach(a => a.addEventListener('click', closeBio));
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => { select(t); history.replaceState(null, '', t.id === 'tabNews' ? '#news' : '#publications'); });
+    t.addEventListener('keydown', (e) => { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); select(tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length], true); } });
+  });
+  const fromHash = () => { if (location.hash === '#news') select(document.getElementById('tabNews')); else if (location.hash === '#publications') select(document.getElementById('tabPublications')); };
+  fromHash(); window.addEventListener('hashchange', fromHash);
+  document.querySelectorAll('.year').forEach(d => d.addEventListener('toggle', () => { if (window.ScrollTrigger) ScrollTrigger.refresh(); }));
 })();
 </script>
 </body>

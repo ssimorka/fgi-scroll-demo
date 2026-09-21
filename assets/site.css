@@ -581,6 +581,31 @@
   .roadmap-note{color:var(--text-secondary);max-width:60ch}
 
 
+  /* ---- Publications page (35pharma news): one band carries the two lists as tabs; publications sit in a per-year accordion, news is a flat list. Entries: a rule down the left, title, meta, summary, button ---- */
+  .pubs{padding:64px var(--pad-x) 112px;display:flex;flex-direction:column;gap:40px}
+  .pubs-band{display:flex;justify-content:center;align-items:center;gap:clamp(32px,5vw,72px);padding:28px 48px;border-radius:var(--radius);background:var(--grad-tile-brand);box-shadow:var(--shadow-300)}
+  .pubs-tab{display:inline-flex;align-items:center;gap:14px;padding:8px 0;font-family:var(--font-display);font-weight:600;font-size:clamp(24px,2.6vw,34px);line-height:1.2;color:rgba(240,253,255,.5);transition:color .25s}
+  .pubs-tab .arrow{width:28px;opacity:0;transition:opacity .25s,width .35s cubic-bezier(.2,.7,.2,1)} /* the arrow marks the open list, as on the reference band */
+  .pubs-tab[aria-selected="true"],.pubs-tab:hover{color:var(--text-on-dark)}
+  .pubs-tab[aria-selected="true"] .arrow{opacity:1}
+  .pubs-tab:focus-visible{outline-color:var(--text-on-dark)}
+  .pubs-list{display:flex;flex-direction:column;gap:40px}
+  .entry{display:flex;flex-direction:column;align-items:flex-start;gap:12px;padding:6px 0 6px 28px;border-left:2px solid var(--border-default)}
+  .entry .t-heading{max-width:64ch}
+  .entry-meta{font-size:15px;line-height:1.4;color:var(--text-secondary)}
+  .entry-who{font-size:14px;line-height:1.5;color:var(--text-secondary);max-width:80ch}
+  .entry-body{color:var(--text-secondary);max-width:70ch}
+  .entry .btn{margin-top:8px}
+  .year{border-top:1px solid var(--border-default)}
+  .year:last-of-type{border-bottom:1px solid var(--border-default)}
+  .year summary{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:28px 0;cursor:pointer;list-style:none;font-family:var(--font-display);font-weight:600;font-size:clamp(28px,3vw,40px);line-height:1.2;transition:color .2s}
+  .year summary::-webkit-details-marker{display:none}
+  .year summary:hover{color:var(--bg-brand)}
+  .year summary .chev{width:12px;height:12px;border-width:2px;opacity:1;transform:translateY(-4px) rotate(45deg)}
+  .year[open] summary .chev{transform:translateY(2px) rotate(225deg)}
+  .year .pubs-list{padding:8px 0 48px}
+  .pubs-note{color:var(--text-secondary)}
+
   /* ============ MILESTONES PAGE: the Blue ramp (Design Kit Blue 100-1000) instead of the teal brand set ============ */
   .theme-blue{--hero-cta-ink:#002c77;--blue-100:#f0faff;--blue-200:#c7edff;--blue-300:#9fe0ff;--blue-500:#3bb8f0;--blue-600:#009de0;--blue-700:#0065ac;--blue-800:#002c77;--blue-900:#001f52;--blue-1000:#001538}
   .theme-blue .photo-hero-card{background:var(--blue-1000)}
@@ -598,6 +623,11 @@
   .theme-blue .cta::before{background:var(--blue-100)}
   .theme-blue .cta-route,.theme-blue .cta-route:last-child{border-color:var(--blue-200)}
   .theme-blue .cta-route:hover{color:var(--blue-700)}
+  .theme-blue .pubs-band{background:linear-gradient(167.4deg,var(--blue-900) 14.644%,var(--blue-700) 85.356%)} /* Blue 900 -> 700, as the statement panel */
+  .theme-blue .entry,.theme-blue .year,.theme-blue .year:last-of-type{border-color:var(--blue-200)}
+  .theme-blue .entry-meta,.theme-blue .entry-who,.theme-blue .pubs-note{color:var(--blue-700)}
+  .theme-blue .year summary:hover{color:var(--blue-700)}
+  .theme-blue .btn-neutral{background:var(--blue-100);border-color:var(--blue-300)}
   .theme-blue .footer::before{background:var(--blue-100);border-top-color:var(--blue-200)}
   .theme-blue .legal{border-top-color:var(--blue-800)}
 
@@ -808,6 +838,11 @@
     .road-cols{display:flex;flex-direction:column;align-items:stretch;gap:12px}
     .road-row{padding:18px 0}
     .road-row:not(:first-child) .road-phase{display:none}
+    .pubs{padding:40px var(--pad-x) 80px;gap:28px}
+    .pubs-band{padding:20px 24px;gap:28px}
+    .entry{padding-left:20px}
+    .year summary{padding:20px 0}
+    .year .pubs-list{padding-bottom:32px;gap:32px}
     .road-phase{font-size:18px;padding-bottom:4px;flex-direction:row;justify-content:space-between;align-items:center;gap:12px} /* stacked: the phase name and its button share the header line instead of the button splitting the list */
     .road .chart-legend{padding:4px 4px 0}
     .chart{--label-w:112px;--val-w:0px;--bar-h:14px;--bar-r:4px}
