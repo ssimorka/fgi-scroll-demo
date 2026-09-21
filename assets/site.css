@@ -585,9 +585,7 @@
   .pubs{padding:64px var(--pad-x) 112px;display:flex;flex-direction:column;gap:40px}
   .pubs-band{display:flex;justify-content:center;align-items:center;gap:clamp(32px,5vw,72px);padding:28px 48px;border-radius:var(--radius);background:var(--grad-tile-brand);box-shadow:var(--shadow-300)}
   .pubs-tab{display:inline-flex;align-items:center;gap:14px;padding:8px 0;font-family:var(--font-display);font-weight:600;font-size:clamp(24px,2.6vw,34px);line-height:1.2;color:rgba(240,253,255,.5);transition:color .25s}
-  .pubs-tab .arrow{width:28px;opacity:0;transition:opacity .25s,width .35s cubic-bezier(.2,.7,.2,1)} /* the arrow marks the open list, as on the reference band */
   .pubs-tab[aria-selected="true"],.pubs-tab:hover{color:var(--text-on-dark)}
-  .pubs-tab[aria-selected="true"] .arrow{opacity:1}
   .pubs-tab:focus-visible{outline-color:var(--text-on-dark)}
   .pubs-list{display:flex;flex-direction:column;gap:40px}
   .entry{display:flex;flex-direction:column;align-items:flex-start;gap:12px;padding:6px 0 6px 28px;border-left:2px solid var(--border-default)}
