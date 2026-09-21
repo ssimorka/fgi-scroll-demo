@@ -377,6 +377,8 @@
   .card-lead{display:flex;flex-direction:column;gap:24px} /* subtitle with its link under it; the number keeps the foot */
   .card-link{display:inline-flex;align-items:center;gap:10px;font-size:18px;line-height:1.2;color:var(--text-on-dark);border-bottom:1px solid rgba(240,253,255,.4);padding-bottom:6px;align-self:flex-start;transition:border-color .2s}
   .card-link:hover{border-color:var(--text-on-dark)}
+  .card:not(.is-dark) .card-link{color:var(--text-default);border-color:rgba(53,66,91,.35)} /* the link on a light card takes the page ink */
+  .card:not(.is-dark) .card-link:hover{border-color:var(--text-default)}
   .card-link .arrow{width:24px}
   .card-link:hover .arrow::before{width:24px}
   .card.is-dark .card-media video{mix-blend-mode:screen;filter:none} /* black ground drops out, only the lanes sit on the card gradient */
