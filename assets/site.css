@@ -592,7 +592,7 @@
   .tabs.on-dark .tab:hover,.tabs.on-dark .tab[aria-selected="true"]{color:var(--text-on-dark)}
   .tabs.on-dark .tab[aria-selected="true"]{border-bottom-color:var(--text-on-dark)}
   .tabs.on-dark .tab:focus-visible{outline-color:var(--text-on-dark)}
-  .tabs-band{display:flex;justify-content:center;padding:28px 48px;border-radius:var(--radius);background:var(--grad-tile-brand);box-shadow:var(--shadow-300)} /* the tabs on the gradient band (35pharma news) */
+  .tabs-band{display:flex;justify-content:flex-start;padding:28px 48px;border-radius:var(--radius);background:var(--grad-tile-brand);box-shadow:var(--shadow-300)} /* the tabs on the gradient band (35pharma news) */
   .tabs-band .tabs{gap:16px}
   .tabs-band .tab{padding:6px 16px 10px;font-family:var(--font-display);font-weight:700;font-size:clamp(28px,3vw,40px);line-height:1.1;letter-spacing:-.03em;border-bottom-width:2px} /* the tray's type, a step down, so both tabs fit a phone */
 
