@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Partnership — First Genomic Insights</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&family=Roboto+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<script>/* motion start states go on before first paint, so nothing is shown and then re-hidden when the scripts land; released if GSAP never arrives */
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('js-motion');setTimeout(function(){if(!window.gsap)document.documentElement.classList.remove('js-motion')},4000)}</script>
+</head>
+<body>
+
+<div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="mesh" aria-hidden="true"></div>
+
+  <!-- ============ SITE NAV (own bar above the hero card) ============ -->
+  <div class="nav-slot">
+  <header class="site-nav" id="siteNav">
+    <nav class="navbar" aria-label="Primary">
+      <div class="navbar-inner">
+        <a class="logo" href="index.html#hero" aria-label="First Genomic Insights">
+          <img class="full" src="assets/fgi-logo-dark.svg" alt="">
+          <img class="mark" src="assets/fgi-mini-color.svg" alt="">
+        </a>
+        <ul class="nav-list">
+          <li class="nav-item has-sub">
+            <a class="nav-sub-toggle" href="index.html#tech" aria-haspopup="true" aria-expanded="false" aria-controls="subTechnology">Technology <span class="chev" aria-hidden="true"></span></a>
+            <div class="nav-sub" id="subTechnology">
+              <a href="index.html#tech">Our Technology</a>
+              <a href="publications.html">Publications</a>
+            </div>
+          </li>
+          <li class="nav-item has-sub">
+            <a class="nav-sub-toggle" href="index.html#founders" aria-haspopup="true" aria-expanded="false" aria-controls="subCompany">Company <span class="chev" aria-hidden="true"></span></a>
+            <div class="nav-sub" id="subCompany">
+              <a href="company.html">Mission, Vision, Values</a>
+              <a href="leadership.html">Leadership &amp; Board</a>
+            </div>
+          </li>
+          <li><a href="careers.html">Careers</a></li>
+          <li><a href="partnership.html">Explore Partnership</a></li>
+        </ul>
+        <a class="btn btn-neutral btn-sm" href="#contact">Contact Us</a>
+        <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navModal"><img class="open" src="assets/icon-menu.svg" alt=""></button>
+      </div>
+    </nav>
+  </header>
+  </div>
+
+  <!-- ============ FULL-SCREEN MENU ============ -->
+  <div class="nav-modal" id="navModal" hidden>
+    <div class="nav-modal-scrim" id="menuScrim" aria-hidden="true"></div>
+    <div class="nav-modal-tray" data-lenis-prevent>
+      <div class="nav-modal-top">
+        <img class="nav-modal-mark" src="assets/fgi-mini.svg" alt="FGI">
+        <button class="icon-btn on-dark menu-close" id="menuClose" type="button" aria-label="Close menu"><img src="assets/icon-close.svg" alt=""></button>
+      </div>
+      <nav class="nav-modal-links" aria-label="Site">
+        <div class="tray-item has-sub">
+          <button class="tray-toggle" type="button" aria-expanded="false" aria-controls="traySubTechnology"><span class="mask"><span class="in">Technology <span class="chev" aria-hidden="true"></span></span></span></button>
+          <div class="tray-sub" id="traySubTechnology">
+            <div class="tray-sub-inner">
+              <a href="index.html#tech">Our Technology</a>
+              <a href="publications.html">Publications</a>
+            </div>
+          </div>
+        </div>
+        <div class="tray-item has-sub">
+          <button class="tray-toggle" type="button" aria-expanded="false" aria-controls="traySubCompany"><span class="mask"><span class="in">Company <span class="chev" aria-hidden="true"></span></span></span></button>
+          <div class="tray-sub" id="traySubCompany">
+            <div class="tray-sub-inner">
+              <a href="company.html">Mission, Vision, Values</a>
+              <a href="leadership.html">Leadership &amp; Board</a>
+            </div>
+          </div>
+        </div>
+        <a href="careers.html"><span class="mask"><span class="in">Careers</span></span></a>
+        <a href="partnership.html"><span class="mask"><span class="in">Explore Partnership</span></span></a>
+      </nav>
+      <div class="nav-modal-foot">
+        <a class="btn btn-outline-light" href="#contact">Get in touch <span class="arrow"></span></a>
+        <p class="t-small">First Genomic Insights · Non-invasive fetal sequencing</p>
+        <a class="li" href="https://www.linkedin.com/company/first-genomic-insights-inc/posts/?feedView=all" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="assets/linkedin.svg" alt=""></a>
+      </div>
+    </div>
+  </div>
+
+
+  <main id="main">
+  <!-- ============ HERO (gradient treatment, no photo yet: a background image will replace .hero-card's gradient once supplied) ============ -->
+  <div class="stack-wrap">
+  <section class="hero stack-panel" id="top">
+    <div class="hero-card">
+      <div class="hero-copy">
+        <div class="headline">
+          <p class="eyebrow" data-entrance>Partnership</p>
+          <h1 class="t-hero" data-entrance>Bring NIFS to patients through your laboratory.</h1>
+          <p class="t-subtitle" data-entrance>We partner with commercial laboratories to deliver non-invasive fetal sequencing at scale.</p>
+          <div class="hero-actions" data-entrance>
+            <a class="btn btn-brand" href="#contact">Start a conversation <span class="arrow"></span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <!-- ============ 01 HOW PARTNERSHIP WORKS / 02 WHAT PARTNER LABORATORIES NEED / 03 TRAINING AND SUPPORT (slide over the hero, 1:1) ============ -->
+  <div class="stack-over">
+  <section class="values on-white" id="how-it-works">
+    <div class="section-heading" data-reveal>
+      <span class="sec-num" aria-hidden="true">01</span>
+      <div>
+        <p class="eyebrow section">How partnership works</p>
+        <h2 class="t-page">From first conversation to NIFS on your bench.</h2>
+      </div>
+    </div>
+    <div class="values-grid">
+      <article class="tile tile-light value" data-reveal><span class="value-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M22 12H18L15 21L9 3L6 12H2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h3 class="t-heading">Initial conversation</h3><p class="t-body">We learn about your laboratory's testing volume, patient population and current NIPT or prenatal offering.</p></article>
+      <article class="tile tile-light value" data-reveal><span class="value-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M9 1V4M15 1V4M9 20V23M15 20V23M20 9H23M20 14H23M1 9H4M1 14H4M6 4H18C19.1046 4 20 4.89543 20 6V18C20 19.1046 19.1046 20 18 20H6C4.89543 20 4 19.1046 4 18V6C4 4.89543 4.89543 4 6 4ZM9 9H15V15H9V9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h3 class="t-heading">Technical and regulatory fit</h3><p class="t-body">We review sequencing capacity, bioinformatics integration and the regulatory path in your market together.</p></article>
+      <article class="tile tile-light value" data-reveal><span class="value-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M2 17L12 22L22 17M2 12L12 17L22 12M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h3 class="t-heading">Validation and integration</h3><p class="t-body">NIFS is validated on your instrumentation and integrated into your existing lab and reporting workflow.</p></article>
+      <article class="tile tile-light value value-brand" data-reveal><span class="value-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h3 class="t-heading">Go live</h3><p class="t-body">Your laboratory begins offering NIFS to patients, backed by FGI training and ongoing technical support.</p></article>
+    </div>
+    <p class="t-small draft-note" data-reveal>Draft copy, pending review by FGI.</p>
+  </section>
+
+  <section class="values on-white" id="requirements">
+    <div class="section-heading" data-reveal>
+      <span class="sec-num" aria-hidden="true">02</span>
+      <div>
+        <p class="eyebrow section">What partner laboratories need</p>
+        <h2 class="t-page">What it takes to bring NIFS in-house.</h2>
+      </div>
+    </div>
+    <div class="values-grid">
+      <article class="tile tile-light value" data-reveal><span class="value-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h3 class="t-heading">Accreditation</h3><p class="t-body">A CLIA-certified, CAP-accredited laboratory (or the regional equivalent) with an active prenatal testing menu.</p></article>
+      <article class="tile tile-light value" data-reveal><span class="value-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M9 1V4M15 1V4M9 20V23M15 20V23M20 9H23M20 14H23M1 9H4M1 14H4M6 4H18C19.1046 4 20 4.89543 20 6V18C20 19.1046 19.1046 20 18 20H6C4.89543 20 4 19.1046 4 18V6C4 4.89543 4.89543 4 6 4ZM9 9H15V15H9V9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h3 class="t-heading">Sequencing capacity</h3><p class="t-body">Next-generation sequencing infrastructure capable of the depth and throughput NIFS requires.</p></article>
+      <article class="tile tile-light value value-brand" data-reveal><span class="value-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M2 17L12 22L22 17M2 12L12 17L22 12M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h3 class="t-heading">Bioinformatics integration</h3><p class="t-body">A pipeline and LIS able to integrate FGI's variant interpretation workflow and reporting.</p></article>
+    </div>
+    <p class="t-small draft-note" data-reveal>Draft copy, pending review by FGI.</p>
+  </section>
+
+  <section class="values on-white" id="training">
+    <div class="section-heading" data-reveal>
+      <span class="sec-num" aria-hidden="true">03</span>
+      <div>
+        <p class="eyebrow section">Training and support</p>
+        <h2 class="t-page">Support from validation through the life of the partnership.</h2>
+      </div>
+    </div>
+    <div class="values-grid">
+      <article class="tile tile-light value" data-reveal><span class="value-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M16.24 7.76L14.12 14.12L7.76 16.24L9.88 9.88L16.24 7.76Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h3 class="t-heading">Onboarding and training</h3><p class="t-body">Hands-on training for your laboratory and clinical teams, before your first patient sample.</p></article>
+      <article class="tile tile-light value value-brand" data-reveal><span class="value-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M20.8401 4.60999C20.3294 4.099 19.7229 3.69364 19.0555 3.41708C18.388 3.14052 17.6726 2.99817 16.9501 2.99817C16.2276 2.99817 15.5122 3.14052 14.8448 3.41708C14.1773 3.69364 13.5709 4.099 13.0601 4.60999L12.0001 5.66999L10.9401 4.60999C9.90843 3.5783 8.50915 2.9987 7.05012 2.9987C5.59109 2.9987 4.19181 3.5783 3.16012 4.60999C2.12843 5.64169 1.54883 7.04096 1.54883 8.49999C1.54883 9.95903 2.12843 11.3583 3.16012 12.39L12.0001 21.23L20.8401 12.39C21.3511 11.8792 21.7565 11.2728 22.033 10.6053C22.3096 9.93789 22.4519 9.22248 22.4519 8.49999C22.4519 7.77751 22.3096 7.0621 22.033 6.39464C21.7565 5.72718 21.3511 5.12075 20.8401 4.60999Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h3 class="t-heading">Ongoing technical support</h3><p class="t-body">Direct access to FGI's bioinformatics and laboratory teams for the life of the partnership.</p></article>
+      <article class="tile tile-light value" data-reveal><span class="value-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h3 class="t-heading">Assay updates</h3><p class="t-body">Access to assay and interpretation updates as the platform and the published evidence evolve.</p></article>
+    </div>
+    <p class="t-small draft-note" data-reveal>Draft copy, pending review by FGI.</p>
+  </section>
+  </div>
+
+  <!-- ============ 04 CONTACT US ============ -->
+  <section class="cta" id="contact">
+    <div class="cta-panel">
+      <div class="cta-head">
+        <span class="sec-num" aria-hidden="true">04</span>
+        <h2 class="t-hero" data-reveal>Contact us.</h2>
+      </div>
+      <div class="cta-body">
+        <p class="t-subtitle" data-reveal>Tell us about your laboratory and we'll follow up to discuss a partnership.</p>
+        <div class="cta-routes">
+          <a class="cta-route" href="#footer" data-reveal><span>Laboratory partnership</span><span class="arrow"></span></a>
+          <a class="cta-route" href="#footer" data-reveal><span>General enquiry</span><span class="arrow"></span></a>
+          <a class="cta-route" href="#footer" data-reveal><span>Investor relations</span><span class="arrow"></span></a>
+          <a class="cta-route" href="#footer" data-reveal><span>Research collaboration</span><span class="arrow"></span></a>
+          <a class="cta-route" href="#footer" data-reveal><span>Media &amp; press</span><span class="arrow"></span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer" id="footer">
+    <div class="footer-content">
+      <div class="brand">
+        <img class="mini" src="assets/fgi-mini.svg" alt="FGI">
+        <a class="li" href="https://www.linkedin.com/company/first-genomic-insights-inc/posts/?feedView=all" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="assets/linkedin.svg" alt=""></a>
+      </div>
+      <div class="link-cols">
+        <div class="link-col" data-reveal><h3>PLATFORM</h3><div class="rule"></div><a href="index.html#tech">Technology Overview</a><a href="index.html#tech">How NIFS Works</a><a href="index.html#news">Clinical Applications</a><a href="publications.html">Research &amp; Publications</a></div>
+        <div class="link-col" data-reveal><h3>FOR YOU</h3><div class="rule"></div><a href="index.html#news">Clinical &amp; Lab Partners</a><a href="#footer">Investors</a><a href="index.html#news">Researchers</a><a href="careers.html">Careers</a></div>
+        <div class="link-col" data-reveal><h3>COMPANY</h3><div class="rule"></div><a href="company.html">Our Story</a><a href="leadership.html">Leadership</a><a href="partnership.html">Partnership</a><a href="#contact">Contact</a></div>
+        <div class="link-col" data-reveal><h3>GET IN TOUCH</h3><div class="rule"></div><a href="#contact">Laboratory partnership</a><a href="#contact">Investor relations</a><a href="#contact">Research collaboration</a><a href="#contact">Media &amp; press</a></div>
+      </div>
+    </div>
+    <div class="legal">
+      <p>© 2026 First Genomic Insights. All rights reserved.</p>
+      <a href="#footer">Privacy Policy</a>
+    </div>
+  </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.1/dist/lenis.min.js"></script>
+<script src="assets/site.js"></script>
+</body>
+</html>

@@ -256,6 +256,7 @@
   .hero-copy .headline{flex:1 1 0;min-width:0;max-width:960px;display:flex;flex-direction:column;gap:24px}
   .hero-copy .eyebrow{color:var(--text-on-overlay);letter-spacing:1.5px}
   .hero-copy .t-hero{max-width:none}
+  .hero-copy .t-hero .accent{color:inherit}
   .hero-copy .aside{flex:0 0 clamp(400px,32vw,520px);display:flex;flex-direction:column;gap:32px}
   .hero-copy .t-subtitle{color:var(--text-on-overlay);font-size:25px;max-width:46ch}
   .hero-actions{display:flex;padding-top:8px}
@@ -482,6 +483,14 @@
   .bio-side .affil{font-size:15px;line-height:1.5;color:var(--text-secondary)}
   .bio-text{display:flex;flex-direction:column;gap:16px;color:var(--text-secondary)}
   .bio-text .draft{font-size:14px;color:var(--text-neutral-2);padding-top:8px}
+  .bio-links{padding-top:8px;border-top:1px solid var(--border-default)}
+  .bio-links .t-small-strong{display:block;color:var(--text-default);padding-bottom:8px}
+  .bio-link{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;border-top:1px solid var(--border-default);color:var(--text-default)}
+  .bio-link:first-of-type{border-top:0}
+  .bio-link:hover{color:var(--text-brand-secondary)}
+  .bio-link > span:first-child{display:flex;flex-direction:column;gap:2px;font-size:15px;line-height:1.4}
+  .bio-link-meta{font-size:13px;color:var(--text-neutral-2)}
+  .bio-link .arrow{flex:0 0 auto}
 
   /* ============ COMPANY PAGE (mission, vision, values) ============ */
   .vision{padding:96px var(--pad-x) 64px;display:flex;flex-direction:column;gap:56px}

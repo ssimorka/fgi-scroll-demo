@@ -39,11 +39,10 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
             <div class="nav-sub" id="subCompany">
               <a href="company.html">Mission, Vision, Values</a>
               <a href="leadership.html">Leadership &amp; Board</a>
-              <a href="milestones.html">Company Milestones</a>
             </div>
           </li>
           <li><a href="careers.html">Careers</a></li>
-          <li><a href="#contact">Investors</a></li>
+          <li><a href="partnership.html">Explore Partnership</a></li>
         </ul>
         <a class="btn btn-neutral btn-sm" href="#contact">Contact Us</a>
         <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navModal"><img class="open" src="assets/icon-menu.svg" alt=""></button>
@@ -76,12 +75,11 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
             <div class="tray-sub-inner">
               <a href="company.html">Mission, Vision, Values</a>
               <a href="leadership.html">Leadership &amp; Board</a>
-              <a href="milestones.html">Company Milestones</a>
             </div>
           </div>
         </div>
         <a href="careers.html"><span class="mask"><span class="in">Careers</span></span></a>
-        <a href="#contact"><span class="mask"><span class="in">Investors</span></span></a>
+        <a href="partnership.html"><span class="mask"><span class="in">Explore Partnership</span></span></a>
       </nav>
       <div class="nav-modal-foot">
         <a class="btn btn-outline-light" href="#contact">Get in touch <span class="arrow"></span></a>
@@ -177,7 +175,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
       <div class="link-cols">
         <div class="link-col" data-reveal><h3>PLATFORM</h3><div class="rule"></div><a href="index.html#tech">Technology Overview</a><a href="index.html#tech">How NIFS Works</a><a href="index.html#news">Clinical Applications</a><a href="publications.html">Research &amp; Publications</a></div>
         <div class="link-col" data-reveal><h3>FOR YOU</h3><div class="rule"></div><a href="index.html#news">Clinical &amp; Lab Partners</a><a href="#footer">Investors</a><a href="index.html#news">Researchers</a><a href="careers.html">Careers</a></div>
-        <div class="link-col" data-reveal><h3>COMPANY</h3><div class="rule"></div><a href="company.html">Our Story</a><a href="leadership.html">Leadership</a><a href="milestones.html">Milestones</a><a href="#contact">Contact</a></div>
+        <div class="link-col" data-reveal><h3>COMPANY</h3><div class="rule"></div><a href="company.html">Our Story</a><a href="leadership.html">Leadership</a><a href="partnership.html">Partnership</a><a href="#contact">Contact</a></div>
         <div class="link-col" data-reveal><h3>GET IN TOUCH</h3><div class="rule"></div><a href="#contact">Laboratory partnership</a><a href="#contact">Investor relations</a><a href="#contact">Research collaboration</a><a href="#contact">Media &amp; press</a></div>
       </div>
     </div>
@@ -216,11 +214,21 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
   const { lenis, reduceMotion } = window.FGI;
   const people = [
       { name: 'Michael Talkowski, PhD', role: 'Co-Founder', tag: 'Pioneer in translational genomic technologies', affil: 'Director, Center for Genomic Medicine · Professor of Neurology, Mass General Brigham and Harvard · Broad Institute of MIT and Harvard', img: 'assets/team/talkowski.jpg',
-        bio: ['A pioneer in translational genomic technologies, Michael Talkowski directs the Center for Genomic Medicine at Mass General Brigham, is Professor of Neurology at Harvard Medical School and a member of the Broad Institute of MIT and Harvard.', 'His research applies genome sequencing to the discovery and interpretation of genetic variation in human disease, including the methods that underpin non-invasive fetal sequencing.'] },
-      { name: 'Wendy Chung, MD, PhD', role: 'Co-Founder', tag: 'World-renowned expert in clinical genetics and newborn screening', affil: 'Chief of Pediatrics, Boston Children\'s Hospital · Professor of Pediatrics, Harvard Medical School', img: 'assets/team/chung.jpg',
-        bio: ['A world-renowned expert in clinical genetics and newborn screening, Wendy Chung is Chief of Pediatrics at Boston Children\'s Hospital and Professor of Pediatrics at Harvard Medical School.', 'Her work spans the genetic basis of pediatric conditions and the responsible use of genomic testing for newborns and families.'] },
-      { name: 'Ronald Wapner, MD', role: 'Co-Founder', tag: 'Field leader in reproductive genetics and the delivery of genomic technologies into prenatal care', affil: 'Director of Reproductive Genetics · Professor of Obstetrics and Gynecology, Columbia University Medical Center', img: 'assets/team/wapner.jpg',
-        bio: ['A field leader in reproductive genetics and the delivery of genomic technologies into prenatal care, Ronald Wapner directs Reproductive Genetics and is Professor of Obstetrics and Gynecology at Columbia University Medical Center.', 'He has led national studies evaluating how prenatal genetic testing performs in clinical practice.'] },
+        bio: ['A pioneer in translational genomic technologies, Michael Talkowski directs the Center for Genomic Medicine at Mass General Brigham, is Professor of Neurology at Harvard Medical School and a member of the Broad Institute of MIT and Harvard.', 'His research applies large-scale sequencing to the discovery and interpretation of genetic variation in human disease, including the methods that underpin non-invasive fetal sequencing.'] },
+      { name: 'Wendy Chung, MD, PhD', role: 'Co-Founder', tag: 'World-renowned expert in clinical genetics and newborn screening', affil: 'Chief of Pediatrics, Boston Children\'s Hospital · Professor of Pediatrics, Harvard Medical School', img: 'assets/team/chung.jpg', draft: false,
+        bio: ['Wendy Chung is a clinical and molecular geneticist who has led the field of genomic medicine and genetic diagnostics. She directs NIH-funded research in human genetics of congenital anomalies including congenital heart disease, congenital diaphragmatic hernia and esophageal atresia, and neurodevelopmental disorders. She has identified the genetic basis of more than 60 rare diseases.', 'She leads the GUARDIAN study to expand newborn screenings for genetic disorders and advance development of personalized therapies for people with these conditions. She leads NIH funded studies in the ethical, legal, and social implications of genomics.'],
+        links: [
+          { label: 'Expanded Newborn Screening Using Genome Sequencing for Early Actionable Conditions', meta: 'JAMA · 2025', href: 'https://pubmed.ncbi.nlm.nih.gov/39446378/' },
+          { label: 'Information is power: The experiences, attitudes and needs of individuals who chose to have prenatal genomic sequencing for fetal anomalies', meta: 'Prenatal Diagnosis · 2022', href: 'https://obgyn.onlinelibrary.wiley.com/doi/10.1002/pd.6153' },
+          { label: 'Genomics of Rare Disease 2026: Keynote lecture', meta: 'Talk', href: 'https://www.youtube.com/watch?v=HDXo1gPLtTA' },
+        ] },
+      { name: 'Ronald Wapner, MD', role: 'Co-Founder', tag: 'Field leader in reproductive genetics and the delivery of genomic technologies into prenatal care', affil: 'Director of Women\'s Genetics · Professor of Obstetrics and Gynecology, Columbia University Irving Medical Center', img: 'assets/team/wapner.jpg', draft: false,
+        bio: ['Ronald J. Wapner, M.D., is a Professor of Obstetrics and Gynecology and Director of Women\'s Genetics at Columbia University Irving Medical Center. He is board certified in Obstetrics and Gynecology, Maternal-Fetal Medicine, and Clinical Genetics, with more than four decades of experience in reproductive genetics and prenatal diagnosis.', 'His research has focused on advancing prenatal genetic screening and diagnosis, including chorionic villus sampling, first-trimester screening, cell-free DNA testing, chromosomal microarray, and genomic sequencing. His work has helped bring emerging genomic technologies into clinical practice and has contributed to a broader understanding of the genetic causes of fetal structural anomalies and stillbirth.', 'More recently, his research has centered on fetal exome and genome sequencing, interpretation of clinically relevant genomic findings, and the development of international resources linking fetal genotype and phenotype. He is drawn to the First Genomic Insights initiative because of its potential to bring together genomic data and clinical expertise to improve our understanding of fetal disease and advance precision medicine in pregnancy.'],
+        links: [
+          { label: 'Chromosomal Microarray versus Karyotyping for Prenatal Diagnosis', meta: 'New England Journal of Medicine · 2012', href: 'https://www.nejm.org/doi/full/10.1056/NEJMoa1203382' },
+          { label: 'Whole-exome sequencing in the evaluation of fetal structural anomalies: a prospective cohort study', meta: 'The Lancet · 2019', href: 'https://pubmed.ncbi.nlm.nih.gov/30712878/' },
+          { label: 'Causal Genetic Variants in Stillbirth', meta: 'New England Journal of Medicine · 2020', href: 'https://www.nejm.org/doi/full/10.1056/NEJMoa1908753' },
+        ] },
   ];
   const grid = document.getElementById('teamGrid');
   grid.innerHTML = people.map((p, i) => `<button class="team-card" type="button" data-i="${i}"><div class="portrait"><img src="${p.img}" alt="Portrait of ${p.name}"></div><p class="name">${p.name}</p><p class="role">${p.role} · ${p.tag}</p></button>`).join('');
@@ -237,7 +245,9 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
     document.getElementById('bioImg').src = p.img;
     document.getElementById('bioRole').textContent = `${p.role} · ${p.tag}`;
     document.getElementById('bioAffil').textContent = p.affil; document.getElementById('bioImg').alt = 'Portrait of ' + p.name;
-    document.getElementById('bioText').innerHTML = p.bio.map(t => `<p>${t}</p>`).join('') + '<p class="draft">Draft bio, pending review by FGI.</p>';
+    const links = p.links ? `<div class="bio-links"><p class="t-small-strong">Selected work</p>${p.links.map(l => `<a class="bio-link" href="${l.href}" target="_blank" rel="noopener"><span>${l.label}<span class="bio-link-meta">${l.meta}</span></span><span class="arrow"></span></a>`).join('')}</div>` : '';
+    const draft = p.draft === false ? '' : '<p class="draft">Draft bio, pending review by FGI.</p>';
+    document.getElementById('bioText').innerHTML = p.bio.map(t => `<p>${t}</p>`).join('') + draft + links;
   };
   const openBio = (p, from) => {
     if (open || busy) return; open = true; busy = true; last = from; fill(p); modal.hidden = false; tray.scrollTop = 0; lenis.stop();

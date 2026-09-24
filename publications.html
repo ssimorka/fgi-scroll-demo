@@ -39,11 +39,10 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
             <div class="nav-sub" id="subCompany">
               <a href="company.html">Mission, Vision, Values</a>
               <a href="leadership.html">Leadership &amp; Board</a>
-              <a href="milestones.html">Company Milestones</a>
             </div>
           </li>
           <li><a href="careers.html">Careers</a></li>
-          <li><a href="#contact">Investors</a></li>
+          <li><a href="partnership.html">Explore Partnership</a></li>
         </ul>
         <a class="btn btn-neutral btn-sm" href="#contact">Contact Us</a>
         <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navModal"><img class="open" src="assets/icon-menu.svg" alt=""></button>
@@ -76,12 +75,11 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
             <div class="tray-sub-inner">
               <a href="company.html">Mission, Vision, Values</a>
               <a href="leadership.html">Leadership &amp; Board</a>
-              <a href="milestones.html">Company Milestones</a>
             </div>
           </div>
         </div>
         <a href="careers.html"><span class="mask"><span class="in">Careers</span></span></a>
-        <a href="#contact"><span class="mask"><span class="in">Investors</span></span></a>
+        <a href="partnership.html"><span class="mask"><span class="in">Explore Partnership</span></span></a>
       </nav>
       <div class="nav-modal-foot">
         <a class="btn btn-outline-light" href="#contact">Get in touch <span class="arrow"></span></a>
@@ -161,7 +159,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
       <div class="link-cols">
         <div class="link-col" data-reveal><h3>PLATFORM</h3><div class="rule"></div><a href="index.html#tech">Technology Overview</a><a href="index.html#tech">How NIFS Works</a><a href="index.html#news">Clinical Applications</a><a href="publications.html">Research &amp; Publications</a></div>
         <div class="link-col" data-reveal><h3>FOR YOU</h3><div class="rule"></div><a href="index.html#news">Clinical &amp; Lab Partners</a><a href="#footer">Investors</a><a href="index.html#news">Researchers</a><a href="careers.html">Careers</a></div>
-        <div class="link-col" data-reveal><h3>COMPANY</h3><div class="rule"></div><a href="company.html">Our Story</a><a href="leadership.html">Leadership</a><a href="milestones.html">Milestones</a><a href="#contact">Contact</a></div>
+        <div class="link-col" data-reveal><h3>COMPANY</h3><div class="rule"></div><a href="company.html">Our Story</a><a href="leadership.html">Leadership</a><a href="partnership.html">Partnership</a><a href="#contact">Contact</a></div>
         <div class="link-col" data-reveal><h3>GET IN TOUCH</h3><div class="rule"></div><a href="#contact">Laboratory partnership</a><a href="#contact">Investor relations</a><a href="#contact">Research collaboration</a><a href="#contact">Media &amp; press</a></div>
       </div>
     </div>
@@ -183,18 +181,48 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
     { year: 2026, title: 'Non-invasive fetal sequencing (NIFS) across nearly 23,000 genes: prospective validation in 565 pregnancies',
       venue: 'Oral presentation · European Society of Human Genetics conference, Gothenburg', date: 'June 2026',
       who: 'Presented by Christopher Whelan, PhD (Broad Institute of MIT and Harvard; Center for Genomic Medicine, Massachusetts General Hospital)',
-      body: 'Deep cell-free DNA sequencing of maternal blood at a median of 17 weeks, compared against invasive genome sequencing: 97.2% of reportable fetal variants identified, with sensitivity of roughly 95–99% by variant type and results down to a 3% fetal fraction.',
+      body: 'Deep cell-free DNA sequencing of maternal blood at a median of 17 weeks, compared against invasive diagnostic sequencing: 97.2% of reportable fetal variants identified, with sensitivity of roughly 95–99% by variant type and results down to a 3% fetal fraction.',
       href: 'https://www.eurekalert.org/news-releases/1131666', cta: 'Conference release' },
-    { year: 2023, title: 'High-Resolution and Noninvasive Fetal Exome Screening',
+    { year: 2026, title: 'Genomics of Rare Disease 2026: Keynote lecture',
+      venue: 'Keynote lecture · Genomics of Rare Disease 2026', date: '2026',
+      who: 'Wendy K. Chung, MD, PhD (Harvard Medical School; Boston Children\'s Hospital)',
+      body: 'A keynote lecture on the genetics of rare disease, from expanding newborn screening to the interpretation of clinically actionable genomic findings.',
+      href: 'https://www.youtube.com/watch?v=HDXo1gPLtTA', cta: 'Watch the talk' },
+    { year: 2025, title: 'Expanded Newborn Screening Using Genome Sequencing for Early Actionable Conditions',
+      venue: 'JAMA, 333(3):232–240', date: 'January 2025',
+      who: 'Ziegler A, Koval-Burt C, Kay DM, et al., Chung WK',
+      body: 'Interim results from the GUARDIAN study: genome sequencing offered alongside standard newborn screening in a diverse New York City population. Of 4,000 newborns enrolled, 72% of approached families consented, sequencing was completed for 99.6% of participants, and the screen-positive rate in a predefined gene panel was 3.7%.',
+      href: 'https://pubmed.ncbi.nlm.nih.gov/39446378/', cta: 'Read the paper' },
+    { year: 2023, slug: 'nejm', title: 'High-Resolution and Noninvasive Fetal Exome Screening',
       venue: 'Correspondence · The New England Journal of Medicine, 389:2014–2016', date: 'November 23, 2023',
       who: 'Brand H, Whelan CW, Duyzend M, Lemanski J, Salani M, Hao SP, Wong I, Valkanas E, Cusick C, Genetti C, Dobson L, Studwell C, Gianforcaro K, Wilkins-Haug L, Guseh S, Currall B, Gray KJ, Talkowski ME',
       body: 'A survey of sequence variation across the whole fetal exome from cell-free DNA in a maternal blood draw. In 51 pregnancies the approach captured variants inherited from the mother as well as de novo variants associated with prenatal diagnoses.',
       href: 'https://www.nejm.org/doi/full/10.1056/NEJMc2216144', cta: 'Read the paper' },
+    { year: 2022, title: 'Information is power: The experiences, attitudes and needs of individuals who chose to have prenatal genomic sequencing for fetal anomalies',
+      venue: 'Prenatal Diagnosis, 42(7):947–954', date: 'May 4, 2022',
+      who: 'Kernie CG, Wynn J, Rosenbaum A, de Voest J, Galloway S, Giordano J, Stover S, Westerfield L, Gilmore K, Wapner RJ, Van den Veyver IB, Vora NL, Clifton RG, Caughey AB, Chung WK',
+      body: 'Interviews with 33 participants from 27 pregnancies who received prenatal genomic sequencing results for a fetal structural anomaly: most described relief and closure on receiving results, regardless of outcome, and a clear understanding of what the results meant.',
+      href: 'https://obgyn.onlinelibrary.wiley.com/doi/10.1002/pd.6153', cta: 'Read the paper' },
+    { year: 2020, title: 'Causal Genetic Variants in Stillbirth',
+      venue: 'The New England Journal of Medicine, 383(12):1107–1116', date: 'September 17, 2020',
+      who: 'Stanley KE, Giordano J, Thorsten V, et al.',
+      body: 'Exome sequencing of 246 stillborn cases identified a likely molecular diagnosis in 6.1%, implicating both established stillbirth genes and new candidate genes for phenotypic expansion.',
+      href: 'https://www.nejm.org/doi/full/10.1056/NEJMoa1908753', cta: 'Read the paper' },
+    { year: 2019, title: 'Whole-exome sequencing in the evaluation of fetal structural anomalies: a prospective cohort study',
+      venue: 'The Lancet, 393(10173):758–767', date: 'January 31, 2019',
+      who: 'Petrovski S, Aggarwal V, Giordano JL, et al.',
+      body: 'A prospective cohort study of the incremental diagnostic yield of whole-exome sequencing after uninformative karyotype and microarray results, in an unselected cohort of pregnancies with a fetal structural anomaly.',
+      href: 'https://pubmed.ncbi.nlm.nih.gov/30712878/', cta: 'Read the paper' },
+    { year: 2012, title: 'Chromosomal Microarray versus Karyotyping for Prenatal Diagnosis',
+      venue: 'The New England Journal of Medicine, 367(23):2175–2184', date: 'December 6, 2012',
+      who: 'Wapner RJ, Martin CL, Levy B, et al.',
+      body: 'A prospective comparison of chromosomal microarray and karyotyping in 4,406 women undergoing prenatal diagnosis: microarray matched karyotyping on aneuploidies and unbalanced rearrangements, and found clinically relevant findings karyotyping missed in 6.0% of structural-anomaly cases.',
+      href: 'https://www.nejm.org/doi/full/10.1056/NEJMoa1203382', cta: 'Read the paper' },
   ];
   const news = [
     { title: 'New non-invasive prenatal testing technique gives results comparable to invasive methods, with advantages in both safety and cost',
       source: 'European Society of Human Genetics, via EurekAlert!', date: 'June 12, 2026',
-      body: 'The ESHG release on the Gothenburg presentation: NIFS screens almost 23,000 genes plus everything current NIPT covers, in pregnancies with and without a detected anomaly.',
+      body: 'The ESHG release on the Gothenburg presentation: NIFS sequences almost 23,000 genes plus everything current NIPT covers, in pregnancies with and without a detected anomaly.',
       href: 'https://www.eurekalert.org/news-releases/1131666' },
     { title: 'Maternal Blood Test Allows Comprehensive Genetic Fetal Screening',
       source: 'Inside Precision Medicine', date: 'June 12, 2026',
@@ -202,11 +230,11 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
       href: 'https://www.insideprecisionmedicine.com/topics/molecular-dx/maternal-blood-test-allows-comprehensive-genetic-fetal-screening/' },
     { title: 'Noninvasive sequencing expands prenatal genetic screening capabilities',
       source: 'News-Medical', date: 'June 12, 2026',
-      body: 'On the prospective results presented at ESHG 2026 and what exome-scale non-invasive screening adds to today’s NIPT.',
+      body: 'On the prospective results presented at ESHG 2026 and what exome-scale non-invasive sequencing adds to today’s NIPT.',
       href: 'https://www.news-medical.net/news/20260612/Noninvasive-sequencing-expands-prenatal-genetic-screening-capabilities.aspx' },
     { title: 'Results of non-invasive prenatal testing compare well to those from invasive methods, with better safety and cost',
       source: 'Medical Xpress', date: 'June 2026',
-      body: 'A report on the ESHG presentation and the comparison against invasive genome sequencing.',
+      body: 'A report on the ESHG presentation and the comparison against invasive diagnostic sequencing.',
       href: 'https://medicalxpress.com/news/2026-06-results-invasive-prenatal-methods-safety.html' },
     { title: 'A new method for prenatal genetic testing relies on just a blood draw',
       source: 'Broad Institute of MIT and Harvard', date: 'November 23, 2023',
@@ -219,7 +247,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
   ];
 
   const esc = (s) => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-  const entry = (e, meta, cta) => `<article class="entry"><h3 class="t-heading">${esc(e.title)}</h3><p class="entry-meta">${meta}</p>${e.who ? `<p class="entry-who">${esc(e.who)}</p>` : ''}<p class="t-body entry-body">${esc(e.body)}</p><a class="btn btn-neutral btn-sm" href="${esc(e.href)}" target="_blank" rel="noopener">${esc(cta)} <span class="arrow"></span></a></article>`;
+  const entry = (e, meta, cta) => `<article class="entry"${e.slug ? ` id="${esc(e.slug)}"` : ''}><h3 class="t-heading">${esc(e.title)}</h3><p class="entry-meta">${meta}</p>${e.who ? `<p class="entry-who">${esc(e.who)}</p>` : ''}<p class="t-body entry-body">${esc(e.body)}</p><a class="btn btn-neutral btn-sm" href="${esc(e.href)}" target="_blank" rel="noopener">${esc(cta)} <span class="arrow"></span></a></article>`;
 
   const years = [...new Set(publications.map(p => p.year))].sort((a, b) => b - a);
   document.getElementById('panelPublications').innerHTML = years.map((y, i) =>
@@ -249,7 +277,16 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
     t.addEventListener('click', () => { select(t); history.replaceState(null, '', t.id === 'tabNews' ? '#news' : '#publications'); });
     t.addEventListener('keydown', (e) => { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); select(tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length], true); } });
   });
-  const fromHash = () => { if (location.hash === '#news') select(document.getElementById('tabNews')); else if (location.hash === '#publications') select(document.getElementById('tabPublications')); };
+  const fromHash = () => {
+    if (location.hash === '#news') { select(document.getElementById('tabNews')); return; }
+    if (location.hash === '#publications') { select(document.getElementById('tabPublications')); return; }
+    const target = location.hash && document.querySelector(location.hash);
+    if (target && target.classList.contains('entry')) { // a direct link to one publication (e.g. #nejm): open its tab, year and scroll to it
+      select(document.getElementById('tabPublications'));
+      const details = target.closest('details.year'); if (details) details.open = true;
+      requestAnimationFrame(() => target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' }));
+    }
+  };
   fromHash(); window.addEventListener('hashchange', fromHash);
   document.querySelectorAll('.year').forEach(d => d.addEventListener('toggle', () => { if (window.ScrollTrigger) ScrollTrigger.refresh(); }));
 })();
