@@ -4,6 +4,7 @@ python -m http.server sends no cache headers, so browsers happily reuse a
 stale copy of index.html between edits. This one sets Cache-Control: no-store
 on every response so a plain reload always shows the latest file.
 """
+import os
 import sys
 from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
@@ -23,7 +24,7 @@ class NoCacheHandler(SimpleHTTPRequestHandler):
 
 
 if __name__ == "__main__":
-    port = int(sys.argv[1]) if len(sys.argv) > 1 else 8765
+    port = int(sys.argv[1]) if len(sys.argv) > 1 else int(os.environ.get("PORT", 8765))
     root = Path(__file__).resolve().parent
     handler = partial(NoCacheHandler, directory=str(root))
     print(f"Serving {root} on http://localhost:{port} (no-cache)")
