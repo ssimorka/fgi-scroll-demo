@@ -94,9 +94,8 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
   <!-- ============ VIDEO HERO (First Helix data pipeline) ============ -->
   <div class="stack-wrap">
   <section class="photo-hero stack-panel" id="top">
-    <div class="photo-hero-card hero-video">
-      <video autoplay muted loop playsinline aria-hidden="true" preload="metadata" poster="assets/stills/pipeline-loop.webp" src="assets/pipeline-loop.mp4" id="heroVideo"></video>
-      <button class="icon-btn media-toggle" type="button" aria-pressed="false" aria-label="Pause animation"><svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg><svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.5.87l12.5-7.5a1 1 0 0 0 0-1.74L8.5 3.63A1 1 0 0 0 7 4.5z"/></svg></button>
+    <div class="photo-hero-card hero-bright">
+      <img src="assets/tech-bioinformatics-engine.webp" srcset="assets/tech-bioinformatics-engine-900.webp 900w, assets/tech-bioinformatics-engine.webp 1600w" sizes="100vw" alt="" fetchpriority="high">
       <div class="photo-hero-copy">
         <div class="headline">
           <p class="eyebrow" data-entrance>Our technology</p>
@@ -147,7 +146,10 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
     <p class="t-subtitle" data-reveal>Simple wet-lab workflow, sophisticated bioinformatics, scalable deployment.</p>
     <div class="workflow-grid">
       <article class="tile tile-light workflow-card" data-reveal>
-        <div class="workflow-card-media"><img src="assets/tech-cfdna-vial.webp" srcset="assets/tech-cfdna-vial-900.webp 900w, assets/tech-cfdna-vial.webp 1600w" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 25vw" alt="" loading="lazy" decoding="async"></div>
+        <div class="workflow-card-media">
+          <video autoplay muted loop playsinline aria-hidden="true" preload="metadata" poster="assets/stills/blood-draw-loop.webp" src="assets/blood-draw-loop.mp4" id="bloodDrawVideo"></video>
+          <button class="icon-btn media-toggle" type="button" aria-pressed="false" aria-label="Pause animation"><svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg><svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.5.87l12.5-7.5a1 1 0 0 0 0-1.74L8.5 3.63A1 1 0 0 0 7 4.5z"/></svg></button>
+        </div>
         <div class="workflow-card-body">
           <div class="card-num" aria-hidden="true">01</div>
           <h3 class="t-heading">Blood Collection</h3>
@@ -155,7 +157,10 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
         </div>
       </article>
       <article class="tile tile-light workflow-card" data-reveal>
-        <div class="workflow-card-media"><img src="assets/tech-sequence-bands.webp" srcset="assets/tech-sequence-bands-900.webp 900w, assets/tech-sequence-bands.webp 1600w" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 25vw" alt="" loading="lazy" decoding="async"></div>
+        <div class="workflow-card-media">
+          <video autoplay muted loop playsinline aria-hidden="true" preload="metadata" poster="assets/stills/sequence-bands-loop.webp" src="assets/sequence-bands-loop.mp4" id="sequenceBandsVideo"></video>
+          <button class="icon-btn media-toggle" type="button" aria-pressed="false" aria-label="Pause animation"><svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg><svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.5.87l12.5-7.5a1 1 0 0 0 0-1.74L8.5 3.63A1 1 0 0 0 7 4.5z"/></svg></button>
+        </div>
         <div class="workflow-card-body">
           <div class="card-num" aria-hidden="true">02</div>
           <h3 class="t-heading">cfDNA Extraction</h3>
@@ -305,9 +310,11 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
 <script>
 (() => {
   const { motion } = window.FGI;
-  // hero clip: plays unless the page's motion is paused (reduced motion, or the toggle in the corner)
-  const v = document.getElementById('heroVideo');
-  v.removeAttribute('autoplay'); motion.add({ start: () => v.play().catch(() => {}), stop: () => v.pause() });
+  // Workflow card clips: each plays unless the page's motion is paused (reduced motion, or its own toggle)
+  ['bloodDrawVideo', 'sequenceBandsVideo'].forEach((id) => {
+    const v = document.getElementById(id);
+    v.removeAttribute('autoplay'); motion.add({ start: () => v.play().catch(() => {}), stop: () => v.pause() });
+  });
 })();
 </script>
 </body>
