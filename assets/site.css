@@ -499,7 +499,9 @@
   .split-body .t-subtitle{color:var(--text-default)}
   .split-body .t-body{color:var(--text-secondary);max-width:58ch}
   .vision-media{position:relative;height:min(62svh,560px);border-radius:var(--radius);overflow:hidden;background:var(--bg-neutral-3);box-shadow:var(--shadow-300)}
-  .vision-media img{width:100%;height:100%;object-fit:cover;object-position:50% 25%}
+  .vision-media img,.vision-media video{width:100%;height:100%;object-fit:cover;object-position:50% 25%}
+  .vision-media .media-toggle{background:rgba(0,21,56,.55);color:var(--text-on-dark);border-color:transparent}
+  .vision-media .media-toggle:hover{background:rgba(0,21,56,.72)}
   .vision-caption{position:absolute;left:32px;bottom:32px;max-width:420px;display:flex;flex-direction:column;gap:8px;padding:24px;
     background:rgba(255,255,255,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--border-default);border-radius:var(--radius)}
   .vision-caption .t-body{color:var(--text-secondary);font-size:16px}

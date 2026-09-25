@@ -215,7 +215,8 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
       </div>
     </div>
     <div class="vision-media" data-reveal>
-      <img src="assets/tech-bioinformatics-engine.webp" srcset="assets/tech-bioinformatics-engine-900.webp 900w, assets/tech-bioinformatics-engine.webp 1600w" sizes="100vw" alt="" loading="lazy" decoding="async">
+      <video autoplay muted loop playsinline aria-hidden="true" preload="metadata" poster="assets/stills/bioinformatics-engine-loop.webp" src="assets/bioinformatics-engine-loop.mp4" id="bioengineVideo"></video>
+      <button class="icon-btn media-toggle" type="button" aria-pressed="false" aria-label="Pause animation"><svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg><svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.5.87l12.5-7.5a1 1 0 0 0 0-1.74L8.5 3.63A1 1 0 0 0 7 4.5z"/></svg></button>
       <div class="vision-caption"><p class="eyebrow">Patented technology</p><p class="t-body">Exclusively licensed to FGI: from raw sequencing reads to a resolved genomic result, in a single automated pipeline.</p></div>
     </div>
   </section>
@@ -316,8 +317,8 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
 <script>
 (() => {
   const { motion } = window.FGI;
-  // Workflow card clips: each plays unless the page's motion is paused (reduced motion, or its own toggle)
-  ['bloodDrawVideo', 'sequenceBandsVideo', 'variantLocusVideo', 'dataPipelineVideo'].forEach((id) => {
+  // Looping clips (workflow cards, First Helix media): each plays unless the page's motion is paused (reduced motion, or its own toggle)
+  ['bloodDrawVideo', 'sequenceBandsVideo', 'variantLocusVideo', 'dataPipelineVideo', 'bioengineVideo'].forEach((id) => {
     const v = document.getElementById(id);
     v.removeAttribute('autoplay'); motion.add({ start: () => v.play().catch(() => {}), stop: () => v.pause() });
   });
