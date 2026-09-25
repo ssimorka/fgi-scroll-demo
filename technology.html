@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Our Technology — First Genomic Insights</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&family=Roboto+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<script>/* motion start states go on before first paint, so nothing is shown and then re-hidden when the scripts land; released if GSAP never arrives */
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('js-motion');setTimeout(function(){if(!window.gsap)document.documentElement.classList.remove('js-motion')},4000)}</script>
+</head>
+<body class="theme-blue">
+
+<div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="mesh" aria-hidden="true"></div>
+
+  <!-- ============ SITE NAV (own bar above the hero card) ============ -->
+  <div class="nav-slot">
+  <header class="site-nav" id="siteNav">
+    <nav class="navbar" aria-label="Primary">
+      <div class="navbar-inner">
+        <a class="logo" href="index.html#hero" aria-label="First Genomic Insights">
+          <img class="full" src="assets/fgi-logo-dark.svg" alt="">
+          <img class="mark" src="assets/fgi-mini-color.svg" alt="">
+        </a>
+        <ul class="nav-list">
+          <li class="nav-item has-sub">
+            <a class="nav-sub-toggle" href="technology.html" aria-haspopup="true" aria-expanded="false" aria-controls="subTechnology">Technology <span class="chev" aria-hidden="true"></span></a>
+            <div class="nav-sub" id="subTechnology">
+              <a href="technology.html">Our Technology</a>
+              <a href="publications.html">Publications</a>
+            </div>
+          </li>
+          <li class="nav-item has-sub">
+            <a class="nav-sub-toggle" href="index.html#founders" aria-haspopup="true" aria-expanded="false" aria-controls="subCompany">Company <span class="chev" aria-hidden="true"></span></a>
+            <div class="nav-sub" id="subCompany">
+              <a href="company.html">Mission, Vision, Values</a>
+              <a href="leadership.html">Leadership &amp; Board</a>
+            </div>
+          </li>
+          <li><a href="careers.html">Careers</a></li>
+          <li><a href="partnership.html">Explore Partnership</a></li>
+        </ul>
+        <a class="btn btn-neutral btn-sm" href="#contact">Contact Us</a>
+        <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navModal"><img class="open" src="assets/icon-menu.svg" alt=""></button>
+      </div>
+    </nav>
+  </header>
+  </div>
+
+  <!-- ============ FULL-SCREEN MENU ============ -->
+  <div class="nav-modal" id="navModal" hidden>
+    <div class="nav-modal-scrim" id="menuScrim" aria-hidden="true"></div>
+    <div class="nav-modal-tray" data-lenis-prevent>
+      <div class="nav-modal-top">
+        <img class="nav-modal-mark" src="assets/fgi-mini.svg" alt="FGI">
+        <button class="icon-btn on-dark menu-close" id="menuClose" type="button" aria-label="Close menu"><img src="assets/icon-close.svg" alt=""></button>
+      </div>
+      <nav class="nav-modal-links" aria-label="Site">
+        <div class="tray-item has-sub">
+          <button class="tray-toggle" type="button" aria-expanded="false" aria-controls="traySubTechnology"><span class="mask"><span class="in">Technology <span class="chev" aria-hidden="true"></span></span></span></button>
+          <div class="tray-sub" id="traySubTechnology">
+            <div class="tray-sub-inner">
+              <a href="technology.html">Our Technology</a>
+              <a href="publications.html">Publications</a>
+            </div>
+          </div>
+        </div>
+        <div class="tray-item has-sub">
+          <button class="tray-toggle" type="button" aria-expanded="false" aria-controls="traySubCompany"><span class="mask"><span class="in">Company <span class="chev" aria-hidden="true"></span></span></span></button>
+          <div class="tray-sub" id="traySubCompany">
+            <div class="tray-sub-inner">
+              <a href="company.html">Mission, Vision, Values</a>
+              <a href="leadership.html">Leadership &amp; Board</a>
+            </div>
+          </div>
+        </div>
+        <a href="careers.html"><span class="mask"><span class="in">Careers</span></span></a>
+        <a href="partnership.html"><span class="mask"><span class="in">Explore Partnership</span></span></a>
+      </nav>
+      <div class="nav-modal-foot">
+        <a class="btn btn-outline-light" href="#contact">Get in touch <span class="arrow"></span></a>
+        <p class="t-small">First Genomic Insights · Non-invasive fetal sequencing</p>
+        <a class="li" href="https://www.linkedin.com/company/first-genomic-insights-inc/posts/?feedView=all" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="assets/linkedin.svg" alt=""></a>
+      </div>
+    </div>
+  </div>
+
+
+  <main id="main">
+  <!-- ============ VIDEO HERO (First Helix data pipeline) ============ -->
+  <div class="stack-wrap">
+  <section class="photo-hero stack-panel" id="top">
+    <div class="photo-hero-card">
+      <video autoplay muted loop playsinline aria-hidden="true" preload="metadata" poster="assets/stills/pipeline-loop.webp" src="assets/pipeline-loop.mp4" id="heroVideo"></video>
+      <button class="icon-btn media-toggle" type="button" aria-pressed="false" aria-label="Pause animation"><svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg><svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.5.87l12.5-7.5a1 1 0 0 0 0-1.74L8.5 3.63A1 1 0 0 0 7 4.5z"/></svg></button>
+      <div class="photo-hero-copy">
+        <div class="headline">
+          <p class="eyebrow" data-entrance>Our technology</p>
+          <h1 class="t-hero" data-entrance>The platform behind non-invasive fetal sequencing.</h1>
+          <p class="t-subtitle" data-entrance>NIFS pairs a single maternal blood draw with First Helix, our patented bioinformatic engine, to screen the fetal exome for thousands of genetic conditions, non-invasively.</p>
+        </div>
+        <div class="actions" data-entrance>
+          <a class="btn btn-outline-light" href="#workflow">See how it works <span class="arrow"></span></a>
+          <a class="btn btn-brand" href="#contact">Get in touch <span class="arrow"></span></a>
+        </div>
+      </div>
+    </div>
+    <div class="facts" data-entrance>
+      <div class="fact"><div class="t-heading">22,995</div><div class="t-small-strong">genes screened by NIFS</div></div>
+      <div class="fact"><div class="t-heading">7,486</div><div class="t-small-strong">genetic conditions accessible</div></div>
+      <div class="fact"><div class="t-heading">100%</div><div class="t-small-strong">coverage of major variant classes</div></div>
+      <div class="fact"><div class="t-heading">0</div><div class="t-small-strong">procedure risk: it's a standard blood draw</div></div>
+    </div>
+  </section>
+  </div>
+
+  <!-- ============ 01 THE PROBLEM, AND OUR SOLUTION (slides over the hero) ============ -->
+  <div class="stack-wrap stack-over" data-slide="0.65">
+  <section class="statement stack-panel" id="solution">
+    <div class="statement-panel">
+      <span class="sec-num" aria-hidden="true" data-reveal>01</span>
+      <h2 class="t-page" data-reveal>Every genetic test today is a trade-off between coverage and safety. NIFS closes the gap.</h2>
+      <p class="eyebrow section" data-reveal>The problem, and our solution</p>
+      <div class="pillars">
+        <div class="pillar" data-reveal><h3 class="t-heading">Standard NIPT is incomplete</h3><p class="t-body">Detects only a handful of genetic conditions, missing the majority of clinically relevant variants that affect fetal health.</p></div>
+        <div class="pillar" data-reveal><h3 class="t-heading">Invasive testing carries real risk</h3><p class="t-body">Amniocentesis and CVS are the only comprehensive options today, but they carry a miscarriage risk and are not broadly used.</p></div>
+        <div class="pillar" data-reveal><h3 class="t-heading">NIFS is non-invasive and comprehensive</h3><p class="t-body">The first fetal sequencing test to deliver high-resolution genetic screening at NIPT scale, with no invasive procedure.</p></div>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <!-- ============ 02 WORKFLOW + 03 FIRST HELIX + 04 COVERAGE (slide over 01, 1:1) ============ -->
+  <div class="stack-over">
+  <section class="workflow on-white" id="workflow">
+    <div class="section-heading" data-reveal>
+      <span class="sec-num" aria-hidden="true">02</span>
+      <div>
+        <p class="eyebrow section">How it works</p>
+        <h2 class="t-page">A simple blood draw. A sophisticated pipeline.</h2>
+      </div>
+    </div>
+    <p class="t-subtitle" data-reveal>Simple wet-lab workflow, sophisticated bioinformatics, scalable deployment.</p>
+    <div class="workflow-grid">
+      <article class="tile tile-light workflow-card" data-reveal>
+        <div class="workflow-card-media"><img src="assets/tech-cfdna-vial.webp" srcset="assets/tech-cfdna-vial-900.webp 900w, assets/tech-cfdna-vial.webp 1600w" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 25vw" alt="" loading="lazy" decoding="async"></div>
+        <div class="workflow-card-body">
+          <div class="card-num" aria-hidden="true">01</div>
+          <h3 class="t-heading">Blood Collection</h3>
+          <p class="t-body">A peripheral blood draw from the pregnant patient. No procedure risk to mother or fetus.</p>
+        </div>
+      </article>
+      <article class="tile tile-light workflow-card" data-reveal>
+        <div class="workflow-card-media"><img src="assets/tech-sequence-bands.webp" srcset="assets/tech-sequence-bands-900.webp 900w, assets/tech-sequence-bands.webp 1600w" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 25vw" alt="" loading="lazy" decoding="async"></div>
+        <div class="workflow-card-body">
+          <div class="card-num" aria-hidden="true">02</div>
+          <h3 class="t-heading">cfDNA Extraction</h3>
+          <p class="t-body">Fetal and maternal cell-free DNA is isolated from plasma.</p>
+        </div>
+      </article>
+      <article class="tile tile-light workflow-card" data-reveal>
+        <div class="workflow-card-media"><img src="assets/tech-variant-locus.webp" srcset="assets/tech-variant-locus-900.webp 900w, assets/tech-variant-locus.webp 1600w" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 25vw" alt="" loading="lazy" decoding="async"></div>
+        <div class="workflow-card-body">
+          <div class="card-num" aria-hidden="true">03</div>
+          <h3 class="t-heading">Exome Capture</h3>
+          <p class="t-body">Targeted enrichment of coding regions across the fetal exome.</p>
+        </div>
+      </article>
+      <article class="tile tile-light workflow-card" data-reveal>
+        <div class="workflow-card-media"><img src="assets/tech-data-pipeline.webp" srcset="assets/tech-data-pipeline-900.webp 900w, assets/tech-data-pipeline.webp 1600w" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 25vw" alt="" loading="lazy" decoding="async"></div>
+        <div class="workflow-card-body">
+          <div class="card-num" aria-hidden="true">04</div>
+          <h3 class="t-heading">Bioinformatics</h3>
+          <p class="t-body">First Helix calls fetal and maternal variants from the sequencing data.</p>
+        </div>
+      </article>
+    </div>
+    <p class="t-small roadmap-note" data-reveal>See this pipeline in motion on our <a href="index.html#tech">home page <span class="arrow"></span></a>.</p>
+  </section>
+
+  <section class="engine on-white" id="engine">
+    <div class="split">
+      <div class="section-heading" data-reveal>
+        <span class="sec-num" aria-hidden="true">03</span>
+        <div>
+          <p class="eyebrow section">The engine</p>
+          <h2 class="t-page">First Helix: the core bioinformatic engine powering NIFS.</h2>
+        </div>
+      </div>
+      <div class="split-body">
+        <p class="t-subtitle" data-reveal>A patented algorithm for non-invasive fetal genotyping from maternal plasma cell-free DNA, exclusively licensed to FGI.</p>
+        <p class="t-body" data-reveal>One sample. One test. Multiple answers. First Helix simultaneously screens for:</p>
+        <div class="tag-row" data-reveal>
+          <span class="tag">Aneuploidies (T21, T18, T13)</span>
+          <span class="tag">Autosomal &amp; X-linked dominant</span>
+          <span class="tag">Autosomal &amp; X-linked recessive</span>
+          <span class="tag">Copy number variants (CNVs)</span>
+          <span class="tag">Maternal carrier status</span>
+        </div>
+      </div>
+    </div>
+    <div class="vision-media" data-reveal>
+      <img src="assets/tech-bioinformatics-engine.webp" srcset="assets/tech-bioinformatics-engine-900.webp 900w, assets/tech-bioinformatics-engine.webp 1600w" sizes="100vw" alt="" loading="lazy" decoding="async">
+      <div class="vision-caption"><p class="eyebrow">Patented technology</p><p class="t-body">Exclusively licensed to FGI: from raw sequencing reads to a resolved genomic result, in a single automated pipeline.</p></div>
+    </div>
+  </section>
+
+  <section class="coverage" id="coverage">
+    <div class="section-heading" data-reveal>
+      <span class="sec-num" aria-hidden="true">04</span>
+      <div>
+        <p class="eyebrow section">By the numbers</p>
+        <h2 class="t-page">Comprehensive coverage, captured from a single plasma sample.</h2>
+      </div>
+    </div>
+    <p class="t-subtitle" data-reveal>High-resolution, noninvasive fetal exome screening: every condition below is identified from the same maternal blood draw.</p>
+    <div class="coverage-grid">
+      <article class="tile tile-light" data-reveal>
+        <p class="t-heading">3,151</p>
+        <p class="t-body">Autosomal dominant conditions, across 2,649 genes</p>
+      </article>
+      <article class="tile tile-light" data-reveal>
+        <p class="t-heading">3,901</p>
+        <p class="t-body">Autosomal recessive conditions, across 3,246 genes</p>
+      </article>
+      <article class="tile tile-light" data-reveal>
+        <p class="t-heading">434</p>
+        <p class="t-body">X-linked conditions, across 269 genes</p>
+      </article>
+    </div>
+
+    <div class="chart" data-reveal>
+      <div class="chart-head">
+        <div>
+          <p class="chart-title">Closing the gap between safety and coverage</p>
+          <p class="chart-sub">Share of clinically relevant, diagnostic-grade genetic variants each approach can identify.</p>
+        </div>
+      </div>
+      <div class="chart-body">
+        <div class="chart-plot">
+          <div class="chart-grid" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="chart-row"><div class="chart-label">NIFS (non-invasive)</div><div class="chart-track"><span class="chart-bar is-lead" style="--v:1"></span><span class="chart-val">100%</span></div></div>
+          <div class="chart-row"><div class="chart-label">Invasive testing (amniocentesis / CVS)</div><div class="chart-track"><span class="chart-bar s2" style="--v:1"></span><span class="chart-val">100%</span></div></div>
+          <div class="chart-row"><div class="chart-label">Standard NIPT</div><div class="chart-track"><span class="chart-bar s3" style="--v:.08"></span><span class="chart-val">~8%</span></div></div>
+          <div class="chart-axis"><span></span><div class="chart-ticks"><span>0%</span><span>50%</span><span>100%</span></div></div>
+        </div>
+      </div>
+    </div>
+    <p class="t-small roadmap-note" data-reveal>Modeled coverage of diagnostic-grade genetic variants (aneuploidy, copy-number variants, and autosomal and X-linked conditions) that would otherwise require invasive testing to detect. Invasive testing is comprehensive but carries a miscarriage risk; standard NIPT is non-invasive but limited in scope. Based on FGI's analysis of published assay specifications.</p>
+  </section>
+  </div>
+
+  <!-- ============ CLOSING CTA ============ -->
+  <section class="cta" id="contact">
+    <div class="cta-panel">
+      <div class="cta-head">
+        <span class="sec-num" aria-hidden="true">05</span>
+        <h2 class="t-hero" data-reveal>Let's talk.</h2>
+      </div>
+      <div class="cta-body">
+        <p class="t-subtitle" data-reveal>Laboratories, clinicians, investors and researchers: tell us what you're working on.</p>
+        <div class="cta-routes">
+          <a class="cta-route" href="#footer" data-reveal><span>General enquiry</span><span class="arrow"></span></a>
+          <a class="cta-route" href="#footer" data-reveal><span>Laboratory partnership</span><span class="arrow"></span></a>
+          <a class="cta-route" href="#footer" data-reveal><span>Investor relations</span><span class="arrow"></span></a>
+          <a class="cta-route" href="#footer" data-reveal><span>Research collaboration</span><span class="arrow"></span></a>
+          <a class="cta-route" href="#footer" data-reveal><span>Media &amp; press</span><span class="arrow"></span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer" id="footer">
+    <div class="footer-content">
+      <div class="brand">
+        <img class="mini" src="assets/fgi-mini.svg" alt="FGI">
+        <a class="li" href="https://www.linkedin.com/company/first-genomic-insights-inc/posts/?feedView=all" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="assets/linkedin.svg" alt=""></a>
+      </div>
+      <div class="link-cols">
+        <div class="link-col" data-reveal><h3>PLATFORM</h3><div class="rule"></div><a href="technology.html">Technology Overview</a><a href="technology.html#workflow">How NIFS Works</a><a href="index.html#news">Clinical Applications</a><a href="publications.html">Research &amp; Publications</a></div>
+        <div class="link-col" data-reveal><h3>FOR YOU</h3><div class="rule"></div><a href="index.html#news">Clinical &amp; Lab Partners</a><a href="#footer">Investors</a><a href="index.html#news">Researchers</a><a href="careers.html">Careers</a></div>
+        <div class="link-col" data-reveal><h3>COMPANY</h3><div class="rule"></div><a href="company.html">Our Story</a><a href="leadership.html">Leadership</a><a href="partnership.html">Partnership</a><a href="#contact">Contact</a></div>
+        <div class="link-col" data-reveal><h3>GET IN TOUCH</h3><div class="rule"></div><a href="#contact">Laboratory partnership</a><a href="#contact">Investor relations</a><a href="#contact">Research collaboration</a><a href="#contact">Media &amp; press</a></div>
+      </div>
+    </div>
+    <div class="legal">
+      <p>© 2026 First Genomic Insights. All rights reserved.</p>
+      <a href="#footer">Privacy Policy</a>
+    </div>
+  </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.1/dist/lenis.min.js"></script>
+<script src="assets/site.js"></script>
+<script>
+(() => {
+  const { motion } = window.FGI;
+  // hero clip: plays unless the page's motion is paused (reduced motion, or the toggle in the corner)
+  const v = document.getElementById('heroVideo');
+  v.removeAttribute('autoplay'); motion.add({ start: () => v.play().catch(() => {}), stop: () => v.pause() });
+})();
+</script>
+</body>
+</html>
