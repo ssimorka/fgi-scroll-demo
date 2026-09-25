@@ -242,12 +242,7 @@
     flex:1 1 auto;min-height:0; /* fills the viewport minus nav slot, gutter and fact tiles */
     display:flex;flex-direction:column;justify-content:flex-start;gap:48px;
     padding:64px 48px 48px;border-radius:var(--radius);
-    background:
-      radial-gradient(38% 30% at 80% 26%,rgba(240,253,255,.55) 0%,rgba(240,253,255,.22) 45%,rgba(240,253,255,0) 75%),
-      radial-gradient(30% 26% at 94% 62%,rgba(154,220,242,.45) 0%,rgba(154,220,242,.18) 50%,rgba(154,220,242,0) 80%),
-      radial-gradient(28% 24% at 62% 82%,rgba(0,119,160,.35) 0%,rgba(0,119,160,.14) 55%,rgba(0,119,160,0) 85%),
-      var(--grad-hero); /* soft bokeh blooms over the brand gradient, mostly behind the helix (right two-thirds) */
-    color:var(--text-on-overlay);overflow:hidden;
+    background:var(--grad-hero);color:var(--text-on-overlay);overflow:hidden;
     box-shadow:var(--shadow-300); /* box-shadow, not filter: a filter here would re-blur the animating canvases every frame */
   }
   .hero-card{position:relative}
