@@ -246,12 +246,9 @@
     box-shadow:var(--shadow-300); /* box-shadow, not filter: a filter here would re-blur the animating canvases every frame */
   }
   .hero-card{position:relative}
-  .hero-viz{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.75} /* data-points texture: reads like the comp's 25% dash layer once the band alpha is in */
-  /* 3D helix: a WebGL canvas over the whole card (drawn bottom-left to top-right, see
-     section 1b). The still is only shown if WebGL / three.js is unavailable. */
-  .hero-helix{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.78} /* part-translucent so the card gradient shows through; no filter: it would re-blur the WebGL frame every tick */
-  .hero-helix-still{object-fit:cover;object-position:right bottom;opacity:.94}
-  .hero-helix-still[hidden]{display:none} /* the img reset sets display:block, which would beat [hidden] */
+  .hero-viz{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.75} /* data-points texture: reads like the comp's 25% dash layer once the band alpha is in; still used on the Mission ground */
+  /* hero clip: pre-rendered helix + gradient + data-dash background, full-bleed behind the copy */
+  .hero-helix-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 35%;pointer-events:none}
   .hero-copy{position:relative;z-index:1;display:flex;align-items:flex-start;justify-content:space-between;gap:64px}
   .hero-copy .headline{flex:1 1 0;min-width:0;max-width:960px;display:flex;flex-direction:column;gap:24px}
   .hero-copy .eyebrow{color:var(--text-on-overlay);letter-spacing:1.5px}
