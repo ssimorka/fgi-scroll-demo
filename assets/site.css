@@ -808,6 +808,7 @@
     .nav-list{display:none}
     .hero{padding:12px}
     .hero-card{padding:40px 20px 32px;gap:32px}
+    .hero-card::before{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(240,253,255,.85) 0%,rgba(240,253,255,.8) 55%,rgba(240,253,255,.5) 85%,rgba(240,253,255,0) 100%)} /* stacked copy is dark text over a busy clip: a light wash guarantees contrast regardless of what's behind it */
     .hero-copy{flex-direction:column;align-items:stretch;gap:24px}
     .hero-copy .headline,.photo-hero-copy .headline{max-width:640px} /* stacked copy keeps a measure on wide phones / small tablets */
     .hero-copy .aside{flex:0 0 auto}
