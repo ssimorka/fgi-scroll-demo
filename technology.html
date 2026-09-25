@@ -168,7 +168,10 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
         </div>
       </article>
       <article class="tile tile-light workflow-card" data-reveal>
-        <div class="workflow-card-media"><img src="assets/tech-variant-locus.webp" srcset="assets/tech-variant-locus-900.webp 900w, assets/tech-variant-locus.webp 1600w" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 25vw" alt="" loading="lazy" decoding="async"></div>
+        <div class="workflow-card-media">
+          <video autoplay muted loop playsinline aria-hidden="true" preload="metadata" poster="assets/stills/variant-locus-loop.webp" src="assets/variant-locus-loop.mp4" id="variantLocusVideo"></video>
+          <button class="icon-btn media-toggle" type="button" aria-pressed="false" aria-label="Pause animation"><svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg><svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.5.87l12.5-7.5a1 1 0 0 0 0-1.74L8.5 3.63A1 1 0 0 0 7 4.5z"/></svg></button>
+        </div>
         <div class="workflow-card-body">
           <div class="card-num" aria-hidden="true">03</div>
           <h3 class="t-heading">Exome Capture</h3>
@@ -176,7 +179,10 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
         </div>
       </article>
       <article class="tile tile-light workflow-card" data-reveal>
-        <div class="workflow-card-media"><img src="assets/tech-data-pipeline.webp" srcset="assets/tech-data-pipeline-900.webp 900w, assets/tech-data-pipeline.webp 1600w" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 25vw" alt="" loading="lazy" decoding="async"></div>
+        <div class="workflow-card-media">
+          <video autoplay muted loop playsinline aria-hidden="true" preload="metadata" poster="assets/stills/data-pipeline-loop.webp" src="assets/data-pipeline-loop.mp4" id="dataPipelineVideo"></video>
+          <button class="icon-btn media-toggle" type="button" aria-pressed="false" aria-label="Pause animation"><svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg><svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.5.87l12.5-7.5a1 1 0 0 0 0-1.74L8.5 3.63A1 1 0 0 0 7 4.5z"/></svg></button>
+        </div>
         <div class="workflow-card-body">
           <div class="card-num" aria-hidden="true">04</div>
           <h3 class="t-heading">Bioinformatics</h3>
@@ -311,7 +317,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
 (() => {
   const { motion } = window.FGI;
   // Workflow card clips: each plays unless the page's motion is paused (reduced motion, or its own toggle)
-  ['bloodDrawVideo', 'sequenceBandsVideo'].forEach((id) => {
+  ['bloodDrawVideo', 'sequenceBandsVideo', 'variantLocusVideo', 'dataPipelineVideo'].forEach((id) => {
     const v = document.getElementById(id);
     v.removeAttribute('autoplay'); motion.add({ start: () => v.play().catch(() => {}), stop: () => v.pause() });
   });
