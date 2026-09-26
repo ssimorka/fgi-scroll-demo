@@ -599,14 +599,17 @@
   .workflow-card-body .card-num{font-size:28px;color:var(--text-brand-secondary);opacity:.7}
   /* 03 engine (First Helix): copy + capability tags left, photo right, same shell as .vision */
   .engine{padding:96px var(--pad-x) 64px;display:flex;flex-direction:column;gap:56px}
+  .engine-compare{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:start} /* video left, comparison table right; stacks below 1024 (same cutoff as .split) */
   /* ============ COMPARISON TABLE: NIPT vs NIFS vs WES, NIFS emphasised with the comparison-column tokens (node 6068:30) ============ */
   .visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
   .compare{border-radius:var(--radius);background:var(--bg-page);border:1px solid var(--border-default);box-shadow:var(--shadow-300);overflow:hidden}
-  .compare-table{width:100%;border-collapse:collapse}
-  .compare-table caption{padding:28px 32px;text-align:left;font-family:var(--font-display);font-weight:600;font-size:20px;line-height:1.2;color:var(--text-default);border-bottom:1px solid var(--border-default)}
-  .compare-table th,.compare-table td{padding:16px 24px;text-align:left;font-size:16px;line-height:1.4;border-bottom:1px solid var(--border-default)}
+  .compare-table{width:100%;border-collapse:collapse;table-layout:fixed} /* fixed: sitting beside the video at half the section width, an auto table would rather overflow than wrap the longer row labels */
+  .compare-table th:first-child,.compare-table td:first-child{width:36%}
+  .compare-table th:not(:first-child),.compare-table td:not(:first-child){width:21.34%}
+  .compare-table caption{padding:24px;text-align:left;font-family:var(--font-display);font-weight:600;font-size:20px;line-height:1.2;color:var(--text-default);border-bottom:1px solid var(--border-default)}
+  .compare-table th,.compare-table td{padding:14px 16px;text-align:left;font-size:16px;line-height:1.4;border-bottom:1px solid var(--border-default);overflow-wrap:break-word}
   .compare-table thead th{font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text-secondary)}
-  .compare-table tbody th{font-weight:600;color:var(--text-default);white-space:nowrap}
+  .compare-table tbody th{font-weight:600;color:var(--text-default)}
   .compare-table tbody tr:last-child th,.compare-table tbody tr:last-child td{border-bottom:0}
   .compare-table th.is-emphasis,.compare-table td.is-emphasis{background:var(--bg-brand-tint);border-left:1px solid var(--border-brand-tertiary);border-right:1px solid var(--border-brand-tertiary)}
   .compare-table thead th.is-emphasis{border-top:1px solid var(--border-brand-tertiary)}
@@ -874,6 +877,7 @@
     .split{grid-template-columns:1fr;gap:24px}
     .split-body{padding-top:0}
     .vision-media{height:min(56vw,420px)}
+    .engine-compare{grid-template-columns:1fr;gap:24px}
     .vision-caption{left:16px;right:16px;bottom:16px;max-width:none;padding:16px}
     .values{padding:40px var(--pad-x) 64px;gap:32px}
     .pillars{grid-template-columns:1fr;gap:20px}
