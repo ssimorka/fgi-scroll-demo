@@ -420,8 +420,18 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
       lenis.scrollTo(st.start + (st.end - st.start) * (idx / (n - 1)), { duration: 1 });
     };
 
+    // A trackpad/mouse swipe left-right feeds the same vertical scroll the
+    // pin reads, so it moves the cards exactly like scrolling up/down does.
+    const onWheel = (e) => {
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+        e.preventDefault();
+        lenis.scrollTo(window.scrollY + e.deltaX, { immediate: true });
+      }
+    };
+    track.addEventListener('wheel', onWheel, { passive: false });
+
     setBeat(0);
-    return () => { tech.style.height = ''; goTo = () => {}; };
+    return () => { tech.style.height = ''; track.removeEventListener('wheel', onWheel); goTo = () => {}; };
   });
 
   // ---- Mobile / tablet (<1024): native swipe carousel ----
