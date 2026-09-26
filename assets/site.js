@@ -46,6 +46,9 @@
       toggle.addEventListener('click', () => { if (pt === 'mouse') open(); else (isOpen() ? close(true) : open()); pt = ''; });
     } else { // desktop dropdown: keyboard focus opens, leaving closes
       item.addEventListener('focusin', open); item.addEventListener('focusout', (e) => { if (!item.contains(e.relatedTarget)) close(true); });
+      // a click or tap on the toggle itself opens (or closes) the panel instead of following its href:
+      // hover only fires for a mouse, so on touch (and a bare click before hover engages) it would otherwise just navigate away
+      toggle.addEventListener('click', (e) => { e.preventDefault(); e.stopImmediatePropagation(); isOpen() ? close(true) : open(); });
     }
     item.querySelectorAll('.nav-sub a').forEach(a => a.addEventListener('click', () => close(true)));
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(true); });
