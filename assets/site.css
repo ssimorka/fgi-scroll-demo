@@ -252,7 +252,7 @@
   .hero-copy .headline{flex:1 1 0;min-width:0;max-width:960px;display:flex;flex-direction:column;gap:24px}
   .hero-copy .eyebrow{color:var(--text-on-overlay);letter-spacing:1.5px}
   .hero-copy .t-hero{max-width:none}
-  .hero-copy .t-hero .accent{color:inherit}
+  .hero-copy .t-hero .accent{color:var(--bg-brand)} /* Text/Brand/Default: the hero H1 is always 44px+ (large-text AA), so 3:1 clears it against the gradient, the clip and the phone veil */
   .hero-copy .aside{flex:0 0 clamp(400px,32vw,520px);display:flex;flex-direction:column;gap:32px}
   .hero-copy .t-subtitle{color:var(--text-on-overlay);font-size:25px;max-width:46ch}
   .hero-actions{display:flex;padding-top:8px}
@@ -277,7 +277,8 @@
     box-shadow:var(--shadow-300);
   }
   .panel{position:relative;flex:1 1 0;display:flex;flex-direction:column;min-height:0}
-  .panel-img{flex:1 1 0;min-height:0;border-radius:var(--radius);overflow:hidden;background:#ebebeb} /* fills the panel; the panel itself is sized to the viewport */
+  .panel-img{position:relative;flex:1 1 0;min-height:0;border-radius:var(--radius);overflow:hidden;background:#ebebeb} /* fills the panel; the panel itself is sized to the viewport */
+  .panel-img-label{position:absolute;top:24px;left:24px;z-index:1;padding:8px 16px;border-radius:9999px;background:rgba(255,255,255,.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)} /* frosted chip, same treatment as .approach-card, so the label reads over any photo */
   .panel-img img{width:100%;height:100%;object-fit:cover;--flip:1;--zoom:1.12;--px:0px;--py:0px;
     transform:scale(calc(var(--flip) * var(--zoom)),var(--zoom)) translate(var(--px),var(--py))} /* zoom = headroom for parallax */
   .approach .panel-img img{--flip:-1;object-position:60% 6%} /* anchored near the top: the wide crop plus the parallax zoom took her head at centre */
