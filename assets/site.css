@@ -366,6 +366,7 @@
   .card-num{font-family:var(--font-display);font-weight:700;font-size:76.3px;line-height:1.2;letter-spacing:-.03em;color:var(--text-neutral-3);opacity:.3;white-space:nowrap}
   .card-media{position:relative;flex:1 1 auto;min-height:0;background:transparent}
   .card-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover} /* plain: no mask/blend/filter, so the AI clips show as generated */
+  .card.is-purple .card-media video{transform:scale(1.4);transform-origin:18% 50%} /* this clip has a lot of plain background to the right of the tube/dish; zoom into the subject instead of showing it */
   /* the light cards take a ramp each, so the sequence reads grey -> purple -> blue -> blue-gray */
   .card.is-purple .card-copy{background:#c6cbe7} /* Purple 200 */
   .card.is-purple .card-copy .t-subtitle{color:#222878} /* Purple 1000 */
