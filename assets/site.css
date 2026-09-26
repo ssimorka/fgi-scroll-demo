@@ -367,9 +367,8 @@
   /* Media bleeds into the card like 35pharma: no box edge on the copy side (gradient mask), a light wash so the footage sits in the card's tone */
   .card-media{position:relative;flex:1 1 auto;min-width:0;background:transparent}
   .card-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-    mix-blend-mode:multiply;filter:saturate(.85) contrast(.94); /* whites become the card grey, footage sits a touch softer */
     -webkit-mask-image:var(--media-fade);mask-image:var(--media-fade);
-    --media-fade:linear-gradient(90deg,transparent 0,rgba(0,0,0,.12) 12%,rgba(0,0,0,.45) 26%,rgba(0,0,0,.82) 38%,#000 48%)} /* eased, so no visible start line */
+    --media-fade:linear-gradient(90deg,transparent 0,rgba(0,0,0,.12) 12%,rgba(0,0,0,.45) 26%,rgba(0,0,0,.82) 38%,#000 48%)} /* eased, so no visible start line; no blend/filter: the AI clips are already light and on-brand, unlike the darker stock footage this was tuned for */
   /* the light cards take a ramp each, so the sequence reads grey -> purple -> blue -> blue-gray; the footage multiplies onto the ground, so whites become the tint */
   .card.is-purple{background:#c6cbe7} /* Purple 200 */
   .card.is-purple .card-copy .t-subtitle{color:#222878} /* Purple 1000 */
