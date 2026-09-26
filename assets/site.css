@@ -358,24 +358,25 @@
   .track{display:flex;gap:var(--gap);height:100%;will-change:transform}
   .card{
     flex:0 0 var(--card-w);width:var(--card-w);height:100%; /* fills the pinned block; --card-h only used below 1024 */
-    display:flex;border-radius:var(--radius);overflow:hidden;
+    position:relative;display:flex;border-radius:var(--radius);overflow:hidden;
     background:var(--bg-neutral-3);box-shadow:var(--shadow-400);
   }
-  .card-copy{flex:0 0 var(--copy-w);width:var(--copy-w);padding:48px;display:flex;flex-direction:column;justify-content:space-between}
+  /* the copy sits over the full-bleed video as a translucent panel, not beside it */
+  .card-copy{position:relative;z-index:1;flex:0 0 var(--copy-w);width:var(--copy-w);padding:48px;display:flex;flex-direction:column;justify-content:space-between}
   .card-copy .t-subtitle{color:var(--text-neutral)}
   .card-num{font-family:var(--font-display);font-weight:700;font-size:76.3px;line-height:1.2;letter-spacing:-.03em;color:var(--text-neutral-3);opacity:.3;white-space:nowrap}
-  .card-media{position:relative;flex:1 1 auto;min-width:0;background:transparent}
+  .card-media{position:absolute;inset:0;background:transparent}
   .card-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover} /* plain: no mask/blend/filter, so the AI clips show as generated */
   /* the light cards take a ramp each, so the sequence reads grey -> purple -> blue -> blue-gray */
-  .card.is-purple{background:#c6cbe7} /* Purple 200 */
+  .card.is-purple .card-copy{background:rgba(198,203,231,.85)} /* Purple 200 */
   .card.is-purple .card-copy .t-subtitle{color:#222878} /* Purple 1000 */
   .card.is-purple .card-num{color:#36439a;opacity:.35} /* Purple 800 */
-  .card.is-bluegray{background:#d1e0ec} /* Blue-gray 300 */
+  .card.is-bluegray .card-copy{background:rgba(209,224,236,.85)} /* Blue-gray 300 */
   .card.is-bluegray .card-copy .t-subtitle{color:#1b222f} /* Blue-gray 1000 */
   .card.is-bluegray .card-num{color:#4e6287;opacity:.35} /* Blue-gray 800 */
   .card.is-bluegray .card-link{color:#1b222f;border-color:rgba(27,34,47,.35)}
   .card.is-bluegray .card-link:hover{border-color:#1b222f}
-  .card.is-dark{background:var(--grad-blue-depth)}
+  .card.is-dark .card-copy{background:rgba(0,21,56,.78)}
   .card.is-dark .card-copy .t-subtitle{color:var(--text-on-dark)}
   .card.is-dark .card-num{color:var(--text-on-dark)}
   .card-lead{display:flex;flex-direction:column;gap:24px} /* subtitle with its link under it; the number keeps the foot */
@@ -836,10 +837,9 @@
     .track-clip{overflow:hidden}
     .track{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;transform:none!important;gap:16px}
     .track::-webkit-scrollbar{display:none}
-    .card{flex:0 0 100%;width:100%;height:auto;flex-direction:column;scroll-snap-align:start}
-    .card-copy{flex:0 0 auto;width:auto;padding:24px;gap:24px;order:1}
+    .card{flex:0 0 100%;width:100%;height:auto;aspect-ratio:3/4;scroll-snap-align:start} /* stacked: video fills the card, copy docks over the top as its own panel */
+    .card-copy{position:absolute;inset:0 0 auto 0;width:auto;padding:24px;gap:16px}
     .card-num{font-size:56px}
-    .card-media{order:2;aspect-ratio:16/10;flex:1 1 auto} /* 16:10 at least; grows to the card bottom, since the row stretches every card to the tallest one */
     .sec-num{font-size:clamp(32px,4vw,48.83px)}
     .nav-modal-tray{width:100%;border-radius:0;padding:17px 22px 24px 20px}
     .nav-modal-links > a,.tray-toggle{font-size:clamp(34px,9vw,56px)} /* the Company toggle scales with the links */
