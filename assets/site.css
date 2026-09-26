@@ -372,7 +372,7 @@
   .card.is-purple .card-copy .t-subtitle{color:#222878} /* Purple 1000 */
   .card.is-purple .card-num{color:#36439a;opacity:.35} /* Purple 800 */
   .card.is-bluegray .card-copy{background:#d1e0ec} /* Blue-gray 300 */
-  .card.is-bluegray .card-copy .t-subtitle{color:#1b222f} /* Blue-gray 1000 */
+  .card.is-bluegray .card-copy .t-subtitle,.card.is-bluegray .card-copy .t-heading{color:#1b222f} /* Blue-gray 1000 */
   .card.is-bluegray .card-num{color:#4e6287;opacity:.35} /* Blue-gray 800 */
   .card.is-bluegray .card-link{color:#1b222f;border-color:rgba(27,34,47,.35)}
   .card.is-bluegray .card-link:hover{border-color:#1b222f}
