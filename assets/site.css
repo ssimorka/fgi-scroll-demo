@@ -278,7 +278,6 @@
   }
   .panel{position:relative;flex:1 1 0;display:flex;flex-direction:column;min-height:0}
   .panel-img{position:relative;flex:1 1 0;min-height:0;border-radius:var(--radius);overflow:hidden;background:#ebebeb} /* fills the panel; the panel itself is sized to the viewport */
-  .panel-img-label{position:absolute;top:24px;left:24px;z-index:1;padding:8px 16px;border-radius:9999px;background:rgba(255,255,255,.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)} /* frosted chip, same treatment as .approach-card, so the label reads over any photo */
   .panel-img img{width:100%;height:100%;object-fit:cover;--flip:1;--zoom:1.12;--px:0px;--py:0px;
     transform:scale(calc(var(--flip) * var(--zoom)),var(--zoom)) translate(var(--px),var(--py))} /* zoom = headroom for parallax */
   .approach .panel-img img{--flip:-1;object-position:60% 6%} /* anchored near the top: the wide crop plus the parallax zoom took her head at centre */
