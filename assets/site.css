@@ -600,8 +600,20 @@
   .workflow-card-body .card-num{font-size:28px;color:var(--text-brand-secondary);opacity:.7}
   /* 03 engine (First Helix): copy + capability tags left, photo right, same shell as .vision */
   .engine{padding:96px var(--pad-x) 64px;display:flex;flex-direction:column;gap:56px}
-  .tag-row{display:flex;flex-wrap:wrap;gap:10px}
-  .tag{padding:8px 16px;border-radius:999px;border:1px solid var(--border-default);background:var(--bg-secondary);font-size:14px;line-height:1.3;color:var(--text-secondary)}
+  /* ============ COMPARISON TABLE: NIPT vs NIFS vs WES, NIFS emphasised with the comparison-column tokens (node 6068:30) ============ */
+  .visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  .compare{border-radius:var(--radius);background:var(--bg-page);border:1px solid var(--border-default);box-shadow:var(--shadow-300);overflow:hidden}
+  .compare-table{width:100%;border-collapse:collapse}
+  .compare-table caption{padding:28px 32px;text-align:left;font-family:var(--font-display);font-weight:600;font-size:20px;line-height:1.2;color:var(--text-default);border-bottom:1px solid var(--border-default)}
+  .compare-table th,.compare-table td{padding:16px 24px;text-align:left;font-size:16px;line-height:1.4;border-bottom:1px solid var(--border-default)}
+  .compare-table thead th{font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text-secondary)}
+  .compare-table tbody th{font-weight:600;color:var(--text-default);white-space:nowrap}
+  .compare-table tbody tr:last-child th,.compare-table tbody tr:last-child td{border-bottom:0}
+  .compare-table th.is-emphasis,.compare-table td.is-emphasis{background:var(--bg-brand-tint);border-left:1px solid var(--border-brand-tertiary);border-right:1px solid var(--border-brand-tertiary)}
+  .compare-table thead th.is-emphasis{border-top:1px solid var(--border-brand-tertiary)}
+  .compare-table tbody tr:last-child td.is-emphasis{border-bottom:1px solid var(--border-brand-tertiary)}
+  .mark{display:inline-flex;align-items:center}
+  .mark svg{width:20px;height:20px;color:var(--text-secondary)} /* one neutral colour for both marks: meaning comes from the row label and the visually-hidden text, not colour */
   /* 04 coverage: NIFS's own gene/condition breakdown, then the chart */
   .coverage{padding:96px var(--pad-x) 112px;display:flex;flex-direction:column;gap:48px}
   .coverage-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
@@ -974,6 +986,16 @@
     .brand .li,.nav-modal-foot .li{box-sizing:content-box;padding:8px;margin:-8px}
     .dots{gap:0;--step:28px;--pad:10px}
     .dots button{width:28px;height:28px;padding:10px;background-clip:content-box} /* the 8px dot is the content box; the padding is the hit area */
+    /* comparison table: restack each row as a block of labelled lines, no horizontal scroll. Only `display` changes here (no role or tag changes), so the table/row/cell semantics still hold for a screen reader (reinforced by the explicit ARIA roles in the markup, which stick regardless of CSS display) */
+    .compare-table thead{display:none}
+    .compare-table,.compare-table tbody,.compare-table tr,.compare-table th,.compare-table td{display:block;width:auto}
+    .compare-table tbody tr{padding:20px 20px 4px;border-bottom:1px solid var(--border-default)}
+    .compare-table tbody tr:last-child{padding-bottom:16px;border-bottom:0}
+    .compare-table tbody th{padding:0 0 12px;border-bottom:0;font-size:17px;white-space:normal}
+    .compare-table tbody td{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border-default);border-left:0;border-right:0}
+    .compare-table tbody td:last-child{border-bottom:0}
+    .compare-table tbody td::before{content:attr(data-label);font-size:13px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--text-secondary)}
+    .compare-table tbody td.is-emphasis{margin:4px 0;padding:10px 12px;border:1px solid var(--border-brand-tertiary);border-radius:8px}
   }
   /* ---------- tablet (768-1023): static layout, but use the width ---------- */
   @media (min-width:768px) and (max-width:1023.98px){

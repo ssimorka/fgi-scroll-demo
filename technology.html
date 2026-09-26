@@ -153,7 +153,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
         <div class="workflow-card-body">
           <div class="card-num" aria-hidden="true">01</div>
           <h3 class="t-heading">Blood Collection</h3>
-          <p class="t-body">A peripheral blood draw from the pregnant patient. No procedure risk to mother or fetus.</p>
+          <p class="t-body">A peripheral blood draw from the pregnant patient. Plasma is extracted from a peripheral blood specimen.</p>
         </div>
       </article>
       <article class="tile tile-light workflow-card" data-reveal>
@@ -204,15 +204,10 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
       </div>
       <div class="split-body">
         <p class="t-subtitle" data-reveal>A patented algorithm for non-invasive fetal genotyping from maternal plasma cell-free DNA, exclusively licensed to FGI.</p>
-        <p class="t-body" data-reveal>One sample. One test. Multiple answers. First Helix simultaneously screens for:</p>
-        <div class="tag-row" data-reveal>
-          <span class="tag">Aneuploidies (T21, T18, T13)</span>
-          <span class="tag">Autosomal &amp; X-linked dominant</span>
-          <span class="tag">Autosomal &amp; X-linked recessive</span>
-          <span class="tag">Copy number variants (CNVs)</span>
-          <span class="tag">Maternal carrier status</span>
-        </div>
       </div>
+    </div>
+    <div class="compare" data-reveal>
+      <div id="compareTable"></div>
     </div>
     <div class="vision-media" data-reveal>
       <video autoplay muted loop playsinline aria-hidden="true" preload="metadata" poster="assets/stills/bioinformatics-engine-loop.webp" src="assets/bioinformatics-engine-loop.mp4" id="bioengineVideo"></video>
@@ -322,6 +317,34 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
     const v = document.getElementById(id);
     v.removeAttribute('autoplay'); motion.add({ start: () => v.play().catch(() => {}), stop: () => v.pause() });
   });
+})();
+</script>
+<script>
+(() => { // NIPT vs NIFS vs WES comparison table: one data array (source: FGI investor deck, slide 7), rendered into semantic markup so a copy change is a single edit
+  const cols = ['NIPT', 'NIFS', 'WES'];
+  const emphasisCol = 1; // NIFS, the middle column
+  const rows = [
+    { label: 'Sample type', values: ['Maternal blood', 'Maternal blood', 'Amniocentesis / CVS'] },
+    { label: 'Chromosomal conditions tested', values: ['3–25', 'Thousands', 'Thousands'] },
+    { label: 'Single genes evaluated', values: ['0–30', '22,000+', '22,000+'] },
+    { label: 'Identifies common + sex chromosome aneuploidy', values: [true, true, true] },
+    { label: 'Identifies copy number variants', values: [false, true, true] },
+    { label: 'Identifies single gene disorders', values: [false, true, true] },
+    { label: 'Risk of miscarriage', values: [false, false, true] },
+    { label: 'Scalable to all pregnancies', values: [true, true, false] },
+  ];
+  const mark = (yes) => `<span class="mark ${yes ? 'mark-yes' : 'mark-no'}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${yes ? '<polyline points="20 6 9 17 4 12"></polyline>' : '<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>'}</svg><span class="visually-hidden">${yes ? 'Yes' : 'No'}</span></span>`;
+  const cell = (v, i) => {
+    const emphasis = i === emphasisCol ? ' is-emphasis' : '';
+    const content = typeof v === 'boolean' ? mark(v) : v;
+    return `<td role="cell" class="${emphasis.trim()}" data-label="${cols[i]}">${content}</td>`;
+  };
+  const theadCells = cols.map((c, i) => `<th role="columnheader" scope="col" class="${i === emphasisCol ? 'is-emphasis' : ''}">${c}</th>`).join('');
+  const bodyRows = rows.map((row) => `<tr role="row"><th role="rowheader" scope="row">${row.label}</th>${row.values.map(cell).join('')}</tr>`).join('');
+  const table = document.getElementById('compareTable');
+  if (table) {
+    table.innerHTML = `<table class="compare-table" role="table"><caption>How NIFS compares with NIPT and WES</caption><thead><tr role="row"><th role="columnheader" scope="col"></th>${theadCells}</tr></thead><tbody>${bodyRows}</tbody></table>`;
+  }
 })();
 </script>
 </body>
