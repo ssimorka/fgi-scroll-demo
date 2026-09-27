@@ -27,6 +27,8 @@
     --border-neutral-3:#dadada;
     --border-brand-tertiary:#4ea8c2; /* sds border/brand/tertiary (comparison column, node 6068:30) */
     --bg-brand-tint:#f0fdff;         /* the comparison column's pale cyan ground */
+    --border-success:#2f9e6b;   /* PROVISIONAL: placeholder pending the actual Success token from Figma node 9762:187 (still unselected there) */
+    --bg-success-tint:#e6f7ef;  /* PROVISIONAL: same caveat */
     /* data-viz palette (Brand Guidelines, Color Palettes, node 3920:1969): the three chart series */
     --viz-purple-600:#4555b0;
     --viz-blue-500:#3bb8f0;
@@ -620,8 +622,8 @@
   /* section groups: an always-visible "Overview" strip (tinted, matching the emphasis column's own tint) plus two collapsible groups, after the 7pace reference */
   .compare-group-row th{padding:18px 16px;font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--text-default)}
   .compare-group:not(:first-of-type) .compare-group-row th{border-top:1px solid var(--border-default)}
-  .compare-group.is-overview th:not([colspan]),.compare-group.is-overview td:not(.is-emphasis){background:var(--bg-brand-tint)}
-  .compare-group.is-overview .compare-group-row th{background:var(--bg-brand-tint)}
+  .compare-group.is-overview th:not([colspan]),.compare-group.is-overview td:not(.is-emphasis){background:var(--bg-success-tint)} /* the reference's Overview box reads as a distinct mint tone from the emphasis column's own blue, so it isn't just re-using --bg-brand-tint here */
+  .compare-group.is-overview .compare-group-row th{background:var(--bg-success-tint)}
   .compare-group-toggle{display:inline-flex;align-items:center;gap:10px;background:none;border:0;padding:0;font:inherit;font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--text-default);cursor:pointer;text-align:left}
   .compare-group-toggle .chev{width:8px;height:8px;flex:0 0 auto;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);transition:transform .25s cubic-bezier(.2,.7,.2,1)}
   .compare-group.is-open .compare-group-toggle .chev{transform:rotate(225deg)}
