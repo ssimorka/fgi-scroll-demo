@@ -643,7 +643,7 @@
     .compare-card-name{font-family:var(--font-display);font-weight:700;font-size:20px;color:var(--text-default);text-align:center}
     .compare-card.is-emphasis{border-color:var(--border-brand-tertiary)}
     .compare-card.is-emphasis .compare-card-name{color:var(--text-brand-secondary)}
-    .compare-card-overview{display:flex;flex-direction:column;gap:8px;padding:12px;border-radius:8px;background:var(--bg-success-tint)} /* same Overview tint the table group carries on larger screens; its rows moved up into the card here instead of sitting in the table below */
+    .compare-card-overview{display:flex;flex-direction:column;gap:8px;padding:12px 0 0;border-top:1px solid var(--border-default)} /* no fill, unlike the table's Overview group on larger screens; a top rule separates it from the card's name instead */
     .compare-card-row{display:flex;justify-content:space-between;gap:12px;font-size:14px;line-height:1.4}
     .compare-card-label{color:var(--text-secondary);flex:1 1 auto}
     .compare-card-value{font-weight:600;color:var(--text-default);text-align:right;flex:0 0 auto}
