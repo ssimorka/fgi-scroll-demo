@@ -612,8 +612,8 @@
   .compare-table thead th{padding-top:20px;padding-bottom:20px;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-secondary);border-bottom:1px solid var(--border-default)}
   .compare-table thead th.is-emphasis{color:var(--text-brand-secondary)} /* the emphasised column's header carries the brand colour, in bold text (not the marks) */
   .compare-table tbody th{font-weight:600;color:var(--text-default)}
-  .compare-table tbody tr:nth-child(even) th,.compare-table tbody tr:nth-child(even) td:not(.is-emphasis){background:var(--bg-secondary)} /* the label row is always tr:nth-child(1) in its tbody, so this never touches it */
-  .compare-table tbody tr:nth-child(even) td.is-emphasis{background:color-mix(in srgb,var(--bg-brand-tint) 60%,var(--bg-secondary))}
+  .compare-table tbody:not(.is-overview) tr:nth-child(even) th,.compare-table tbody:not(.is-overview) tr:nth-child(even) td:not(.is-emphasis){background:var(--bg-secondary)} /* the label row is always tr:nth-child(1) in its tbody, so this never touches it. Excludes .is-overview: that section reads as one flat tinted strip, not stripes */
+  .compare-table tbody:not(.is-overview) tr:nth-child(even) td.is-emphasis{background:color-mix(in srgb,var(--bg-brand-tint) 60%,var(--bg-secondary))}
   .compare-table th.is-emphasis,.compare-table td.is-emphasis{background:var(--bg-brand-tint);border-left:1px solid var(--border-brand-tertiary);border-right:1px solid var(--border-brand-tertiary)}
   .compare-table thead th.is-emphasis{border-top:1px solid var(--border-brand-tertiary);border-radius:12px 12px 0 0}
   .compare-table tbody:last-of-type tr:last-child td.is-emphasis{border-bottom:1px solid var(--border-brand-tertiary);border-radius:0 0 12px 12px} /* the emphasis outline now runs the full height of every section, so only the very last row closes it */
