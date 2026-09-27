@@ -641,10 +641,15 @@
     .compare-card{flex:0 0 68%;scroll-snap-align:center;padding:20px;border-radius:12px;border:1px solid var(--border-default);background:var(--bg-page);font-family:var(--font-display);font-weight:700;font-size:20px;color:var(--text-default);text-align:center}
     .compare-card.is-emphasis{border-color:var(--border-brand-tertiary);background:var(--bg-brand-tint);color:var(--text-brand-secondary)}
     .compare-cards-wrap .dots{display:flex;margin:16px auto 0}
-    /* the table itself only shows the label column plus whichever data column the card carousel above has in view */
+    /* the table itself only shows the label column plus whichever data column the card carousel above has in view, as one unified card (not the desktop's four separate bordered ones, since there's only one data column visible at a time here) */
     .compare-col-hidden{display:none}
     .compare-table th:first-child,.compare-table td:first-child{width:50%}
     .compare-table th:not(:first-child),.compare-table td:not(:first-child){width:50%}
+    .compare-table{border-spacing:0;margin:0}
+    .compare-table th,.compare-table td{border-left:0;border-right:0}
+    .compare-table thead th,.compare-table th.is-emphasis,.compare-table td.is-emphasis{border-top:0;border-radius:0}
+    .compare-table tbody:last-of-type tr:last-child th,.compare-table tbody:last-of-type tr:last-child td{border-radius:0}
+    #compareTable{border:1px solid var(--border-default);border-radius:var(--radius);overflow:hidden;background:var(--bg-page);box-shadow:var(--shadow-300)}
   }
   /* 04 coverage: NIFS's own gene/condition breakdown, then the chart */
   .coverage{padding:96px var(--pad-x) 112px;display:flex;flex-direction:column;gap:48px}
