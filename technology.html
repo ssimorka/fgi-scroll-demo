@@ -372,10 +372,14 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
 
   // Column-summary card carousel (tablet/mobile only): NIPT / NIFS / WES, swipe with dot indicators, matching the home page's card-sequence pattern.
   // Below 1024px this also drives which single data column the table shows: swiping to a card filters the table's checkmarks/values down to that column.
+  // Each card also carries its column's Overview rows (the table's non-collapsible first section), which CSS hides from the table on this breakpoint so the data isn't shown twice.
   const cardsTrack = document.getElementById('compareCards');
   const dots = document.getElementById('compareDots');
   if (cardsTrack && dots && table) {
-    cardsTrack.innerHTML = cols.map((c, i) => `<div class="compare-card${i === emphasisCol ? ' is-emphasis' : ''}">${c}</div>`).join('');
+    cardsTrack.innerHTML = cols.map((c, i) => {
+      const overviewRows = sections[0].rows.map((row) => `<div class="compare-card-row"><span class="compare-card-label">${row.label}</span><span class="compare-card-value">${row.values[i]}</span></div>`).join('');
+      return `<div class="compare-card${i === emphasisCol ? ' is-emphasis' : ''}"><p class="compare-card-name">${c}</p><div class="compare-card-overview">${overviewRows}</div></div>`;
+    }).join('');
     const cardEls = Array.from(cardsTrack.children);
     const spacer = document.createElement('div');
     spacer.className = 'compare-cards-spacer';

@@ -639,11 +639,18 @@
     .compare-cards{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
     .compare-cards-spacer{flex:0 0 var(--pad-x);min-width:var(--pad-x)} /* trailing gutter-width space: scrolled all the way, it's what shows past WES instead of WES itself bleeding to the true edge */
     .compare-cards::-webkit-scrollbar{display:none}
-    .compare-card{flex:0 0 68%;scroll-snap-align:center;padding:20px;border-radius:12px;border:1px solid var(--border-default);background:var(--bg-page);font-family:var(--font-display);font-weight:700;font-size:20px;color:var(--text-default);text-align:center}
-    .compare-card.is-emphasis{border-color:var(--border-brand-tertiary);background:var(--bg-brand-tint);color:var(--text-brand-secondary)}
+    .compare-card{flex:0 0 68%;scroll-snap-align:center;padding:20px;border-radius:12px;border:1px solid var(--border-default);background:var(--bg-page);display:flex;flex-direction:column;gap:16px}
+    .compare-card-name{font-family:var(--font-display);font-weight:700;font-size:20px;color:var(--text-default);text-align:center}
+    .compare-card.is-emphasis{border-color:var(--border-brand-tertiary)}
+    .compare-card.is-emphasis .compare-card-name{color:var(--text-brand-secondary)}
+    .compare-card-overview{display:flex;flex-direction:column;gap:8px;padding:12px;border-radius:8px;background:var(--bg-success-tint)} /* same Overview tint the table group carries on larger screens; its rows moved up into the card here instead of sitting in the table below */
+    .compare-card-row{display:flex;justify-content:space-between;gap:12px;font-size:14px;line-height:1.4}
+    .compare-card-label{color:var(--text-secondary);flex:1 1 auto}
+    .compare-card-value{font-weight:600;color:var(--text-default);text-align:right;flex:0 0 auto}
     .compare-cards-wrap .dots{display:flex;margin:16px auto}
     /* the table itself only shows the label column plus whichever data column the card carousel above has in view, as one unified card (not the desktop's four separate bordered ones, since there's only one data column visible at a time here) */
     .compare-table thead{display:none} /* the carousel card above already names the active column (NIPT/NIFS/WES); repeating it in the table's own header row was redundant */
+    .compare-group.is-overview{display:none} /* its rows now live in the card carousel above instead, so they don't repeat here */
     .compare-col-hidden{display:none}
     .compare-table th:first-child,.compare-table td:first-child{width:50%}
     .compare-table th:not(:first-child),.compare-table td:not(:first-child){width:50%}
