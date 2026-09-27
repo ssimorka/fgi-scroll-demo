@@ -635,7 +635,7 @@
   /* column-summary card carousel (tablet/mobile only): NIPT / NIFS / WES, swipe with dot indicators — reuses .dots as-is from the home tech sequence */
   .compare-cards-wrap{display:none}
   @media (max-width:1023.98px){
-    .compare-cards-wrap{display:block;width:100vw;margin-left:calc(50% - 50vw);padding:20px var(--pad-x) 0} /* full-bleed, like the home page's tech-sequence track: the peeking card gets the run of the outer gutter instead of being clipped at the section's normal content edge */
+    .compare-cards-wrap{display:block;width:100vw;margin-left:calc(50% - 50vw);padding:20px 0 0 var(--pad-x)} /* full-bleed: padding-left only keeps the first card aligned with the section's gutter; no padding-right, so the scrollable area actually runs to the true viewport edge instead of stopping at a matching inset there too */
     .compare-cards{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
     .compare-cards::-webkit-scrollbar{display:none}
     .compare-card{flex:0 0 68%;scroll-snap-align:center;padding:20px;border-radius:12px;border:1px solid var(--border-default);background:var(--bg-page);font-family:var(--font-display);font-weight:700;font-size:20px;color:var(--text-default);text-align:center}
