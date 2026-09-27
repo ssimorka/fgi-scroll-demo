@@ -613,10 +613,9 @@
   .compare-table thead th.is-emphasis{color:var(--text-brand-secondary)} /* the emphasised column's header carries the brand colour, in bold text (not the marks) */
   .compare-table tbody th{font-weight:600;color:var(--text-default)}
   .compare-table tbody:last-of-type tr:last-child th,.compare-table tbody:last-of-type tr:last-child td{border-bottom:1px solid var(--border-default);border-radius:0 0 12px 12px} /* closes every card's bottom corners on the very last row, whichever group ends up last (open/closed doesn't change which row is visually last since collapsed rows are actually removed via `hidden`) */
-  .compare-table tbody:not(.is-overview) tr:nth-child(even) th,.compare-table tbody:not(.is-overview) tr:nth-child(even) td:not(.is-emphasis){background:var(--bg-secondary)} /* the label row is always tr:nth-child(1) in its tbody, so this never touches it. Excludes .is-overview: that section reads as one flat tinted strip, not stripes */
-  .compare-table tbody:not(.is-overview) tr:nth-child(even) td.is-emphasis{background:color-mix(in srgb,var(--bg-brand-tint) 60%,var(--bg-secondary))}
-  .compare-table th.is-emphasis,.compare-table td.is-emphasis{background:var(--bg-brand-tint);border-left:1px solid var(--border-brand-tertiary);border-right:1px solid var(--border-brand-tertiary)}
-  .compare-table thead th.is-emphasis{border-top:1px solid var(--border-brand-tertiary);background:var(--bg-brand-tint)}
+  .compare-table tbody:not(.is-overview) tr:nth-child(even) th,.compare-table tbody:not(.is-overview) tr:nth-child(even) td{background:var(--bg-secondary)} /* the label row is always tr:nth-child(1) in its tbody, so this never touches it. Excludes .is-overview: that section reads as one flat tinted strip, not stripes. NIFS zebra-stripes the same as every other column now: only its border marks it as the emphasis column, not its fill */
+  .compare-table th.is-emphasis,.compare-table td.is-emphasis{border-left:1px solid var(--border-brand-tertiary);border-right:1px solid var(--border-brand-tertiary)}
+  .compare-table thead th.is-emphasis{border-top:1px solid var(--border-brand-tertiary)}
   .compare-table tbody:last-of-type tr:last-child td.is-emphasis{border-bottom:1px solid var(--border-brand-tertiary)}
   .mark{display:inline-flex;align-items:center}
   .mark svg{width:20px;height:20px;color:var(--text-secondary)} /* one neutral colour for both marks: meaning comes from the row label and the visually-hidden text, not colour, per the earlier accessibility note (the reference used red/green here, which we're intentionally not copying) */
