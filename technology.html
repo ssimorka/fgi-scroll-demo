@@ -246,6 +246,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
         </div>
       </div>
       <div class="compare" data-reveal>
+        <p class="compare-caption" id="compareCaption">How NIFS compares with NIPT and WES</p>
         <div class="compare-cards-wrap">
           <div class="compare-cards" id="compareCards"></div>
           <div class="dots" id="compareDots" aria-hidden="true"></div>
@@ -339,9 +340,9 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
   const cell = (v, i) => {
     const emphasis = i === emphasisCol ? ' is-emphasis' : '';
     const content = typeof v === 'boolean' ? mark(v) : v;
-    return `<td role="cell" class="${emphasis.trim()}" data-label="${cols[i]}">${content}</td>`;
+    return `<td role="cell" class="${emphasis.trim()}" data-label="${cols[i]}" data-col="${i}">${content}</td>`;
   };
-  const theadCells = cols.map((c, i) => `<th role="columnheader" scope="col" class="${i === emphasisCol ? 'is-emphasis' : ''}">${c}</th>`).join('');
+  const theadCells = cols.map((c, i) => `<th role="columnheader" scope="col" class="${i === emphasisCol ? 'is-emphasis' : ''}" data-col="${i}">${c}</th>`).join('');
   const sectionHTML = (section, i) => {
     const bodyRows = section.rows.map((row) => `<tr role="row">${row.values.map(cell).join('')}</tr>`.replace('<tr role="row">', `<tr role="row"><th role="rowheader" scope="row">${row.label}</th>`)).join('');
     const labelCell = section.collapsible
@@ -350,12 +351,12 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
     const open = !section.collapsible || i === 1; // Overview is always shown; the first collapsible group opens by default
     const cls = ['compare-group', open ? 'is-open' : '', section.collapsible ? '' : 'is-overview'].filter(Boolean).join(' ');
     // empty (not colspan) cells for the other three columns: each column reads as its own separate card, so nothing should visually bridge the gap between them
-    const blankCells = cols.map((c, idx) => `<td class="${idx === emphasisCol ? 'is-emphasis' : ''}" aria-hidden="true"></td>`).join('');
+    const blankCells = cols.map((c, idx) => `<td class="${idx === emphasisCol ? 'is-emphasis' : ''}" data-col="${idx}" aria-hidden="true"></td>`).join('');
     return `<tbody class="${cls}" id="compareGroup${i}"><tr class="compare-group-row"><th role="rowheader">${labelCell}</th>${blankCells}</tr>${bodyRows}</tbody>`;
   };
   const table = document.getElementById('compareTable');
   if (table) {
-    table.innerHTML = `<table class="compare-table" role="table"><caption>How NIFS compares with NIPT and WES</caption><thead><tr role="row"><th role="columnheader" scope="col"></th>${theadCells}</tr></thead>${sections.map(sectionHTML).join('')}</table>`;
+    table.innerHTML = `<table class="compare-table" role="table" aria-labelledby="compareCaption"><thead><tr role="row"><th role="columnheader" scope="col"></th>${theadCells}</tr></thead>${sections.map(sectionHTML).join('')}</table>`;
     table.querySelectorAll('.compare-group-toggle').forEach((btn) => {
       btn.addEventListener('click', () => {
         const group = btn.closest('.compare-group');
@@ -369,16 +370,20 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
     });
   }
 
-  // Column-summary card carousel (mobile/tablet only): NIPT / NIFS / WES, swipe with dot indicators, matching the home page's card-sequence pattern
+  // Column-summary card carousel (tablet/mobile only): NIPT / NIFS / WES, swipe with dot indicators, matching the home page's card-sequence pattern.
+  // Below 1024px this also drives which single data column the table shows: swiping to a card filters the table's checkmarks/values down to that column.
   const cardsTrack = document.getElementById('compareCards');
   const dots = document.getElementById('compareDots');
-  if (cardsTrack && dots) {
+  if (cardsTrack && dots && table) {
     cardsTrack.innerHTML = cols.map((c, i) => `<div class="compare-card${i === emphasisCol ? ' is-emphasis' : ''}">${c}</div>`).join('');
     const cardEls = Array.from(cardsTrack.children);
+    const setActiveCol = (i) => {
+      table.querySelectorAll('[data-col]').forEach((el) => { el.classList.toggle('compare-col-hidden', Number(el.dataset.col) !== i); });
+    };
     cardEls.forEach((_, i) => { const b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', `Show ${cols[i]}`); b.addEventListener('click', () => { cardsTrack.scrollTo({ left: cardEls[i].offsetLeft - cardsTrack.offsetLeft, behavior: 'smooth' }); }); dots.appendChild(b); });
     dots.style.setProperty('--n', cardEls.length);
     const stepPx = () => cardEls[1] ? cardEls[1].offsetLeft - cardEls[0].offsetLeft : cardsTrack.clientWidth;
-    const setBeat = (i) => { dots.querySelectorAll('button').forEach((d, k) => d.setAttribute('aria-current', k === i)); dots.style.setProperty('--i', i); };
+    const setBeat = (i) => { dots.querySelectorAll('button').forEach((d, k) => d.setAttribute('aria-current', k === i)); dots.style.setProperty('--i', i); setActiveCol(i); };
     cardsTrack.addEventListener('scroll', () => setBeat(Math.round(cardsTrack.scrollLeft / stepPx())), { passive: true });
     setBeat(0);
   }

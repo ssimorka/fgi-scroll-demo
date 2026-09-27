@@ -607,7 +607,7 @@
   .compare-table{width:100%;border-collapse:separate;border-spacing:16px 0;table-layout:fixed;margin:0 -16px} /* horizontal spacing only (0 vertical): a real gap between the four cards, none between the rows stacked inside each one. border-spacing also inserts that same 16px before the first card and after the last, pushing the whole table right of the caption/heading above it, so the negative margin pulls it back flush */
   .compare-table th:first-child,.compare-table td:first-child{width:36%}
   .compare-table th:not(:first-child),.compare-table td:not(:first-child){width:21.34%}
-  .compare-table caption{padding:24px 16px;text-align:left;font-family:var(--font-display);font-weight:600;font-size:20px;line-height:1.2;color:var(--text-default)} /* the table's -16px margin (below) pulls the cards flush left; this matching padding keeps the caption text sitting where it was, instead of also drifting left with the table box */
+  .compare-caption{padding:24px 0;text-align:left;font-family:var(--font-display);font-weight:600;font-size:20px;line-height:1.2;color:var(--text-default)} /* sits outside the table now (not a <caption>), so it can come before the card carousel on tablet/mobile; the table keeps its accessible name via aria-labelledby */
   .compare-table th,.compare-table td{padding:16px;text-align:left;font-size:16px;line-height:1.4;overflow-wrap:break-word;background:var(--bg-page);border-left:1px solid var(--border-default);border-right:1px solid var(--border-default)} /* every cell needs its own solid background now .compare itself is transparent (each column is its own card, not clipped by one shared ancestor); left/right edge on every column; the zebra stripe below (not a rule here) carries row separation inside each card */
   .compare-table th:not(:first-child),.compare-table td:not(:first-child){text-align:center} /* the label column stays left-aligned; NIPT/NIFS/WES (header and every value/mark) centre within their own card */
   .compare-table thead th{padding-top:20px;padding-bottom:20px;font-size:18px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-secondary);border-top:1px solid var(--border-default);border-radius:12px 12px 0 0}
@@ -635,12 +635,16 @@
   /* column-summary card carousel (tablet/mobile only): NIPT / NIFS / WES, swipe with dot indicators — reuses .dots as-is from the home tech sequence */
   .compare-cards-wrap{display:none}
   @media (max-width:1023.98px){
-    .compare-cards-wrap{display:block;padding:20px 20px 0}
+    .compare-cards-wrap{display:block;padding:20px 0 0}
     .compare-cards{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
     .compare-cards::-webkit-scrollbar{display:none}
     .compare-card{flex:0 0 68%;scroll-snap-align:center;padding:20px;border-radius:12px;border:1px solid var(--border-default);background:var(--bg-page);font-family:var(--font-display);font-weight:700;font-size:20px;color:var(--text-default);text-align:center}
     .compare-card.is-emphasis{border-color:var(--border-brand-tertiary);background:var(--bg-brand-tint);color:var(--text-brand-secondary)}
     .compare-cards-wrap .dots{display:flex;margin:16px auto 0}
+    /* the table itself only shows the label column plus whichever data column the card carousel above has in view */
+    .compare-col-hidden{display:none}
+    .compare-table th:first-child,.compare-table td:first-child{width:50%}
+    .compare-table th:not(:first-child),.compare-table td:not(:first-child){width:50%}
   }
   /* 04 coverage: NIFS's own gene/condition breakdown, then the chart */
   .coverage{padding:96px var(--pad-x) 112px;display:flex;flex-direction:column;gap:48px}
@@ -1015,12 +1019,6 @@
     .brand .li,.nav-modal-foot .li{box-sizing:content-box;padding:8px;margin:-8px}
     .dots{gap:0;--step:28px;--pad:10px}
     .dots button{width:28px;height:28px;padding:10px;background-clip:content-box} /* the 8px dot is the content box; the padding is the hit area */
-    /* comparison table: keep the real 4-column grid (client asked for this over the stacked-block version) but let it scroll horizontally, since a phone-width viewport can't fit 4 readable columns */
-    #compareTable{overflow-x:auto;-webkit-overflow-scrolling:touch}
-    .compare-table{width:auto;min-width:560px} /* min-width, not width:100%: a fixed-layout table at 100% of a 350px wrapper would cram every column unreadably thin instead of scrolling */
-    .compare-table th:first-child,.compare-table td:first-child{width:200px}
-    .compare-table th:not(:first-child),.compare-table td:not(:first-child){width:120px}
-    .compare-table tbody th{white-space:normal}
   }
   /* ---------- tablet (768-1023): static layout, but use the width ---------- */
   @media (min-width:768px) and (max-width:1023.98px){
