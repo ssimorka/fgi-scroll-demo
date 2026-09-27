@@ -355,7 +355,9 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
       : section.name;
     const open = !section.collapsible || i === 1; // Overview is always shown; the first collapsible group opens by default
     const cls = ['compare-group', open ? 'is-open' : '', section.collapsible ? '' : 'is-overview'].filter(Boolean).join(' ');
-    return `<tbody class="${cls}" id="compareGroup${i}"><tr class="compare-group-row"><th role="rowheader" colspan="4">${labelCell}</th></tr>${bodyRows}</tbody>`;
+    // empty (not colspan) cells for the other three columns: each column reads as its own separate card, so nothing should visually bridge the gap between them
+    const blankCells = cols.map((c, idx) => `<td class="${idx === emphasisCol ? 'is-emphasis' : ''}" aria-hidden="true"></td>`).join('');
+    return `<tbody class="${cls}" id="compareGroup${i}"><tr class="compare-group-row"><th role="rowheader">${labelCell}</th>${blankCells}</tr>${bodyRows}</tbody>`;
   };
   const table = document.getElementById('compareTable');
   if (table) {
