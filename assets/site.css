@@ -602,19 +602,21 @@
   /* ============ COMPARISON TABLE: NIPT vs NIFS vs WES, NIFS emphasised with the comparison-column tokens (node 6068:30) ============ */
   .visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
   .compare{border-radius:var(--radius);background:var(--bg-page);border:1px solid var(--border-default);box-shadow:var(--shadow-300);overflow:hidden}
-  .compare-table{width:100%;border-collapse:collapse;table-layout:fixed} /* fixed: sitting beside the video at half the section width, an auto table would rather overflow than wrap the longer row labels */
+  .compare-table{width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed} /* separate + 0 spacing, not collapse: collapsed borders ignore border-radius, and the emphasis column below needs rounded corners */
   .compare-table th:first-child,.compare-table td:first-child{width:36%}
   .compare-table th:not(:first-child),.compare-table td:not(:first-child){width:21.34%}
   .compare-table caption{padding:24px;text-align:left;font-family:var(--font-display);font-weight:600;font-size:20px;line-height:1.2;color:var(--text-default);border-bottom:1px solid var(--border-default)}
-  .compare-table th,.compare-table td{padding:14px 16px;text-align:left;font-size:16px;line-height:1.4;border-bottom:1px solid var(--border-default);overflow-wrap:break-word}
-  .compare-table thead th{font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text-secondary)}
+  .compare-table th,.compare-table td{padding:16px;text-align:left;font-size:16px;line-height:1.4;overflow-wrap:break-word} /* no per-cell rules: the zebra stripe below carries the row separation, like the reference comp */
+  .compare-table thead th{padding-top:20px;padding-bottom:20px;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-secondary);border-bottom:1px solid var(--border-default)}
+  .compare-table thead th.is-emphasis{color:var(--text-brand-secondary)} /* the emphasised column's header carries the brand colour, in bold text (not the marks) */
   .compare-table tbody th{font-weight:600;color:var(--text-default)}
-  .compare-table tbody tr:last-child th,.compare-table tbody tr:last-child td{border-bottom:0}
+  .compare-table tbody tr:nth-child(even) th,.compare-table tbody tr:nth-child(even) td:not(.is-emphasis){background:var(--bg-secondary)}
+  .compare-table tbody tr:nth-child(even) td.is-emphasis{background:color-mix(in srgb,var(--bg-brand-tint) 60%,var(--bg-secondary))}
   .compare-table th.is-emphasis,.compare-table td.is-emphasis{background:var(--bg-brand-tint);border-left:1px solid var(--border-brand-tertiary);border-right:1px solid var(--border-brand-tertiary)}
-  .compare-table thead th.is-emphasis{border-top:1px solid var(--border-brand-tertiary)}
-  .compare-table tbody tr:last-child td.is-emphasis{border-bottom:1px solid var(--border-brand-tertiary)}
+  .compare-table thead th.is-emphasis{border-top:1px solid var(--border-brand-tertiary);border-radius:12px 12px 0 0}
+  .compare-table tbody tr:last-child td.is-emphasis{border-bottom:1px solid var(--border-brand-tertiary);border-radius:0 0 12px 12px}
   .mark{display:inline-flex;align-items:center}
-  .mark svg{width:20px;height:20px;color:var(--text-secondary)} /* one neutral colour for both marks: meaning comes from the row label and the visually-hidden text, not colour */
+  .mark svg{width:20px;height:20px;color:var(--text-secondary)} /* one neutral colour for both marks: meaning comes from the row label and the visually-hidden text, not colour, per the earlier accessibility note (the reference used red/green here, which we're intentionally not copying) */
   /* 04 coverage: NIFS's own gene/condition breakdown, then the chart */
   .coverage{padding:96px var(--pad-x) 112px;display:flex;flex-direction:column;gap:48px}
   .coverage-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
@@ -991,6 +993,7 @@
     /* comparison table: restack each row as a block of labelled lines, no horizontal scroll. Only `display` changes here (no role or tag changes), so the table/row/cell semantics still hold for a screen reader (reinforced by the explicit ARIA roles in the markup, which stick regardless of CSS display) */
     .compare-table thead{display:none}
     .compare-table,.compare-table tbody,.compare-table tr,.compare-table th,.compare-table td{display:block;width:auto}
+    .compare-table th:first-child,.compare-table td:first-child,.compare-table th:not(:first-child),.compare-table td:not(:first-child){width:auto} /* beats the desktop column percentages at equal specificity: without this the zebra tint below (and the row itself) reads as only 36% wide */
     .compare-table tbody tr{padding:20px 20px 4px;border-bottom:1px solid var(--border-default)}
     .compare-table tbody tr:last-child{padding-bottom:16px;border-bottom:0}
     .compare-table tbody th{padding:0 0 12px;border-bottom:0;font-size:17px;white-space:normal}
