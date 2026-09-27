@@ -623,7 +623,7 @@
   /* section groups: an always-visible "Overview" strip (tinted, matching the emphasis column's own tint) plus two collapsible groups, after the 7pace reference. Each group's label row uses blank cells (not colspan) in the other three columns, so nothing bridges the gap between the four cards */
   .compare-group-row th{padding:18px 16px;font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--text-default)}
   .compare-group:not(:first-of-type) .compare-group-row th{border-top:1px solid var(--border-default)}
-  .compare-group.is-overview th,.compare-group.is-overview td:not(.is-emphasis){background:var(--bg-success-tint)} /* the reference's Overview box reads as a distinct mint tone from the emphasis column's own blue, so it isn't just re-using --bg-brand-tint here */
+  .compare-table .compare-group.is-overview th,.compare-table .compare-group.is-overview td{background:var(--bg-success-tint)} /* every column, including NIFS, reads as the same mint green within Overview; NIFS keeps only its blue border there, not its usual blue fill (the extra .compare-table prefix beats the general td.is-emphasis background rule, which would otherwise still win the tie) */
   .compare-group-toggle{display:inline-flex;align-items:center;gap:10px;background:none;border:0;padding:0;font:inherit;font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--text-default);cursor:pointer;text-align:left}
   .compare-group-toggle .chev{width:8px;height:8px;flex:0 0 auto;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);transition:transform .25s cubic-bezier(.2,.7,.2,1)}
   .compare-group.is-open .compare-group-toggle .chev{transform:rotate(225deg)}
