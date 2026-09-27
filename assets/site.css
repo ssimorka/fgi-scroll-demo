@@ -621,7 +621,7 @@
   .mark{display:inline-flex;align-items:center}
   .mark svg{width:20px;height:20px;color:var(--text-secondary)} /* one neutral colour for both marks: meaning comes from the row label and the visually-hidden text, not colour, per the earlier accessibility note (the reference used red/green here, which we're intentionally not copying) */
   /* section groups: an always-visible "Overview" strip (tinted, matching the emphasis column's own tint) plus two collapsible groups, after the 7pace reference. Each group's label row uses blank cells (not colspan) in the other three columns, so nothing bridges the gap between the four cards */
-  .compare-group-row th{padding:18px 16px;font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--text-default)}
+  .compare-group-row th{padding:18px 16px;font-family:var(--font-display);font-weight:700;font-size:20px;color:var(--text-default)}
   .compare-group:not(:first-of-type) .compare-group-row th{border-top:1px solid var(--border-default)}
   .compare-table .compare-group.is-overview th,.compare-table .compare-group.is-overview td{background:var(--bg-success-tint)} /* every column, including NIFS, reads as the same mint green within Overview; NIFS keeps only its blue border there, not its usual blue fill (the extra .compare-table prefix beats the general td.is-emphasis background rule, which would otherwise still win the tie) */
   .compare-group-toggle{display:inline-flex;align-items:center;gap:10px;background:none;border:0;padding:0;font:inherit;font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--text-default);cursor:pointer;text-align:left}
