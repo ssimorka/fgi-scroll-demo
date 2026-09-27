@@ -252,6 +252,10 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
         </div>
       </div>
       <div class="compare" data-reveal>
+        <div class="compare-cards-wrap">
+          <div class="compare-cards" id="compareCards"></div>
+          <div class="dots" id="compareDots" aria-hidden="true"></div>
+        </div>
         <div id="compareTable"></div>
       </div>
     </div>
@@ -320,15 +324,22 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
 (() => { // NIPT vs NIFS vs WES comparison table: one data array (source: FGI investor deck, slide 7), rendered into semantic markup so a copy change is a single edit
   const cols = ['NIPT', 'NIFS', 'WES'];
   const emphasisCol = 1; // NIFS, the middle column
-  const rows = [
-    { label: 'Sample type', values: ['Maternal blood', 'Maternal blood', 'Amniocentesis / CVS'] },
-    { label: 'Chromosomal conditions tested', values: ['3–25', 'Thousands', 'Thousands'] },
-    { label: 'Single genes evaluated', values: ['0–30', '22,000+', '22,000+'] },
-    { label: 'Identifies common + sex chromosome aneuploidy', values: [true, true, true] },
-    { label: 'Identifies copy number variants', values: [false, true, true] },
-    { label: 'Identifies single gene disorders', values: [false, true, true] },
-    { label: 'Risk of miscarriage', values: [false, false, true] },
-    { label: 'Scalable to all pregnancies', values: [true, true, false] },
+  // section 1, "Overview": the three quantity rows. Sections 2+ are collapsible groups of the five yes/no rows
+  const sections = [
+    { name: 'Overview', collapsible: false, rows: [
+      { label: 'Sample type', values: ['Maternal blood', 'Maternal blood', 'Amniocentesis / CVS'] },
+      { label: 'Chromosomal conditions tested', values: ['3–25', 'Thousands', 'Thousands'] },
+      { label: 'Single genes evaluated', values: ['0–30', '22,000+', '22,000+'] },
+    ] },
+    { name: 'Clinical coverage', collapsible: true, rows: [
+      { label: 'Identifies common + sex chromosome aneuploidy', values: [true, true, true] },
+      { label: 'Identifies copy number variants', values: [false, true, true] },
+      { label: 'Identifies single gene disorders', values: [false, true, true] },
+    ] },
+    { name: 'Safety & scale', collapsible: true, rows: [
+      { label: 'Risk of miscarriage', values: [false, false, true] },
+      { label: 'Scalable to all pregnancies', values: [true, true, false] },
+    ] },
   ];
   const mark = (yes) => `<span class="mark ${yes ? 'mark-yes' : 'mark-no'}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${yes ? '<polyline points="20 6 9 17 4 12"></polyline>' : '<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>'}</svg><span class="visually-hidden">${yes ? 'Yes' : 'No'}</span></span>`;
   const cell = (v, i) => {
@@ -337,10 +348,43 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
     return `<td role="cell" class="${emphasis.trim()}" data-label="${cols[i]}">${content}</td>`;
   };
   const theadCells = cols.map((c, i) => `<th role="columnheader" scope="col" class="${i === emphasisCol ? 'is-emphasis' : ''}">${c}</th>`).join('');
-  const bodyRows = rows.map((row) => `<tr role="row"><th role="rowheader" scope="row">${row.label}</th>${row.values.map(cell).join('')}</tr>`).join('');
+  const sectionHTML = (section, i) => {
+    const bodyRows = section.rows.map((row) => `<tr role="row">${row.values.map(cell).join('')}</tr>`.replace('<tr role="row">', `<tr role="row"><th role="rowheader" scope="row">${row.label}</th>`)).join('');
+    const labelCell = section.collapsible
+      ? `<button type="button" class="compare-group-toggle" aria-expanded="${i === 1}" aria-controls="compareGroup${i}"><span class="chev" aria-hidden="true"></span>${section.name}</button>`
+      : section.name;
+    const open = !section.collapsible || i === 1; // Overview is always shown; the first collapsible group opens by default
+    const cls = ['compare-group', open ? 'is-open' : '', section.collapsible ? '' : 'is-overview'].filter(Boolean).join(' ');
+    return `<tbody class="${cls}" id="compareGroup${i}"><tr class="compare-group-row"><th role="rowheader" colspan="4">${labelCell}</th></tr>${bodyRows}</tbody>`;
+  };
   const table = document.getElementById('compareTable');
   if (table) {
-    table.innerHTML = `<table class="compare-table" role="table"><caption>How NIFS compares with NIPT and WES</caption><thead><tr role="row"><th role="columnheader" scope="col"></th>${theadCells}</tr></thead><tbody>${bodyRows}</tbody></table>`;
+    table.innerHTML = `<table class="compare-table" role="table"><caption>How NIFS compares with NIPT and WES</caption><thead><tr role="row"><th role="columnheader" scope="col"></th>${theadCells}</tr></thead>${sections.map(sectionHTML).join('')}</table>`;
+    table.querySelectorAll('.compare-group-toggle').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const group = btn.closest('.compare-group');
+        const open = group.classList.toggle('is-open');
+        btn.setAttribute('aria-expanded', String(open));
+        group.querySelectorAll('tr:not(.compare-group-row)').forEach((tr) => { tr.hidden = !open; });
+      });
+      // start collapsed groups actually hidden (CSS only visually hides on mobile; this keeps them out of the AT tree everywhere)
+      const group = btn.closest('.compare-group');
+      if (!group.classList.contains('is-open')) group.querySelectorAll('tr:not(.compare-group-row)').forEach((tr) => { tr.hidden = true; });
+    });
+  }
+
+  // Column-summary card carousel (mobile/tablet only): NIPT / NIFS / WES, swipe with dot indicators, matching the home page's card-sequence pattern
+  const cardsTrack = document.getElementById('compareCards');
+  const dots = document.getElementById('compareDots');
+  if (cardsTrack && dots) {
+    cardsTrack.innerHTML = cols.map((c, i) => `<div class="compare-card${i === emphasisCol ? ' is-emphasis' : ''}">${c}</div>`).join('');
+    const cardEls = Array.from(cardsTrack.children);
+    cardEls.forEach((_, i) => { const b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', `Show ${cols[i]}`); b.addEventListener('click', () => { cardsTrack.scrollTo({ left: cardEls[i].offsetLeft - cardsTrack.offsetLeft, behavior: 'smooth' }); }); dots.appendChild(b); });
+    dots.style.setProperty('--n', cardEls.length);
+    const stepPx = () => cardEls[1] ? cardEls[1].offsetLeft - cardEls[0].offsetLeft : cardsTrack.clientWidth;
+    const setBeat = (i) => { dots.querySelectorAll('button').forEach((d, k) => d.setAttribute('aria-current', k === i)); dots.style.setProperty('--i', i); };
+    cardsTrack.addEventListener('scroll', () => setBeat(Math.round(cardsTrack.scrollLeft / stepPx())), { passive: true });
+    setBeat(0);
   }
 })();
 </script>

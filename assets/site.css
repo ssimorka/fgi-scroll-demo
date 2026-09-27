@@ -610,13 +610,36 @@
   .compare-table thead th{padding-top:20px;padding-bottom:20px;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-secondary);border-bottom:1px solid var(--border-default)}
   .compare-table thead th.is-emphasis{color:var(--text-brand-secondary)} /* the emphasised column's header carries the brand colour, in bold text (not the marks) */
   .compare-table tbody th{font-weight:600;color:var(--text-default)}
-  .compare-table tbody tr:nth-child(even) th,.compare-table tbody tr:nth-child(even) td:not(.is-emphasis){background:var(--bg-secondary)}
+  .compare-table tbody tr:nth-child(even) th,.compare-table tbody tr:nth-child(even) td:not(.is-emphasis){background:var(--bg-secondary)} /* the label row is always tr:nth-child(1) in its tbody, so this never touches it */
   .compare-table tbody tr:nth-child(even) td.is-emphasis{background:color-mix(in srgb,var(--bg-brand-tint) 60%,var(--bg-secondary))}
   .compare-table th.is-emphasis,.compare-table td.is-emphasis{background:var(--bg-brand-tint);border-left:1px solid var(--border-brand-tertiary);border-right:1px solid var(--border-brand-tertiary)}
   .compare-table thead th.is-emphasis{border-top:1px solid var(--border-brand-tertiary);border-radius:12px 12px 0 0}
-  .compare-table tbody tr:last-child td.is-emphasis{border-bottom:1px solid var(--border-brand-tertiary);border-radius:0 0 12px 12px}
+  .compare-table tbody:last-of-type tr:last-child td.is-emphasis{border-bottom:1px solid var(--border-brand-tertiary);border-radius:0 0 12px 12px} /* the emphasis outline now runs the full height of every section, so only the very last row closes it */
   .mark{display:inline-flex;align-items:center}
   .mark svg{width:20px;height:20px;color:var(--text-secondary)} /* one neutral colour for both marks: meaning comes from the row label and the visually-hidden text, not colour, per the earlier accessibility note (the reference used red/green here, which we're intentionally not copying) */
+  /* section groups: an always-visible "Overview" strip (tinted, matching the emphasis column's own tint) plus two collapsible groups, after the 7pace reference */
+  .compare-group-row th{padding:18px 16px;font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--text-default)}
+  .compare-group:not(:first-of-type) .compare-group-row th{border-top:1px solid var(--border-default)}
+  .compare-group.is-overview th:not([colspan]),.compare-group.is-overview td:not(.is-emphasis){background:var(--bg-brand-tint)}
+  .compare-group.is-overview .compare-group-row th{background:var(--bg-brand-tint)}
+  .compare-group-toggle{display:inline-flex;align-items:center;gap:10px;background:none;border:0;padding:0;font:inherit;font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--text-default);cursor:pointer;text-align:left}
+  .compare-group-toggle .chev{width:8px;height:8px;flex:0 0 auto;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);transition:transform .25s cubic-bezier(.2,.7,.2,1)}
+  .compare-group.is-open .compare-group-toggle .chev{transform:rotate(225deg)}
+  @media (min-width:1024px){ /* desktop: every group reads open, flat, no toggle affordance (matches the reference's desktop view) */
+    .compare-group tr[hidden]{display:table-row!important}
+    .compare-group-toggle{cursor:default;pointer-events:none}
+    .compare-group-toggle .chev{display:none}
+  }
+  /* column-summary card carousel (tablet/mobile only): NIPT / NIFS / WES, swipe with dot indicators — reuses .dots as-is from the home tech sequence */
+  .compare-cards-wrap{display:none}
+  @media (max-width:1023.98px){
+    .compare-cards-wrap{display:block;padding:20px 20px 0}
+    .compare-cards{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+    .compare-cards::-webkit-scrollbar{display:none}
+    .compare-card{flex:0 0 68%;scroll-snap-align:center;padding:20px;border-radius:12px;border:1px solid var(--border-default);background:var(--bg-page);font-family:var(--font-display);font-weight:700;font-size:20px;color:var(--text-default);text-align:center}
+    .compare-card.is-emphasis{border-color:var(--border-brand-tertiary);background:var(--bg-brand-tint);color:var(--text-brand-secondary)}
+    .compare-cards-wrap .dots{display:flex;margin:16px auto 0}
+  }
   /* 04 coverage: NIFS's own gene/condition breakdown, then the chart */
   .coverage{padding:96px var(--pad-x) 112px;display:flex;flex-direction:column;gap:48px}
   .coverage-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
@@ -993,6 +1016,7 @@
     /* comparison table: restack each row as a block of labelled lines, no horizontal scroll. Only `display` changes here (no role or tag changes), so the table/row/cell semantics still hold for a screen reader (reinforced by the explicit ARIA roles in the markup, which stick regardless of CSS display) */
     .compare-table thead{display:none}
     .compare-table,.compare-table caption,.compare-table tbody,.compare-table tr,.compare-table th,.compare-table td{display:block;width:auto} /* the caption keeps display:table-caption (and, with it, the fixed table's 36% first-column width) unless it's reset here too */
+    .compare-table tr[hidden]{display:none} /* the tr reset above is an author rule and outranks the UA [hidden] rule regardless of specificity, so a collapsed group's rows would otherwise show anyway */
     .compare-table th:first-child,.compare-table td:first-child,.compare-table th:not(:first-child),.compare-table td:not(:first-child){width:auto} /* beats the desktop column percentages at equal specificity: without this the zebra tint below (and the row itself) reads as only 36% wide */
     .compare-table tbody tr{padding:20px 20px 4px;border-bottom:1px solid var(--border-default)}
     .compare-table tbody tr:last-child{padding-bottom:16px;border-bottom:0}
