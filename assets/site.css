@@ -642,6 +642,7 @@
     .compare-card.is-emphasis{border-color:var(--border-brand-tertiary);background:var(--bg-brand-tint);color:var(--text-brand-secondary)}
     .compare-cards-wrap .dots{display:flex;margin:16px auto 0}
     /* the table itself only shows the label column plus whichever data column the card carousel above has in view, as one unified card (not the desktop's four separate bordered ones, since there's only one data column visible at a time here) */
+    .compare-table thead{display:none} /* the carousel card above already names the active column (NIPT/NIFS/WES); repeating it in the table's own header row was redundant */
     .compare-col-hidden{display:none}
     .compare-table th:first-child,.compare-table td:first-child{width:50%}
     .compare-table th:not(:first-child),.compare-table td:not(:first-child){width:50%}
