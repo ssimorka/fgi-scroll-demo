@@ -992,7 +992,7 @@
     .dots button{width:28px;height:28px;padding:10px;background-clip:content-box} /* the 8px dot is the content box; the padding is the hit area */
     /* comparison table: restack each row as a block of labelled lines, no horizontal scroll. Only `display` changes here (no role or tag changes), so the table/row/cell semantics still hold for a screen reader (reinforced by the explicit ARIA roles in the markup, which stick regardless of CSS display) */
     .compare-table thead{display:none}
-    .compare-table,.compare-table tbody,.compare-table tr,.compare-table th,.compare-table td{display:block;width:auto}
+    .compare-table,.compare-table caption,.compare-table tbody,.compare-table tr,.compare-table th,.compare-table td{display:block;width:auto} /* the caption keeps display:table-caption (and, with it, the fixed table's 36% first-column width) unless it's reset here too */
     .compare-table th:first-child,.compare-table td:first-child,.compare-table th:not(:first-child),.compare-table td:not(:first-child){width:auto} /* beats the desktop column percentages at equal specificity: without this the zebra tint below (and the row itself) reads as only 36% wide */
     .compare-table tbody tr{padding:20px 20px 4px;border-bottom:1px solid var(--border-default)}
     .compare-table tbody tr:last-child{padding-bottom:16px;border-bottom:0}
