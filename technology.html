@@ -377,6 +377,10 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
   if (cardsTrack && dots && table) {
     cardsTrack.innerHTML = cols.map((c, i) => `<div class="compare-card${i === emphasisCol ? ' is-emphasis' : ''}">${c}</div>`).join('');
     const cardEls = Array.from(cardsTrack.children);
+    const spacer = document.createElement('div');
+    spacer.className = 'compare-cards-spacer';
+    spacer.setAttribute('aria-hidden', 'true');
+    cardsTrack.appendChild(spacer); // trailing space equal to the section gutter, so scrolling all the way to WES lands its right edge flush with the table below instead of bleeding past it (the peek itself stays generous mid-scroll since the track itself still has no padding-right)
     const setActiveCol = (i) => {
       table.querySelectorAll('[data-col]').forEach((el) => { el.classList.toggle('compare-col-hidden', Number(el.dataset.col) !== i); });
     };
