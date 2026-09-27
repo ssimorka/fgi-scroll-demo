@@ -618,7 +618,7 @@
   /* 04 coverage: NIFS's own gene/condition breakdown, then the chart */
   .coverage{padding:96px var(--pad-x) 112px;display:flex;flex-direction:column;gap:48px}
   .coverage-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
-  .coverage-compare{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:start} /* chart left, comparison table right; stacks below 1024 */
+  .coverage-compare{display:flex;flex-direction:column;gap:48px} /* chart, then the comparison table, stacked */
   .chart-bar.is-lead{--c:var(--bg-brand)}
   .chart-row.is-lead .chart-label,.chart-row.is-lead .chart-val{font-weight:600;color:var(--text-default)}
 
@@ -877,7 +877,6 @@
     .split{grid-template-columns:1fr;gap:24px}
     .split-body{padding-top:0}
     .vision-media{height:min(56vw,420px)}
-    .coverage-compare{grid-template-columns:1fr;gap:24px}
     .vision-caption{left:16px;right:16px;bottom:16px;max-width:none;padding:16px}
     .values{padding:40px var(--pad-x) 64px;gap:32px}
     .pillars{grid-template-columns:1fr;gap:20px}
