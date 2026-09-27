@@ -1015,18 +1015,12 @@
     .brand .li,.nav-modal-foot .li{box-sizing:content-box;padding:8px;margin:-8px}
     .dots{gap:0;--step:28px;--pad:10px}
     .dots button{width:28px;height:28px;padding:10px;background-clip:content-box} /* the 8px dot is the content box; the padding is the hit area */
-    /* comparison table: restack each row as a block of labelled lines, no horizontal scroll. Only `display` changes here (no role or tag changes), so the table/row/cell semantics still hold for a screen reader (reinforced by the explicit ARIA roles in the markup, which stick regardless of CSS display) */
-    .compare-table thead{display:none}
-    .compare-table,.compare-table caption,.compare-table tbody,.compare-table tr,.compare-table th,.compare-table td{display:block;width:auto} /* the caption keeps display:table-caption (and, with it, the fixed table's 36% first-column width) unless it's reset here too */
-    .compare-table tr[hidden]{display:none} /* the tr reset above is an author rule and outranks the UA [hidden] rule regardless of specificity, so a collapsed group's rows would otherwise show anyway */
-    .compare-table th:first-child,.compare-table td:first-child,.compare-table th:not(:first-child),.compare-table td:not(:first-child){width:auto} /* beats the desktop column percentages at equal specificity: without this the zebra tint below (and the row itself) reads as only 36% wide */
-    .compare-table tbody tr{padding:20px 20px 4px;border-bottom:1px solid var(--border-default)}
-    .compare-table tbody tr:last-child{padding-bottom:16px;border-bottom:0}
-    .compare-table tbody th{padding:0 0 12px;border-bottom:0;font-size:17px;white-space:normal}
-    .compare-table tbody td{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border-default);border-left:0;border-right:0}
-    .compare-table tbody td:last-child{border-bottom:0}
-    .compare-table tbody td::before{content:attr(data-label);font-size:13px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--text-secondary)}
-    .compare-table tbody td.is-emphasis{margin:4px 0;padding:10px 12px;border:1px solid var(--border-brand-tertiary);border-radius:8px}
+    /* comparison table: keep the real 4-column grid (client asked for this over the stacked-block version) but let it scroll horizontally, since a phone-width viewport can't fit 4 readable columns */
+    #compareTable{overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .compare-table{width:auto;min-width:560px} /* min-width, not width:100%: a fixed-layout table at 100% of a 350px wrapper would cram every column unreadably thin instead of scrolling */
+    .compare-table th:first-child,.compare-table td:first-child{width:200px}
+    .compare-table th:not(:first-child),.compare-table td:not(:first-child){width:120px}
+    .compare-table tbody th{white-space:normal}
   }
   /* ---------- tablet (768-1023): static layout, but use the width ---------- */
   @media (min-width:768px) and (max-width:1023.98px){
