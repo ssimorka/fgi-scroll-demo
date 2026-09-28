@@ -780,6 +780,9 @@
   .job-empty{color:var(--text-secondary)}
 
   /* ============ CONTACT PAGE (after First Genomic Insights' and BillionToOne's own /contact/ forms) ============ */
+  /* .hero-compact: the gradient banner sits flush against .contact-main below it, one continuous page instead of a floating card over a gap */
+  .hero.hero-compact{min-height:0;padding:0}
+  .hero.hero-compact .hero-card{border-radius:0;box-shadow:none;padding:96px var(--pad-x) 80px}
   .contact-main{padding:96px var(--pad-x) 128px;display:flex;flex-direction:column;gap:56px}
   .contact-grid{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:64px;align-items:start}
   .contact-info{display:flex;flex-direction:column;gap:32px;position:sticky;top:calc(var(--nav-h) + 32px)}
@@ -947,6 +950,7 @@
     .vision{padding:64px var(--pad-x) 40px;gap:32px}
     .split{grid-template-columns:1fr;gap:24px}
     .split-body{padding-top:0}
+    .hero.hero-compact .hero-card{padding:56px var(--pad-x) 40px;gap:24px}
     .contact-main{padding:64px var(--pad-x) 80px;gap:32px}
     .contact-grid{grid-template-columns:1fr;gap:32px}
     .contact-info{position:static}
