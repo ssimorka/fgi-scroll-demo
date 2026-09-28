@@ -535,7 +535,7 @@
 
   /* ---- FAQ (after the Publications page's year accordion: <details>/<summary>, a rotating .chev) ---- */
   .faq{padding:64px var(--pad-x) 112px;display:flex;flex-direction:column;gap:40px}
-  .faq-list{display:flex;flex-direction:column;max-width:860px}
+  .faq-list{display:flex;flex-direction:column}
   .faq-item{border-top:1px solid var(--border-default)}
   .faq-item:last-child{border-bottom:1px solid var(--border-default)}
   .faq-item summary{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:24px 0;cursor:pointer;list-style:none;font-family:var(--font-display);font-weight:600;font-size:20px;line-height:1.3;color:var(--text-default);transition:color .2s}
