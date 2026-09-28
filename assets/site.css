@@ -800,6 +800,7 @@
   /* .hero-card-photo: a photo behind the brand gradient (alpha-faded, same stops as --grad-hero) instead of the gradient alone; the copy's contrast is unchanged since the gradient is just as opaque where the headline sits */
   .hero-card-photo{background:none}
   .hero-card-photo > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:78% 45%}
+  .hero-card-photo > img[src$="hero-partnership.jpg"]{object-position:32% 35%} /* keeps the highlighted region in frame regardless of crop direction */
   .hero-card-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(var(--grad-hero-angle,112deg),rgba(0,54,77,.94) -21%,rgba(0,119,160,.86) 11%,rgba(78,168,194,.55) 37%,rgba(240,253,255,0) 100%)}
   .contact-main{padding:96px var(--pad-x) 128px;display:flex;flex-direction:column;gap:56px}
   .contact-grid{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:64px;align-items:start}
