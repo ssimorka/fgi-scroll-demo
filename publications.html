@@ -250,7 +250,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
 
   const years = [...new Set(publications.map(p => p.year))].sort((a, b) => b - a);
   document.getElementById('panelPublications').innerHTML = years.map((y, i) =>
-    `<details class="year"${i === 0 ? ' open' : ''}><summary><span>${y}</span><span class="chev" aria-hidden="true"></span></summary><div class="pubs-list">` +
+    `<details class="year"${y === 2023 ? ' open' : ''}><summary><span>${y}</span><span class="chev" aria-hidden="true"></span></summary><div class="pubs-list">` +
     publications.filter(p => p.year === y).map(p => entry(p, `${esc(p.venue)} · ${esc(p.date)}`, p.cta)).join('') + `</div></details>`).join('');
   document.getElementById('panelNews').innerHTML = `<div class="pubs-list">` + news.map(n => entry(n, `${esc(n.source)} · ${esc(n.date)}`, 'Read more')).join('') + `</div>`;
 
