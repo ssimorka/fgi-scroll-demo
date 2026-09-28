@@ -444,7 +444,7 @@
   .photo-hero-card .photo-hero-copy .btn-brand:hover{filter:none;background:var(--bg-secondary)}
   /* 01 company statement: brand panel, number + statement, eyebrow + body (35pharma "Our company") */
   .statement{padding:24px;min-height:calc(100svh - var(--nav-h));display:flex;flex-direction:column} /* a full viewport, like the Approach panel: it must hide the pinned hero completely before it unpins */
-  .statement-panel{flex:1 1 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:40px 64px;align-items:start;align-content:space-between;padding:56px 48px;border-radius:var(--radius);background:var(--grad-tile-brand);color:var(--text-on-dark);box-shadow:var(--shadow-300)}
+  .statement-panel{flex:1 1 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:clamp(40px,10vh,160px) 64px;align-items:start;align-content:center;padding:56px 48px;border-radius:var(--radius);background:var(--grad-tile-brand);color:var(--text-on-dark);box-shadow:var(--shadow-300)} /* the heading/eyebrow row and the pillars/body row stack as one centred block with a gap that scales with the viewport, instead of space-between snapping them to the panel's top and bottom edges and leaving a dead gap on tall screens */
   .statement-panel .sec-num{color:var(--text-on-dark-2);opacity:.7;margin-top:.1em}
   .statement-panel .t-page{max-width:30ch;font-size:clamp(28px,3.9vh,39px);font-weight:600} /* a statement, not a title; scales with viewport height so the panel always fits one screen */
   .statement-panel .eyebrow{color:var(--text-on-dark-2);padding-top:4px}
