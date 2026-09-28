@@ -531,7 +531,6 @@
   /* mission pillars: three columns in the statement panel's lower row */
   .pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
   .pillar{display:flex;flex-direction:column;gap:8px}
-  .pillar .t-heading{font-size:19px}
   .pillar .t-body{color:var(--text-on-dark-2);font-size:15px;line-height:1.45}
   /* ============ CHART CARD (Chartist horizontal bar chart, in FGI type and colour) ============ */
   /* A white card: title + secondary line (and an optional action) over a rule,
