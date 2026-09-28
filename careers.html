@@ -42,7 +42,13 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
             </div>
           </li>
           <li><a href="careers.html">Careers</a></li>
-          <li><a href="partnership.html">Explore Partnership</a></li>
+          <li class="nav-item has-sub">
+            <a class="nav-sub-toggle" href="partnership.html" aria-haspopup="true" aria-expanded="false" aria-controls="subPartnership">Partnerships <span class="chev" aria-hidden="true"></span></a>
+            <div class="nav-sub" id="subPartnership">
+              <a href="partnership.html">Partnership</a>
+              <a href="contact.html?type=investor">Investor Relations</a>
+            </div>
+          </li>
         </ul>
         <a class="btn btn-neutral btn-sm" href="contact.html">Contact Us</a>
         <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navModal"><img class="open" src="assets/icon-menu.svg" alt=""></button>
@@ -79,7 +85,15 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
           </div>
         </div>
         <a href="careers.html"><span class="mask"><span class="in">Careers</span></span></a>
-        <a href="partnership.html"><span class="mask"><span class="in">Explore Partnership</span></span></a>
+        <div class="tray-item has-sub">
+          <button class="tray-toggle" type="button" aria-expanded="false" aria-controls="traySubPartnership"><span class="mask"><span class="in">Partnerships <span class="chev" aria-hidden="true"></span></span></span></button>
+          <div class="tray-sub" id="traySubPartnership">
+            <div class="tray-sub-inner">
+              <a href="partnership.html">Partnership</a>
+              <a href="contact.html?type=investor">Investor Relations</a>
+            </div>
+          </div>
+        </div>
       </nav>
       <div class="nav-modal-foot">
         <a class="btn btn-outline-light" href="contact.html">Get in touch <span class="arrow"></span></a>
