@@ -779,6 +779,33 @@
   .job-count{margin-left:auto;color:var(--text-secondary);padding-bottom:14px}
   .job-empty{color:var(--text-secondary)}
 
+  /* ============ CONTACT PAGE (after First Genomic Insights' and BillionToOne's own /contact/ forms) ============ */
+  .contact-main{padding:96px var(--pad-x) 128px;display:flex;flex-direction:column;gap:56px}
+  .contact-grid{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:64px;align-items:start}
+  .contact-info{display:flex;flex-direction:column;gap:32px;position:sticky;top:calc(var(--nav-h) + 32px)}
+  .contact-info .t-body{color:var(--text-secondary)}
+  .contact-audiences{display:flex;flex-direction:column}
+  .contact-audience{display:flex;flex-direction:column;gap:4px;padding:16px 0;border-top:1px solid var(--border-default)}
+  .contact-audience:first-child{border-top:0}
+  .contact-audience .t-small-strong{color:var(--text-default)}
+  .contact-audience .t-small{color:var(--text-secondary)}
+  .contact-panel{background:var(--bg-secondary);border:1px solid var(--border-default);border-radius:var(--radius);padding:48px;box-shadow:var(--shadow-300)}
+  .contact-form{display:flex;flex-direction:column;gap:24px}
+  .contact-form[hidden]{display:none}
+  .field{display:flex;flex-direction:column;gap:8px}
+  .field .t-small-strong{color:var(--text-secondary)}
+  .field input,.field select,.field textarea{font:inherit;font-size:16px;color:var(--text-default);padding:14px 16px;border-radius:12px;border:1px solid var(--border-neutral-2);background:var(--bg-page)}
+  .field select{padding-right:40px;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%2335425b' stroke-width='1.5'/></svg>");background-repeat:no-repeat;background-position:right 16px center;appearance:none;-webkit-appearance:none}
+  .field textarea{resize:vertical;min-height:140px;font-family:inherit}
+  .field input:focus-visible,.field select:focus-visible,.field textarea:focus-visible{outline:2px solid var(--text-brand-secondary);outline-offset:2px;border-color:var(--text-brand-secondary)}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .field-counter{align-self:flex-end;font-size:13px;color:var(--text-neutral-2)}
+  .form-foot{display:flex;flex-direction:column;gap:16px;align-items:flex-start}
+  .form-foot .btn{align-self:stretch;justify-content:center}
+  .contact-success{display:flex;flex-direction:column;gap:16px;align-items:flex-start}
+  .contact-success[hidden]{display:none}
+  .contact-success-icon{display:grid;place-items:center;width:48px;height:48px;border-radius:9999px;background:var(--bg-success-tint);color:var(--border-success)}
+  .contact-success-icon svg{width:24px;height:24px}
 
   /* ============ Purple ramp (Design Kit), scoped by body.theme-purple: covers the careers and open-positions structures ============ */
   .theme-purple{--hero-cta-ink:#36439a;--r-100:#e8ebf5;--r-200:#c6cbe7;--r-300:#a1aad7;--r-400:#7c89c7;--r-500:#606fbb;--r-600:#4555b0;--r-700:#3f4da6;--r-800:#36439a;--r-900:#2e398e;--r-1000:#222878}
@@ -920,6 +947,11 @@
     .vision{padding:64px var(--pad-x) 40px;gap:32px}
     .split{grid-template-columns:1fr;gap:24px}
     .split-body{padding-top:0}
+    .contact-main{padding:64px var(--pad-x) 80px;gap:32px}
+    .contact-grid{grid-template-columns:1fr;gap:32px}
+    .contact-info{position:static}
+    .contact-panel{padding:32px 24px}
+    .field-row{grid-template-columns:1fr}
     .vision-media{height:min(56vw,420px)}
     .vision-caption{left:16px;right:16px;bottom:16px;max-width:none;padding:16px}
     .values{padding:40px var(--pad-x) 64px;gap:32px}

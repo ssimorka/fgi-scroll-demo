@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact — First Genomic Insights</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&family=Roboto+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<script>/* motion start states go on before first paint, so nothing is shown and then re-hidden when the scripts land; released if GSAP never arrives */
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('js-motion');setTimeout(function(){if(!window.gsap)document.documentElement.classList.remove('js-motion')},4000)}</script>
+</head>
+<body>
+
+<div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="mesh" aria-hidden="true"></div>
+
+  <!-- ============ SITE NAV (own bar above the hero card) ============ -->
+  <div class="nav-slot">
+  <header class="site-nav" id="siteNav">
+    <nav class="navbar" aria-label="Primary">
+      <div class="navbar-inner">
+        <a class="logo" href="index.html#hero" aria-label="First Genomic Insights">
+          <img class="full" src="assets/fgi-logo-dark.svg" alt="">
+          <img class="mark" src="assets/fgi-mini-color.svg" alt="">
+        </a>
+        <ul class="nav-list">
+          <li class="nav-item has-sub">
+            <a class="nav-sub-toggle" href="technology.html" aria-haspopup="true" aria-expanded="false" aria-controls="subTechnology">Technology <span class="chev" aria-hidden="true"></span></a>
+            <div class="nav-sub" id="subTechnology">
+              <a href="technology.html">Our Technology</a>
+              <a href="publications.html">Publications</a>
+            </div>
+          </li>
+          <li class="nav-item has-sub">
+            <a class="nav-sub-toggle" href="index.html#founders" aria-haspopup="true" aria-expanded="false" aria-controls="subCompany">Company <span class="chev" aria-hidden="true"></span></a>
+            <div class="nav-sub" id="subCompany">
+              <a href="company.html">Mission, Vision, Values</a>
+              <a href="leadership.html">Leadership &amp; Board</a>
+            </div>
+          </li>
+          <li><a href="careers.html">Careers</a></li>
+          <li><a href="partnership.html">Explore Partnership</a></li>
+        </ul>
+        <a class="btn btn-neutral btn-sm" href="#form">Contact Us</a>
+        <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navModal"><img class="open" src="assets/icon-menu.svg" alt=""></button>
+      </div>
+    </nav>
+  </header>
+  </div>
+
+  <!-- ============ FULL-SCREEN MENU ============ -->
+  <div class="nav-modal" id="navModal" hidden>
+    <div class="nav-modal-scrim" id="menuScrim" aria-hidden="true"></div>
+    <div class="nav-modal-tray" data-lenis-prevent>
+      <div class="nav-modal-top">
+        <img class="nav-modal-mark" src="assets/fgi-mini.svg" alt="FGI">
+        <button class="icon-btn on-dark menu-close" id="menuClose" type="button" aria-label="Close menu"><img src="assets/icon-close.svg" alt=""></button>
+      </div>
+      <nav class="nav-modal-links" aria-label="Site">
+        <div class="tray-item has-sub">
+          <button class="tray-toggle" type="button" aria-expanded="false" aria-controls="traySubTechnology"><span class="mask"><span class="in">Technology <span class="chev" aria-hidden="true"></span></span></span></button>
+          <div class="tray-sub" id="traySubTechnology">
+            <div class="tray-sub-inner">
+              <a href="technology.html">Our Technology</a>
+              <a href="publications.html">Publications</a>
+            </div>
+          </div>
+        </div>
+        <div class="tray-item has-sub">
+          <button class="tray-toggle" type="button" aria-expanded="false" aria-controls="traySubCompany"><span class="mask"><span class="in">Company <span class="chev" aria-hidden="true"></span></span></span></button>
+          <div class="tray-sub" id="traySubCompany">
+            <div class="tray-sub-inner">
+              <a href="company.html">Mission, Vision, Values</a>
+              <a href="leadership.html">Leadership &amp; Board</a>
+            </div>
+          </div>
+        </div>
+        <a href="careers.html"><span class="mask"><span class="in">Careers</span></span></a>
+        <a href="partnership.html"><span class="mask"><span class="in">Explore Partnership</span></span></a>
+      </nav>
+      <div class="nav-modal-foot">
+        <a class="btn btn-outline-light" href="#form">Get in touch <span class="arrow"></span></a>
+        <p class="t-small">First Genomic Insights · Non-invasive fetal sequencing</p>
+        <a class="li" href="https://www.linkedin.com/company/first-genomic-insights-inc/posts/?feedView=all" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="assets/linkedin.svg" alt=""></a>
+      </div>
+    </div>
+  </div>
+
+
+  <main id="main">
+  <!-- ============ HERO (gradient treatment, matches Partnership's non-photo hero) ============ -->
+  <div class="stack-wrap">
+  <section class="hero stack-panel" id="top">
+    <div class="hero-card">
+      <div class="hero-copy">
+        <div class="headline">
+          <p class="eyebrow" data-entrance>Contact</p>
+          <h1 class="t-hero" data-entrance>Tell us what you're working on.</h1>
+          <p class="t-subtitle" data-entrance>Laboratories, clinicians, investors, researchers and press: this is where every conversation with FGI starts.</p>
+          <div class="hero-actions" data-entrance>
+            <a class="btn btn-brand" href="#form">Fill out the form <span class="arrow"></span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <!-- ============ CONTACT FORM (slides over the hero) ============ -->
+  <div class="stack-over">
+  <section class="on-white contact-main" id="form">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="section-heading" data-reveal>
+          <div>
+            <p class="eyebrow section">Get in touch</p>
+            <h2 class="t-page">Who you'll reach.</h2>
+          </div>
+        </div>
+        <p class="t-body" data-reveal>Tell us which category fits best and we'll route your message to the right team at FGI.</p>
+        <div class="contact-audiences" data-reveal>
+          <div class="contact-audience">
+            <p class="t-small-strong">General enquiry</p>
+            <p class="t-small">Anything that doesn't fit the categories below.</p>
+          </div>
+          <div class="contact-audience">
+            <p class="t-small-strong">Laboratory partnership</p>
+            <p class="t-small">Bringing NIFS in-house at a commercial or clinical laboratory. See also <a href="partnership.html">Partnership</a>.</p>
+          </div>
+          <div class="contact-audience">
+            <p class="t-small-strong">Investor relations</p>
+            <p class="t-small">Funding, company stage and investor materials.</p>
+          </div>
+          <div class="contact-audience">
+            <p class="t-small-strong">Research collaboration</p>
+            <p class="t-small">Academic or clinical research proposals.</p>
+          </div>
+          <div class="contact-audience">
+            <p class="t-small-strong">Media &amp; press</p>
+            <p class="t-small">Press enquiries and interview requests.</p>
+          </div>
+        </div>
+        <p class="t-small draft-note" data-reveal>Routing shown here is illustrative; FGI will confirm who receives each enquiry type.</p>
+      </div>
+
+      <div class="contact-panel" data-reveal>
+        <form class="contact-form" id="contactForm" novalidate>
+          <label class="field">
+            <span class="t-small-strong">Hello, tell us about yourself</span>
+            <select id="audienceType" name="audience" required>
+              <option value="" disabled selected>Select an option…</option>
+              <option value="general">General enquiry</option>
+              <option value="laboratory">Laboratory partnership</option>
+              <option value="investor">Investor relations</option>
+              <option value="research">Research collaboration</option>
+              <option value="media">Media &amp; press</option>
+            </select>
+          </label>
+          <label class="field">
+            <span class="t-small-strong">Organization</span>
+            <input type="text" name="organization" placeholder="Enter organization">
+          </label>
+          <div class="field-row">
+            <label class="field"><span class="t-small-strong">First name</span><input type="text" name="firstName" placeholder="Enter your first name" required></label>
+            <label class="field"><span class="t-small-strong">Last name</span><input type="text" name="lastName" placeholder="Enter your last name" required></label>
+          </div>
+          <div class="field-row">
+            <label class="field"><span class="t-small-strong">Email</span><input type="email" name="email" placeholder="Enter your email" required></label>
+            <label class="field"><span class="t-small-strong">Phone (optional)</span><input type="tel" name="phone" placeholder="Enter your phone"></label>
+          </div>
+          <label class="field">
+            <span class="t-small-strong">Message</span>
+            <textarea name="message" placeholder="Enter your message" maxlength="750" required></textarea>
+            <span class="field-counter"><span id="msgCount">0</span>/750</span>
+          </label>
+          <div class="form-foot">
+            <button class="btn btn-brand" type="submit">Submit <span class="arrow"></span></button>
+            <p class="t-small draft-note">This form isn't wired to a mailbox yet; FGI will confirm where each enquiry type should be routed.</p>
+          </div>
+        </form>
+        <div class="contact-success" id="contactSuccess" tabindex="-1" hidden>
+          <span class="contact-success-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <h3 class="t-heading">Thanks — we'll be in touch.</h3>
+          <p class="t-body">Your message has been recorded for this demo. A production version would route it to the right FGI team.</p>
+          <button class="btn btn-neutral btn-sm" type="button" id="contactReset">Send another message</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  </div>
+
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer" id="footer">
+    <div class="footer-content">
+      <div class="brand">
+        <img class="mini" src="assets/fgi-mini.svg" alt="FGI">
+        <a class="li" href="https://www.linkedin.com/company/first-genomic-insights-inc/posts/?feedView=all" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="assets/linkedin.svg" alt=""></a>
+      </div>
+      <div class="link-cols">
+        <div class="link-col" data-reveal><h3>PLATFORM</h3><div class="rule"></div><a href="technology.html">Technology Overview</a><a href="technology.html#workflow">How NIFS Works</a><a href="publications.html">Clinical Applications</a><a href="publications.html">Research &amp; Publications</a></div>
+        <div class="link-col" data-reveal><h3>FOR YOU</h3><div class="rule"></div><a href="partnership.html">Clinical &amp; Lab Partners</a><a href="#form">Investors</a><a href="publications.html">Researchers</a><a href="careers.html">Careers</a></div>
+        <div class="link-col" data-reveal><h3>COMPANY</h3><div class="rule"></div><a href="company.html">Our Story</a><a href="leadership.html">Leadership</a><a href="partnership.html">Partnership</a><a href="#form">Contact</a></div>
+        <div class="link-col" data-reveal><h3>GET IN TOUCH</h3><div class="rule"></div><a href="contact.html?type=laboratory">Laboratory partnership</a><a href="contact.html?type=investor">Investor relations</a><a href="contact.html?type=research">Research collaboration</a><a href="contact.html?type=media">Media &amp; press</a></div>
+      </div>
+    </div>
+    <div class="legal">
+      <p>© 2026 First Genomic Insights. All rights reserved.</p>
+      <a href="#footer">Privacy Policy</a>
+    </div>
+  </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.1/dist/lenis.min.js"></script>
+<script src="assets/site.js"></script>
+<script>
+(() => { // contact: preselects the audience from ?type=, counts the message field, and shows a demo confirmation on submit (no backend is wired up yet)
+  const form = document.getElementById('contactForm'), success = document.getElementById('contactSuccess'), resetBtn = document.getElementById('contactReset');
+  const audience = document.getElementById('audienceType'), message = document.getElementById('message') || form.querySelector('[name="message"]'), count = document.getElementById('msgCount');
+
+  const type = new URLSearchParams(location.search).get('type');
+  if (type && [...audience.options].some(o => o.value === type)) audience.value = type;
+
+  const updateCount = () => { count.textContent = message.value.length; };
+  message.addEventListener('input', updateCount); updateCount();
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+    form.hidden = true; success.hidden = false; success.focus();
+  });
+  resetBtn.addEventListener('click', () => {
+    form.reset(); updateCount(); form.hidden = false; success.hidden = true;
+  });
+})();
+</script>
+</body>
+</html>
