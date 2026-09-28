@@ -447,7 +447,7 @@
   .statement-panel{flex:1 1 auto;display:flex;flex-direction:column;justify-content:center;gap:clamp(40px,10vh,160px);padding:56px 48px;border-radius:var(--radius);background:var(--grad-tile-brand);color:var(--text-on-dark);box-shadow:var(--shadow-300)} /* the eyebrow+heading group and the pillars/body below it stack full-width as one centred block, instead of splitting the heading and eyebrow into a cramped narrow column beside a mostly-empty wide one */
   .statement-head{display:flex;flex-direction:column;gap:8px} /* eyebrow directly above the heading, same tight pairing as .section-heading elsewhere */
   .statement-panel .sec-num{color:var(--text-on-dark-2);opacity:.7;margin-top:.1em}
-  .statement-panel .t-page{max-width:30ch;font-size:clamp(28px,3.9vh,39px);font-weight:600} /* a statement, not a title; scales with viewport height so the panel always fits one screen */
+  .statement-panel .t-page{max-width:30ch} /* same size/weight as every other .t-page heading (e.g. "How it works") */
   .statement-panel .eyebrow{color:var(--text-on-dark-2)}
   .statement-body{display:flex;flex-direction:column;gap:28px;max-width:58ch}
   .statement-body .t-body{color:var(--text-on-dark-2)}
