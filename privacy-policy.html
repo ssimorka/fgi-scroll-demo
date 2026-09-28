@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — First Genomic Insights</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&family=Roboto+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<script>/* motion start states go on before first paint, so nothing is shown and then re-hidden when the scripts land; released if GSAP never arrives */
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('js-motion');setTimeout(function(){if(!window.gsap)document.documentElement.classList.remove('js-motion')},4000)}</script>
+</head>
+<body>
+
+<div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="mesh" aria-hidden="true"></div>
+
+  <!-- ============ SITE NAV (own bar above the hero card) ============ -->
+  <div class="nav-slot">
+  <header class="site-nav" id="siteNav">
+    <nav class="navbar" aria-label="Primary">
+      <div class="navbar-inner">
+        <a class="logo" href="index.html#hero" aria-label="First Genomic Insights">
+          <img class="full" src="assets/fgi-logo-dark.svg" alt="">
+          <img class="mark" src="assets/fgi-mini-color.svg" alt="">
+        </a>
+        <ul class="nav-list">
+          <li class="nav-item has-sub">
+            <a class="nav-sub-toggle" href="technology.html" aria-haspopup="true" aria-expanded="false" aria-controls="subTechnology">Technology <span class="chev" aria-hidden="true"></span></a>
+            <div class="nav-sub" id="subTechnology">
+              <a href="technology.html">Our Technology</a>
+              <a href="publications.html">Publications</a>
+            </div>
+          </li>
+          <li class="nav-item has-sub">
+            <a class="nav-sub-toggle" href="index.html#founders" aria-haspopup="true" aria-expanded="false" aria-controls="subCompany">Company <span class="chev" aria-hidden="true"></span></a>
+            <div class="nav-sub" id="subCompany">
+              <a href="company.html">Mission, Vision, Values</a>
+              <a href="leadership.html">Leadership &amp; Board</a>
+            </div>
+          </li>
+          <li><a href="careers.html">Careers</a></li>
+          <li class="nav-item has-sub">
+            <a class="nav-sub-toggle" href="partnership.html" aria-haspopup="true" aria-expanded="false" aria-controls="subPartnership">Explore Partnerships <span class="chev" aria-hidden="true"></span></a>
+            <div class="nav-sub" id="subPartnership">
+              <a href="partnership.html">Partnerships</a>
+              <a href="investors.html">Investor Relations</a>
+            </div>
+          </li>
+        </ul>
+        <a class="btn btn-neutral btn-sm" href="contact.html">Contact Us</a>
+        <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navModal"><img class="open" src="assets/icon-menu.svg" alt=""></button>
+      </div>
+    </nav>
+  </header>
+  </div>
+
+  <!-- ============ FULL-SCREEN MENU ============ -->
+  <div class="nav-modal" id="navModal" hidden>
+    <div class="nav-modal-scrim" id="menuScrim" aria-hidden="true"></div>
+    <div class="nav-modal-tray" data-lenis-prevent>
+      <div class="nav-modal-top">
+        <img class="nav-modal-mark" src="assets/fgi-mini.svg" alt="FGI">
+        <button class="icon-btn on-dark menu-close" id="menuClose" type="button" aria-label="Close menu"><img src="assets/icon-close.svg" alt=""></button>
+      </div>
+      <nav class="nav-modal-links" aria-label="Site">
+        <div class="tray-item has-sub">
+          <button class="tray-toggle" type="button" aria-expanded="false" aria-controls="traySubTechnology"><span class="mask"><span class="in">Technology <span class="chev" aria-hidden="true"></span></span></span></button>
+          <div class="tray-sub" id="traySubTechnology">
+            <div class="tray-sub-inner">
+              <a href="technology.html">Our Technology</a>
+              <a href="publications.html">Publications</a>
+            </div>
+          </div>
+        </div>
+        <div class="tray-item has-sub">
+          <button class="tray-toggle" type="button" aria-expanded="false" aria-controls="traySubCompany"><span class="mask"><span class="in">Company <span class="chev" aria-hidden="true"></span></span></span></button>
+          <div class="tray-sub" id="traySubCompany">
+            <div class="tray-sub-inner">
+              <a href="company.html">Mission, Vision, Values</a>
+              <a href="leadership.html">Leadership &amp; Board</a>
+            </div>
+          </div>
+        </div>
+        <a href="careers.html"><span class="mask"><span class="in">Careers</span></span></a>
+        <div class="tray-item has-sub">
+          <button class="tray-toggle" type="button" aria-expanded="false" aria-controls="traySubPartnership"><span class="mask"><span class="in">Explore Partnerships <span class="chev" aria-hidden="true"></span></span></span></button>
+          <div class="tray-sub" id="traySubPartnership">
+            <div class="tray-sub-inner">
+              <a href="partnership.html">Partnerships</a>
+              <a href="investors.html">Investor Relations</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div class="nav-modal-foot">
+        <a class="btn btn-outline-light" href="contact.html">Get in touch <span class="arrow"></span></a>
+        <p class="t-small">First Genomic Insights · Non-invasive fetal sequencing</p>
+        <a class="li" href="https://www.linkedin.com/company/first-genomic-insights-inc/posts/?feedView=all" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="assets/linkedin.svg" alt=""></a>
+      </div>
+    </div>
+  </div>
+
+
+  <main id="main">
+  <!-- ============ HERO (flush, no photo: a plain legal page, not a marketing one) ============ -->
+  <section class="hero hero-compact" id="top">
+    <div class="hero-card">
+      <div class="hero-copy">
+        <div class="headline">
+          <p class="eyebrow" data-entrance>Legal</p>
+          <h1 class="t-hero" data-entrance>Privacy Policy</h1>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ POLICY BODY (plain single column, sourced from FGI's published privacy policy) ============ -->
+  <section class="on-white legal-page" id="policy">
+    <div class="legal-body">
+      <section class="legal-section" data-reveal>
+        <h2 class="t-heading">Introduction</h2>
+        <p class="t-body">First Genomic Insights, LLC (&ldquo;Company,&rdquo; &ldquo;we,&rdquo; &ldquo;our,&rdquo; or &ldquo;us&rdquo;) is a genomic diagnostics company committed to protecting the privacy and security of individuals who visit our website and use our services. This Privacy Policy describes how we collect, use, disclose, and safeguard information, including personal and genomic data, through our website (&ldquo;Site&rdquo;) and related services.</p>
+        <p class="t-body">This policy is intended to comply with applicable U.S. federal and state privacy laws, including the Health Insurance Portability and Accountability Act (HIPAA), where applicable, and other relevant regulations governing health and genetic information.</p>
+      </section>
+
+      <section class="legal-section" data-reveal>
+        <h2 class="t-heading">Scope</h2>
+        <p class="t-body">This Privacy Policy applies to:</p>
+        <ul class="t-body">
+          <li>Visitors to our website</li>
+          <li>Healthcare providers interacting with services provided by us or our licensed partners</li>
+          <li>Individuals whose information is submitted via the Site</li>
+        </ul>
+        <p class="t-body">This policy does not apply to protected health information (PHI) handled under separate agreements (e.g., Business Associate Agreements, Clinical Study Agreements), which is governed by HIPAA and related policies.</p>
+      </section>
+
+      <section class="legal-section" data-reveal>
+        <h2 class="t-heading">Information We Collect</h2>
+        <h3 class="t-subheading">A. Personal Information</h3>
+        <p class="t-body">We may collect personal information that identifies you, such as:</p>
+        <ul class="t-body">
+          <li>Name, email address, phone number</li>
+          <li>Professional credentials (for healthcare providers)</li>
+          <li>Billing or account information</li>
+          <li>Communications you send to us</li>
+        </ul>
+        <h3 class="t-subheading">B. Health and Genomic Information</h3>
+        <p class="t-body">If submitted through authorized channels, we may process:</p>
+        <ul class="t-body">
+          <li>Genetic test results</li>
+          <li>Biological sample data</li>
+          <li>Clinical or diagnostic information</li>
+        </ul>
+        <p class="t-body">Such data is handled in accordance with applicable healthcare privacy laws and contractual obligations.</p>
+        <h3 class="t-subheading">C. Automatically Collected Information</h3>
+        <p class="t-body">When you visit our Site, we may automatically collect:</p>
+        <ul class="t-body">
+          <li>IP address</li>
+          <li>Browser type and device information</li>
+          <li>Pages visited and time spent</li>
+          <li>Cookies and similar tracking technologies</li>
+        </ul>
+      </section>
+
+      <section class="legal-section" data-reveal>
+        <h2 class="t-heading">How We Use Information</h2>
+        <p class="t-body">We use collected information for purposes including:</p>
+        <ul class="t-body">
+          <li>Providing and improving our diagnostic services</li>
+          <li>Communicating with healthcare providers and users</li>
+          <li>Processing transactions and managing accounts</li>
+          <li>Conducting research and development (in de-identified or aggregated form where possible)</li>
+          <li>Complying with legal and regulatory requirements</li>
+          <li>Maintaining website functionality and security</li>
+        </ul>
+      </section>
+
+      <section class="legal-section" data-reveal>
+        <h2 class="t-heading">Legal Basis for Processing</h2>
+        <p class="t-body">Where applicable, we process personal data based on:</p>
+        <ul class="t-body">
+          <li>Consent</li>
+          <li>Performance of a contract</li>
+          <li>Compliance with legal obligations</li>
+          <li>Legitimate business interests (e.g., improving services)</li>
+        </ul>
+      </section>
+
+      <section class="legal-section" data-reveal>
+        <h2 class="t-heading">Sharing and Disclosure</h2>
+        <p class="t-body">We may share information with:</p>
+        <ul class="t-body">
+          <li>Healthcare providers and authorized partners</li>
+          <li>Laboratories and service providers supporting our operations</li>
+          <li>Regulatory authorities, when required by law</li>
+          <li>Third-party vendors (e.g., IT, analytics) under strict confidentiality agreements</li>
+        </ul>
+        <p class="t-body">We do not sell personal or genetic information.</p>
+      </section>
+
+      <section class="legal-section" data-reveal>
+        <h2 class="t-heading">Data Security</h2>
+        <p class="t-body">We implement administrative, technical, and physical safeguards designed to protect information, including:</p>
+        <ul class="t-body">
+          <li>Encryption of sensitive data</li>
+          <li>Access controls and authentication</li>
+          <li>Secure data storage environments</li>
+        </ul>
+        <p class="t-body">Despite these measures, no system can guarantee absolute security.</p>
+      </section>
+
+      <section class="legal-section" data-reveal>
+        <h2 class="t-heading">Data Retention</h2>
+        <p class="t-body">We retain information only as long as necessary to:</p>
+        <ul class="t-body">
+          <li>Fulfill the purposes outlined in this policy</li>
+          <li>Comply with legal, regulatory, and contractual obligations</li>
+        </ul>
+        <p class="t-body">Retention periods for genomic and health data may be longer due to clinical and regulatory requirements.</p>
+      </section>
+
+      <section class="legal-section" data-reveal>
+        <h2 class="t-heading">Your Rights and Choices</h2>
+        <p class="t-body">Depending on your jurisdiction, you may have rights to:</p>
+        <ul class="t-body">
+          <li>Access your personal data</li>
+          <li>Request correction or deletion</li>
+          <li>Restrict or object to processing</li>
+          <li>Receive a copy of your data</li>
+        </ul>
+        <p class="t-body">To exercise these rights, contact us at <a href="mailto:support@firstgenomicinsights.com">support@firstgenomicinsights.com</a>.</p>
+      </section>
+
+      <section class="legal-section" data-reveal>
+        <h2 class="t-heading">Cookies and Tracking Technologies</h2>
+        <p class="t-body">We use cookies and similar technologies to:</p>
+        <ul class="t-body">
+          <li>Improve website functionality</li>
+          <li>Analyze usage patterns</li>
+          <li>Enhance user experience</li>
+        </ul>
+        <p class="t-body">You can manage cookie preferences through your browser settings.</p>
+      </section>
+
+      <section class="legal-section" data-reveal>
+        <h2 class="t-heading">Children's Privacy</h2>
+        <p class="t-body">Our Site is not intended for individuals under 13 years of age. We do not knowingly collect personal information from children without appropriate consent.</p>
+      </section>
+
+      <section class="legal-section" data-reveal>
+        <h2 class="t-heading">International Users</h2>
+        <p class="t-body">If you access our Site from outside the United States, your information may be transferred to and processed in the U.S., where privacy laws may differ.</p>
+      </section>
+
+      <section class="legal-section" data-reveal>
+        <h2 class="t-heading">Changes to This Policy</h2>
+        <p class="t-body">We may update this Privacy Policy periodically. Changes will be posted on this page with an updated &ldquo;Last Updated&rdquo; date.</p>
+      </section>
+
+      <section class="legal-section" data-reveal>
+        <h2 class="t-heading">Contact Us</h2>
+        <p class="t-body">If you have questions about this Privacy Policy or our data practices, please contact:</p>
+        <p class="legal-address">First Genomic Insights, LLC<br>CIC | One Broadway | 14th Floor<br>Cambridge, MA 02142<br><a href="mailto:support@firstgenomicinsights.com">support@firstgenomicinsights.com</a></p>
+      </section>
+    </div>
+  </section>
+
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer" id="footer">
+    <div class="footer-content">
+      <div class="brand">
+        <img class="mini" src="assets/fgi-mini.svg" alt="FGI">
+        <a class="li" href="https://www.linkedin.com/company/first-genomic-insights-inc/posts/?feedView=all" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="assets/linkedin.svg" alt=""></a>
+      </div>
+      <div class="link-cols">
+        <div class="link-col" data-reveal><h3>PLATFORM</h3><div class="rule"></div><a href="technology.html">Technology Overview</a><a href="technology.html#workflow">How NIFS Works</a><a href="publications.html">Clinical Applications</a><a href="publications.html">Research &amp; Publications</a></div>
+        <div class="link-col" data-reveal><h3>FOR YOU</h3><div class="rule"></div><a href="partnership.html">Clinical &amp; Lab Partners</a><a href="investors.html">Investors</a><a href="publications.html">Researchers</a><a href="careers.html">Careers</a></div>
+        <div class="link-col" data-reveal><h3>COMPANY</h3><div class="rule"></div><a href="company.html">Our Story</a><a href="leadership.html">Leadership</a><a href="partnership.html">Partnership</a><a href="contact.html">Contact</a></div>
+        <div class="link-col" data-reveal><h3>GET IN TOUCH</h3><div class="rule"></div><a href="contact.html?type=laboratory">Laboratory partnership</a><a href="contact.html?type=investor">Investor relations</a><a href="contact.html?type=research">Research collaboration</a><a href="contact.html?type=media">Media &amp; press</a></div>
+      </div>
+    </div>
+    <div class="legal">
+      <p>© 2026 First Genomic Insights. All rights reserved.</p>
+      <a href="privacy-policy.html">Privacy Policy</a>
+    </div>
+  </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.1/dist/lenis.min.js"></script>
+<script src="assets/site.js"></script>
+</body>
+</html>

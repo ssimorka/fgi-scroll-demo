@@ -828,6 +828,18 @@
   .contact-success-icon{display:grid;place-items:center;width:48px;height:48px;border-radius:9999px;background:var(--bg-success-tint);color:var(--border-success)}
   .contact-success-icon svg{width:24px;height:24px}
 
+  /* ============ PRIVACY POLICY (plain single-column legal document, no cards/tiles) ============ */
+  /* named .legal-page, not .legal: that class already belongs to the footer's copyright/privacy-link row */
+  .legal-page{padding:64px var(--pad-x) 128px;display:flex;justify-content:center}
+  .legal-body{max-width:760px;width:100%;display:flex;flex-direction:column;gap:36px}
+  .legal-updated{color:var(--text-secondary)}
+  .legal-section{display:flex;flex-direction:column;gap:12px}
+  .legal-section .t-subheading{margin-top:8px}
+  .legal-section .t-body + .t-subheading{margin-top:16px}
+  .legal-section ul{padding-left:20px;display:flex;flex-direction:column;gap:6px;color:var(--text-secondary)}
+  .legal-section a{color:var(--text-brand-secondary);text-decoration:underline;text-underline-offset:2px}
+  .legal-address{color:var(--text-secondary);font-style:normal;line-height:1.6}
+
   /* ============ Purple ramp (Design Kit), scoped by body.theme-purple: covers the careers and open-positions structures ============ */
   .theme-purple{--hero-cta-ink:#36439a;--r-100:#e8ebf5;--r-200:#c6cbe7;--r-300:#a1aad7;--r-400:#7c89c7;--r-500:#606fbb;--r-600:#4555b0;--r-700:#3f4da6;--r-800:#36439a;--r-900:#2e398e;--r-1000:#222878}
   .theme-purple .photo-hero-card::after{background:linear-gradient(180deg,rgba(34,40,120,0) 30%,rgba(34,40,120,.85) 100%)} /* the ramp's 1000 under the hero copy */
@@ -970,6 +982,8 @@
     .split-body{padding-top:0}
     .hero.hero-compact .hero-card{padding:40px var(--pad-x) 32px;gap:24px}
     .contact-main{padding:64px var(--pad-x) 80px;gap:32px}
+    .legal-page{padding:40px var(--pad-x) 64px}
+    .legal-body{gap:28px}
     .contact-grid{grid-template-columns:1fr;gap:32px}
     .contact-info{position:static}
     .contact-panel{padding:32px 24px}
