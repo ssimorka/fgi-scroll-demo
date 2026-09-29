@@ -434,7 +434,6 @@
   .photo-hero{padding:24px}
   .photo-hero-card{position:relative;height:calc(100svh - var(--nav-h) - 48px);min-height:520px;max-height:860px;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-300);display:flex;align-items:flex-end;padding:48px;color:var(--text-on-dark)}
   .photo-hero-card > img,.photo-hero-card > video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%}
-  .photo-hero-card > img[src$="hero-open-positions.webp"]{object-position:50% 8%} /* 4:3 photo in a wide card: anchored near the top so the head and the pointing hand both stay in the crop */
   .photo-hero-card::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,32,46,0) 30%,rgba(0,32,46,.82) 100%)}
   .photo-hero-card.hero-pale-edge::after{background:linear-gradient(180deg,rgba(0,32,46,.6) 0%,rgba(0,32,46,.78) 35%,rgba(0,32,46,.95) 100%)} /* base-theme counterpart of .theme-blue's hero-pale-edge, for a pale stock photo on a page with no theme-* class */
   .photo-hero-copy{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:flex-end;gap:48px;width:100%}
@@ -886,6 +885,7 @@
   /* ============ Blue Gray ramp (Design Kit), scoped by body.theme-bluegray: covers the careers and open-positions structures ============ */
   .theme-bluegray{--hero-cta-ink:#35425b;--r-100:#f8fafc;--r-200:#e5edf4;--r-300:#d1e0ec;--r-400:#bed3e4;--r-500:#a2b7cd;--r-600:#8096b2;--r-700:#627798;--r-800:#4e6287;--r-900:#35425b;--r-1000:#1b222f}
   .theme-bluegray .photo-hero-card::after{background:linear-gradient(180deg,rgba(27,34,47,0) 30%,rgba(27,34,47,.85) 100%)} /* the ramp's 1000 under the hero copy */
+  .theme-bluegray .photo-hero-card.hero-pale-edge::after{background:linear-gradient(180deg,rgba(27,34,47,.6) 0%,rgba(27,34,47,.78) 35%,rgba(27,34,47,.95) 100%)} /* theme-bluegray counterpart of the other themes' hero-pale-edge, for a pale stock photo on this ramp */
   .theme-bluegray .statement-panel{background:linear-gradient(167.4deg,var(--r-1000) 14.644%,var(--r-800) 85.356%)} /* 1000 -> 800 */
   .theme-bluegray .statement-panel .sec-num,.theme-bluegray .statement-panel .eyebrow.section,.theme-bluegray .statement-body .t-body{color:var(--r-200)}
   .theme-bluegray .sec-num,.theme-bluegray .eyebrow.section{color:var(--r-700)} /* the first step that is AA for small text on white */
