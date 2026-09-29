@@ -730,6 +730,7 @@
   .theme-blue .photo-hero-card{background:var(--blue-1000)}
   .theme-blue .photo-hero-card::after{background:linear-gradient(180deg,rgba(0,21,56,0) 30%,rgba(0,21,56,.85) 100%)} /* the clip's own ground under the copy */
   .theme-blue .photo-hero-card.hero-bright::after{background:linear-gradient(180deg,rgba(0,21,56,.22) 0%,rgba(0,21,56,.72) 35%,rgba(0,21,56,.95) 100%)} /* the stock photo is white/light top to bottom, so the copy needs a stronger, earlier-starting wash than a dark clip or lab photo does */
+  .theme-blue .photo-hero-card.hero-pale-edge::after{background:linear-gradient(180deg,rgba(0,21,56,.6) 0%,rgba(0,21,56,.78) 35%,rgba(0,21,56,.95) 100%)} /* the publications photo is pale for its whole visible height (cover shows it uncropped top-to-bottom), so even hero-bright's 0%-stop still reads as an unfilled edge; wash it from the very top */
   .theme-blue .statement-panel{background:linear-gradient(167.4deg,var(--blue-900) 14.644%,var(--blue-700) 85.356%)} /* Blue 900 -> 700 */
   .theme-blue .statement-panel .sec-num,.theme-blue .statement-panel .eyebrow.section,.theme-blue .statement-body .t-body{color:var(--blue-200)} /* on the blue panel: Blue 200 (outranks the on-white Blue 700 rule below) */
   .theme-blue .sec-num,.theme-blue .eyebrow.section{color:var(--blue-700)} /* Blue 600 is 3:1 on white: light text only */
