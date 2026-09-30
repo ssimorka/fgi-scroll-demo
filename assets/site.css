@@ -464,6 +464,15 @@
   .team-card .name{font-family:var(--font-display);font-weight:600;font-size:20px;line-height:1.2;color:var(--text-default);transition:color .2s}
   .team-card:hover .name{color:var(--bg-brand)}
   .team-card .role{font-size:16px;line-height:1.4;color:var(--text-secondary)}
+  /* staff grid: denser square portraits (source photos are ~300px), no bio tray */
+  .team-staff{padding-top:0}
+  .team-grid.staff{grid-template-columns:repeat(5,minmax(0,1fr));gap:32px 24px}
+  .team-grid.staff .team-card{cursor:default}
+  .team-grid.staff .portrait{aspect-ratio:1}
+  .team-grid.staff .team-card:hover .portrait img{transform:none}
+  .team-grid.staff .team-card:hover .name{color:var(--text-default)}
+  .team-grid.staff .name{font-size:18px}
+  .team-grid.staff .role{font-size:15px}
   /* bio tray: the menu tray's move on a light surface */
   .bio-modal{position:fixed;inset:0;z-index:90;color:var(--text-default)}
   .bio-modal[hidden]{display:none}
@@ -1048,6 +1057,7 @@
     .team-head{margin-bottom:32px}
     .team-grid{grid-template-columns:1fr;gap:32px}
     .team-card .portrait{max-height:440px} /* one column: the 11:12 portrait would otherwise fill the viewport */
+    .team-grid.staff{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 16px}
     .bio-tray{width:100%;border-radius:0;padding:17px 22px 40px 20px}
     .bio-grid{grid-template-columns:1fr;gap:24px;margin-top:24px}
     .bio-side .portrait{max-width:280px}
@@ -1125,6 +1135,7 @@
     .founders-card{width:min(560px,80%)}
     .footer-content{flex-direction:row;gap:48px}
     .team-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .team-grid.staff{grid-template-columns:repeat(3,minmax(0,1fr))}
     .values-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
     .values-grid .founders-band{grid-column:1/-1}
     .culture-grid,.perks-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
