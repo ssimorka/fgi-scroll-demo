@@ -662,7 +662,7 @@
     .compare-cards{display:flex;gap:12px;padding-left:var(--pad-x);overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none} /* the gutter lives inside the scroller: at rest the first card still lines up with the table below */
     .compare-cards-spacer{flex:0 0 var(--pad-x);min-width:var(--pad-x)} /* trailing gutter-width space: scrolled all the way, it's what shows past WES instead of WES itself bleeding to the true edge */
     .compare-cards::-webkit-scrollbar{display:none}
-    .compare-card{flex:0 0 68%;scroll-snap-align:center;padding:20px;border-radius:12px;border:1px solid var(--border-default);background:var(--bg-page);display:flex;flex-direction:column;gap:16px}
+    .compare-card{flex:0 0 68%;scroll-snap-align:center;cursor:pointer;padding:20px;border-radius:12px;border:1px solid var(--border-default);background:var(--bg-page);display:flex;flex-direction:column;gap:16px}
     .compare-card-name{font-family:var(--font-display);font-weight:700;font-size:20px;color:var(--text-default);text-align:center}
     .compare-card.is-emphasis{border-color:var(--border-brand-tertiary)}
     .compare-card.is-emphasis .compare-card-name{color:var(--text-brand-secondary)}
