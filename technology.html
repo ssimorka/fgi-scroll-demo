@@ -403,7 +403,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
     const setActiveCol = (i) => {
       table.querySelectorAll('[data-col]').forEach((el) => { el.classList.toggle('compare-col-hidden', Number(el.dataset.col) !== i); });
     };
-    cardEls.forEach((_, i) => { const b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', `Show ${cols[i]}`); b.addEventListener('click', () => { cardsTrack.scrollTo({ left: cardEls[i].offsetLeft - cardsTrack.offsetLeft, behavior: 'smooth' }); }); dots.appendChild(b); });
+    cardEls.forEach((_, i) => { const b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', `Show ${cols[i]}`); b.addEventListener('click', () => { cardsTrack.scrollTo({ left: cardEls[i].offsetLeft - cardEls[0].offsetLeft, behavior: 'smooth' }); }); dots.appendChild(b); });
     dots.style.setProperty('--n', cardEls.length);
     const stepPx = () => cardEls[1] ? cardEls[1].offsetLeft - cardEls[0].offsetLeft : cardsTrack.clientWidth;
     const setBeat = (i) => { dots.querySelectorAll('button').forEach((d, k) => d.setAttribute('aria-current', k === i)); dots.style.setProperty('--i', i); setActiveCol(i); };

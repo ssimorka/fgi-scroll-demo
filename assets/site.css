@@ -628,6 +628,7 @@
   .visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
   .compare{background:transparent} /* no outer card any more: each column below is its own independent bordered/rounded card, per the client's reference crops */
   .compare-table{width:100%;border-collapse:separate;border-spacing:16px 0;table-layout:fixed;margin:0 -16px} /* horizontal spacing only (0 vertical): a real gap between the four cards, none between the rows stacked inside each one. border-spacing also inserts that same 16px before the first card and after the last, pushing the whole table right of the caption/heading above it, so the negative margin pulls it back flush */
+  .compare-table{filter:drop-shadow(0 4px 4px rgba(32,32,32,.05)) drop-shadow(0 4px 4px rgba(32,32,32,.1))} /* the chart's --shadow-300, as a filter: each column is a stack of cells, so only the table's rendered outline can carry one shadow per card (drop-shadow has no spread, so the -1px is dropped) */
   .compare-table th:first-child,.compare-table td:first-child{width:36%}
   .compare-table th:not(:first-child),.compare-table td:not(:first-child){width:21.34%}
   .compare-caption{padding:24px 0;text-align:left;font-family:var(--font-display);font-weight:600;font-size:20px;line-height:1.2;color:var(--text-default)} /* sits outside the table now (not a <caption>), so it can come before the card carousel on tablet/mobile; the table keeps its accessible name via aria-labelledby */
@@ -645,7 +646,6 @@
   .mark svg{width:20px;height:20px;color:var(--text-secondary)} /* one neutral colour for both marks: meaning comes from the row label and the visually-hidden text, not colour, per the earlier accessibility note (the reference used red/green here, which we're intentionally not copying) */
   /* section groups: an always-visible "Overview" strip (tinted, matching the emphasis column's own tint) plus two collapsible groups, after the 7pace reference. Each group's label row uses blank cells (not colspan) in the other three columns, so nothing bridges the gap between the four cards */
   .compare-group-row th{padding:18px 16px;font-family:var(--font-display);font-weight:700;font-size:20px;color:var(--text-default)}
-  .compare-group:not(:first-of-type) .compare-group-row th{border-top:1px solid var(--border-default)}
   .compare-table .compare-group.is-overview th,.compare-table .compare-group.is-overview td{background:var(--bg-success-tint)} /* every column, including NIFS, reads as the same mint green within Overview; NIFS keeps only its blue border there, not its usual blue fill (the extra .compare-table prefix beats the general td.is-emphasis background rule, which would otherwise still win the tie) */
   .compare-group-toggle{display:inline-flex;align-items:center;gap:10px;background:none;border:0;padding:0;font:inherit;font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--text-default);cursor:pointer;text-align:left}
   .compare-group-toggle .chev{width:8px;height:8px;flex:0 0 auto;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);transition:transform .25s cubic-bezier(.2,.7,.2,1)}
@@ -658,8 +658,8 @@
   /* column-summary card carousel (tablet/mobile only): NIPT / NIFS / WES, swipe with dot indicators — reuses .dots as-is from the home tech sequence */
   .compare-cards-wrap{display:none}
   @media (max-width:1023.98px){
-    .compare-cards-wrap{display:block;width:100vw;margin-left:calc(50% - 50vw);padding:20px 0 0 var(--pad-x)} /* full-bleed, but padding-left keeps the first card's left edge aligned with the table/Overview card below it; no padding-right, so the scrollable area still runs to the true viewport edge for the peek */
-    .compare-cards{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+    .compare-cards-wrap{display:block;width:100vw;margin-left:calc(50% - 50vw);padding:20px 0 0} /* full-bleed, so cards scrolled past either side run to the true viewport edge instead of being clipped at the gutter */
+    .compare-cards{display:flex;gap:12px;padding-left:var(--pad-x);overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none} /* the gutter lives inside the scroller: at rest the first card still lines up with the table below */
     .compare-cards-spacer{flex:0 0 var(--pad-x);min-width:var(--pad-x)} /* trailing gutter-width space: scrolled all the way, it's what shows past WES instead of WES itself bleeding to the true edge */
     .compare-cards::-webkit-scrollbar{display:none}
     .compare-card{flex:0 0 68%;scroll-snap-align:center;padding:20px;border-radius:12px;border:1px solid var(--border-default);background:var(--bg-page);display:flex;flex-direction:column;gap:16px}
@@ -677,10 +677,11 @@
     .compare-col-hidden{display:none}
     .compare-table th:first-child,.compare-table td:first-child{width:50%}
     .compare-table th:not(:first-child),.compare-table td:not(:first-child){width:50%}
-    .compare-table{border-spacing:0;margin:0}
+    .compare-table{border-spacing:0;margin:0;filter:none} /* #compareTable carries the box-shadow here */
     .compare-table th,.compare-table td{border-left:0;border-right:0}
     .compare-table thead th,.compare-table th.is-emphasis,.compare-table td.is-emphasis{border-top:0;border-radius:0}
-    .compare-table tbody:last-of-type tr:last-child th,.compare-table tbody:last-of-type tr:last-child td{border-radius:0}
+    .compare-table th.is-emphasis,.compare-table td.is-emphasis,.compare-table tbody:last-of-type tr:last-child td.is-emphasis{border-left:0;border-right:0;border-bottom:0} /* no teal column outline: with one data column showing, the carousel card above already marks NIFS */
+    .compare-table tbody:last-of-type tr:last-child th,.compare-table tbody:last-of-type tr:last-child td{border-radius:0;border-bottom:0} /* the #compareTable card's own border closes it */
     #compareTable{border:1px solid var(--border-default);border-radius:var(--radius);overflow:hidden;background:var(--bg-page);box-shadow:var(--shadow-300)}
   }
   /* 04 coverage: NIFS's own gene/condition breakdown, then the chart */
