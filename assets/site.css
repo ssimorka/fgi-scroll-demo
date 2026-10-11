@@ -291,6 +291,16 @@
     box-shadow:0 1px 4px rgba(32,32,32,.1),0 1px 4px rgba(32,32,32,.05);
   }
   .approach-card .t-body{color:var(--text-secondary)}
+  @media (min-width:1024px){ /* desktop: photo and card share one grid cell, so the card counts toward the panel's height.
+     When it fits, the photo still fills the window-sized panel and the card sits bottom-left as before; when it doesn't,
+     the panel grows to card + 48px top and bottom, and the stacking (site.js) pins a too-tall panel on its bottom edge */
+    .approach-panel{min-height:auto}
+    .approach .panel{display:grid;grid-template:1fr / minmax(0,1fr);min-height:auto} /* 1fr row: never shorter than the card */
+    .approach .panel > *{grid-area:1 / 1}
+    .approach .panel-img{min-height:0}
+    .approach .panel-img img{position:absolute;inset:0} /* fills the cell without lending the photo's own aspect height to the row */
+    .approach-card{position:relative;z-index:1;left:auto;bottom:auto;align-self:end;justify-self:start;width:min(680px,calc(100% - 96px));margin:48px}
+  }
   .card-actions{padding-top:16px;display:flex}
 
   /* ============ MISSION BENTO (node 6452:530) ============ */
