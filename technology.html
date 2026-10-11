@@ -38,7 +38,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
             <a class="nav-sub-toggle" href="index.html#founders" aria-haspopup="true" aria-expanded="false" aria-controls="subCompany">Company <span class="chev" aria-hidden="true"></span></a>
             <div class="nav-sub" id="subCompany">
               <a href="company.html">Mission, Vision, Values</a>
-              <a href="leadership.html">Leadership &amp; Board</a>
+              <a href="leadership.html">Meet the Team</a>
             </div>
           </li>
           <li><a href="careers.html">Careers</a></li>
@@ -80,7 +80,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
           <div class="tray-sub" id="traySubCompany">
             <div class="tray-sub-inner">
               <a href="company.html">Mission, Vision, Values</a>
-              <a href="leadership.html">Leadership &amp; Board</a>
+              <a href="leadership.html">Meet the Team</a>
             </div>
           </div>
         </div>
@@ -131,12 +131,12 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
     <div class="statement-panel">
       <div class="statement-head">
         <p class="eyebrow section" data-reveal>The problem, and our solution</p>
-        <h2 class="t-page" data-reveal>Every genetic test today is a trade-off between coverage and safety. NIFS closes the gap.</h2>
+        <h2 class="t-page" data-reveal>Today's prenatal tests often trade breadth against risk. NIFS was developed to broaden what a blood test can reveal.</h2>
       </div>
       <div class="pillars">
-        <div class="pillar" data-reveal><h3 class="t-heading">Standard NIPT is incomplete</h3><p class="t-body">Detects only a handful of genetic conditions, missing the majority of clinically relevant variants that affect fetal health.</p></div>
-        <div class="pillar" data-reveal><h3 class="t-heading">Invasive testing carries real risk</h3><p class="t-body">Amniocentesis and CVS are the only comprehensive options today, but they carry a miscarriage risk and are not broadly used.</p></div>
-        <div class="pillar" data-reveal><h3 class="t-heading">NIFS is non-invasive and comprehensive</h3><p class="t-body">The first fetal sequencing test to deliver high-resolution genetic screening at NIPT scale, with no invasive procedure.</p></div>
+        <div class="pillar" data-reveal><h3 class="t-heading">Standard NIPT has a limited, defined scope.</h3><p class="t-body">Current screening with NIPT looks for a specific set of conditions. Many genetic disorders are outside its scope.</p></div>
+        <div class="pillar" data-reveal><h3 class="t-heading">Invasive testing carries real risk</h3><p class="t-body">Diagnostic testing with whole exome sequencing can look more broadly but requires an invasive procedure such as an amniocentesis or chorionic villus sampling (CVS).</p></div>
+        <div class="pillar" data-reveal><h3 class="t-heading">NIFS is non-invasive and designed for broad exome coverage.</h3><p class="t-body"><strong>A new class of prenatal screening.</strong></p><p class="t-body">NIFS is the first technology designed to screen the fetal exome from a single maternal blood draw, delivering high-resolution genetic information that until now required an invasive procedure.</p></div>
       </div>
     </div>
   </section>
@@ -151,7 +151,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
         <h2 class="t-page">A simple blood draw. A sophisticated pipeline.</h2>
       </div>
     </div>
-    <p class="t-subtitle" data-reveal>Simple wet-lab workflow, sophisticated bioinformatics, scalable deployment.</p>
+    <p class="t-subtitle" data-reveal>A defined wet-lab workflow, advanced bioinformatics, built for laboratory deployment.</p>
     <div class="workflow-grid">
       <article class="tile tile-light workflow-card" data-reveal>
         <div class="workflow-card-media">
@@ -183,7 +183,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
         <div class="workflow-card-body">
           <div class="card-num" aria-hidden="true">03</div>
           <h3 class="t-heading">Exome Capture</h3>
-          <p class="t-body">Targeted enrichment of coding regions across the fetal exome.</p>
+          <p class="t-body">Targeted enrichment of the exome.</p>
         </div>
       </article>
       <article class="tile tile-light workflow-card" data-reveal>
@@ -209,13 +209,14 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
         </div>
       </div>
       <div class="split-body">
-        <p class="t-subtitle" data-reveal>A patented algorithm for non-invasive fetal genotyping from maternal plasma cell-free DNA, exclusively licensed to FGI.</p>
+        <!-- TODO: patent number footnote pending from client -->
+        <p class="t-subtitle" data-reveal>Technology covered by issued and pending patents, exclusively licensed to FGI.</p>
       </div>
     </div>
     <div class="vision-media" data-reveal>
       <video autoplay muted loop playsinline aria-hidden="true" preload="metadata" poster="assets/stills/bioinformatics-engine-loop.webp" src="assets/bioinformatics-engine-loop.mp4" id="bioengineVideo"></video>
       <button class="icon-btn media-toggle" type="button" aria-pressed="false" aria-label="Pause animation"><svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg><svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.5.87l12.5-7.5a1 1 0 0 0 0-1.74L8.5 3.63A1 1 0 0 0 7 4.5z"/></svg></button>
-      <div class="vision-caption"><p class="eyebrow">Patented technology</p><p class="t-body">Exclusively licensed to FGI: from raw sequencing reads to a resolved genomic result, in a single automated pipeline.</p></div>
+      <div class="vision-caption"><p class="eyebrow">Patented technology</p><p class="t-body">An integrated pipeline from raw sequencing reads to variant calls.</p></div>
     </div>
   </section>
 
@@ -223,22 +224,22 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
     <div class="section-heading" data-reveal>
       <div>
         <p class="eyebrow section">By the numbers</p>
-        <h2 class="t-page">Comprehensive coverage, captured from a single plasma sample.</h2>
+        <h2 class="t-page">Broad exome coverage from a single plasma sample.</h2>
       </div>
     </div>
-    <p class="t-subtitle" data-reveal>High-resolution, noninvasive fetal exome screening: every condition below is identified from the same maternal blood draw.</p>
+    <p class="t-subtitle" data-reveal>The conditions below are within the scope of genes NIFS is designed to analyze.</p>
     <div class="coverage-grid">
       <article class="tile tile-light" data-reveal>
         <p class="t-heading">3,151</p>
-        <p class="t-body">Autosomal dominant conditions, across 2,649 genes</p>
+        <p class="t-body">Autosomal dominant conditions, across 2,649 genes analyzed</p>
       </article>
       <article class="tile tile-light" data-reveal>
         <p class="t-heading">3,901</p>
-        <p class="t-body">Autosomal recessive conditions, across 3,246 genes</p>
+        <p class="t-body">Autosomal recessive conditions, across 3,246 genes analyzed</p>
       </article>
       <article class="tile tile-light" data-reveal>
         <p class="t-heading">434</p>
-        <p class="t-body">X-linked conditions, across 269 genes</p>
+        <p class="t-body">X-linked conditions, across 269 genes analyzed</p>
       </article>
     </div>
 
@@ -246,8 +247,8 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
       <div class="chart" data-reveal>
         <div class="chart-head">
           <div>
-            <p class="chart-title">Closing the gap between safety and coverage</p>
-            <p class="chart-sub">Share of clinically relevant, diagnostic-grade genetic variants each approach can identify.</p>
+            <p class="chart-title">Bringing meaningful genomic knowledge into the first trimester of pregnancy.</p>
+            <p class="chart-sub">Modeled share of clinically relevant, diagnostic-grade genetic variants each approach can identify.</p>
           </div>
         </div>
         <div class="chart-body">
@@ -258,6 +259,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
             <div class="chart-row"><div class="chart-label">Standard NIPT</div><div class="chart-track"><span class="chart-bar s3" style="--v:.08"></span><span class="chart-val">~8%</span></div></div>
             <div class="chart-axis"><span></span><div class="chart-ticks"><span>0%</span><span>50%</span><span>100%</span></div></div>
           </div>
+          <p class="t-small roadmap-note">Modeled, not clinical results. Modeled coverage of diagnostic-grade genetic variants (aneuploidy, copy-number variants, and autosomal and X-linked conditions) that would otherwise require invasive testing to detect. Invasive testing is comprehensive but carries a miscarriage risk; standard NIPT is non-invasive but limited in scope. Based on FGI's analysis of published assay specifications.</p>
         </div>
       </div>
       <div class="compare" data-reveal>
@@ -269,7 +271,6 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
         <div id="compareTable"></div>
       </div>
     </div>
-    <p class="t-small roadmap-note" data-reveal>Modeled coverage of diagnostic-grade genetic variants (aneuploidy, copy-number variants, and autosomal and X-linked conditions) that would otherwise require invasive testing to detect. Invasive testing is comprehensive but carries a miscarriage risk; standard NIPT is non-invasive but limited in scope. Based on FGI's analysis of published assay specifications.</p>
   </section>
   </div>
 
@@ -280,7 +281,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
         <h2 class="t-hero" data-reveal>Let's talk.</h2>
       </div>
       <div class="cta-body">
-        <p class="t-subtitle" data-reveal>Laboratories, clinicians, investors and researchers: tell us what you're working on.</p>
+        <p class="t-subtitle" data-reveal>Laboratories, clinicians, and researchers: tell us what you're working on.</p>
         <div class="cta-routes">
           <a class="cta-route" href="contact.html?type=general" data-reveal><span>General enquiry</span><span class="arrow"></span></a>
           <a class="cta-route" href="contact.html?type=laboratory" data-reveal><span>Laboratory partnership</span><span class="arrow"></span></a>
