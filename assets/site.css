@@ -769,6 +769,13 @@
   .culture .value{min-height:260px}
   .culture .value:nth-child(6n+1),.culture .value:nth-child(6n+6){grid-column:span 3}
   .culture .value:nth-child(6n+2),.culture .value:nth-child(6n+3),.culture .value:nth-child(6n+4),.culture .value:nth-child(6n+5){grid-column:span 2}
+  @media (min-width:1024px){ /* exactly five tiles: the second row runs 4/3 instead of leaving a hole after 2/2 */
+    .culture .value:nth-child(4):nth-last-child(2){grid-column:span 4}
+    .culture .value:nth-child(5):last-child{grid-column:span 3}
+  }
+  @media (min-width:600px) and (max-width:1023.98px){ /* two-up: an odd last tile takes the whole row */
+    .culture .value:last-child:nth-child(odd){grid-column:1 / -1}
+  }
   .perks{padding:64px var(--pad-x) 64px;display:flex;flex-direction:column;gap:48px}
   .perks-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:24px} /* bento: the wide group swaps sides row to row, 3/2 then 2/3 */
   .perk-group:nth-child(4n+1),.perk-group:nth-child(4n+4){grid-column:span 3}
