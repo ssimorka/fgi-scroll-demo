@@ -959,6 +959,7 @@
     .stack-over > .stack-panel{min-height:100svh;background:var(--bg-page)} /* a covering panel is at least a viewport tall and opaque, so the panel it pins over never shows beneath it */
     .approach-panel,.panel{flex:0 0 auto;display:block}
     .approach-panel{padding:20px;gap:16px}
+    .approach-sources{margin-top:16px} /* the panel is display:block here, so its gap no longer separates the footnote from the card */
     .panel-img{flex:0 0 auto;height:min(60vw,480px)}
     .approach-card{position:relative;z-index:1;inset:auto;width:auto;margin:-40px 16px 0;background:rgba(255,255,255,.92);border:1px solid var(--border-default);padding:24px} /* relative + z-index: the transformed photo would otherwise paint over it */
     .bento-grid{display:flex;flex-direction:column;gap:16px}
