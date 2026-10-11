@@ -140,6 +140,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
       <p class="t-small job-count" id="jobCount" aria-live="polite"></p>
     </div>
     <div class="job-list" id="jobList"></div>
+    <p class="t-body job-none" id="jobNone" hidden>No current openings.</p>
     <p class="t-body job-empty" id="jobEmpty" hidden>No positions match those filters. Clear one and try again, or tell us what you would bring.</p>
     <div class="openings-foot" data-reveal>
       <p class="t-body">Nothing that fits today? Follow us to stay updated as new roles open.</p>
@@ -201,19 +202,9 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
 <script src="assets/site.js"></script>
 <script>
 (() => { // open positions: a client-side list with department / location filters (sample roles until the ATS feed is wired in)
-  const jobs = [
-    { title: 'Clinical Laboratory Scientist', dept: 'Laboratory operations', loc: 'Boston, MA', type: 'Full-time' },
-    { title: 'Laboratory Operations Associate', dept: 'Laboratory operations', loc: 'Boston, MA', type: 'Full-time' },
-    { title: 'Bioinformatics Scientist, Fetal Variant Interpretation', dept: 'Research & Development', loc: 'Boston, MA · Hybrid', type: 'Full-time' },
-    { title: 'Research Associate, Sequencing Methods', dept: 'Research & Development', loc: 'Boston, MA', type: 'Full-time' },
-    { title: 'Senior Software Engineer, Sequencing Platform', dept: 'Software', loc: 'Remote (US)', type: 'Full-time' },
-    { title: 'Data Engineer, Genomic Pipelines', dept: 'Software', loc: 'Remote (US)', type: 'Full-time' },
-    { title: 'Genetic Counselor', dept: 'Clinical', loc: 'New York, NY · Hybrid', type: 'Full-time' },
-    { title: 'Clinical Study Coordinator, Prospective Validation', dept: 'Clinical', loc: 'New York, NY', type: 'Full-time' },
-    { title: 'Regulatory Affairs Manager', dept: 'Regulatory & Quality', loc: 'Boston, MA · Hybrid', type: 'Full-time' },
-    { title: 'Quality Systems Specialist', dept: 'Regulatory & Quality', loc: 'Boston, MA', type: 'Full-time' },
-    { title: 'Laboratory Partnerships Lead', dept: 'Commercial', loc: 'Remote (US)', type: 'Full-time' },
+  const jobs = [ // no current openings; add roles here as { title, dept, loc, type }
   ];
+  if (!jobs.length) { document.querySelector('.job-filters').style.display = 'none'; document.getElementById('jobNone').hidden = false; return; } // no filters or count over an empty list
   const list = document.getElementById('jobList'), deptSel = document.getElementById('filterDept'), locSel = document.getElementById('filterLoc'), count = document.getElementById('jobCount'), empty = document.getElementById('jobEmpty');
   const uniq = k => [...new Set(jobs.map(j => j[k]))].sort();
   uniq('dept').forEach(d => deptSel.insertAdjacentHTML('beforeend', `<option>${d}</option>`));
