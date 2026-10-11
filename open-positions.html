@@ -118,7 +118,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
         </div>
         <div class="actions" data-entrance>
           <a class="btn btn-outline-light" href="careers.html">Life at FGI <span class="arrow"></span></a>
-          <a class="btn btn-brand" href="#positions">Browse roles <span class="arrow"></span></a>
+          <a class="btn btn-brand" href="#positions" id="browseRoles">Browse roles <span class="arrow"></span></a>
         </div>
       </div>
     </div>
@@ -131,7 +131,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
     <div class="section-heading" data-reveal>
       <div>
         <p class="eyebrow section">Open positions</p>
-        <h2 class="t-page">Find your role.</h2>
+        <h2 class="t-page">Open positions</h2>
       </div>
     </div>
     <div class="job-filters" data-reveal>
@@ -149,7 +149,6 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
         <a class="btn btn-brand" href="#contact">Introduce yourself <span class="arrow"></span></a>
       </div>
     </div>
-    <p class="t-small draft-note" data-reveal>Sample listings, to be replaced by the live applicant-tracking feed.</p>
   </section>
   </div>
 
@@ -204,7 +203,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
 (() => { // open positions: a client-side list with department / location filters (sample roles until the ATS feed is wired in)
   const jobs = [ // no current openings; add roles here as { title, dept, loc, type }
   ];
-  if (!jobs.length) { document.querySelector('.job-filters').style.display = 'none'; document.getElementById('jobNone').hidden = false; return; } // no filters or count over an empty list
+  if (!jobs.length) { document.querySelector('.job-filters').style.display = 'none'; document.getElementById('browseRoles').style.display = 'none'; document.getElementById('jobNone').hidden = false; return; } // no filters, count or Browse roles over an empty list
   const list = document.getElementById('jobList'), deptSel = document.getElementById('filterDept'), locSel = document.getElementById('filterLoc'), count = document.getElementById('jobCount'), empty = document.getElementById('jobEmpty');
   const uniq = k => [...new Set(jobs.map(j => j[k]))].sort();
   uniq('dept').forEach(d => deptSel.insertAdjacentHTML('beforeend', `<option>${d}</option>`));
