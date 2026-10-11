@@ -465,7 +465,7 @@
   .team-card:hover .name{color:var(--bg-brand)}
   .team-card .role{font-size:16px;line-height:1.4;color:var(--text-secondary)}
   /* staff grid: denser square portraits (source photos are ~300px), no bio tray */
-  .team-staff{padding-top:0}
+  .team-staff,.team-sab{padding-top:0}
   .team-grid.staff{grid-template-columns:repeat(5,minmax(0,1fr));gap:32px 24px}
   .team-grid.staff .team-card{cursor:default}
   .team-grid.staff .portrait{aspect-ratio:1}
