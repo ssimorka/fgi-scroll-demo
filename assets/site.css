@@ -380,7 +380,7 @@
   .card-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover} /* plain: no mask/blend/filter, so the AI clips show as generated */
   /* the light cards take a ramp each, so the sequence reads grey -> purple -> blue -> blue-gray */
   .card.is-purple .card-copy{background:#c6cbe7} /* Purple 200 */
-  .card.is-purple .card-copy .t-subtitle{color:#222878} /* Purple 1000 */
+  .card.is-purple .card-copy .t-subtitle,.card.is-purple .card-copy .t-heading{color:#222878} /* Purple 1000 */
   .card.is-purple .card-num{color:#36439a;opacity:.35} /* Purple 800 */
   .card.is-bluegray .card-copy{background:#d1e0ec} /* Blue-gray 300 */
   .card.is-bluegray .card-copy .t-subtitle,.card.is-bluegray .card-copy .t-heading{color:#1b222f} /* Blue-gray 1000 */
@@ -388,9 +388,10 @@
   .card.is-bluegray .card-link{color:#1b222f;border-color:rgba(27,34,47,.35)}
   .card.is-bluegray .card-link:hover{border-color:#1b222f}
   .card.is-dark .card-copy{background:var(--grad-blue-depth)}
-  .card.is-dark .card-copy .t-subtitle{color:var(--text-on-dark)}
+  .card.is-dark .card-copy .t-subtitle,.card.is-dark .card-copy .t-heading{color:var(--text-on-dark)}
   .card.is-dark .card-num{color:var(--text-on-dark)}
-  .card-lead{display:flex;flex-direction:column;gap:24px} /* subtitle with its link under it; the number keeps the foot */
+  .card-lead{display:flex;flex-direction:column;gap:12px}
+  .card-lead .card-link{margin-top:12px} /* subtitle with its link under it; the number keeps the foot */
   .card-link{display:inline-flex;align-items:center;gap:10px;font-size:18px;line-height:1.2;color:var(--text-on-dark);border-bottom:1px solid rgba(240,253,255,.4);padding-bottom:6px;align-self:flex-start;transition:border-color .2s}
   .card-link:hover{border-color:var(--text-on-dark)}
   .card:not(.is-dark) .card-link{color:var(--text-default);border-color:rgba(53,66,91,.35)} /* the link on a light card takes the page ink */
@@ -446,6 +447,8 @@
   .photo-hero-card > img,.photo-hero-card > video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%}
   .photo-hero-card::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,32,46,0) 30%,rgba(0,32,46,.82) 100%)}
   .photo-hero-card.hero-pale-edge::after{background:linear-gradient(180deg,rgba(0,32,46,.6) 0%,rgba(0,32,46,.78) 35%,rgba(0,32,46,.95) 100%)} /* base-theme counterpart of .theme-blue's hero-pale-edge, for a pale stock photo on a page with no theme-* class */
+  .photo-hero-card.is-short{height:min(calc(62svh - var(--nav-h)),560px);min-height:420px} /* Mission: a shorter hero with a page-size H1, so the mission statement leads and starts above the fold */
+  .photo-hero-card.is-short .headline{max-width:640px}
   .photo-hero-copy{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:flex-end;gap:48px;width:100%}
   .photo-hero-copy .headline{max-width:900px;display:flex;flex-direction:column;gap:20px}
   .photo-hero-copy .eyebrow{color:var(--text-on-dark);text-shadow:0 1px 12px rgba(0,32,46,.45)} /* the eyebrow sits above the gradient's dark zone, over whatever the photo has there: white with a soft shadow reads on any of them; a ramp tint did not */
@@ -632,7 +635,7 @@
   .workflow-card-media .media-toggle svg{width:14px;height:14px}
   .workflow-card-body{display:flex;flex-direction:column;gap:12px;padding:24px}
   .workflow-card-body .card-num{font-size:28px;color:var(--text-brand-secondary);opacity:.7}
-  /* 03 engine (First Helix): copy + capability tags left, photo right, same shell as .vision */
+  /* 03 engine (FirstHelix): copy + capability tags left, photo right, same shell as .vision */
   .engine{padding:96px var(--pad-x) 64px;display:flex;flex-direction:column;gap:56px}
   /* ============ COMPARISON TABLE: NIPT vs NIFS vs WES, NIFS emphasised with the comparison-column tokens (node 6068:30) ============ */
   .visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
@@ -795,6 +798,32 @@
   .perk-list{list-style:none;display:flex;flex-direction:column}
   .perk-list li{padding:12px 0;border-top:1px solid var(--border-default);color:var(--text-secondary);font-size:17px;line-height:1.4}
   .draft-note{color:var(--text-neutral-2)}
+  /* ============ PARTNERSHIP PAGE ============ */
+  /* 01 statement: the pillars carry what FGI provides; a small qualifier closes the panel */
+  .statement-note{color:var(--text-on-dark-2);opacity:.85}
+  /* 02 how partnership works: four numbered steps on a rail; the dot marks each step, the last step (go live) is the brand tile */
+  .steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+  .step{position:relative;display:flex;flex-direction:column;gap:20px}
+  .step-dot{position:relative;width:14px;height:14px;border-radius:50%;background:var(--bg-page);border:2px solid var(--border-brand-tertiary);flex:0 0 auto}
+  .steps{position:relative}
+  .steps::before{content:'';position:absolute;top:6px;left:7px;right:calc((100% - 72px) / 4 - 7px);height:2px;background:linear-gradient(90deg,var(--border-brand-tertiary),var(--bg-brand))} /* the rail joins the first dot to the last */
+  .step-dot{z-index:1}
+  .step-brand .step-dot{background:var(--bg-brand);border-color:var(--bg-brand)}
+  .step-card{flex:1 1 auto;display:flex;flex-direction:column;gap:12px;padding:32px;min-height:280px;border-radius:var(--radius);background:var(--bg-page);border:1px solid var(--border-default);box-shadow:var(--shadow-300)}
+  .step-num{font-family:var(--font-display);font-weight:700;font-size:39px;line-height:1;letter-spacing:-.02em;color:var(--text-brand-secondary);opacity:.8;font-variant-numeric:tabular-nums;margin-bottom:auto;padding-bottom:24px}
+  .step-card .t-body{color:var(--text-secondary);font-size:16px}
+  .step:first-child .step-card{background:var(--bg-brand-tint);border-color:var(--border-brand-tertiary)}
+  .step-brand .step-card{background:var(--grad-tile-brand);border:0;color:var(--text-on-dark)}
+  .step-brand .step-num{color:var(--text-on-dark-2)}
+  .step-brand .step-card .t-body{color:var(--text-on-dark-2)}
+  /* 03 requirements: heading left, a ruled checklist right (the vision split) */
+  .requirements{padding-bottom:112px}
+  .req-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+  .req{display:grid;grid-template-columns:48px minmax(0,1fr);gap:20px;align-items:start;padding:28px 0;border-top:1px solid var(--border-default)}
+  .req:last-child{border-bottom:1px solid var(--border-default)}
+  .req > div{display:flex;flex-direction:column;gap:8px}
+  .req .t-body{color:var(--text-secondary)}
+  .requirements .draft-note{padding-top:8px}
   .openings{padding:64px var(--pad-x) 112px;display:flex;flex-direction:column;gap:48px}
   .positions{padding-top:96px}
   .job-list{display:flex;flex-direction:column;gap:40px}
@@ -828,7 +857,7 @@
   /* .hero-card-photo: a photo behind the brand gradient (alpha-faded, same stops as --grad-hero) instead of the gradient alone; the copy's contrast is unchanged since the gradient is just as opaque where the headline sits */
   .hero-card-photo{background:none}
   .hero-card-photo > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:78% 45%}
-  .hero-card-photo > img[src$="FGI_Background_Partnership_New.jpg"]{object-position:36% 40%} /* keeps the highlighted North America region in frame regardless of crop direction */
+  .hero-map > img{object-position:50% 40%} /* keeps the highlighted North America region in frame regardless of crop direction */
   .hero-card-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(var(--grad-hero-angle,112deg),rgba(0,54,77,.94) -21%,rgba(0,119,160,.86) 11%,rgba(78,168,194,.55) 37%,rgba(240,253,255,0) 100%)}
   .contact-main{padding:96px var(--pad-x) 128px;display:flex;flex-direction:column;gap:56px}
   .contact-grid{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:64px;align-items:start}
@@ -945,6 +974,15 @@
     .t-subtitle{font-size:clamp(20px,2.4vw,31.25px)}
   }
   @media (max-width:1023.98px){
+    .steps{grid-template-columns:1fr;gap:16px}
+    .step{display:grid;grid-template-columns:14px minmax(0,1fr);gap:20px}
+    .step-dot{margin-top:28px}
+    .steps::before{display:none}
+    .step:not(:last-child)::before{content:'';position:absolute;left:6px;top:35px;width:2px;height:calc(100% + 16px);background:var(--border-brand-tertiary)}
+    .step-card{min-height:0;padding:24px}
+    .step-num{font-size:28px;padding-bottom:8px}
+    .requirements{padding-bottom:64px}
+    .req{padding:20px 0;gap:16px}
     :root{--pad-x:20px}
     :root{--nav-h:64px;--grad-hero-angle:135deg}
     .navbar{padding:16px 12px 0}
@@ -999,6 +1037,7 @@
     .cta{padding:64px var(--pad-x)}
     .photo-hero{padding:12px}
     .photo-hero-card{height:auto;min-height:min(78svh,640px);padding:24px 20px}
+    .photo-hero-card.is-short{min-height:min(56svh,440px)}
     .photo-hero-card::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,20,40,0) 8%,rgba(0,20,40,.55) 55%)} /* stacked copy starts well above the theme gradient's dark zone: a neutral veil under it, on every theme */
     .media-toggle{top:12px;right:12px;width:32px;height:32px}
     .media-toggle svg{width:14px;height:14px}

@@ -42,13 +42,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
             </div>
           </li>
           <li><a href="careers.html">Careers</a></li>
-          <li class="nav-item has-sub">
-            <a class="nav-sub-toggle" href="partnership.html" aria-haspopup="true" aria-expanded="false" aria-controls="subPartnership">Explore Partnerships <span class="chev" aria-hidden="true"></span></a>
-            <div class="nav-sub" id="subPartnership">
-              <a href="partnership.html">Partnerships</a>
-              <a href="investors.html">Investor Relations</a>
-            </div>
-          </li>
+          <li><a href="partnership.html">Partnerships</a></li>
         </ul>
         <a class="btn btn-neutral btn-sm" href="contact.html">Contact Us</a>
         <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navModal"><img class="open" src="assets/icon-menu.svg" alt=""></button>
@@ -85,15 +79,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
           </div>
         </div>
         <a href="careers.html"><span class="mask"><span class="in">Careers</span></span></a>
-        <div class="tray-item has-sub">
-          <button class="tray-toggle" type="button" aria-expanded="false" aria-controls="traySubPartnership"><span class="mask"><span class="in">Explore Partnerships <span class="chev" aria-hidden="true"></span></span></span></button>
-          <div class="tray-sub" id="traySubPartnership">
-            <div class="tray-sub-inner">
-              <a href="partnership.html">Partnerships</a>
-              <a href="investors.html">Investor Relations</a>
-            </div>
-          </div>
-        </div>
+        <a href="partnership.html"><span class="mask"><span class="in">Partnerships</span></span></a>
       </nav>
       <div class="nav-modal-foot">
         <a class="btn btn-outline-light" href="contact.html">Get in touch <span class="arrow"></span></a>
@@ -136,7 +122,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
       <div class="panel">
         <div class="panel-img">
           <!-- TODO: Replace with client-supplied image -->
-          <img data-parallax-img="-28" src="assets/approach-lab.webp" srcset="assets/approach-lab-900.webp 900w, assets/approach-lab.webp 1600w" sizes="(max-width: 1023px) 100vw, 60vw" alt="Founders or laboratory photography, final asset pending" loading="lazy" decoding="async">
+          <img data-parallax-img="-28" src="assets/approach-data.webp" srcset="assets/approach-data-900.webp 900w, assets/approach-data.webp 1524w" sizes="(max-width: 1023px) 100vw, 60vw" alt="Sequencing data on a laboratory display" loading="lazy" decoding="async">
         </div>
         <div class="approach-card" data-parallax="90">
           <p class="eyebrow section" data-reveal>FGI's Approach</p>
@@ -175,7 +161,10 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
         <div class="track" id="track">
           <article class="card is-purple">
             <div class="card-copy">
-              <p class="t-subtitle" data-reveal>Blood specimen is processed and prepared for sequencing.</p>
+              <div class="card-lead">
+                <h3 class="t-heading">Sample preparation</h3>
+                <p class="t-subtitle">Blood specimen is processed and prepared for sequencing.</p>
+              </div>
             </div>
             <div class="card-media">
               <video muted loop playsinline aria-hidden="true" preload="metadata" poster="assets/stills/blood-draw-loop.webp" src="assets/blood-draw-loop.mp4"></video>
@@ -183,7 +172,10 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
           </article>
           <article class="card is-dark">
             <div class="card-copy">
-              <p class="t-subtitle">Sequencing generates millions of reads from cell-free DNA in the sample, which includes DNA of both maternal and fetal origin.</p>
+              <div class="card-lead">
+                <h3 class="t-heading">Sequencing</h3>
+                <p class="t-subtitle">Sequencing generates millions of reads from cell-free DNA in the sample, which includes DNA of both maternal and fetal origin.</p>
+              </div>
             </div>
             <div class="card-media">
               <video muted loop playsinline aria-hidden="true" preload="metadata" poster="assets/stills/bioinformatics-engine-loop.webp" src="assets/bioinformatics-engine-loop.mp4"></video>
@@ -291,7 +283,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
       </div>
       <div class="link-cols">
         <div class="link-col" data-reveal><h3>PLATFORM</h3><div class="rule"></div><a href="technology.html">Technology Overview</a><a href="technology.html#workflow">How NIFS Works</a><a href="publications.html">Clinical Applications</a><a href="publications.html">Research &amp; Publications</a></div>
-        <div class="link-col" data-reveal><h3>FOR YOU</h3><div class="rule"></div><a href="partnership.html">Clinical &amp; Lab Partners</a><a href="investors.html">Investors</a><a href="publications.html">Researchers</a><a href="careers.html">Careers</a></div>
+        <div class="link-col" data-reveal><h3>FOR YOU</h3><div class="rule"></div><a href="partnership.html">Clinical &amp; Lab Partners</a><a href="publications.html">Researchers</a><a href="careers.html">Careers</a></div>
         <div class="link-col" data-reveal><h3>COMPANY</h3><div class="rule"></div><a href="company.html">Our Story</a><a href="leadership.html">Leadership</a><a href="partnership.html">Partnership</a><a href="contact.html">Contact</a></div>
         <div class="link-col" data-reveal><h3>GET IN TOUCH</h3><div class="rule"></div><a href="contact.html?type=laboratory">Laboratory partnership</a><a href="contact.html?type=investor">Investor relations</a><a href="contact.html?type=research">Research collaboration</a><a href="contact.html?type=media">Media &amp; press</a></div>
       </div>
@@ -381,6 +373,17 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
   const next   = document.getElementById('nextBtn');
   const dots   = document.getElementById('dots');
   const n      = cards.length;
+
+  // Every card's copy band takes the tallest band's height, so the colour bars line up across the sequence (the pipeline card carries a heading and a link the others do not)
+  const copies = [...track.querySelectorAll('.card-copy')];
+  const evenBands = () => {
+    copies.forEach(c => { c.style.minHeight = ''; });
+    const h = Math.max(...copies.map(c => c.offsetHeight));
+    copies.forEach(c => { c.style.minHeight = h + 'px'; });
+  };
+  evenBands();
+  if (document.fonts) document.fonts.ready.then(evenBands);
+  addEventListener('resize', evenBands);
 
   const gapPx  = () => parseFloat(getComputedStyle(track).gap) || 0;
   // Shift per beat comes from the rendered card, never a hardcoded px.
