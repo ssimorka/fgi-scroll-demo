@@ -373,7 +373,7 @@
     background:var(--bg-neutral-3);box-shadow:var(--shadow-400);
   }
   /* the copy is its own compact panel on top; the video fills the rest of the card below it */
-  .card-copy{flex:0 0 auto;padding:48px;display:flex;flex-direction:column;gap:32px}
+  .card-copy{flex:0 0 auto;padding:32px 48px;display:flex;flex-direction:column;gap:32px}
   .card-copy .t-subtitle{color:var(--text-neutral)}
   .card-num{font-family:var(--font-display);font-weight:700;font-size:76.3px;line-height:1.2;letter-spacing:-.03em;color:var(--text-neutral-3);opacity:.3;white-space:nowrap}
   .card-media{position:relative;flex:1 1 auto;min-height:0;background:transparent}
@@ -392,6 +392,9 @@
   .card.is-dark .card-num{color:var(--text-on-dark)}
   .card-lead{display:flex;flex-direction:column;gap:12px}
   .card-lead .card-link{margin-top:12px} /* subtitle with its link under it; the number keeps the foot */
+  .card-lead-row{display:flex;align-items:flex-end;gap:16px 40px} /* subtitle and its link side by side, link on the subtitle's last line, so this card's title bar matches the others */
+  .card-lead-row .t-subtitle{flex:1 1 auto;min-width:0}
+  .card-lead-row .card-link{flex:0 0 auto;margin-top:0;align-self:flex-end;margin-bottom:6px} /* overrides the base link's flex-start; 6px lifts its underline to the last line's baseline */
   .card-link{display:inline-flex;align-items:center;gap:10px;font-size:18px;line-height:1.2;color:var(--text-on-dark);border-bottom:1px solid rgba(240,253,255,.4);padding-bottom:6px;align-self:flex-start;transition:border-color .2s}
   .card-link:hover{border-color:var(--text-on-dark)}
   .card:not(.is-dark) .card-link{color:var(--text-default);border-color:rgba(53,66,91,.35)} /* the link on a light card takes the page ink */
@@ -1028,6 +1031,7 @@
     .track::-webkit-scrollbar{display:none}
     .card{flex:0 0 100%;width:100%;height:auto;scroll-snap-align:start}
     .card-copy{padding:24px;gap:16px}
+    .card-lead-row{flex-direction:column;align-items:flex-start} /* no room side by side: the link drops under the subtitle */
     .card-num{font-size:56px}
     .card-media{flex:1 1 auto;aspect-ratio:4/3;min-height:220px} /* auto-height card: the video sets its own height instead of flexing into one */
     .sec-num{font-size:clamp(32px,4vw,48.83px)}
