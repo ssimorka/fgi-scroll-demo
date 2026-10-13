@@ -809,29 +809,38 @@
   /* ============ PARTNERSHIP PAGE ============ */
   /* 01 statement: the pillars carry what FGI provides; a small qualifier closes the panel */
   .statement-note{color:var(--text-on-dark-2);opacity:.85}
-  /* 02 how partnership works: four numbered steps on a rail; the dot marks each step, the last step (go live) is the brand tile */
-  .steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
-  .step{position:relative;display:flex;flex-direction:column;gap:20px}
-  .step-dot{position:relative;width:14px;height:14px;border-radius:50%;background:var(--bg-page);border:2px solid var(--border-brand-tertiary);flex:0 0 auto}
-  .steps{position:relative}
-  .steps::before{content:'';position:absolute;top:6px;left:7px;right:calc((100% - 72px) / 4 - 7px);height:2px;background:linear-gradient(90deg,var(--border-brand-tertiary),var(--bg-brand))} /* the rail joins the first dot to the last */
-  .step-dot{z-index:1}
-  .step-brand .step-dot{background:var(--bg-brand);border-color:var(--bg-brand)}
-  .step-card{flex:1 1 auto;display:flex;flex-direction:column;gap:12px;padding:32px;min-height:280px;border-radius:var(--radius);background:var(--bg-page);border:1px solid var(--border-default);box-shadow:var(--shadow-300)}
-  .step-num{font-family:var(--font-display);font-weight:700;font-size:39px;line-height:1;letter-spacing:-.02em;color:var(--text-brand-secondary);opacity:.8;font-variant-numeric:tabular-nums;margin-bottom:auto;padding-bottom:24px}
-  .step-card .t-body{color:var(--text-secondary);font-size:16px}
-  .step:first-child .step-card{background:var(--bg-brand-tint);border-color:var(--border-brand-tertiary)}
-  .step-brand .step-card{background:var(--grad-tile-brand);border:0;color:var(--text-on-dark)}
-  .step-brand .step-num{color:var(--text-on-dark-2)}
-  .step-brand .step-card .t-body{color:var(--text-on-dark-2)}
-  /* 03 requirements: heading left, a ruled checklist right (the vision split) */
+  /* 02 how partnership works: six steps, each topped with a bar coloured by who leads it (key above) */
+  .step-key{list-style:none;margin:-16px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:12px 28px;font-size:14px;line-height:1.4;color:var(--text-secondary)}
+  .step-key li{display:flex;align-items:center;gap:10px}
+  .step-key li::before{content:'';width:28px;height:5px;border-radius:3px;background:var(--lead)}
+  .lead-together{--lead:var(--text-brand-secondary)}
+  .lead-fgi{--lead:var(--bg-brand)}
+  .lead-lab{--lead:#8fcfe0}
+  .steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}
+  .step{display:flex;flex-direction:column;gap:12px}
+  .step-bar{height:5px;border-radius:3px;background:var(--lead)}
+  .step-card{flex:1 1 auto;display:flex;flex-direction:column;gap:10px;padding:24px 20px;border-radius:var(--radius);background:var(--bg-page);border:1px solid var(--border-default);box-shadow:var(--shadow-300)}
+  .step-num{font-family:var(--font-display);font-weight:400;font-size:39px;line-height:1;color:var(--text-brand-secondary);font-variant-numeric:tabular-nums;padding-bottom:8px}
+  .step-card .t-heading{font-size:20px}
+  .step-card .t-body{color:var(--text-secondary);font-size:15px}
+  /* lab call-to-action band between the steps and the lists */
+  .band-cta{display:flex;align-items:center;justify-content:space-between;gap:24px 48px;flex-wrap:wrap;padding:36px 48px;border-radius:var(--radius);background:var(--grad-tile-brand);color:var(--text-on-dark);box-shadow:var(--shadow-300)}
+  .band-cta .t-heading{font-size:31.25px;color:var(--text-on-dark)}
+  .band-cta .t-body{color:var(--text-on-dark-2);margin-top:6px}
+  .band-cta-actions{display:flex;gap:12px;flex-wrap:wrap}
+  .btn-light{background:var(--bg-page);border-color:var(--bg-page);color:var(--bg-brand)}
+  .btn-light:hover{background:var(--bg-secondary)}
+  /* 03 needs + support: two ruled lists side by side */
   .requirements{padding-bottom:112px}
+  .two-lists > div{display:flex;flex-direction:column;gap:28px}
+  .list-head{display:flex;flex-direction:column;gap:8px}
+  .list-head .t-page{font-size:clamp(28px,3vw,39px)}
+  .list-head .t-body{color:var(--text-secondary)}
   .req-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
-  .req{display:grid;grid-template-columns:48px minmax(0,1fr);gap:20px;align-items:start;padding:28px 0;border-top:1px solid var(--border-default)}
+  .req{display:flex;flex-direction:column;gap:6px;padding:24px 0;border-top:1px solid var(--border-default)}
   .req:last-child{border-bottom:1px solid var(--border-default)}
-  .req > div{display:flex;flex-direction:column;gap:8px}
-  .req .t-body{color:var(--text-secondary)}
-  .requirements .draft-note{padding-top:8px}
+  .req .t-heading{font-size:20px}
+  .req .t-body{color:var(--text-secondary);font-size:16px}
   .openings{padding:64px var(--pad-x) 112px;display:flex;flex-direction:column;gap:48px}
   .positions{padding-top:96px}
   .job-list{display:flex;flex-direction:column;gap:40px}
@@ -977,20 +986,17 @@
 
   /* ============ Responsive ============ */
   @media (max-width:1279.98px){
+    .steps{grid-template-columns:repeat(3,minmax(0,1fr))}
     .t-hero{font-size:clamp(44px,6vw,76.3px)}
     .t-page{font-size:clamp(32px,4vw,48.83px)}
     .t-subtitle{font-size:clamp(20px,2.4vw,31.25px)}
   }
   @media (max-width:1023.98px){
-    .steps{grid-template-columns:1fr;gap:16px}
-    .step{display:grid;grid-template-columns:14px minmax(0,1fr);gap:20px}
-    .step-dot{margin-top:28px}
-    .steps::before{display:none}
-    .step:not(:last-child)::before{content:'';position:absolute;left:6px;top:35px;width:2px;height:calc(100% + 16px);background:var(--border-brand-tertiary)}
-    .step-card{min-height:0;padding:24px}
-    .step-num{font-size:28px;padding-bottom:8px}
+    .steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+    .band-cta{padding:28px 24px}
+    .band-cta .t-heading{font-size:25px}
     .requirements{padding-bottom:64px}
-    .req{padding:20px 0;gap:16px}
+    .req{padding:20px 0}
     :root{--pad-x:20px}
     :root{--nav-h:64px;--grad-hero-angle:135deg}
     .navbar{padding:16px 12px 0}
@@ -1160,6 +1166,7 @@
   }
   /* ---------- mobile (< 768): mini mark + hamburger (comp 6423:636) ---------- */
   @media (max-width:767.98px){
+    .steps{grid-template-columns:1fr}
     .navbar{padding:16px 12px 0}
     .navbar .logo,.site-nav.scrolled .logo{width:49px;height:36px}
     .navbar .logo .full{display:none}
