@@ -91,11 +91,11 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
 
 
   <main id="main">
-  <!-- ============ VIDEO HERO (FirstHelix data pipeline) ============ -->
+  <!-- ============ PHOTO HERO (DNA helix, shared with the Contact page) ============ -->
   <div class="stack-wrap">
   <section class="photo-hero stack-panel" id="top">
     <div class="photo-hero-card hero-bright">
-      <img src="assets/tech-bioinformatics-engine.webp" srcset="assets/tech-bioinformatics-engine-900.webp 900w, assets/tech-bioinformatics-engine.webp 1600w" sizes="100vw" alt="" fetchpriority="high">
+      <img src="assets/hero-contact.webp" srcset="assets/hero-contact-900.webp 900w, assets/hero-contact.webp 1920w" sizes="100vw" alt="" fetchpriority="high">
       <div class="photo-hero-copy">
         <div class="headline">
           <p class="eyebrow" data-entrance>Our technology</p>
@@ -249,7 +249,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
         </div>
       </div>
       <div class="compare" data-reveal>
-        <p class="compare-caption" id="compareCaption">How NIFS compares with NIPT and WES</p>
+        <p class="compare-caption" id="compareCaption">How NIFS compares</p>
         <div class="compare-cards-wrap">
           <div class="compare-cards" id="compareCards"></div>
           <div class="dots" id="compareDots" aria-hidden="true"></div>
@@ -318,20 +318,20 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
 })();
 </script>
 <script>
-(() => { // NIPT vs NIFS vs WES comparison table: one data array (source: FGI investor deck, slide 7), rendered into semantic markup so a copy change is a single edit
-  const cols = ['NIPT', 'NIFS', 'WES'];
-  const emphasisCol = 1; // NIFS, the middle column
+(() => { // NIFS vs NIPT vs WES comparison table: one data array (source: FGI investor deck, slide 7), rendered into semantic markup so a copy change is a single edit
+  const cols = ['NIFS', 'NIPT', 'WES'];
+  const emphasisCol = 0; // NIFS, leading the comparison
   // section 1, "Overview": the three quantity rows. Sections 2+ are collapsible groups of the five yes/no rows
   const sections = [
     { name: 'Overview', collapsible: false, rows: [
       { label: 'Sample type', values: ['Maternal blood', 'Maternal blood', 'Amniocentesis / CVS'] },
-      { label: 'Chromosomal conditions tested', values: ['3–25', 'Thousands', 'Thousands'] },
-      { label: 'Single genes evaluated', values: ['0–30', '22,000+', '22,000+'] },
+      { label: 'Chromosomal conditions tested', values: ['Thousands', '3–25', 'Thousands'] },
+      { label: 'Single genes evaluated', values: ['22,000+', '0–30', '22,000+'] },
     ] },
     { name: 'Clinical coverage', collapsible: true, rows: [
       { label: 'Identifies common + sex chromosome aneuploidy', values: [true, true, true] },
-      { label: 'Identifies copy number variants', values: [false, true, true] },
-      { label: 'Identifies single gene disorders', values: [false, true, true] },
+      { label: 'Identifies copy number variants', values: [true, false, true] },
+      { label: 'Identifies single gene disorders', values: [true, false, true] },
     ] },
     { name: 'Safety & scale', collapsible: true, rows: [
       { label: 'Risk of miscarriage', values: [false, false, true] },
@@ -358,7 +358,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
   };
   const table = document.getElementById('compareTable');
   if (table) {
-    table.innerHTML = `<table class="compare-table" role="table" aria-labelledby="compareCaption"><thead><tr role="row"><th role="columnheader" scope="col"></th>${theadCells}</tr></thead>${sections.map(sectionHTML).join('')}</table>`;
+    table.innerHTML = `<table class="compare-table" role="table" aria-labelledby="compareCaption"><thead><tr role="row"><th role="columnheader" scope="col" class="compare-corner">How NIFS compares</th>${theadCells}</tr></thead>${sections.map(sectionHTML).join('')}</table>`;
     table.querySelectorAll('.compare-group-toggle').forEach((btn) => {
       btn.addEventListener('click', () => {
         const group = btn.closest('.compare-group');

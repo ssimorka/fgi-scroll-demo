@@ -648,6 +648,8 @@
   .compare-table{filter:drop-shadow(0 4px 4px rgba(32,32,32,.05)) drop-shadow(0 4px 4px rgba(32,32,32,.1))} /* the chart's --shadow-300, as a filter: each column is a stack of cells, so only the table's rendered outline can carry one shadow per card (drop-shadow has no spread, so the -1px is dropped) */
   .compare-table th:first-child,.compare-table td:first-child{width:36%}
   .compare-table th:not(:first-child),.compare-table td:not(:first-child){width:21.34%}
+  .compare-table thead th.compare-corner{text-align:left;text-transform:none;letter-spacing:0;font-family:var(--font-display);font-weight:600;font-size:20px;line-height:1.2;color:var(--text-default)} /* the table's title sits in the label column's header on desktop, matching the old caption's type */
+  @media (min-width:1024px){.compare-caption{display:none}} /* desktop: the corner header carries the title; tablet/phone hide the header row, so the caption stays there (and keeps naming the table via aria-labelledby) */
   .compare-caption{padding:24px 0;text-align:left;font-family:var(--font-display);font-weight:600;font-size:20px;line-height:1.2;color:var(--text-default)} /* sits outside the table now (not a <caption>), so it can come before the card carousel on tablet/mobile; the table keeps its accessible name via aria-labelledby */
   .compare-table th,.compare-table td{padding:16px;text-align:left;font-size:16px;line-height:1.4;overflow-wrap:break-word;background:var(--bg-page);border-left:1px solid var(--border-default);border-right:1px solid var(--border-default)} /* every cell needs its own solid background now .compare itself is transparent (each column is its own card, not clipped by one shared ancestor); left/right edge on every column; the zebra stripe below (not a rule here) carries row separation inside each card */
   .compare-table th:not(:first-child),.compare-table td:not(:first-child){text-align:center} /* the label column stays left-aligned; NIPT/NIFS/WES (header and every value/mark) centre within their own card */
@@ -664,12 +666,14 @@
   /* section groups: an always-visible "Overview" strip (tinted, matching the emphasis column's own tint) plus two collapsible groups, after the 7pace reference. Each group's label row uses blank cells (not colspan) in the other three columns, so nothing bridges the gap between the four cards */
   .compare-group-row th{padding:18px 16px;font-family:var(--font-display);font-weight:700;font-size:20px;color:var(--text-default)}
   .compare-table .compare-group.is-overview th,.compare-table .compare-group.is-overview td{background:var(--bg-success-tint)} /* every column, including NIFS, reads as the same mint green within Overview; NIFS keeps only its blue border there, not its usual blue fill (the extra .compare-table prefix beats the general td.is-emphasis background rule, which would otherwise still win the tie) */
+  .compare-group.is-overview .compare-group-row th{font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--text-default)} /* "Overview" has no toggle button, so give its plain label the same type as the group toggles below */
   .compare-group-toggle{display:inline-flex;align-items:center;gap:10px;background:none;border:0;padding:0;font:inherit;font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--text-default);cursor:pointer;text-align:left}
   .compare-group-toggle .chev{width:8px;height:8px;flex:0 0 auto;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);transition:transform .25s cubic-bezier(.2,.7,.2,1)}
   .compare-group.is-open .compare-group-toggle .chev{transform:rotate(225deg)}
   @media (min-width:1024px){ /* desktop: every group reads open, flat, no toggle affordance (matches the reference's desktop view) */
     .compare-group tr[hidden]{display:table-row!important}
-    .compare-group-toggle{cursor:default;pointer-events:none}
+    .compare-group.is-overview .compare-group-row th{font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--text-default)} /* "Overview" has no toggle button, so give its plain label the same type as the group toggles below */
+  .compare-group-toggle{cursor:default;pointer-events:none}
     .compare-group-toggle .chev{display:none}
   }
   /* column-summary card carousel (tablet/mobile only): NIPT / NIFS / WES, swipe with dot indicators — reuses .dots as-is from the home tech sequence */
