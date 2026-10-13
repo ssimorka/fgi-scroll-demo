@@ -5,3 +5,6 @@ Thumbs.db
 
 .vercel
 .env*
+node_modules
+art/out/pipeline-loop/frames
+art/out/pipeline-helix/frames

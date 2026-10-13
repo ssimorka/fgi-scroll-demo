@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&family=Roboto+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <script>/* motion start states go on before first paint, so nothing is shown and then re-hidden when the scripts land; released if GSAP never arrives */
 if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('js-motion');setTimeout(function(){if(!window.gsap)document.documentElement.classList.remove('js-motion')},4000)}</script>
 </head>
@@ -116,7 +117,6 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
   <section class="openings on-white positions" id="positions">
     <div class="section-heading" data-reveal>
       <div>
-        <p class="eyebrow section">Open positions</p>
         <h2 class="t-page">Open positions</h2>
       </div>
     </div>
@@ -189,7 +189,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
 (() => { // open positions: a client-side list with department / location filters (sample roles until the ATS feed is wired in)
   const jobs = [ // no current openings; add roles here as { title, dept, loc, type }
   ];
-  if (!jobs.length) { document.querySelector('.job-filters').style.display = 'none'; document.getElementById('browseRoles').style.display = 'none'; document.getElementById('jobNone').hidden = false; return; } // no filters, count or Browse roles over an empty list
+  if (!jobs.length) { document.querySelector('.job-filters').style.display = 'none'; document.getElementById('browseRoles').style.display = 'none'; document.getElementById('jobList').style.display = 'none'; document.getElementById('jobNone').hidden = false; return; } // no filters, count or Browse roles over an empty list
   const list = document.getElementById('jobList'), deptSel = document.getElementById('filterDept'), locSel = document.getElementById('filterLoc'), count = document.getElementById('jobCount'), empty = document.getElementById('jobEmpty');
   const uniq = k => [...new Set(jobs.map(j => j[k]))].sort();
   uniq('dept').forEach(d => deptSel.insertAdjacentHTML('beforeend', `<option>${d}</option>`));
