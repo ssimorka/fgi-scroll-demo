@@ -641,7 +641,7 @@
   .workflow-card-body{display:flex;flex-direction:column;gap:12px;padding:24px}
   .workflow-card-body .card-num{font-size:28px;color:var(--text-brand-secondary);opacity:.7}
   /* 03 engine (FirstHelix): copy + capability tags left, photo right, same shell as .vision */
-  .engine{padding:96px var(--pad-x) 64px;display:flex;flex-direction:column;gap:56px}
+  .engine{padding:96px var(--pad-x) 64px;display:flex;flex-direction:column;gap:48px} /* same rhythm as .workflow above: heading, subtitle, then the media */
   .engine-logo{margin:0;max-width:280px} /* Todd's FirstHelix lockup (Oct 15), wordmark and tagline only (helix mark cropped off), standing in for the section's H2; the img alt carries the heading text */
   .engine-logo img{display:block;width:100%;height:auto}
   /* ============ COMPARISON TABLE: NIPT vs NIFS vs WES, NIFS emphasised with the comparison-column tokens (node 6068:30) ============ */
