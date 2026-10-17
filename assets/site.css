@@ -625,6 +625,7 @@
   .is-planned .road-bar{--n:1;--c:var(--viz-orange-500)}
   .road .chart-legend{padding:8px 32px 0} /* the key, on the cards' inset */
   .roadmap-note{color:var(--text-secondary);max-width:60ch}
+  .chart-body .roadmap-note{max-width:none} /* the coverage chart's footnote runs the full width of its card */
 
   /* ============ TECHNOLOGY PAGE ============ */
   /* 02 workflow: four static process steps (the pinned scroll sequence's
