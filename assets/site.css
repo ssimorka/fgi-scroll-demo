@@ -874,6 +874,8 @@
   /* .hero-compact: the gradient banner sits flush against .contact-main below it, one continuous page instead of a floating card over a gap */
   .hero.hero-compact{min-height:0;padding:0}
   .hero.hero-compact .hero-card{border-radius:0;box-shadow:none;padding:64px var(--pad-x) 48px}
+  .hero.hero-compact.hero-inset{padding:24px} /* Contact: the compact banner as a rounded, shadowed card inside the page gutter, like the other pages' heroes, rather than flush */
+  .hero.hero-compact.hero-inset .hero-card{border-radius:var(--radius);box-shadow:var(--shadow-300);padding:64px 48px 48px}
   /* .hero-card-photo: a photo behind the brand gradient (alpha-faded, same stops as --grad-hero) instead of the gradient alone; the copy's contrast is unchanged since the gradient is just as opaque where the headline sits */
   .hero-card-photo{background:none}
   .hero-card-photo > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:78% 45%}
@@ -1070,6 +1072,8 @@
     .split{grid-template-columns:1fr;gap:24px}
     .split-body{padding-top:0}
     .hero.hero-compact .hero-card{padding:40px var(--pad-x) 32px;gap:24px}
+    .hero.hero-compact.hero-inset{padding:12px}
+    .hero.hero-compact.hero-inset .hero-card{padding:40px 20px 32px}
     .contact-main{padding:64px var(--pad-x) 80px;gap:32px}
     .legal-page{padding:40px var(--pad-x) 64px}
     .legal-body{gap:28px}
