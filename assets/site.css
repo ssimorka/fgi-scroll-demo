@@ -880,6 +880,8 @@
   .hero-card-photo{background:none}
   .hero-card-photo > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:78% 45%}
   .photo-hero-card.hero-map::after,.photo-hero-card.hero-map::before{display:none} /* the dot-map photo is already dark: no wash or phone veil over it */
+  .hero-map .photo-hero-copy .headline{max-width:720px}
+  .hero-map .photo-hero-copy .actions{flex-direction:column;align-items:stretch} /* the two CTAs stack, so the side-by-side pair (~500px) no longer squeezes the headline down to ~560px */
   .hero-map > img{object-position:50% 40%} /* keeps the highlighted North America region in frame regardless of crop direction */
   .hero-card-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(var(--grad-hero-angle,112deg),rgba(0,54,77,.94) -21%,rgba(0,119,160,.86) 11%,rgba(78,168,194,.55) 37%,rgba(240,253,255,0) 100%)}
   .contact-main{padding:96px var(--pad-x) 128px;display:flex;flex-direction:column;gap:56px}
