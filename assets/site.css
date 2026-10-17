@@ -642,6 +642,8 @@
   .workflow-card-body .card-num{font-size:28px;color:var(--text-brand-secondary);opacity:.7}
   /* 03 engine (FirstHelix): copy + capability tags left, photo right, same shell as .vision */
   .engine{padding:96px var(--pad-x) 64px;display:flex;flex-direction:column;gap:56px}
+  .engine-logo{margin:0;max-width:280px} /* Todd's FirstHelix lockup (Oct 15), wordmark and tagline only (helix mark cropped off), standing in for the section's H2; the img alt carries the heading text */
+  .engine-logo img{display:block;width:100%;height:auto}
   /* ============ COMPARISON TABLE: NIPT vs NIFS vs WES, NIFS emphasised with the comparison-column tokens (node 6068:30) ============ */
   .tm{font-size:.62em;line-height:0;vertical-align:.42em;margin-left:.04em;font-weight:inherit} /* trademark mark: small and raised, so a following colon or comma sits tight to the word, not pushed out by a full-size glyph */
   .visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
