@@ -1234,3 +1234,4 @@
     .link-cols{flex-wrap:nowrap}
     .legal{flex-direction:row}
   }
+  .nowrap{white-space:nowrap} /* keeps hyphenated terms like non-invasive on one line */
