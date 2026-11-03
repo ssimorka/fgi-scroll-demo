@@ -679,7 +679,7 @@
   .pipe-card-media .pipe-figure{position:absolute;inset:20px 20px 16px;display:flex;align-items:center;justify-content:center} /* the media box keeps its aspect ratio; the preview fits inside it */
   .pipe-card-media .pipe-graphic{width:100%;height:100%}
   .pipe-card-media .pipe-figure-pair .pipe-graphic:last-child{display:none} /* the card previews panel A; the dialog shows A and B */
-  .pipe-card-expand{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;background:var(--bg-page) url(icon-plus.svg) center/16px no-repeat;border:1px solid var(--border-default);transition:background-color .2s,transform .3s}
+  .pipe-card-expand{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;background:var(--bg-page) url(icon-expand.svg) center/16px no-repeat;border:1px solid var(--border-default);transition:background-color .2s,transform .3s}
   .pipe-card:hover .pipe-card-expand{transform:scale(1.08)}
   .pipe-card-body{display:flex;flex-direction:column;gap:8px;padding:24px}
   .pipe-card-title{margin:0;font-size:22px}
