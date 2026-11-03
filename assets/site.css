@@ -669,6 +669,35 @@
   .pipe-module-sub{margin:0;font-size:14px;font-weight:600;color:var(--text-brand-secondary)}
   .pipe-module .t-small{margin:4px 0 0;color:var(--text-default)}
   .pipe-caption{margin:0;color:var(--text-secondary)}
+  /* steps 01-03 as three cards; each opens full size in .pipe-dialog (technology.html script) */
+  .pipe-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+  .pipe-card.tile{position:relative;gap:0;padding:0;overflow:hidden;transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s}
+  .pipe-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-400)}
+  .pipe-card:has(.pipe-card-open:focus-visible){outline:2px solid var(--border-brand-tertiary);outline-offset:3px}
+  .pipe-card-media{position:relative;aspect-ratio:16/11;display:flex;align-items:center;justify-content:center;padding:20px;background:var(--bg-secondary);border-bottom:1px solid var(--border-default)}
+  .pipe-card-media .pipe-figure{position:absolute;inset:20px 20px 16px;display:flex;align-items:center;justify-content:center} /* the media box keeps its aspect ratio; the preview fits inside it */
+  .pipe-card-media .pipe-graphic{width:100%;height:100%}
+  .pipe-card-media .pipe-figure-pair .pipe-graphic:last-child{display:none} /* the card previews panel A; the dialog shows A and B */
+  .pipe-card-expand{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;background:var(--bg-page) url(icon-plus.svg) center/16px no-repeat;border:1px solid var(--border-default);transition:background-color .2s,transform .3s}
+  .pipe-card:hover .pipe-card-expand{transform:scale(1.08)}
+  .pipe-card-body{display:flex;flex-direction:column;gap:8px;padding:24px}
+  .pipe-card-title{margin:0;font-size:22px}
+  .pipe-card-open{all:unset;cursor:pointer}
+  .pipe-card-open::after{content:'';position:absolute;inset:0;z-index:1} /* the whole card is the button's hit area */
+  .pipe-card-text{margin:0;font-size:16px;color:var(--text-default);display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;line-clamp:3;overflow:hidden}
+  html.has-dialog{overflow:hidden}
+  .pipe-dialog{margin:auto;inset:0;width:min(1200px,calc(100vw - 48px));max-height:calc(100svh - 48px);padding:0;border:0;border-radius:var(--radius);background:var(--bg-page);color:var(--text-default);box-shadow:0 24px 64px rgba(0,21,56,.28);overflow:auto;overscroll-behavior:contain}
+  .pipe-dialog::backdrop{background:rgba(0,21,56,.55)}
+  .pipe-dialog[open]{animation:pipeIn .35s cubic-bezier(.2,.7,.2,1)}
+  @keyframes pipeIn{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){.pipe-dialog[open]{animation:none}.pipe-card.tile,.pipe-card-expand{transition:none}.pipe-card:hover{transform:none}}
+  .pipe-dialog-head{position:sticky;top:0;z-index:2;display:flex;align-items:flex-start;justify-content:space-between;gap:24px;padding:24px 32px 20px 40px;background:var(--bg-page);border-bottom:1px solid var(--border-default)}
+  .pipe-dialog-controls{display:flex;gap:8px;flex:0 0 auto}
+  .pipe-dialog-close img{display:block}
+  .pipe-dialog .pipe-visual{border-bottom:1px solid var(--border-default)}
+  .pipe-dialog-copy{display:flex;flex-direction:column;gap:16px;padding:28px 40px 36px}
+  .pipe-dialog-copy .t-body{margin:0;max-width:72ch}
+  .pipe-dialog-copy .pipe-footnote{padding:0}
   @media (max-width:1023.98px){
     .pipe-visual{grid-template-columns:1fr;gap:24px;padding:24px 16px}
     .pipe-aside{padding-left:0;padding-top:20px;border-left:0;border-top:1px solid var(--border-default)}
@@ -678,11 +707,23 @@
     .pipe-modules{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding-top:24px}
     .pipe-modules::before,.pipe-modules::after{display:none}
     .pipe-pill{font-size:15px;text-align:center}
+    .pipe-cards{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .pipe-card-body{padding:20px}
+    .pipe-card-title{font-size:19px}
+    .pipe-dialog{width:calc(100vw - 32px);max-height:calc(100svh - 32px)}
+    .pipe-dialog-head{padding:20px 20px 16px 24px}
+    .pipe-dialog-copy{padding:24px}
   }
   @media (max-width:599.98px){
     .pipe-figure-pair{grid-template-columns:1fr;gap:24px}
     .pipe-modules{grid-template-columns:1fr}
     .pipe-stat-num{font-size:32px}
+    .pipe-dialog{width:100vw;max-width:100vw;height:100svh;max-height:100svh;border-radius:0}
+    .pipe-dialog-head{flex-direction:column;gap:12px}
+  }
+  @media (max-width:767.98px){
+    .pipe-cards{grid-template-columns:1fr}
+    .pipe-card-media{aspect-ratio:16/10}
   }
   /* ============ COMPARISON TABLE: NIPT vs NIFS vs WES, NIFS emphasised with the comparison-column tokens (node 6068:30) ============ */
   .tm{font-size:.62em;line-height:0;vertical-align:.42em;margin-left:.04em;font-weight:inherit} /* trademark mark: small and raised, so a following colon or comma sits tight to the word, not pushed out by a full-size glyph */
