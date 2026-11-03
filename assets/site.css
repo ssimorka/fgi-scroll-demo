@@ -627,6 +627,43 @@
   .roadmap-note{color:var(--text-secondary);max-width:60ch}
   .chart-body .roadmap-note{max-width:none} /* the coverage chart's footnote runs the full width of its card */
 
+  /* ============ HOME: evolution of prenatal screening (slide 1, Nov 2026) ============ */
+  .evolution{position:relative;z-index:2;padding:112px var(--pad-x) 96px;display:flex;flex-direction:column;gap:40px;background:var(--bg-page)} /* opaque: it is the first thing to slide over the Approach panel */
+  .evo-row{position:relative}
+  .evo-cones{position:absolute;left:0;right:0;top:56px;width:100%;height:auto;pointer-events:none;z-index:0} /* sits behind the circles; the 56px clears the era tags */
+  .evo-cone{fill:#d9f0f6;opacity:.75}
+  .evo-cone-edge{stroke:#7fc3d6;stroke-width:1.2;stroke-dasharray:4 4}
+  .evo-stages{position:relative;z-index:1;list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+  .evo-stage{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px}
+  .evo-era{display:inline-block;margin-bottom:16px;padding:4px 10px;border-radius:6px;background:#e6eef4;color:var(--text-default);font-family:var(--font-display);font-weight:700;font-size:15px;line-height:1.3}
+  .evo-era.is-now{background:var(--bg-brand);color:#fff}
+  .evo-circle{width:72%;aspect-ratio:1;filter:drop-shadow(0 8px 18px rgba(0,41,66,.12))}
+  .evo-circle svg{display:block;width:100%;height:100%}
+  .evo-ring{fill:#eaf6fa;stroke:#bfe0ea;stroke-width:2}
+  .evo-ring.is-lead{stroke:#0b4f6c;stroke-width:2.5}
+  .evo-disc{fill:#f2fafc}
+  .evo-name{margin:20px 0 0;font-family:var(--font-display);font-weight:700;font-size:34px;line-height:1.1;letter-spacing:-.02em;color:var(--text-default)}
+  .evo-desc{margin:0;font-size:18px;line-height:1.35;color:var(--text-brand-secondary)}
+  .evo-legend{display:flex;align-items:center;justify-content:center;gap:10px;margin:-8px 0 0;font-family:var(--font-display);font-weight:600;font-size:16px;color:var(--text-default)}
+  .evo-legend-swatch{width:24px;height:6px;border-radius:2px;background:#EE9537}
+  .evo-track{position:relative;display:flex;justify-content:space-between;padding-bottom:12px;border-bottom:1.5px solid #9fd3e0;font-size:13px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-brand-secondary)}
+  .evo-track::after{content:'';position:absolute;right:-2px;bottom:-6px;border:5px solid transparent;border-left:9px solid #4ea8c2;border-right:0} /* arrowhead: resolution rises left to right */
+  .evo-note{margin:-16px 0 0;text-align:center;color:var(--text-secondary)}
+  @media (max-width:1023.98px){
+    .evolution{padding:80px var(--pad-x) 64px;gap:32px}
+    .evo-name{font-size:26px}
+    .evo-desc{font-size:16px}
+    .evo-cones{top:52px}
+  }
+  @media (max-width:767.98px){
+    .evolution{padding:64px var(--pad-x) 48px}
+    .evo-cones{display:none} /* stacked: the zoom cones only read across a row */
+    .evo-stages{grid-template-columns:1fr;gap:40px}
+    .evo-circle{width:min(240px,70%)}
+    .evo-legend{margin:0}
+    .evo-note{margin:0;text-align:left}
+  }
+
   /* ============ TECHNOLOGY PAGE ============ */
   /* 02 workflow: four static process steps (the pinned scroll sequence's
      numbering, without the scroll-jack) in a row of light tiles. */
@@ -670,6 +707,8 @@
   .pipe-module-sub{margin:0;font-size:14px;font-weight:600;color:var(--text-brand-secondary)}
   .pipe-module .t-small{margin:4px 0 0;color:var(--text-default)}
   .pipe-caption{margin:0;color:var(--text-secondary)}
+  .cite-pending{font-size:.7em;line-height:0;margin-left:1px;color:var(--text-brand-secondary)}
+  .compare-note{margin:16px 0 0;color:var(--text-secondary)}
   /* steps 01-03 as three cards; each opens full size in .pipe-dialog (technology.html script) */
   .pipe-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
   .pipe-card.tile{position:relative;gap:0;padding:0;overflow:hidden;transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s}

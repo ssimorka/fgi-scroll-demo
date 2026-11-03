@@ -232,10 +232,10 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
         <div class="pipe-card-body">
           <p class="eyebrow pipe-card-eyebrow">02 · Capture and sequencing</p>
           <h3 class="t-heading pipe-card-title"><button type="button" class="pipe-card-open" aria-haspopup="dialog" aria-controls="pipeDialog">Exome-wide capture, sequenced deep</button></h3>
-          <p class="t-body pipe-card-text">Rather than targeting a small panel of loci, the assay enriches the protein-coding regions of 22,995 genes directly from cfDNA and sequences them at high depth. Every site is read from a mixture of maternal and fetal molecules, so the next step is telling the two apart.</p>
+          <p class="t-body pipe-card-text">Rather than targeting a small panel of loci, the assay enriches the protein-coding regions of ~23,000 genes directly from cfDNA and sequences them at high depth. Every site is read from a mixture of maternal and fetal molecules, so the next step is telling the two apart.</p>
         </div>
         <template class="pipe-card-detail"><div class="pipe-aside">
-          <div class="pipe-stat"><p class="pipe-stat-num">22,995</p><p class="t-small">genes captured across the exome</p></div>
+          <div class="pipe-stat"><p class="pipe-stat-num">~23,000</p><p class="t-small">genes captured across the exome</p></div>
           <div class="pipe-stat"><p class="pipe-stat-num">High depth</p><p class="t-small">sequencing across every captured exon</p></div>
           <ul class="pipe-legend">
             <li><span class="pipe-swatch" style="--c:#A2B7CD;--w:28px" aria-hidden="true"></span>Read from maternal cfDNA</li>
@@ -291,7 +291,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
             <div class="pipe-module-icon"><svg viewBox="0 0 221 100" aria-hidden="true"><rect x="91" y="8" width="14" height="23.8" rx="7" fill="#A2B7CD"/><rect x="91" y="34.8" width="14" height="41.2" rx="7" fill="#A2B7CD"/><rect x="115" y="8" width="14" height="23.8" rx="7" fill="#A2B7CD"/><rect x="115" y="34.8" width="14" height="41.2" rx="7" fill="#A2B7CD"/><rect x="112" y="51.2" width="20" height="6" rx="1" fill="#EE9537"/></svg><p class="pipe-note">Autosomal or X-linked</p></div>
             <h4 class="pipe-module-name">Dominant</h4>
             <p class="pipe-module-sub">Autosomal and X-linked</p>
-            <p class="t-small">Single-copy fetal variants, including de novo SNVs and indels, the largest class of clinically significant findings after aneuploidies.</p>
+            <p class="t-small">Single-copy fetal variants, including de novo SNVs and indels, the largest class of clinically significant findings after aneuploidies.<sup class="cite-pending">*</sup></p>
           </article>
           <article class="pipe-module">
             <div class="pipe-module-icon"><svg viewBox="0 0 221 100" aria-hidden="true"><rect x="51" y="8" width="14" height="23.8" rx="7" fill="#A2B7CD"/><rect x="51" y="34.8" width="14" height="41.2" rx="7" fill="#A2B7CD"/><rect x="48" y="51.2" width="20" height="6" rx="1" fill="#EE9537"/><rect x="75" y="8" width="14" height="23.8" rx="7" fill="#A2B7CD"/><rect x="75" y="34.8" width="14" height="41.2" rx="7" fill="#A2B7CD"/><rect x="72" y="51.2" width="20" height="6" rx="1" fill="#EE9537"/><rect x="133" y="8" width="14" height="30.6" rx="7" fill="#A2B7CD"/><rect x="133" y="41.6" width="14" height="34.4" rx="7" fill="#A2B7CD"/><rect x="130" y="54" width="20" height="6" rx="1" fill="#EE9537"/><rect x="157" y="36" width="14" height="12" rx="7" fill="#A2B7CD"/><rect x="157" y="51" width="14" height="25" rx="7" fill="#A2B7CD"/><text x="164" y="30" text-anchor="middle" font-size="11" font-weight="600" fill="#4E6287">Y</text></svg><p class="pipe-note">Autosomal and X-linked</p></div>
@@ -304,6 +304,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
       <div class="pipe-copy">
         <div class="pipe-title"><p class="eyebrow">04 · Test modules</p><h3 class="t-heading">One assay, four screening modules</h3></div>
         <p class="t-body">Because the whole exome is captured from a single cfDNA sample, one data set supports several result types: chromosome-level aneuploidies, copy-number variants, and sequence variants interpreted under dominant and recessive models. FirstHelix<sup class="tm">®</sup> infers fetal sex from the same data, which anchors interpretation of X-linked findings.</p>
+        <p class="t-small draft-note">* Citation pending from FGI.</p><!-- TODO: citation for the de novo claim, from Alex via Melissa -->
       </div>
     </div>
     </div>
@@ -353,6 +354,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
           <div class="dots" id="compareDots"></div>
         </div>
         <div id="compareTable"></div>
+        <p class="t-small compare-note">Screening estimates risk and does not diagnose. Positive results should be confirmed with diagnostic testing.</p>
       </div>
     </div>
   </section>
@@ -440,9 +442,10 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
   // wording from "Slides for Website", slide 2 (Melissa, Nov 2 2026). Section 1, "Overview", holds the quantity rows; sections 2+ are the yes/no groups
   const sections = [
     { name: 'Overview', collapsible: false, rows: [
+      { label: 'Test type', values: ['Screening', 'Screening', 'Diagnostic'] },
       { label: 'Sample type', values: ['Maternal blood', 'Maternal blood', 'CVS/amnio'] },
       { label: 'Chromosomal conditions tested', values: ['1,000s', '3–25', '1,000s'] },
-      { label: 'Single genes sequenced', values: ['22,000+', '0–30', '22,000+'] },
+      { label: 'Single genes sequenced', values: ['~23,000', '0–30', '~23,000'] },
     ] },
     { name: 'Clinical coverage', collapsible: true, rows: [
       { label: 'Identifies common + sex chromosome aneuploidy', values: [true, true, true] },
