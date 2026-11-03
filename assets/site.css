@@ -649,9 +649,10 @@
   .pipe-swatch{flex:0 0 auto;width:var(--w,14px);height:8px;margin-top:5px;border-radius:2px;background:var(--c)}
   .pipe-swatch-set{display:inline-flex;gap:2px;flex:0 0 auto}
   .pipe-swatch-ring{width:20px;height:11px;margin-top:3px;border-radius:50%;background:none;border:1px dashed var(--text-secondary)}
-  .pipe-copy{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:40px;padding:32px 40px}
+  .pipe-copy{display:flex;flex-direction:column;gap:8px;padding:28px 40px 36px} /* stacked like the step cards: eyebrow, title, then the full copy */
   .pipe-title{display:flex;flex-direction:column;gap:8px}
-  .pipe-copy .t-body{margin:0;color:var(--text-default)}
+  .pipe-copy .t-heading{margin:0;font-size:22px}
+  .pipe-copy .t-body{margin:0;font-size:16px;max-width:90ch;color:var(--text-default)}
   .pipe-footnote{margin:0;padding:0 40px 28px;color:var(--text-secondary)}
   .pipe-engine{display:flex;align-items:center;gap:40px;padding:8px 40px} /* FirstHelix lockup + patent line, between panels 03 and 04 */
   .pipe-engine-logo{flex:0 0 auto;width:240px;height:auto;display:block}
@@ -701,7 +702,8 @@
   @media (max-width:1023.98px){
     .pipe-visual{grid-template-columns:1fr;gap:24px;padding:24px 16px}
     .pipe-aside{padding-left:0;padding-top:20px;border-left:0;border-top:1px solid var(--border-default)}
-    .pipe-copy{grid-template-columns:1fr;gap:12px;padding:24px}
+    .pipe-copy{padding:20px 20px 24px}
+    .pipe-copy .t-heading{font-size:19px}
     .pipe-footnote{padding:0 24px 24px}
     .pipe-engine{flex-direction:column;align-items:flex-start;gap:16px;padding:8px 0}
     .pipe-modules{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding-top:24px}
