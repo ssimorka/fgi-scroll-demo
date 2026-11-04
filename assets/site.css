@@ -707,7 +707,6 @@
   .pipe-module-sub{margin:0;font-size:14px;font-weight:600;color:var(--text-brand-secondary)}
   .pipe-module .t-small{margin:4px 0 0;color:var(--text-default)}
   .pipe-caption{margin:0;color:var(--text-secondary)}
-  .cite-pending{font-size:.7em;line-height:0;margin-left:1px;color:var(--text-brand-secondary)}
   .compare-note{margin:16px 0 0;color:var(--text-secondary)}
   /* steps 01-03 as three cards; each opens full size in .pipe-dialog (technology.html script) */
   .pipe-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
