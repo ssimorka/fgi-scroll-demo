@@ -265,6 +265,10 @@
       });
       gsap.to(s.panel, { scale: 0.9, borderRadius: 40, '--veil': 1, ease: 'none', scrollTrigger: { ...st(), scrub: 1 } }); // veil (see .stack-panel::after), not opacity; fully opaque once covered, so it never shows through the cover's gutters
       gsap.to(s.backdrop, { opacity: 1, ease: 'none', scrollTrigger: { ...st(), scrub: 1 } });
+      // once the cover has fully slid over, the receded panel and its backdrop have nothing left to do; hide them so a
+      // short covering section (very wide screens) can't leave the backdrop's white peeking out under a transparent one below
+      const hide = (v) => { s.panel.style.visibility = v; s.backdrop.style.visibility = v; };
+      ScrollTrigger.create({ ...st(), onLeave: () => hide('hidden'), onEnterBack: () => hide('') });
       if (s.slide < 1) {
         gsap.fromTo(s.inner, { y: 0 }, { y: () => s.D() - s.y0(), ease: 'none', scrollTrigger: { ...st(), scrub: true } });
       }
@@ -272,7 +276,7 @@
     return () => {
       ScrollTrigger.removeEventListener('refreshInit', layoutStacks);
       stacks.forEach(s => {
-        s.panel.style.top = ''; s.wrap.style.removeProperty('--spacer');
+        s.panel.style.top = ''; s.panel.style.visibility = ''; s.backdrop.style.visibility = ''; s.wrap.style.removeProperty('--spacer');
         s.over.style.marginTop = ''; s.over.style.paddingBottom = '';
         gsap.set([s.panel, s.inner, s.backdrop], { clearProps: 'all' });
       });
