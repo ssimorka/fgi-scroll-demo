@@ -1315,13 +1315,16 @@
     .stack-over{margin-top:0}
     .stack-over > .stack-panel{min-height:0}
     .stack-backdrop{display:none}
-    /* touch targets: the visuals stay as drawn, the hit areas grow to roughly 40px */
+  }
+  @media (max-width:1023.98px){ /* touch targets on phones and tablets: the visuals stay as drawn, the hit areas grow to roughly 40px */
     .link-col{gap:0}
     .link-col a{padding:9px 0}
     .card-link{padding-top:10px}
     .brand .li,.nav-modal-foot .li{box-sizing:content-box;padding:8px;margin:-8px}
     .dots{gap:0;--step:28px;--pad:10px}
     .dots button{width:28px;height:28px;padding:10px;background-clip:content-box} /* the 8px dot is the content box; the padding is the hit area */
+    .legal{align-items:baseline}
+    .legal a{display:inline-block;padding:6px 0}
   }
   /* ---------- tablet (768-1023): static layout, but use the width ---------- */
   @media (min-width:768px) and (max-width:1023.98px){
