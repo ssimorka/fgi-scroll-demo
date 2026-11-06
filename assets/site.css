@@ -718,16 +718,23 @@
   /* steps 01-03 as three cards; each opens full size in .pipe-dialog (technology.html script) */
   .pipe-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px} /* 2 x 2 (Melissa, Nov 5): 01 02, then FirstHelix, then 03 04 */
   .pipe-cards .pipe-engine{grid-column:1/-1} /* FirstHelix spans the grid between the rows: it covers both 03 and 04 */
-  .pipe-card-media .pipe-figure.pipe-modules-preview{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 24px;align-content:center;padding:0 8%}
-  .pipe-mini{display:flex;flex-direction:column;align-items:center;gap:2px;font-family:var(--font-display);font-weight:600;font-size:15px;color:var(--text-default)}
-  .pipe-mini svg{width:100%;max-width:150px;height:auto}
+  /* step 04 card: a cropped, scaled-down version of the full module layout (pill, branch, four module cards); the long copy only shows expanded */
+  .pipe-card-media .pipe-figure.pipe-modules-preview{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0}
+  .pipe-modules-preview .pipe-pill{padding:8px 16px;font-size:13px}
+  .pipe-modules-mini{gap:10px;padding-top:26px}
+  .pipe-modules-mini::before{top:12px;height:14px}
+  .pipe-modules-mini::after{height:12px}
+  .pipe-modules-mini .pipe-module{gap:2px;padding:10px 8px 12px;border-radius:10px;align-items:center;text-align:center}
+  .pipe-modules-mini .pipe-module svg{width:100%;max-width:96px;height:auto}
+  .pipe-modules-mini .pipe-module-name{font-size:15px;margin-top:4px}
+  .pipe-modules-mini .pipe-module-sub{font-size:11px;line-height:1.3}
   .pipe-visual.is-single{grid-template-columns:1fr}
   .pipe-dialog-figure{display:grid;justify-items:center;width:100%}
   .pipe-note-lg{margin:0;font-size:15px;line-height:1.45;color:var(--text-default)}
   .pipe-card.tile{position:relative;gap:0;padding:0;overflow:hidden;transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s}
   .pipe-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-400)}
   .pipe-card:has(.pipe-card-open:focus-visible){outline:2px solid var(--border-brand-tertiary);outline-offset:3px}
-  .pipe-card-media{position:relative;aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;padding:20px;background:linear-gradient(135deg,#fff 0%,#f0fafd 58%,#ddf3f8 100%);border-bottom:1px solid var(--border-default)}
+  .pipe-card-media{position:relative;overflow:hidden;aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;padding:20px;background:linear-gradient(135deg,#fff 0%,#f0fafd 58%,#ddf3f8 100%);border-bottom:1px solid var(--border-default)}
   .pipe-card-media .pipe-figure{position:absolute;inset:20px 20px 16px;display:flex;align-items:center;justify-content:center} /* the media box keeps its aspect ratio; the preview fits inside it */
   .pipe-card-media .pipe-graphic{width:100%;height:100%}
   .pipe-card-media .pipe-figure-pair .pipe-graphic:last-child{display:none} /* the card previews panel A; the dialog shows A and B */
@@ -777,6 +784,8 @@
   @media (max-width:767.98px){
     .pipe-cards{grid-template-columns:1fr}
     .pipe-card-media{aspect-ratio:16/10}
+    .pipe-modules-mini .pipe-module{padding:8px 4px 10px}
+    .pipe-modules-mini .pipe-module-name{font-size:12px}
   }
   /* ============ COMPARISON TABLE: NIPT vs NIFS vs WES, NIFS emphasised with the comparison-column tokens (node 6068:30) ============ */
   .tm{font-size:.62em;line-height:0;vertical-align:.42em;margin-left:.04em;font-weight:inherit} /* trademark mark: small and raised, so a following colon or comma sits tight to the word, not pushed out by a full-size glyph */
@@ -1338,6 +1347,12 @@
     .dots button{width:28px;height:28px;padding:10px;background-clip:content-box} /* the 8px dot is the content box; the padding is the hit area */
     .legal{align-items:baseline}
     .legal a{display:inline-block;padding:6px 0}
+  }
+  @media (max-width:1023.98px){ /* step 04 card preview stays four across (the tablet/phone .pipe-modules 2-up rules are for the expanded view) */
+    .pipe-modules.pipe-modules-mini{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;padding-top:22px}
+    .pipe-modules.pipe-modules-mini::before,.pipe-modules.pipe-modules-mini::after{display:block}
+    .pipe-modules-mini .pipe-module-sub{display:none}
+    .pipe-modules-mini .pipe-module svg{max-width:72px}
   }
   /* ---------- tablet (768-1023): static layout, but use the width ---------- */
   @media (min-width:768px) and (max-width:1023.98px){
