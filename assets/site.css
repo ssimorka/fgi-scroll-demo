@@ -443,6 +443,12 @@
   .link-col a{font-size:14px;line-height:1.4}
   .link-col a:hover{color:var(--bg-brand)}
   .legal{display:flex;justify-content:space-between;padding-top:12px;border-top:1px solid var(--bg-brand);font-size:14px;line-height:1.4;white-space:nowrap}
+  .legal-notes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 40px;padding-top:24px;border-top:1px solid var(--border-neutral-3,#d9d9d9);font-size:12px;line-height:1.5;color:var(--text-neutral-2,#565656)} /* FGI website legal text (Nov 2026): regulatory, medical, forward-looking, trademarks */
+  .legal-notes p{margin:0;max-width:72ch}
+  .legal-notes strong{font-weight:600;color:var(--text-neutral)}
+  .legal-links{display:flex;gap:20px;flex-wrap:wrap}
+  .eeo-note{margin:0;max-width:80ch;color:var(--text-secondary)}
+  .form-notice a{color:var(--text-brand-secondary);text-decoration:underline;text-underline-offset:2px}
 
   /* ============ LEADERSHIP PAGE ============ */
   /* photo hero (35pharma about-us): one photo card in the gutter, headline bottom-left, actions bottom-right */
@@ -1281,6 +1287,8 @@
     .link-cols{flex-wrap:wrap;gap:24px}
     .link-col{flex:1 1 40%}
     .legal{flex-direction:column;gap:8px;white-space:normal}
+    .legal-notes{grid-template-columns:1fr}
+    .legal-links{gap:16px}
   }
   /* ---------- large phones / small tablets (600-767): phone nav, but use the width ---------- */
   @media (min-width:600px) and (max-width:767.98px){
