@@ -679,7 +679,7 @@
   .pipe-step.tile{gap:0;padding:0;overflow:hidden} /* the tile chrome only: the panel sets its own inner padding */
   .pipe-visual{display:grid;grid-template-columns:minmax(0,1fr) 264px;gap:40px;align-items:center;padding:40px;background:linear-gradient(135deg,#fff 0%,#f0fafd 58%,#ddf3f8 100%);border-bottom:1px solid var(--border-default)}
   .pipe-figure{min-width:0}
-  .pipe-figure-pair{display:grid;grid-template-columns:470fr 330fr;gap:32px;align-items:end}
+  .pipe-figure-pair{display:grid;grid-template-columns:700fr 326fr;gap:32px;align-items:end}
   .pipe-graphic{display:block;width:100%;height:auto;font-family:var(--font-display);overflow:visible}
   .pipe-aside{display:flex;flex-direction:column;gap:16px;padding-left:32px;border-left:1px solid var(--border-default)}
   .pipe-formula{margin:0;font-family:var(--font-display);font-size:20px;color:var(--text-default)}
@@ -716,11 +716,18 @@
   .pipe-caption{margin:0;color:var(--text-secondary)}
   .compare-note{margin:16px 0 0;color:var(--text-secondary)}
   /* steps 01-03 as three cards; each opens full size in .pipe-dialog (technology.html script) */
-  .pipe-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+  .pipe-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px} /* 2 x 2 (Melissa, Nov 5): 01 02, then FirstHelix, then 03 04 */
+  .pipe-cards .pipe-engine{grid-column:1/-1} /* FirstHelix spans the grid between the rows: it covers both 03 and 04 */
+  .pipe-card-media .pipe-figure.pipe-modules-preview{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 24px;align-content:center;padding:0 8%}
+  .pipe-mini{display:flex;flex-direction:column;align-items:center;gap:2px;font-family:var(--font-display);font-weight:600;font-size:15px;color:var(--text-default)}
+  .pipe-mini svg{width:100%;max-width:150px;height:auto}
+  .pipe-visual.is-single{grid-template-columns:1fr}
+  .pipe-dialog-figure{display:grid;justify-items:center;width:100%}
+  .pipe-note-lg{margin:0;font-size:15px;line-height:1.45;color:var(--text-default)}
   .pipe-card.tile{position:relative;gap:0;padding:0;overflow:hidden;transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s}
   .pipe-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-400)}
   .pipe-card:has(.pipe-card-open:focus-visible){outline:2px solid var(--border-brand-tertiary);outline-offset:3px}
-  .pipe-card-media{position:relative;aspect-ratio:16/11;display:flex;align-items:center;justify-content:center;padding:20px;background:linear-gradient(135deg,#fff 0%,#f0fafd 58%,#ddf3f8 100%);border-bottom:1px solid var(--border-default)}
+  .pipe-card-media{position:relative;aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;padding:20px;background:linear-gradient(135deg,#fff 0%,#f0fafd 58%,#ddf3f8 100%);border-bottom:1px solid var(--border-default)}
   .pipe-card-media .pipe-figure{position:absolute;inset:20px 20px 16px;display:flex;align-items:center;justify-content:center} /* the media box keeps its aspect ratio; the preview fits inside it */
   .pipe-card-media .pipe-graphic{width:100%;height:100%}
   .pipe-card-media .pipe-figure-pair .pipe-graphic:last-child{display:none} /* the card previews panel A; the dialog shows A and B */
@@ -753,7 +760,7 @@
     .pipe-modules{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding-top:24px}
     .pipe-modules::before,.pipe-modules::after{display:none}
     .pipe-pill{font-size:15px;text-align:center}
-    .pipe-cards{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .pipe-cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
     .pipe-card-body{padding:20px}
     .pipe-card-title{font-size:19px}
     .pipe-dialog{width:calc(100vw - 32px);max-height:calc(100svh - 32px)}
