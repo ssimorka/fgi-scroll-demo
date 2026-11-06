@@ -533,7 +533,7 @@
   .value-brand{border:0} /* tile 02: the kit's gradient pathway card (node 6065:30): Tile Brand gradient, on-dark type */
   .value.value-brand .t-heading{color:var(--text-on-dark)}
   .value.value-brand .t-body{color:var(--text-on-dark-2)}
-  .values-grid .founders-band{grid-column:span 4;grid-template-columns:minmax(0,1fr) auto} /* in the bento the band is two-thirds wide: copy takes the room, the faces hug */
+  .values-grid .founders-band{grid-column:1/-1;grid-template-columns:minmax(0,1fr) auto} /* full row above the three values (the "Comprehensive science" tile was removed Nov 2026) */
   .values-grid .founders-band-faces img{width:clamp(84px,7.5vw,116px)}
   .value-icon{display:grid;place-items:center;width:48px;height:48px;border-radius:12px;background:var(--pink-100);color:var(--bg-brand)}
   .value-tint .value-icon{background:var(--bg-page);border:1px solid var(--border-brand-tertiary)}
